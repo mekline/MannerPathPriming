@@ -5,10 +5,16 @@ function [response] = Sign_Trial(trialNo)
     global parameters
     
     %Set up movies to play  
-    movietoplay_target = strcat('Movies/', char(parameters.TargetMoviePath(trialNo)));
-    movietoplay_distractor = strcat('Movies/', char(parameters.DistractorMoviePath(trialNo)));
-    movietoplay_sign = strcat('Movies/', char(parameters.SignMoviePath(trialNo)));
+    %movietoplay_target = strcat('Movies/', char(parameters.TargetMoviePath(trialNo)));
+    %movietoplay_distractor = strcat('Movies/', char(parameters.DistractorMoviePath(trialNo)));
+    %movietoplay_sign = strcat('Movies/', char(parameters.SignMoviePath(trialNo)));
    
+    %FOR THE SKELETON - rather than playing movies chosen from a list, play
+    %just 3 example movies rather than uploading a big movie directory.
+    
+    movietoplay_target = 'ExampleMovies/balloon.between.hills.mov';
+    movietoplay_distractor = 'ExampleMovies/balloon.front.sunflowers.mov';
+    movietoplay_sign = 'ExampleMovies/balloon.into.tree.mov';
     
     %Start the trial!
     

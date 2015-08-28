@@ -84,7 +84,7 @@ try %everything goes inside a 'try' block, so if it crashes, it crashes
     % Prelim Screen/Instructions
     %%%%%%%%%%%%%%%%%%%%%%
     
-     Text_Show('Press Spacebar to start experiment.  Wait, its the worlds longest string Wait, its the worlds longest string Wait, its the worlds longest string Wait, its the worlds longest string Wait, its the worlds longest string Wait, its the worlds longest string Wait, its the worlds longest string Wait, its the worlds longest string Wait, its the worlds longest string');
+     Text_Show('Press Spacebar to start experiment.');
      Take_Response();
      
      %Save a header file to the data file so it will be easier to read!
