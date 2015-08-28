@@ -1,4 +1,4 @@
-function [response] = Sign_Trial(trialNo)
+function [response] = Sample_Trial(trialNo)
 
 %Plays a single trial of the memory test!
 
@@ -53,57 +53,32 @@ function [response] = Sign_Trial(trialNo)
     end
     
     %%%%
-    %Play the two event movies, in a 'repeat' block
-    
-    finishedWatchingMovie = 0;
-    
-    while not(finishedWatchingMovie)
+    %Play the two event movies; movie always plays L then R, with movies
+    %assigned to random sides in main script.
+    %%%%
      
-        if strcmp(char(parameters.LeftMovie), 'T') %play Target Movie on left
-            
-            Show_Blank;
-            PlaySideMovies(movietoplay_target,'','caption_left','A');
-            Show_Blank;
-            PlaySideMovies('',movietoplay_distractor,'caption_right','B');
+    if strcmp(char(parameters.LeftMovie(trialNo)), 'T') %play Target Movie on left
 
-        else strcmp(char(parameters.LeftMovie), 'D') %play Distractor Movie on left
-            
-            Show_Blank;
-            PlaySideMovies(movietoplay_distractor,'','caption_left','A');
-            Show_Blank;
-            PlaySideMovies('',movietoplay_target,'caption_right','B');
-            
-        end
+        Show_Blank;
+        PlaySideMovies(movietoplay_target,'','caption_left','A');
+        Show_Blank;
+        PlaySideMovies('',movietoplay_distractor,'caption_right','B');
 
-        %Decide if we should we watch again?
-        Text_Show('Want to watch again? Press r. If not, press space');
-        response_events = Take_Response();
-        
-        if response_events == 'r'
-            finishedWatchingMovie = 0;
-        else
-            finishedWatchingMovie = 1;
-        end
-    end
-    
-    %Play the sign movie, in a 'repeat' block
-    finishedSignMovie = 0;
-    
-    while not(finishedSignMovie)
-        
-        PlayCenterMovie(movietoplay_sign);
-        
-        %Decide if we should we watch again?
-        Text_Show('Want to watch again? Press r. If not, press space');
-        response_sign = Take_Response();
-        
-        if response_sign == 'r'
-            finishedSignMovie = 0;
-        else
-            finishedSignMovie = 1;
-        end
+    elseif strcmp(char(parameters.LeftMovie(trialNo)), 'D') %play Distractor Movie on left
+
+        Show_Blank;
+        PlaySideMovies(movietoplay_distractor,'','caption_left','A');
+        Show_Blank;
+        PlaySideMovies('',movietoplay_target,'caption_right','B');
+
     end
 
+    
+    %%%%
+    %Play the sign movie again
+    %%%%
+    Show_Blank;
+    PlayCenterMovie(movietoplay_sign);
     
     %And prompt and record the response!
     Text_Show('A or B?');

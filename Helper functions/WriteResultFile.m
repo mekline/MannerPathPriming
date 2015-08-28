@@ -15,7 +15,11 @@ for v=1:length(infoVector)
         nextString = char(infoVector{v});
     end
     
-    stringOut = strcat(stringOut, ',', nextString);
+    if stringOut
+        stringOut = strcat(stringOut, ',', nextString);
+    else
+        stringOut = nextString;
+    end
 end
         
 stringOut = strcat(stringOut, '\n');
