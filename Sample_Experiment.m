@@ -1,9 +1,15 @@
 function Sample_Experiment(subNo, signList)
 %The sign meaning experiment, Feb 2014
+%
 %subNo, the subject number to run. Subject code above
 %99 is for testing; data overwrite will not be checked.
 %
 %Signlist - one of eight set lists of items, specify 1-8
+%
+%Note: Make sure that you add the helper functions to the path, otherwise
+%it won't work. You can do this by clicking on the folder helper functions
+% -> add to path.
+
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%
