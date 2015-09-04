@@ -92,6 +92,10 @@ try %everything goes inside a 'try' block, so if it crashes, it crashes
     
      Text_Show('Press Spacebar to start experiment.');
      Take_Response();
+    
+     
+  
+     
      
      %Save a header file to the data file so it will be easier to read!
      WriteResultFile({'SubjectNo',...
@@ -103,9 +107,9 @@ try %everything goes inside a 'try' block, so if it crashes, it crashes
     % Trial Setup
     %%%%%%%%%%%%%%%%%%%%%%
      
-     %ntrials = length(parameters.TargetMoviePath); %how many trials?
+      %ntrials = length(parameters.TargetMoviePath); %how many trials?
      ntrials = 3; %For the skeleton, play some short sample trials!
-     
+        
      for i=1:ntrials
          response = Sample_Trial(i);  
          if response == 'q'
