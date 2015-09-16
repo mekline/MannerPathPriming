@@ -5,10 +5,14 @@ function [response] = Sample_Trial(trialNo)
     global parameters
     
     %Set up movies to play  
-    movietoplay_target = strcat('Movies/', char(parameters.TargetMoviePath(trialNo)));
-    movietoplay_distractor = strcat('Movies/', char(parameters.DistractorMoviePath(trialNo)));
-    movietoplay_sign = strcat('Movies/', char(parameters.SignMoviePath(trialNo)));
-   
+    movietoplay_target = strcat('Movies/', char(parameters.pbias(trialNo)));
+    movietoplay_distractor = strcat('Movies/', char(parameters.mbiasV(trialNo)));
+    movietoplay_sign = strcat('Movies/', char(parameters.ambigV(trialNo)));
+    movietoplay_trainV1 = strcat('Movies/', char(parameters.trainV1(trialNo)));
+    movietoplay_trainV2 = strcat('Movies/', char(parameters.trainV2(trialNo)));
+    movietoplay_trainV3 = strcat('Movies/', char(parameters.trainV3(trialNo)));
+    movietoplay_mTest = strcat('Movies/', char(parameters.mTest(trialNo)));
+    movietoplay_pTest = strcat('Movies/', char(parameters.pTest(trialNo)));
     %FOR THE SKELETON - rather than playing movies chosen from a list, play
     %just 3 example movies rather than uploading a big movie directory.
     
@@ -19,28 +23,33 @@ function [response] = Sample_Trial(trialNo)
     
     %Start the trial!
     
+    
     %Clear screen
     Show_Blank;
     
     %%%%%
     %Show start screen
     
-    Text_Show('Ready? Press space to watch the sign movies.');
-    response = Take_Response();
-    %Want to finish early?
-    if response == 'q'
-        return
-    end
+    
+    
 
+    
+    
     %%%%
     %Play the sign movie, in a 'repeat' block
     
     finishedSignMovie = 0;
     
     while not(finishedSignMovie)
+
+
         
         Show_Blank;
         PlayCenterMovie(movietoplay_sign);
+
+ Text_Show('(((... did it ...)))');
+Take_Response();
+Show_Blank; 
         
         %Decide if we should we watch again?
         Text_Show('Want to watch again? Press r. If not, press space');
@@ -73,16 +82,103 @@ function [response] = Sample_Trial(trialNo)
         PlaySideMovies('',movietoplay_target,'caption_right','B');
 
     end
-
     
     %%%%
     %Play the sign movie again
     %%%%
-    Show_Blank;
-    PlayCenterMovie(movietoplay_sign);
+    %Show_Blank;
+    %PlayCenterMovie(movietoplay_sign);
     
     %And prompt and record the response!
-    Text_Show('A or B?');
+    Text_Show('Which one is ...');
     response = Take_Response();
     
+    
+    
+    
+     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+     % NEW Play the 3 train movies
+     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Text_Show('(((training phase)))');
+Take_Response();
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Text_Show('(((... is going to ...)))');
+Take_Response();
+Show_Blank;
+
+PlayCenterMovie(movietoplay_trainV1);
+Text_Show('(((... did it ...)))');
+Take_Response();
+    
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+     
+Text_Show('(((... is going to ...)))');
+Take_Response();
+Show_Blank;
+PlayCenterMovie(movietoplay_trainV2);
+Text_Show('(((... did it ...)))');
+Take_Response();
+ 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+    
+Text_Show('(((... is going to ...)))');
+Take_Response();
+Show_Blank;
+PlayCenterMovie(movietoplay_trainV3);
+Text_Show('(((... did it ...)))');
+Take_Response();
+
+    
+    %And prompt and record the response!
+    %Text_Show('A or B?');
+    %response = Take_Response();
+
+
+    %NEW: PLAY THE TEST MOVIE
+
+    
+   % Text_Show('(((sound sentence for test)))');
+   % response = Take_Response();
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    
+     if strcmp(char(parameters.LeftMovie(trialNo)), 'T') %play Target Movie on left
+
+        Show_Blank;
+        PlaySideMovies(movietoplay_mTest,'','caption_left','A');
+        Show_Blank;
+        PlaySideMovies('',movietoplay_pTest,'caption_right','B');
+
+    elseif strcmp(char(parameters.LeftMovie(trialNo)), 'D') %play Distractor Movie on left
+
+        Show_Blank;
+        PlaySideMovies(movietoplay_pTest,'','caption_left','A');
+        Show_Blank;
+        PlaySideMovies('',movietoplay_mTest,'caption_right','B');
+
+    end
+    
+    
+%     Show_Blank;
+%     PlayCenterMovie(movietoplay_mTest);
+%     
+%     Show_Blank;
+%     PlayCenterMovie(movietoplay_pTest);
+    
+    
+    
+    
+    
+    Text_Show('Which one is ...');
+    response = Take_Response();
+    
+    
 end
+
+
+
+

@@ -4,7 +4,7 @@ global parameters
 
 %Get current Text settings so we can use them as defaults
 
-DefaultFont = Screen('TextFont',parameters.scr.winPtr);
+DefaultFont= Screen('TextFont',parameters.scr.winPtr);
 DefaultSize = Screen('TextSize',parameters.scr.winPtr);
 DefaultStyle = Screen('TextStyle', parameters.scr.winPtr);
 
