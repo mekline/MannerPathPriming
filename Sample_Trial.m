@@ -13,6 +13,9 @@ function [response] = Sample_Trial(trialNo)
     movietoplay_trainV3 = strcat('Movies/', char(parameters.trainV3(trialNo)));
     movietoplay_mTest = strcat('Movies/', char(parameters.mTest(trialNo)));
     movietoplay_pTest = strcat('Movies/', char(parameters.pTest(trialNo)));
+    
+    
+    
     %FOR THE SKELETON - rather than playing movies chosen from a list, play
     %just 3 example movies rather than uploading a big movie directory.
     
@@ -29,12 +32,7 @@ function [response] = Sample_Trial(trialNo)
     
     %%%%%
     %Show start screen
-    
-    
-    
-
-    
-    
+   
     %%%%
     %Play the sign movie, in a 'repeat' block
     
@@ -110,6 +108,9 @@ Take_Response();
 Show_Blank;
 
 PlayCenterMovie(movietoplay_trainV1);
+Show_Blank;
+PlayCenterMovie(movietoplay_trainV1);
+
 Text_Show('(((... did it ...)))');
 Take_Response();
     
@@ -118,7 +119,10 @@ Take_Response();
 Text_Show('(((... is going to ...)))');
 Take_Response();
 Show_Blank;
+
 PlayCenterMovie(movietoplay_trainV2);
+PlayCenterMovie(movietoplay_trainV2);
+
 Text_Show('(((... did it ...)))');
 Take_Response();
  
@@ -128,7 +132,10 @@ Take_Response();
 Text_Show('(((... is going to ...)))');
 Take_Response();
 Show_Blank;
+
 PlayCenterMovie(movietoplay_trainV3);
+PlayCenterMovie(movietoplay_trainV3);
+
 Text_Show('(((... did it ...)))');
 Take_Response();
 
