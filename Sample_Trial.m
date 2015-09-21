@@ -5,14 +5,14 @@ function [response] = Sample_Trial(trialNo)
     global parameters
     
     %Set up movies to play  
-    movietoplay_target = strcat('Movies/', char(parameters.pbias(trialNo)));
+    movietoplay_target = strcat('Movies/', char(parameters.pbiasV(trialNo)));
     movietoplay_distractor = strcat('Movies/', char(parameters.mbiasV(trialNo)));
     movietoplay_sign = strcat('Movies/', char(parameters.ambigV(trialNo)));
     movietoplay_trainV1 = strcat('Movies/', char(parameters.trainV1(trialNo)));
     movietoplay_trainV2 = strcat('Movies/', char(parameters.trainV2(trialNo)));
     movietoplay_trainV3 = strcat('Movies/', char(parameters.trainV3(trialNo)));
-    movietoplay_mTest = strcat('Movies/', char(parameters.mTest(trialNo)));
-    movietoplay_pTest = strcat('Movies/', char(parameters.pTest(trialNo)));
+    movietoplay_mTest = strcat('Movies/', char(parameters.mtestV(trialNo)));
+    movietoplay_pTest = strcat('Movies/', char(parameters.ptestV(trialNo)));
     
     
     
