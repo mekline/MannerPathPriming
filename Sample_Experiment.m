@@ -1,6 +1,5 @@
 function Sample_Experiment(subNo, condition)
         
-              %GITHUB TESTTTTTTTT 2 DOES THIS WORK?
 %The sign meaning experiment, Feb 2014
 %                         
 %subNo, the subject number to run. Subject code above
