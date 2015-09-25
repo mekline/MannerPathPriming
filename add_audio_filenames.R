@@ -34,6 +34,15 @@ items$trainAudioPast2 <- paste(items$verbName, items$cond, 'past', items$word2, 
 items$trainAudioFuture3 <- paste(items$verbName, items$cond, 'future', items$word3, sep='_' )
 items$trainAudioPast3 <- paste(items$verbName, items$cond, 'past', items$word3, sep='_' )
 
+items$ambigAudioFuture <- paste(items$ambigAudioFuture, 'wav', sep='.' )
+items$ambigAudioPast <- paste(items$ambigAudioPast, 'wav', sep='.' )
+items$trainAudioFuture1 <- paste(items$trainAudioFuture1, 'wav', sep='.' )
+items$trainAudioPast1 <- paste(items$trainAudioPast1, 'wav', sep='.' )
+items$trainAudioFuture2 <- paste(items$trainAudioFuture2, 'wav', sep='.' )
+items$trainAudioPast2 <- paste(items$trainAudioPast2, 'wav', sep='.' )
+items$trainAudioFuture3 <- paste(items$trainAudioFuture3, 'wav', sep='.' )
+items$trainAudioPast3 <- paste(items$trainAudioPast3, 'wav', sep='.' )
+
 #Clean up the file a bit before saving it
 items <- subset(items, select=-c(wordamb, word1, word2, word3, cond))
 write.csv(items, "Experiment_Items_final_withaudio.csv")
