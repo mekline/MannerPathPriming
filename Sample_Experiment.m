@@ -184,6 +184,22 @@ end_Index = (8*condition)+1;
          'trialNo',...
          'LeftMovie',...
          'Response'}); 
+     
+     
+    %%%%%%%%%%%%%%%%%%%%%%
+    % 2 TRIALS OF NOUN TRAINING
+    %%%%%%%%%%%%%%%%%%%%%%
+    
+    
+    
+    
+    
+    
+    
+     
+     
+     
+     
     
     %%%%%%%%%%%%%%%%%%%%%%
     % Trial Setup
