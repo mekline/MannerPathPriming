@@ -175,24 +175,55 @@ end_Index = (8*condition)+1;
     % Prelim Screen/Instructions
     %%%%%%%%%%%%%%%%%%%%%%
     
-     Text_Show('Press spacebar to start experiment.')
-     Take_Response();    
-    
-     
-     %Save a header file to the data file so it will be easier to read!
+    %Save a header file to the data file so it will be easier to read!
      WriteResultFile({'SubjectNo',...
          'trialNo',...
          'LeftMovie',...
          'Response'}); 
+    
+    
+     Text_Show('Press spacebar to start experiment.')
+     Take_Response();  
+     
+       
+    %%%%%%%%%%%%%%%%%%%%%% 
+    % 2 TRIALS OF NOUN TRAINING                             
+    %%%%%%%%%%%%%%%%%%%%%%
+    
+    Text_Show('(((SOUND))) The dog has a ...')
+    Take_Response();  
+    
+    movietoplay_target = 'Movies/1_noun_1_distractor.mov';
+    movietoplay_distractor = 'Movies/1_noun_1b.mov';    
+    movietoplay_sign = 'Movies/1_noun_1a.mov';
+    
+     
+     Show_Blank;
+     
+     finishedSignMovie = 0;
+    
+    while not(finishedSignMovie)
+        
+        
+        
+        Show_Blank;
+        PlayCenterMovie(movietoplay_sign);
+        
+        Show_Blank;
+        PlaySideMovies(movietoplay_target,'','caption_left','A');
+        Show_Blank;
+        PlaySideMovies('',movietoplay_distractor,'caption_right','B'); 
+       Show_Blank;
+        Text_Show('(((SOUND)))  Which one has the ...');
+    response = Take_Response();                                
      
      
-    %%%%%%%%%%%%%%%%%%%%%%
-    % 2 TRIALS OF NOUN TRAINING
-    %%%%%%%%%%%%%%%%%%%%%%
-    
-    
-    
-    
+     
+   
+         
+         
+         
+         
     
     
     
@@ -259,7 +290,7 @@ Show_Blank;
     
      Closeout_PTool();
      
-catch
+%catch
     
     % Catch error: in case anything went wrong...
     % Do same cleanup as at the end of a regular session...

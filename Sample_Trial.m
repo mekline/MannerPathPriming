@@ -5,6 +5,13 @@ function [response] = Sample_Trial(trialNo)
     global parameters
     
     %Set up movies to play  
+    
+    %Noun training
+    movietoplay_noun1a = 'Movies/1_noun_1a.mov';
+    movietoplay_noun1b = 'Movies/1_noun_1b.mov';
+    movietoplay_noun1_distractor = 'Movies/1_noun_1_distractor';
+
+    %Trial movies
     movietoplay_target = strcat('Movies/', char(parameters.pbiasV(trialNo)));
     movietoplay_distractor = strcat('Movies/', char(parameters.mbiasV(trialNo)));
     movietoplay_sign = strcat('Movies/', char(parameters.ambigV(trialNo)));
@@ -13,6 +20,7 @@ function [response] = Sample_Trial(trialNo)
     movietoplay_trainV3 = strcat('Movies/', char(parameters.trainV3(trialNo)));
     movietoplay_mTest = strcat('Movies/', char(parameters.mtestV(trialNo)));
     movietoplay_pTest = strcat('Movies/', char(parameters.ptestV(trialNo)));
+    
     
     
     
@@ -39,8 +47,8 @@ function [response] = Sample_Trial(trialNo)
     finishedSignMovie = 0;
     
     while not(finishedSignMovie)
-
-
+        
+        
         
         Show_Blank;
         PlayCenterMovie(movietoplay_sign);
