@@ -161,14 +161,27 @@ end_Index = (8*condition)+1;
     
     
   %Randomize sides for pathbiasV and mannerbiasV (bias test)  
-LR = randi([0 1],1)
+LR_bias_test = randi([0 1],1)
 
-if LR == 0
+if LR_bias_test == 0
     pbiasV = parameters.pbiasV
     mbiasV = parameters.mbiasV
 else
     pbiasV = parameters.pbiasV
     mbiasV = parameters.mbiasV
+end
+
+
+
+ %Randomize sides for final test
+LR_final_test = randi([0 1],1)
+
+if LR_final_test == 0
+    pbiasV = parameters.ptestV
+    mbiasV = parameters.mtestV
+else
+    pbiasV = parameters.ptestV
+    mbiasV = parameters.mtestV
 end
     
     %%%%%%%%%%%%%%%%%%%%%%
