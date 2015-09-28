@@ -1,2 +1,2 @@
-SubjectNo,trialNo,LeftMovie,RT,Response
-99,1,LeftGUI
+SubjectNo,trialNo,List,itemID,eventType,Condition,verbName,ambigV,mbiasV,pbiasV,mbiasAns,pbiasAns,RT biastest,trainV1,trainV2,trainV3,mtestV,mtestAns,ptestV,ptestAns,RT final test,movieLenght,side,Date,Time,Response
+99,1,List,3,Motion,Condition,zarking,flapwalk.up.cat.mov,flapwalk.around.horse.mov,crawl.up.swan.mov,mbiasAns,0,RT biastest,flapwalk.front.penguin.mov,flapwalk.between.seesaws.mov,flapwalk.through.waterfall.mov,tiptoe.up.well.mov,mtestAns,flapwalk.into.igloo.mov,ptestAns,RT final test,7.1,side,28-Sep-2015,16:52:48.790,Response

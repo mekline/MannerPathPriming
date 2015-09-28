@@ -62,22 +62,14 @@ try %everything goes inside a 'try' block, so if it crashes, it crashes
 %
 %
     vidNames = read_mixed_csv('Experiment_Items_final.csv',',')
-%     
-%                                             
-%
 %
 %    %Routine to pick the specified signList (algebra to get us the right rows)
     
 start_Index = (8*condition)-6;
 end_Index = (8*condition)+1;
 
-
-%     
-%
 %
 %     %Turn list into vectors of variables
-%
-%
 %
     parameters.Experiment = vidNames(start_Index:end_Index, 2)
     parameters.amyFileName = vidNames(start_Index:end_Index, 3)
@@ -167,6 +159,18 @@ end_Index = (8*condition)+1;
     %newRand = randperm(1); %how many trials'
     %parameters.LeftMovie = parameters.LeftMovie(newRand);
     
+    
+  %Randomize sides for pathbiasV and mannerbiasV (bias test)  
+LR = randi([0 1],1)
+
+if LR == 0
+    pbiasV = parameters.pbiasV
+    mbiasV = parameters.mbiasV
+else
+    pbiasV = parameters.pbiasV
+    mbiasV = parameters.mbiasV
+end
+    
     %%%%%%%%%%%%%%%%%%%%%%
     % Experiment
     %%%%%%%%%%%%%%%%%%%%%%
@@ -194,7 +198,7 @@ end_Index = (8*condition)+1;
          'trainV3',...
          'mtestV',...
          'mtestAns',...
-         'ptestV',...
+         'ptestV',... 
          'ptestAns',...
         'RT final test',...
          'movieLenght',...
@@ -207,52 +211,46 @@ end_Index = (8*condition)+1;
      Text_Show('Press spacebar to start experiment.')
      Take_Response();  
      
+     Time_Stamp_Start = now
        
     %%%%%%%%%%%%%%%%%%%%%% 
     % 2 TRIALS OF NOUN TRAINING                             
     %%%%%%%%%%%%%%%%%%%%%%
     
-    Text_Show('(((SOUND))) The dog has a ...')
-    Take_Response();  
-    
-    movietoplay_target = 'Movies/1_noun_1_distractor.mov';
-    movietoplay_distractor = 'Movies/1_noun_1b.mov';    
-    movietoplay_sign = 'Movies/1_noun_1a.mov';
-    
+%     Text_Show('(((SOUND))) The dog has a ...')
+%     Take_Response();  
+%     
+%     movietoplay_target = 'Movies/1_noun_1_distractor.mov';
+%     movietoplay_distractor = 'Movies/1_noun_1b.mov';    
+%     movietoplay_sign = 'Movies/1_noun_1a.mov';
+%     
+%   
+%     
+%      
+%      Show_Blank;
+%      
+%      finishedSignMovie = 0;
+%     
+%     while not(finishedSignMovie)
+%         
+%         Show_Blank;
+%         PlayCenterMovie(movietoplay_sign);
+%         
+%         Show_Blank;
+%         PlaySideMovies(movietoplay_target,'','caption_left','A');
+%         Show_Blank;
+%         PlaySideMovies('',movietoplay_distractor,'caption_right','B'); 
+%         Show_Blank;
+%         Text_Show('(((SOUND)))  Which one has the ...');
+%Time_Stamp_Noun = now
+
+%         response = Take_Response(); 
+
+%Time_Stamp_Noun_Response = now                               
      
-     Show_Blank;
-     
-     finishedSignMovie = 0;
-    
-    while not(finishedSignMovie)
-        
-        
-        
-        Show_Blank;
-        PlayCenterMovie(movietoplay_sign);
-        
-        Show_Blank;
-        PlaySideMovies(movietoplay_target,'','caption_left','A');
-        Show_Blank;
-        PlaySideMovies('',movietoplay_distractor,'caption_right','B'); 
-       Show_Blank;
-        Text_Show('(((SOUND)))  Which one has the ...');
-    response = Take_Response();                                
-     
-     
-     
-   
-         
-         
-         
-         
-    
-    
-    
-     
-     
-     
-     
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%END NOUN TRAINING     
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%   
     
     %%%%%%%%%%%%%%%%%%%%%%
     % Trial Setup
@@ -266,8 +264,8 @@ end_Index = (8*condition)+1;
         return
     end                                                                                                                                                                                                                                                                                                                                                                         
     
-    
-     
+%     
+%      
      %ntrials = length(parameters.pbias) %how many trials?
 
      ntrials = 1; %For the skeleton, play some short sample trials!
@@ -300,10 +298,40 @@ Show_Blank;
          end
          
          
-         WriteResultFile({parameters.subNo, ...
-             i, ...
-             response}) %Note the curly brackets - this needs to be a cellarray of stuff you want to save
+         WriteResultFile({parameters.subNo,...
+         i,...
+         'List',...
+         parameters.itemID(i),...
+         parameters.eventType(i),...
+         'Condition',...
+         parameters.verbName(i),...
+         parameters.ambigV(i),...
+         parameters.mbiasV(i),...
+         parameters.pbiasV(i),...
+         'mbiasAns',...
+         parameters.pbiasAns(i),...
+          'RT biastest',...
+         parameters.trainV1(i),...
+         parameters.trainV2(i),...
+         parameters.trainV3(i),...
+         parameters.mtestV(i),...
+         'mtestAns',...
+         parameters.ptestV(i),...
+         'ptestAns',...
+        'RT final test',...
+         parameters.movieLenght(i),...
+         'side',...
+         datestr(now,'dd-mmm-yyyy'),...
+         datestr(now,'HH:MM:SS.FFF'),...
+         'Response'}); 
+     
+     
          
+%          
+%          WriteResultFile({parameters.subNo, ...
+%              i, ...
+%              response}) %Note the curly brackets - this needs to be a cellarray of stuff you want to save
+%          
      end
 
     %%%%%%%%%%%%%%%%%%%%%%
@@ -311,8 +339,8 @@ Show_Blank;
     %%%%%%%%%%%%%%%%%%%%%%
     
      Closeout_PTool();
-%!!!!!!!!! WHY IS CATCH NOT WORKING ANYMORE  !!!!!!!!!!!!!!!!!!   
-%catch 
+ 
+catch 
 
     
     % Catch error: in case anything went wrong...
