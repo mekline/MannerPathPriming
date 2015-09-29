@@ -74,7 +74,7 @@ Show_Blank;
     %%%%
 
      
-    if parameters.LorR == 0 %play Target Movie on left
+    if parameters.LorR_bias == 0 %play Target Movie on left
 
         Show_Blank;
         PlaySideMovies(movietoplay_target,'','caption_left','A');
@@ -162,7 +162,7 @@ Take_Response();
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     
-     if parameters.LorR == 0 %play Target Movie on left
+     if parameters.LorR_final == 0 %play Target Movie on left
 
         Show_Blank;
         PlaySideMovies(movietoplay_mTest,'','caption_left','A');

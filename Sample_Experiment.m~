@@ -152,8 +152,7 @@ end_Index = (8*condition)+1;
     parameters.ptestAns = parameters.ptestAns(myRandOrder)
     parameters.movieLenght = parameters.movieLenght(myRandOrder)
     parameters.LeftMovie = parameters.LeftMovie(myRandOrder)
-    parameters.LorR_bias = randi([0 1], length(start_Index:end_Index),1) 
-    parameters.LorR_final = randi([0 1], length(start_Index:end_Index),1)                         
+    parameters.LorR = randi([0 1], length(start_Index:end_Index),1)                          
        
     %Randomize sides for target and distractor movies
     %parameters.LeftMovie = {'T', 'T', 'T', 'T', 'T', 'T', 'T', 'T', 'T', 'T', 'T', 'T', 'T', 'T', 'T', 'T', 'T', 'T', 'T', 'T', 'T', 'T', 'T', 'T', 'T', 'T', 'T', 'T', 'T', 'T', 'T', 'T', 'T', 'T', 'T', 'T', 'T', 'T', 'T', 'T', 'D', 'D', 'D', 'D', 'D', 'D', 'D', 'D', 'D', 'D', 'D', 'D', 'D', 'D', 'D', 'D', 'D', 'D', 'D', 'D', 'D', 'D', 'D', 'D'}
@@ -206,8 +205,7 @@ end_Index = (8*condition)+1;
            'Date',...
          'Time',...
          'Response',...
-          'LorR_bias_test',...
-           'LorR_final_test'}); 
+          'LorR}); 
     
     
      Text_Show('Press spacebar to start experiment.')
@@ -357,9 +355,7 @@ Take_Response();
          'side',...
          datestr(now,'dd-mmm-yyyy'),...
          datestr(now,'HH:MM:SS.FFF'),...
-         'Response',...
-           parameters.LorR_bias(i),...
-        parameters.LorR_final(i)}); 
+         'Response'}); 
      
      
          
