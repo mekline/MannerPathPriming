@@ -152,7 +152,7 @@ end_Index = (8*condition)+1;
     parameters.ptestAns = parameters.ptestAns(myRandOrder)
     parameters.movieLenght = parameters.movieLenght(myRandOrder)
     parameters.LeftMovie = parameters.LeftMovie(myRandOrder)
-                               
+    parameters.LorR = randi([0 1], length(start_Index:end_Index),1)                          
        
     %Randomize sides for target and distractor movies
     %parameters.LeftMovie = {'T', 'T', 'T', 'T', 'T', 'T', 'T', 'T', 'T', 'T', 'T', 'T', 'T', 'T', 'T', 'T', 'T', 'T', 'T', 'T', 'T', 'T', 'T', 'T', 'T', 'T', 'T', 'T', 'T', 'T', 'T', 'T', 'T', 'T', 'T', 'T', 'T', 'T', 'T', 'T', 'D', 'D', 'D', 'D', 'D', 'D', 'D', 'D', 'D', 'D', 'D', 'D', 'D', 'D', 'D', 'D', 'D', 'D', 'D', 'D', 'D', 'D', 'D', 'D'}
@@ -160,20 +160,6 @@ end_Index = (8*condition)+1;
     %parameters.LeftMovie = parameters.LeftMovie(newRand);
     
     
-  %Randomize sides for pathbiasV and mannerbiasV (bias test)  
-LR_bias_test = randi([0 1],1)
-
-if LR_bias_test == 0
-    pbiasV = parameters.pbiasV
-    mbiasV = parameters.mbiasV
-else
-    pbiasV = parameters.pbiasV
-    mbiasV = parameters.mbiasV
-end
-
-
-
-
 
 
 %??????????????????????????????????
@@ -183,20 +169,6 @@ end
 %??????????????????????????????????
 
 
-
-
-
-
-%Randomize sides for final test
-LR_final_test = randi([0 1],1)
-
-if LR_final_test == 0
-    pbiasV = parameters.ptestV
-    mbiasV = parameters.mtestV
-else
-    pbiasV = parameters.ptestV
-    mbiasV = parameters.mtestV
-end
     
     %%%%%%%%%%%%%%%%%%%%%%
     % Experiment
@@ -240,25 +212,26 @@ end
      
      Time_Stamp_Start = now
        
-    %%%%%%%%%%%%%%%%%%%%%% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
     % 2 TRIALS OF NOUN TRAINING                             
-    %%%%%%%%%%%%%%%%%%%%%%
-    
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%
+%FIRST NOUN TRAINING     
+%%%%%%%%%%%%%%%%%%%%%%
+ 
 %     Text_Show('(((SOUND))) The dog has a ...')
 %     Take_Response();  
 %     
 %     movietoplay_target = 'Movies/1_noun_1_distractor.mov';
 %     movietoplay_distractor = 'Movies/1_noun_1b.mov';    
 %     movietoplay_sign = 'Movies/1_noun_1a.mov';
-%     
-%   
-%     
+%       
+%Show_Blank;
 %      
-%      Show_Blank;
-%      
-%      finishedSignMovie = 0;
+%finishedSignMovie = 0;
 %     
-%     while not(finishedSignMovie)
+%while not(finishedSignMovie)
 %         
 %         Show_Blank;
 %         PlayCenterMovie(movietoplay_sign);
@@ -269,19 +242,51 @@ end
 %         PlaySideMovies('',movietoplay_distractor,'caption_right','B'); 
 %         Show_Blank;
 %         Text_Show('(((SOUND)))  Which one has the ...');
+
+
 %Time_Stamp_Noun = now
 
 %         response = Take_Response(); 
 
-%Time_Stamp_Noun_Response = now                               
-     
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Time_Stamp_Noun_Response = now    
+
+%%%%%%%%%%%%%%%%%%%%%%
+%SECOND NOUN TRAINING     
+%%%%%%%%%%%%%%%%%%%%%%  
+
+%Text_Show('(((SOUND))) SECOND NOUN TRIAL SENTENCE')
+%Take_Response();  
+%     
+%     movietoplay_NAME = 'Movies/NAME.mov';
+%     movietoplay_NAME = 'Movies/NAME.mov';    
+%     movietoplay_NAME = 'Movies/NAME.mov';
+% 
+%Show_Blank;
+%      
+%finishedSignMovie = 0;
+%     
+%while not(finishedSignMovie)
+%         
+%Show_Blank;
+%         
+%PlayCenterMovie(movietoplay_NAME);
+%         
+%Show_Blank;
+%PlaySideMovies(movietoplay_NAME,'','caption_left','A');
+%Show_Blank;
+%PlaySideMovies('',movietoplay_NAME,'caption_right','B'); 
+%Show_Blank;
+%Text_Show('(((SOUND)))  Which one has the ...');
+%
+%response = Take_Response();
+ 
+%%%%%%%%%%%%%%%%%%%%%%
 %END NOUN TRAINING     
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%   
+%%%%%%%%%%%%%%%%%%%%%%  
     
-    %%%%%%%%%%%%%%%%%%%%%%
-    % Trial Setup
-    %%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Trial Setup
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     
     
     Text_Show('Ready? Press space to watch the movies.');
@@ -312,9 +317,8 @@ Take_Response();
 Show_Blank;
         
 
-
-        Text_Show(char(parameters.ambigS_not_recording(i)));
-         Take_Response();      
+Text_Show(char(parameters.ambigS_not_recording(i)));
+Take_Response();      
          
          
           response = Sample_Trial(i);  

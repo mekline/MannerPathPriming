@@ -162,14 +162,34 @@ Take_Response();
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     
-     if parameters.LorR == 0 %play Target Movie on left
+      if parameters.LorR == 0 %play Target Movie on left
 
         Show_Blank;
         PlaySideMovies(movietoplay_mTest,'','caption_left','A');
         Show_Blank;
-        PlaySideMovies('',movietoplay_pTest,'caption_right','B');
+        PlaySideMovies('',movietoplay_distractor,'caption_right','B');
 
     else %play Distractor Movie on left
+
+        Show_Blank;
+        PlaySideMovies(movietoplay_distractor,'','caption_left','A');
+        Show_Blank;
+        PlaySideMovies('',movietoplay_target,'caption_right','B');
+
+    end
+
+
+
+
+
+if strcmp(char(parameters.LeftMovie(trialNo)), 'T') %play Target Movie on left
+
+        Show_Blank;
+        PlaySideMovies(,'','caption_left','A');
+        Show_Blank;
+        PlaySideMovies('',movietoplay_pTest,'caption_right','B');
+
+    elseif strcmp(char(parameters.LeftMovie(trialNo)), 'D') %play Distractor Movie on left
 
         Show_Blank;
         PlaySideMovies(movietoplay_pTest,'','caption_left','A');
@@ -177,7 +197,6 @@ Take_Response();
         PlaySideMovies('',movietoplay_mTest,'caption_right','B');
 
     end
-
     
     
 %     Show_Blank;
