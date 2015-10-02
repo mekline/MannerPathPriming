@@ -108,13 +108,23 @@ end_Index = (8*condition)+1;
     parameters.ptestAns = vidNames(start_Index:end_Index, 36)
     parameters.movieLenght = vidNames(start_Index:end_Index, 37)
     parameters.LeftMovie = vidNames(start_Index:end_Index, 38)
+    parameters.ambigAudioFuture = vidNames(start_Index:end_Index, 41)
+    parameters.ambigAudioPast = vidNames(start_Index:end_Index, 42)
+    parameters.trainAudioFuture1 = vidNames(start_Index:end_Index, 43)
+    parameters.trainAudioPast1 = vidNames(start_Index:end_Index, 44)
+    parameters.trainAudioFuture2 = vidNames(start_Index:end_Index, 45)
+    parameters.trainAudioPast2 = vidNames(start_Index:end_Index, 46)
+    parameters.trainAudioFuture3 = vidNames(start_Index:end_Index, 47)
+    parameters.trainAudioPast3 = vidNames(start_Index:end_Index, 48)
   
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    
+% % % Now randomize everything (apply random order to all columns/objects)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%     
-% %     %Now randomize everything (apply random order to all columns/objects)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
     myRandOrder = randperm(8)
+
     parameters.Experiment = parameters.Experiment(myRandOrder)                      
     parameters.amyFileName = parameters.amyFileName(myRandOrder)
     parameters.itemID = parameters.itemID(myRandOrder)
@@ -152,14 +162,24 @@ end_Index = (8*condition)+1;
     parameters.ptestAns = parameters.ptestAns(myRandOrder)
     parameters.movieLenght = parameters.movieLenght(myRandOrder)
     parameters.LeftMovie = parameters.LeftMovie(myRandOrder)
-    parameters.LorR_bias = randi([0 1], length(start_Index:end_Index),1) 
-    parameters.LorR_final = randi([0 1], length(start_Index:end_Index),1)                         
+    parameters.ambigAudioFuture = parameters.ambigAudioFuture(myRandOrder)
+    parameters.ambigAudioPast = parameters.ambigAudioPast(myRandOrder)
+    parameters.trainAudioFuture1 = parameters.trainAudioFuture1(myRandOrder)
+    parameters.trainAudioPast1 = parameters.trainAudioPast1(myRandOrder)
+    parameters.trainAudioFuture2 = parameters.trainAudioFuture2(myRandOrder)
+    parameters.trainAudioPast2 = parameters.trainAudioPast2(myRandOrder)
+    parameters.trainAudioFuture3 = parameters.trainAudioFuture3(myRandOrder)
+    parameters.trainAudioPast3 = parameters.trainAudioPast3(myRandOrder)
+                          
        
     %Randomize sides for target and distractor movies
     %parameters.LeftMovie = {'T', 'T', 'T', 'T', 'T', 'T', 'T', 'T', 'T', 'T', 'T', 'T', 'T', 'T', 'T', 'T', 'T', 'T', 'T', 'T', 'T', 'T', 'T', 'T', 'T', 'T', 'T', 'T', 'T', 'T', 'T', 'T', 'T', 'T', 'T', 'T', 'T', 'T', 'T', 'T', 'D', 'D', 'D', 'D', 'D', 'D', 'D', 'D', 'D', 'D', 'D', 'D', 'D', 'D', 'D', 'D', 'D', 'D', 'D', 'D', 'D', 'D', 'D', 'D'}
     %newRand = randperm(1); %how many trials'
     %parameters.LeftMovie = parameters.LeftMovie(newRand);
+
     
+    parameters.LorR_bias = randi([0 1], length(start_Index:end_Index),1) 
+    parameters.LorR_final = randi([0 1], length(start_Index:end_Index),1)
     
 
 

@@ -1,1 +1,2 @@
 SubjectNo,trialNo,List,itemID,eventType,Condition,verbName,ambigV,mbiasV,pbiasV,mbiasAns,pbiasAns,RT biastest,trainV1,trainV2,trainV3,mtestV,mtestAns,ptestV,ptestAns,RT final test,movieLenght,side,Date,Time,Response,LorR_bias_test,LorR_final_test
+99,1,List,8,Motion,Condition,dacking,walk.front.elephant.mov,roll.front.giraffe.mov,walk.over.sandpile.mov,mbiasAns,1,RT biastest,walk.up.owl.mov,walk.down.cow.mov,walk.into.castle.mov,walk.through.hut.mov,mtestAns,hop.front.bunny.mov,ptestAns,RT final test,7.1,side,02-Oct-2015,14:06:38.109,Response,0,1

@@ -108,6 +108,14 @@ end_Index = (8*condition)+1;
     parameters.ptestAns = vidNames(start_Index:end_Index, 36)
     parameters.movieLenght = vidNames(start_Index:end_Index, 37)
     parameters.LeftMovie = vidNames(start_Index:end_Index, 38)
+    parameters.ambigAudioFuture = vidNames(start_Index:end_Index, 41)
+    parameters.ambigAudioPast = vidNames(start_Index:end_Index, 42)
+    parameters.trainAudioFuture1 = vidNames(start_Index:end_Index, 43)
+    parameters.trainAudioPast1 = vidNames(start_Index:end_Index, 44)
+    parameters.trainAudioFuture2 = vidNames(start_Index:end_Index, 45)
+    parameters.trainAudioPast2 = vidNames(start_Index:end_Index, 46)
+    parameters.trainAudioFuture3 = vidNames(start_Index:end_Index, 47)
+    parameters.trainAudioPast3 = vidNames(start_Index:end_Index, 48)
   
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -152,7 +160,25 @@ end_Index = (8*condition)+1;
     parameters.ptestAns = parameters.ptestAns(myRandOrder)
     parameters.movieLenght = parameters.movieLenght(myRandOrder)
     parameters.LeftMovie = parameters.LeftMovie(myRandOrder)
-    parameters.LorR = randi([0 1], length(start_Index:end_Index),1)                          
+    parameters.ambigAudioFuture = parameters.ambigAudioFuture(myRandOrder)
+    parameters.ambigAudioPast = parameters.ambigAudioPast(myRandOrder)
+    parameters.trainAudioFuture1 = parameters.trainAudioFuture1(myRandOrder)
+    parameters.trainAudioPast1 = parameters.trainAudioPast1(myRandOrder)
+    parameters.trainAudioFuture2 = parameters.trainAudioFuture2(myRandOrder)
+    parameters.trainAudioPast2 = parameters.trainAudioPast2(myRandOrder)
+    parameters.trainAudioFuture3 = parameters.trainAudioFuture3(myRandOrder)
+    parameters.trainAudioPast3 = parameters.trainAudioPast3(myRandOrder)
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    parameters.LorR_bias = randi([0 1], length(start_Index:end_Index),1) 
+    parameters.LorR_final = randi([0 1], length(start_Index:end_Index),1)                         
        
     %Randomize sides for target and distractor movies
     %parameters.LeftMovie = {'T', 'T', 'T', 'T', 'T', 'T', 'T', 'T', 'T', 'T', 'T', 'T', 'T', 'T', 'T', 'T', 'T', 'T', 'T', 'T', 'T', 'T', 'T', 'T', 'T', 'T', 'T', 'T', 'T', 'T', 'T', 'T', 'T', 'T', 'T', 'T', 'T', 'T', 'T', 'T', 'D', 'D', 'D', 'D', 'D', 'D', 'D', 'D', 'D', 'D', 'D', 'D', 'D', 'D', 'D', 'D', 'D', 'D', 'D', 'D', 'D', 'D', 'D', 'D'}
@@ -205,7 +231,8 @@ end_Index = (8*condition)+1;
            'Date',...
          'Time',...
          'Response',...
-          'LorR}); 
+          'LorR_bias_test',...
+           'LorR_final_test'}); 
     
     
      Text_Show('Press spacebar to start experiment.')
@@ -355,7 +382,9 @@ Take_Response();
          'side',...
          datestr(now,'dd-mmm-yyyy'),...
          datestr(now,'HH:MM:SS.FFF'),...
-         'Response'}); 
+         'Response',...
+           parameters.LorR_bias(i),...
+        parameters.LorR_final(i)}); 
      
      
          
