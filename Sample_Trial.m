@@ -23,16 +23,15 @@ function [response] = Sample_Trial(trialNo)
     
     
     %Audio
+    soundtoplay_ambigAudioFuture = strcat('Audio_stimuli_creation/Finished/', char(parameters.ambigAudioFuture(trialNo)));
+    soundtoplay_ambigAudioPast = strcat('Audio_stimuli_creation/Finished/', char(parameters.ambigAudioPast(trialNo)));
     soundtoplay_trainAudioFuture1 = strcat('Audio_stimuli_creation/Finished/', char(parameters.trainAudioFuture1(trialNo)));
-    soundtoplay_
-    
-    %FOR THE SKELETON - rather than playing movies chosen from a list, play
-    %just 3 example movies rather than uploading a big movie directory.
-    
-%     movietoplay_target = 'ExampleMovies/balloon.between.hills.mov';
-%     movietoplay_distractor = 'ExampleMovies/balloon.front.sunflowers.mov';    
-%     movietoplay_sign = 'ExampleMovies/balloon.into.tree.mov';
-
+    soundtoplay_trainAudioPast1 = strcat('Audio_stimuli_creation/Finished/', char(parameters.trainAudioPast1(trialNo)));
+    soundtoplay_trainAudioFuture2 = strcat('Audio_stimuli_creation/Finished/', char(parameters.trainAudioFuture2(trialNo)));
+    soundtoplay_trainAudioPast2 = strcat('Audio_stimuli_creation/Finished/', char(parameters.trainAudioPast2(trialNo)));
+    soundtoplay_trainAudioFuture3 = strcat('Audio_stimuli_creation/Finished/', char(parameters.trainAudioFuture3(trialNo)));
+    soundtoplay_trainAudioPast3 = strcat('Audio_stimuli_creation/Finished/', char(parameters.trainAudioPast3(trialNo)));
+    soundtoplay_whichOne = strcat('Audio_stimuli_creation/Finished/', char(parameters.whichOne(trialNo)));
     
     %Start the trial!
     
@@ -50,15 +49,20 @@ function [response] = Sample_Trial(trialNo)
     
     while not(finishedSignMovie)
         
-        
-        
-        Show_Blank;
-        PlayCenterMovie(movietoplay_sign);
+Show_Blank;
 
- Text_Show('(((... did it ...)))');
+
+Play_Sound(soundtoplay_ambigAudioFuture, 'toBlock');
 Take_Response();
-Show_Blank; 
+Show_Blank;
         
+PlayCenterMovie(movietoplay_sign);
+
+Play_Sound(soundtoplay_ambigAudioPast, 'toBlock');
+Take_Response();
+Show_Blank;
+
+
         %Decide if we should we watch again?
         Text_Show('Want to watch again? Press r. If not, press space');
         response_sign = Take_Response();
@@ -74,6 +78,10 @@ Show_Blank;
     %Play the two event movies; movie always plays L then R, with movies
     %assigned to random sides in main script.
     %%%%
+    
+Play_Sound(soundtoplay_trainAudioFuture1, 'toBlock');
+Take_Response();
+Show_Blank;
 
      
     if parameters.LorR_bias == 0 %play Target Movie on left
@@ -113,53 +121,58 @@ Text_Show('(((training phase)))');
 Take_Response();
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-%Play_Sound('test.wav', 'toBlock')
-%(char(parameters.trainAudioFuture1(i))
-
-Text_Show(char(parameters.trainS1_going_to(trialNo)))
-Take_Response();
-Show_Blank;
+% 111111111111111111111111111111111111111111111111111111111111111111111111
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 Play_Sound(soundtoplay_trainAudioFuture1, 'toBlock');
 Take_Response();
 Show_Blank;
 
 
-
 PlayCenterMovie(movietoplay_trainV1);
 Show_Blank;
 PlayCenterMovie(movietoplay_trainV1);
+Show_Blank;
 
-Text_Show('(((... did it ...)))');
+Play_Sound(soundtoplay_trainAudioPast1, 'toBlock');
 Take_Response();
+Show_Blank;
     
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-     
-Text_Show('(((... is going to ...)))');
+% 2222222222222222222222222222222222222222222222222222222222222222222222222
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Play_Sound(soundtoplay_trainAudioFuture2, 'toBlock');
 Take_Response();
 Show_Blank;
 
 PlayCenterMovie(movietoplay_trainV2);
 PlayCenterMovie(movietoplay_trainV2);
+Show_Blank;
 
-Text_Show('(((... did it ...)))');
+Play_Sound(soundtoplay_trainAudioPast2, 'toBlock');
 Take_Response();
- 
+Show_Blank;
+    
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 333333333333333333333333333333333333333333333333333333333333333333333333%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-    
-Text_Show('(((... is going to ...)))');
+Play_Sound(soundtoplay_trainAudioFuture3, 'toBlock');
 Take_Response();
 Show_Blank;
 
 PlayCenterMovie(movietoplay_trainV3);
 PlayCenterMovie(movietoplay_trainV3);
+Show_Blank;
 
-Text_Show('(((... did it ...)))');
+Play_Sound(soundtoplay_trainAudioPast3, 'toBlock');
 Take_Response();
+Show_Blank;
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     
     %And prompt and record the response!
     %Text_Show('A or B?');
@@ -168,9 +181,14 @@ Take_Response();
 
     %NEW: PLAY THE TEST MOVIE
 
-    
-   % Text_Show('(((sound sentence for test)))');
-   % response = Take_Response();
+Text_Show('(((which one is ....)))');
+Take_Response();
+Show_Blank;
+
+Play_Sound(soundtoplay_whichOne, 'toBlock');
+Take_Response();
+Show_Blank;
+
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     
@@ -188,22 +206,11 @@ Take_Response();
         Show_Blank;
         PlaySideMovies('',movietoplay_mTest,'caption_right','B');
 
-    end
-
+     end
     
-    
-%     Show_Blank;
-%     PlayCenterMovie(movietoplay_mTest);
-%     
-%     Show_Blank;
-%     PlayCenterMovie(movietoplay_pTest);
-    
-    
-    
-    
-    
-    Text_Show('Which one is ...');
-    response = Take_Response();
+Play_Sound(soundtoplay_whichOne, 'toBlock');
+Take_Response();
+Show_Blank;
     
     
 end

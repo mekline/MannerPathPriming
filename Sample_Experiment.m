@@ -116,7 +116,8 @@ end_Index = (8*condition)+1;
     parameters.trainAudioPast2 = vidNames(start_Index:end_Index, 45)
     parameters.trainAudioFuture3 = vidNames(start_Index:end_Index, 46)
     parameters.trainAudioPast3 = vidNames(start_Index:end_Index, 47)
-  
+    parameters.whichOne = vidNames(start_Index:end_Index, 48)
+    
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    
 % % % Now randomize everything (apply random order to all columns/objects)
@@ -170,6 +171,7 @@ end_Index = (8*condition)+1;
     parameters.trainAudioPast2 = parameters.trainAudioPast2(myRandOrder)
     parameters.trainAudioFuture3 = parameters.trainAudioFuture3(myRandOrder)
     parameters.trainAudioPast3 = parameters.trainAudioPast3(myRandOrder)
+    parameters.whichOne = parameters.whichOne(myRandOrder)
                           
        
     %Randomize sides for target and distractor movies
@@ -323,28 +325,17 @@ end_Index = (8*condition)+1;
 
         
      for i=1:ntrials     
-Text_Show('(((... is going to ...)))');
-Take_Response();
-Show_Blank;   
-
-
-
-                 
-Play_Sound('test.wav', 'toBlock')
-Take_Response();
-Show_Blank;
-        
-
-Text_Show(char(parameters.ambigS_not_recording(i)));
-Take_Response();      
+  
          
-         
+  
           response = Sample_Trial(i);  
          if response == 'q'                       
              break  
 
                                  
          end
+         
+         
          
          
          WriteResultFile({parameters.subNo,...
@@ -377,12 +368,7 @@ Take_Response();
         parameters.LorR_final(i)}); 
      
      
-         
-%          
-%          WriteResultFile({parameters.subNo, ...
-%              i, ...
-%              response}) %Note the curly brackets - this needs to be a cellarray of stuff you want to save
-%          
+             
      end
 
     %%%%%%%%%%%%%%%%%%%%%%
