@@ -1,10 +1,11 @@
 function [response] = Sample_Trial(trialNo)
 
-%Plays a single trial of the memory test!
 
     global parameters
     
-    %Set up movies to play  
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% MOVIES
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     
     %Noun training
     movietoplay_noun1a = 'Movies/1_noun_1a.mov';
@@ -21,8 +22,10 @@ function [response] = Sample_Trial(trialNo)
     movietoplay_mTest = strcat('Movies/', char(parameters.mtestV(trialNo)));
     movietoplay_pTest = strcat('Movies/', char(parameters.ptestV(trialNo)));
     
-    
-    %Audio
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% AUDIO
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
     soundtoplay_ambigAudioFuture = strcat('Audio_stimuli_creation/Finished/', char(parameters.ambigAudioFuture(trialNo)));
     soundtoplay_ambigAudioPast = strcat('Audio_stimuli_creation/Finished/', char(parameters.ambigAudioPast(trialNo)));
     soundtoplay_trainAudioFuture1 = strcat('Audio_stimuli_creation/Finished/', char(parameters.trainAudioFuture1(trialNo)));
@@ -32,6 +35,9 @@ function [response] = Sample_Trial(trialNo)
     soundtoplay_trainAudioFuture3 = strcat('Audio_stimuli_creation/Finished/', char(parameters.trainAudioFuture3(trialNo)));
     soundtoplay_trainAudioPast3 = strcat('Audio_stimuli_creation/Finished/', char(parameters.trainAudioPast3(trialNo)));
     soundtoplay_whichOne = strcat('Audio_stimuli_creation/Finished/', char(parameters.whichOne(trialNo)));
+    
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    
     
     %Start the trial!
     
@@ -57,6 +63,7 @@ Take_Response();
 Show_Blank;
         
 PlayCenterMovie(movietoplay_sign);
+Show_Blank;
 
 Play_Sound(soundtoplay_ambigAudioPast, 'toBlock');
 Take_Response();
@@ -72,14 +79,17 @@ Show_Blank;
         else
             finishedSignMovie = 1;
         end
+        
+        
     end
     
     %%%%
     %Play the two event movies; movie always plays L then R, with movies
     %assigned to random sides in main script.
     %%%%
+
     
-Play_Sound(soundtoplay_trainAudioFuture1, 'toBlock');
+Play_Sound(soundtoplay_whichOne, 'toBlock');
 Take_Response();
 Show_Blank;
 
@@ -113,9 +123,9 @@ Show_Blank;
     
     
     
-     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-     % NEW Play the 3 train movies
-     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 3 TRAINING VIDEOS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 Text_Show('(((training phase)))');
 Take_Response();
@@ -181,9 +191,9 @@ Show_Blank;
 
     %NEW: PLAY THE TEST MOVIE
 
-Text_Show('(((which one is ....)))');
-Take_Response();
-Show_Blank;
+%Text_Show('(((which one is ....)))');
+%Take_Response();
+%Show_Blank;
 
 Play_Sound(soundtoplay_whichOne, 'toBlock');
 Take_Response();
