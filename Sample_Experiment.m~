@@ -118,11 +118,13 @@ end_Index = (8*condition)+1;
     parameters.trainAudioPast3 = vidNames(start_Index:end_Index, 48)
   
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    
+% % % Now randomize everything (apply random order to all columns/objects)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%     
-% %     %Now randomize everything (apply random order to all columns/objects)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
     myRandOrder = randperm(8)
+
     parameters.Experiment = parameters.Experiment(myRandOrder)                      
     parameters.amyFileName = parameters.amyFileName(myRandOrder)
     parameters.itemID = parameters.itemID(myRandOrder)
@@ -168,23 +170,16 @@ end_Index = (8*condition)+1;
     parameters.trainAudioPast2 = parameters.trainAudioPast2(myRandOrder)
     parameters.trainAudioFuture3 = parameters.trainAudioFuture3(myRandOrder)
     parameters.trainAudioPast3 = parameters.trainAudioPast3(myRandOrder)
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    parameters.LorR_bias = randi([0 1], length(start_Index:end_Index),1) 
-    parameters.LorR_final = randi([0 1], length(start_Index:end_Index),1)                         
+                          
        
     %Randomize sides for target and distractor movies
     %parameters.LeftMovie = {'T', 'T', 'T', 'T', 'T', 'T', 'T', 'T', 'T', 'T', 'T', 'T', 'T', 'T', 'T', 'T', 'T', 'T', 'T', 'T', 'T', 'T', 'T', 'T', 'T', 'T', 'T', 'T', 'T', 'T', 'T', 'T', 'T', 'T', 'T', 'T', 'T', 'T', 'T', 'T', 'D', 'D', 'D', 'D', 'D', 'D', 'D', 'D', 'D', 'D', 'D', 'D', 'D', 'D', 'D', 'D', 'D', 'D', 'D', 'D', 'D', 'D', 'D', 'D'}
     %newRand = randperm(1); %how many trials'
     %parameters.LeftMovie = parameters.LeftMovie(newRand);
+
     
+    parameters.LorR_bias = randi([0 1], length(start_Index:end_Index),1) 
+    parameters.LorR_final = randi([0 1], length(start_Index:end_Index),1)
     
 
 
@@ -238,7 +233,7 @@ end_Index = (8*condition)+1;
      Text_Show('Press spacebar to start experiment.')
      Take_Response();  
      
-     Time_Stamp_Start = now
+    
        
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
     % 2 TRIALS OF NOUN TRAINING                             
@@ -270,9 +265,6 @@ end_Index = (8*condition)+1;
 %         PlaySideMovies('',movietoplay_distractor,'caption_right','B'); 
 %         Show_Blank;
 %         Text_Show('(((SOUND)))  Which one has the ...');
-
-
-%Time_Stamp_Noun = now
 
 %         response = Take_Response(); 
 

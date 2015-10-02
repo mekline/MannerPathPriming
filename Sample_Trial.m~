@@ -22,9 +22,8 @@ function [response] = Sample_Trial(trialNo)
     movietoplay_pTest = strcat('Movies/', char(parameters.ptestV(trialNo)));
     
     
-    %Audio
-    soundtoplay_trainAudioFuture1 = strcat('Audio_stimuli_creation/Finished/', char(parameters.trainAudioFuture1(trialNo)));
-    soundtoplay_
+    
+    
     
     %FOR THE SKELETON - rather than playing movies chosen from a list, play
     %just 3 example movies rather than uploading a big movie directory.
@@ -122,7 +121,7 @@ Text_Show(char(parameters.trainS1_going_to(trialNo)))
 Take_Response();
 Show_Blank;
 
-Play_Sound(soundtoplay_trainAudioFuture1, 'toBlock');
+Play_Sound(char(parameters.trainAudioFuture1(trialNo)), 'toBlock');
 Take_Response();
 Show_Blank;
 

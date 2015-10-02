@@ -61,7 +61,7 @@ try %everything goes inside a 'try' block, so if it crashes, it crashes
 % so without ; at the end of the line).
 %
 %
-vidNames = read_mixed_csv('Experiment_Items_final.csv',',')
+vidNames = read_mixed_csv('Experiment_Items_final_withaudio.csv',',')
 %
 %    %Routine to pick the specified signList (algebra to get us the right rows)
     
@@ -108,14 +108,14 @@ end_Index = (8*condition)+1;
     parameters.ptestAns = vidNames(start_Index:end_Index, 36)
     parameters.movieLenght = vidNames(start_Index:end_Index, 37)
     parameters.LeftMovie = vidNames(start_Index:end_Index, 38)
-    parameters.ambigAudioFuture = vidNames(start_Index:end_Index, 41)
-    parameters.ambigAudioPast = vidNames(start_Index:end_Index, 42)
-    parameters.trainAudioFuture1 = vidNames(start_Index:end_Index, 43)
-    parameters.trainAudioPast1 = vidNames(start_Index:end_Index, 44)
-    parameters.trainAudioFuture2 = vidNames(start_Index:end_Index, 45)
-    parameters.trainAudioPast2 = vidNames(start_Index:end_Index, 46)
-    parameters.trainAudioFuture3 = vidNames(start_Index:end_Index, 47)
-    parameters.trainAudioPast3 = vidNames(start_Index:end_Index, 48)
+    parameters.ambigAudioFuture = vidNames(start_Index:end_Index, 40)
+    parameters.ambigAudioPast = vidNames(start_Index:end_Index, 41)
+    parameters.trainAudioFuture1 = vidNames(start_Index:end_Index, 42)
+    parameters.trainAudioPast1 = vidNames(start_Index:end_Index, 43)
+    parameters.trainAudioFuture2 = vidNames(start_Index:end_Index, 44)
+    parameters.trainAudioPast2 = vidNames(start_Index:end_Index, 45)
+    parameters.trainAudioFuture3 = vidNames(start_Index:end_Index, 46)
+    parameters.trainAudioPast3 = vidNames(start_Index:end_Index, 47)
   
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    
@@ -233,7 +233,7 @@ end_Index = (8*condition)+1;
      Text_Show('Press spacebar to start experiment.')
      Take_Response();  
      
-     Time_Stamp_Start = now
+    
        
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
     % 2 TRIALS OF NOUN TRAINING                             
@@ -266,12 +266,7 @@ end_Index = (8*condition)+1;
 %         Show_Blank;
 %         Text_Show('(((SOUND)))  Which one has the ...');
 
-
-%Time_Stamp_Noun = now
-
 %         response = Take_Response(); 
-
-%Time_Stamp_Noun_Response = now    
 
 %%%%%%%%%%%%%%%%%%%%%%
 %SECOND NOUN TRAINING     
