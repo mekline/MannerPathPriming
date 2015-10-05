@@ -7,7 +7,7 @@ while KbCheck; end
 
 %Wait for a given keypress press and continue
 while 1
-    [keyIsDown, secs, keyCode]= KbCheck;
+    [keyIsDown, secs, keyCode]= KbCheck();
     %if (keyIsDown==1 & (keyCode(z_press)|keyCode(c_press)))
     if (keyIsDown==1)
         break;

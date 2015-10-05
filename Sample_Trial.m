@@ -80,6 +80,7 @@ Show_Blank;
             finishedSignMovie = 1;
         end
         
+        Show_Blank; 
         
     end
     
@@ -90,9 +91,7 @@ Show_Blank;
 
     
 Play_Sound(soundtoplay_whichOne, 'toBlock');
-Take_Response();
 Show_Blank;
-
      
     if parameters.LorR_bias == 0 %play Target Movie on left
 
@@ -110,6 +109,10 @@ Show_Blank;
 
     end
     
+    parameters.biasTestAns(trialNo) = Take_Response();
+    
+    
+    
     %%%%
     %Play the sign movie again
     %%%%
@@ -119,7 +122,7 @@ Show_Blank;
     %And prompt and record the response!
     Text_Show('Which one is ...');
     response = Take_Response();
-    
+    Show_Blank;
     
     
     
@@ -129,10 +132,13 @@ Show_Blank;
 
 Text_Show('(((training phase)))');
 Take_Response();
+Show_Blank;
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % 111111111111111111111111111111111111111111111111111111111111111111111111
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+parameters.trainingStart(trialNo) = GetSecs;
 
 Play_Sound(soundtoplay_trainAudioFuture1, 'toBlock');
 Take_Response();
@@ -147,10 +153,14 @@ Show_Blank;
 Play_Sound(soundtoplay_trainAudioPast1, 'toBlock');
 Take_Response();
 Show_Blank;
+
+
     
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % 2222222222222222222222222222222222222222222222222222222222222222222222222
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
 
 Play_Sound(soundtoplay_trainAudioFuture2, 'toBlock');
 Take_Response();
@@ -163,6 +173,8 @@ Show_Blank;
 Play_Sound(soundtoplay_trainAudioPast2, 'toBlock');
 Take_Response();
 Show_Blank;
+
+
     
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % 333333333333333333333333333333333333333333333333333333333333333333333333%
@@ -215,13 +227,13 @@ Show_Blank;
         PlaySideMovies(movietoplay_pTest,'','caption_left','A');
         Show_Blank;
         PlaySideMovies('',movietoplay_mTest,'caption_right','B');
+        Show_Blank;
 
      end
+     
+     %parameters.finalTestAns(trialNo) = Take_Response();
     
-Play_Sound(soundtoplay_whichOne, 'toBlock');
-Take_Response();
-Show_Blank;
-    
+
     
 end
 

@@ -79,17 +79,20 @@ Show_Blank;
         else
             finishedSignMovie = 1;
         end
+        
+        Show_Blank; 
+        
     end
     
     %%%%
     %Play the two event movies; movie always plays L then R, with movies
     %assigned to random sides in main script.
     %%%%
+
     
-Play_Sound(soundtoplay_trainAudioFuture1, 'toBlock');
+Play_Sound(soundtoplay_whichOne, 'toBlock');
 Take_Response();
 Show_Blank;
-
      
     if parameters.LorR_bias == 0 %play Target Movie on left
 
@@ -107,6 +110,10 @@ Show_Blank;
 
     end
     
+    nogtemaken = 
+    
+    
+    
     %%%%
     %Play the sign movie again
     %%%%
@@ -116,20 +123,22 @@ Show_Blank;
     %And prompt and record the response!
     Text_Show('Which one is ...');
     response = Take_Response();
+    Show_Blank;
     
     
     
-    
-     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-     % NEW Play the 3 train movies
-     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 3 TRAINING VIDEOS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 Text_Show('(((training phase)))');
 Take_Response();
+Show_Blank;
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % 111111111111111111111111111111111111111111111111111111111111111111111111
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 
 Play_Sound(soundtoplay_trainAudioFuture1, 'toBlock');
 Take_Response();
@@ -144,10 +153,14 @@ Show_Blank;
 Play_Sound(soundtoplay_trainAudioPast1, 'toBlock');
 Take_Response();
 Show_Blank;
+
+
     
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % 2222222222222222222222222222222222222222222222222222222222222222222222222
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
 
 Play_Sound(soundtoplay_trainAudioFuture2, 'toBlock');
 Take_Response();
@@ -160,6 +173,8 @@ Show_Blank;
 Play_Sound(soundtoplay_trainAudioPast2, 'toBlock');
 Take_Response();
 Show_Blank;
+
+
     
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % 333333333333333333333333333333333333333333333333333333333333333333333333%
@@ -188,9 +203,9 @@ Show_Blank;
 
     %NEW: PLAY THE TEST MOVIE
 
-Text_Show('(((which one is ....)))');
-Take_Response();
-Show_Blank;
+%Text_Show('(((which one is ....)))');
+%Take_Response();
+%Show_Blank;
 
 Play_Sound(soundtoplay_whichOne, 'toBlock');
 Take_Response();

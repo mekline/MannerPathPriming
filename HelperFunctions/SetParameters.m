@@ -41,6 +41,7 @@ parameters.space=KbName('SPACE');
 parameters.esc=KbName('ESCAPE');
 parameters.z_press=KbName('z');
 parameters.c_press=KbName('c');
+parameters.q_press=KbName('q');
 
 % Set text size
 Screen('TextSize', parameters.scr.winPtr, 32);
