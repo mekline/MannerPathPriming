@@ -161,7 +161,6 @@ Show_Blank;
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-
 Play_Sound(soundtoplay_trainAudioFuture2, 'toBlock');
 Take_Response();
 Show_Blank;
@@ -192,20 +191,19 @@ Play_Sound(soundtoplay_trainAudioPast3, 'toBlock');
 Take_Response();
 Show_Blank;
 
+parameters.trainingEnd(trialNo) = GetSecs;
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% PLAY THE TEST MOVIE
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     
-    %And prompt and record the response!
-    %Text_Show('A or B?');
-    %response = Take_Response();
-
-
-    %NEW: PLAY THE TEST MOVIE
-
 %Text_Show('(((which one is ....)))');
 %Take_Response();
 %Show_Blank;
+
+
+parameters.finalTest(trialNo) = GetSecs;
+
 
 Play_Sound(soundtoplay_whichOne, 'toBlock');
 Take_Response();
@@ -232,7 +230,7 @@ Show_Blank;
      end
      
      %parameters.finalTestAns(trialNo) = Take_Response();
-    
+  parameters.finalEnd(trialNo) = GetSecs;  
 
     
 end

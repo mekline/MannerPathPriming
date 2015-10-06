@@ -8,7 +8,7 @@ function Sample_Experiment(subNo, condition)
 %
 %condition, one of 6 set lists of items, specify 1-6
 % 1= MannerOfMotionCondition
-% 2= MannerOfMotionCondition_Instrumental
+% 2= Manzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz```````znerOfMotionCondition_Instrumental
 % 3= PathCondition
 % 4= PathCondition_Instrumental
 % 5= EffectCondition
@@ -52,6 +52,7 @@ try %everything goes inside a 'try' block, so if it crashes, it crashes
     parameters.z_press=KbName('z');
     parameters.c_press=KbName('c');
     parameters.q_press=KbName('q');
+    parameters.q_press=KbName('x');
       
     % Sets specific values for this participant
     parameters.subNo = subNo;
@@ -236,14 +237,13 @@ end_Index = (8*condition)+1;
         'trainAudioPast3',...
         'whichOne',...
         'expStart',...
-        'nounOneStart',...
-        'nounOneEnd',...
-        'nounTwoStart',...
-        'nounTwoEnd',...
-        'expEnd',...
+        'trainingStart',...
+        'trainingEnd',...
+        'finalTestTIme',...
+        'finalEndTime',...
+        'expEndTime',...
         'totalTime',...
-        'biasTestAns',...
-        'trainingStart'});
+        'biasTestAns'});
         
 
     
@@ -260,41 +260,38 @@ expStart = GetSecs;
 %FIRST NOUN TRAINING     
 %%%%%%%%%%%%%%%%%%%%%%
 
-nounOneStart = GetSecs;
- 
-%     Text_Show('(((SOUND))) The dog has a ...')
-%     Take_Response();  
-%     
-%     movietoplay_target = 'Movies/1_noun_1_distractor.mov';
-%     movietoplay_distractor = 'Movies/1_noun_1b.mov';    
-%     movietoplay_sign = 'Movies/1_noun_1a.mov';
-%       
-% Show_Blank;
-%      
-% finishedSignMovie = 0;
-%     
-% while not(finishedSignMovie)
-%         
-%         Show_Blank;
-%         PlayCenterMovie(movietoplay_sign);
-%         
-%         Show_Blank;
-%         PlaySideMovies(movietoplay_target,'','caption_left','A');
-%         Show_Blank;
-%         PlaySideMovies('',movietoplay_distractor,'caption_right','B'); 
-%         Show_Blank;
-%         Text_Show('(((SOUND)))  Which one has the ...');
-%         Show_Blank;
-% 
-%         response = Take_Response(); 
 
-nounOneEnd = GetSecs;
+ 
+    Text_Show('(((SOUND))) The dog has a ...')
+    Take_Response();  
+    
+    movietoplay_target = 'Movies/1_noun_1_distractor.mov';
+    movietoplay_distractor = 'Movies/1_noun_1b.mov';    
+    movietoplay_sign = 'Movies/1_noun_1a.mov';
+      
+Show_Blank;
+     
+finishedSignMovie = 0;
+    
+while not(finishedSignMovie)
+        
+        Show_Blank;
+        PlayCenterMovie(movietoplay_sign);
+        
+        Show_Blank;
+        PlaySideMovies(movietoplay_target,'','caption_left','A');
+        %Show_Blank;
+        PlaySideMovies('',movietoplay_distractor,'caption_right','B'); 
+        %Show_Blank;
+        Text_Show('(((SOUND)))  Which one has the ...');
+        Show_Blank;
+
+        response = Take_Response(); 
+
 
 %%%%%%%%%%%%%%%%%%%%%%
 %SECOND NOUN TRAINING     
 %%%%%%%%%%%%%%%%%%%%%%  
-
-nounTwoStart = GetSecs;
 
 %Text_Show('(((SOUND))) SECOND NOUN TRIAL SENTENCE')
 %Take_Response();  
@@ -322,7 +319,6 @@ nounTwoStart = GetSecs;
 %Show_Blank;
 %response = Take_Response();
  
-nounTwoEnd = GetSecs;
 
 %%%%%%%%%%%%%%%%%%%%%%
 %END NOUN TRAINING     
@@ -350,7 +346,7 @@ response = Take_Response();
     % How many trials?
     % ntrials = length(parameters.pbiasV) 
 
-ntrials = 1; %For the skeleton, play some short sample trials!
+ ntrials = 1; %For the skeleton, play some short sample trials!
 
      for i=1:ntrials    
           response = Sample_Trial(i);  
@@ -405,14 +401,13 @@ totalTime = expEnd - expStart;
              parameters.trainAudioPast3(i),...
              parameters.whichOne(i),...
              expStart,...
-             nounOneStart,...
-             nounOneEnd,...
-             nounTwoStart,...
-             nounTwoEnd,...
+             parameters.trainingStart(i),...
+             parameters.trainingEnd(i),...
+             parameters.finalTest(i),...
+             parameters.finalEnd(i),...
              expEnd,...
              totalTime,...
-             parameters.biasTestAns(i),...
-             parameters.trainingStart(i)});
+             parameters.biasTestAns(i)});
          
      end
 
@@ -425,7 +420,7 @@ totalTime = expEnd - expStart;
      Closeout_PTool();
  
     % Catch error: in case anything went wrong...
-catch 
+%catch 
     
     % Do same cleanup as at the end of a regular session...
     Closeout_PTool();
