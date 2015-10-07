@@ -8,7 +8,7 @@ function Sample_Experiment(subNo, condition)
 %
 %condition, one of 6 set lists of items, specify 1-6
 % 1= MannerOfMotionCondition
-% 2= Manzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz```````znerOfMotionCondition_Instrumental
+% 2= MannerOfMotionCondition_Instrumental
 % 3= PathCondition
 % 4= PathCondition_Instrumental
 % 5= EffectCondition
@@ -52,7 +52,8 @@ try %everything goes inside a 'try' block, so if it crashes, it crashes
     parameters.z_press=KbName('z');
     parameters.c_press=KbName('c');
     parameters.q_press=KbName('q');
-    parameters.q_press=KbName('x');
+    parameters.x_press=KbName('x');
+    parameters.r_press=KbName('r');
       
     % Sets specific values for this participant
     parameters.subNo = subNo;

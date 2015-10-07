@@ -61,18 +61,20 @@ function [response] = Sample_Trial(trialNo)
 Show_Blank;
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% BIAS TEST
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 Play_Sound(soundtoplay_ambigAudioFuture, 'toBlock');
-    
+Take_Response();
+Show_Blank;
+        
 PlayCenterMovie(movietoplay_sign);
+Show_Blank;
 
 Play_Sound(soundtoplay_ambigAudioPast, 'toBlock');
+Take_Response();
+Show_Blank;
+
 
         %Decide if we should we watch again?
-        Text_Show('Press r to see again. If not, press space');
+        Text_Show('Want to watch again? Press r. If not, press space');
         response_sign = Take_Response();
         
         if response_sign == 'r'
