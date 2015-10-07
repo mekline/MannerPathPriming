@@ -46,7 +46,7 @@ parameters.x_press=KbName('x');
 parameters.r_press=KbName('r');
 
 % Set text size
-Screen('TextSize', parameters.scr.winPtr, 32);
+Screen('TextSize', parameters.scr.winPtr, 14);
 
 %for responses and trial parameters!
 parameters.response = [];

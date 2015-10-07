@@ -1,6 +1,5 @@
 function [response] = Sample_Trial(trialNo)
 
-
     global parameters
     
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -45,21 +44,30 @@ function [response] = Sample_Trial(trialNo)
     %Clear screen
     Show_Blank;
     
+    
+    Text_Show('Ready? Press space to watch the movies.');
+    response = Take_Response();
+    %Want to finish early?
+    if response == 'q'
+        return
+    end
+    
+    
+    
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % BIAS TEST VIDEO
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-finishedSignMovie = 0;
+    finishedSignMovie = 0;
     
     while not(finishedSignMovie)
         
-          Show_Blank;
-
-
+        Show_Blank;
 
         Play_Sound(soundtoplay_ambigAudioFuture, 'toBlock');
     
+        PlayCenterMovie(movietoplay_sign);
         PlayCenterMovie(movietoplay_sign);
 
         Play_Sound(soundtoplay_ambigAudioPast, 'toBlock');
@@ -92,6 +100,7 @@ finishedSignMovie = 0;
         PlaySideMovies(movietoplay_target,'','caption_left','Z');
         Show_Blank;
         PlaySideMovies('',movietoplay_distractor,'caption_right','X');
+        Show_Blank;
 
     else %play Distractor Movie on left
 
@@ -99,6 +108,7 @@ finishedSignMovie = 0;
         PlaySideMovies(movietoplay_distractor,'','caption_left','Z');
         Show_Blank;
         PlaySideMovies('',movietoplay_target,'caption_right','X');
+        Show_Blank;
 
     end
     
@@ -136,9 +146,11 @@ Play_Sound(soundtoplay_trainAudioFuture1, 'toBlock');
 
 PlayCenterMovie(movietoplay_trainV1);
 PlayCenterMovie(movietoplay_trainV1);
+Show_Blank;
 
 Play_Sound(soundtoplay_trainAudioPast1, 'toBlock');
- 
+
+WaitSecs(2.500);
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % 2222222222222222222222222222222222222222222222222222222222222222222222222
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -148,10 +160,11 @@ Play_Sound(soundtoplay_trainAudioFuture2, 'toBlock');
 
 PlayCenterMovie(movietoplay_trainV2);
 PlayCenterMovie(movietoplay_trainV2);
-
+Show_Blank;
 
 Play_Sound(soundtoplay_trainAudioPast2, 'toBlock');
- 
+
+WaitSecs(2.500);
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % 333333333333333333333333333333333333333333333333333333333333333333333333%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -160,11 +173,12 @@ Play_Sound(soundtoplay_trainAudioFuture3, 'toBlock');
 
 PlayCenterMovie(movietoplay_trainV3);
 PlayCenterMovie(movietoplay_trainV3);
+Show_Blank;
 
 Play_Sound(soundtoplay_trainAudioPast3, 'toBlock');
 
 parameters.trainingEnd(trialNo) = GetSecs;
-
+WaitSecs(2.500);
 Show_Blank;
 Take_Response();
 

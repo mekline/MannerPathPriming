@@ -21,7 +21,6 @@ function Sample_Experiment(subNo, condition)
 % -> add to path.
 
 addpath('HelperFunctions')
-
 %%%%%%%%%%%%%%%%%%%%%%%%%
 % Preliminary stuff
 %%%%%%%%%%%%%%%%%%%%%%%%%
@@ -29,7 +28,7 @@ addpath('HelperFunctions')
 global parameters
 
 % File handling - makes the file where data will be stored
-    parameters.datafilepointer = AssignDataFile('SampleExp',subNo);
+parameters.datafilepointer = AssignDataFile('SampleExp',subNo);
 
 try %everything goes inside a 'try' block, so if it crashes, it crashes 
     %cleanly (and maybe even tells us what went wrong)
@@ -47,7 +46,7 @@ try %everything goes inside a 'try' block, so if it crashes, it crashes
   
     % Restrict keyboard
     KbName('UnifyKeyNames')
-    parameters.space=KbName('SPACE');
+    parameters.space=KbName('space');
     parameters.esc=KbName('ESCAPE');
     parameters.z_press=KbName('z');
     parameters.c_press=KbName('c');
@@ -57,32 +56,17 @@ try %everything goes inside a 'try' block, so if it crashes, it crashes
       
     % Sets specific values for this participant
     parameters.subNo = subNo;
-
-    %%%%%%%%%%%%%%%%%%%%%%
-    % Randomization of files, conditions, etc. goes here! An example is
-    % below (Annemarie K.)
-    %%%%%%%%%%%%%%%%%%%%%%  
-%    
-%    
-%
-%     %Read the file into matlab
-%
-% Note: ',' below depicts the delimeter in the csv file. Depending on the file, 
-% this can either be ';' or ',' (or tab) (you can check this by printing the file,
-% so without ; at the end of the line).
-%
-%
-vidNames = read_mixed_csv('Experiment_Items_final_withaudio.csv',',')
-%
-%    %Routine to pick the specified signList (algebra to get us the right rows)
+  
+    %Read the file into matlab
+    vidNames = read_mixed_csv('Experiment_Items_final_withaudio.csv',',')
     
-start_Index = (8*condition)-6;
-end_Index = (8*condition)+1;
+    %Routine to pick the specified signList (algebra to get us the right rows)
+    start_Index = (8*condition)-6;
+    end_Index = (8*condition)+1;
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%     %Turn list into vectors of variables
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %     %Turn list into vectors of variables
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     parameters.Experiment = vidNames(start_Index:end_Index, 2)
     parameters.amyFileName = vidNames(start_Index:end_Index, 3)
     parameters.itemID = vidNames(start_Index:end_Index, 4)
@@ -130,9 +114,9 @@ end_Index = (8*condition)+1;
     parameters.trainAudioPast3 = vidNames(start_Index:end_Index, 47)
     parameters.whichOne = vidNames(start_Index:end_Index, 48)
     
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    
-% % % Now randomize everything (apply random order to all columns/objects)
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    
+    % % % Now randomize everything (apply random order to all columns/objects)
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
     myRandOrder = randperm(8)
 
@@ -189,15 +173,6 @@ end_Index = (8*condition)+1;
     
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
- 
-    %%%%%%%%%%%%%%%%%%%%%%
-    % Experiment
-    %%%%%%%%%%%%%%%%%%%%%%
-
-    %%%%%%%%%%%%%%%%%%%%%%
-    % Prelim Screen/Instructions
-    %%%%%%%%%%%%%%%%%%%%%%
     
     %Save a header file to the data file so it will be easier to read!
      WriteResultFile({'SubjectNo',...
@@ -244,172 +219,166 @@ end_Index = (8*condition)+1;
         'finalEndTime',...
         'expEndTime',...
         'totalTime',...
-        'biasTestAns'});
+        'biasTestAns',...
+        'finalTestAns'});
         
 
     
-Text_Show('Press spacebar to start experiment.')
-Take_Response();  
-          
-expStart = GetSecs;
-       
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-    % 2 TRIALS OF NOUN TRAINING                             
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%%%
-%FIRST NOUN TRAINING     
-%%%%%%%%%%%%%%%%%%%%%%
-
-
- 
-    Text_Show('(((SOUND))) The dog has a ...')
+    Text_Show('Press spacebar to start experiment.')
     Take_Response();  
-    
-    movietoplay_target = 'Movies/1_noun_1_distractor.mov';
-    movietoplay_distractor = 'Movies/1_noun_1b.mov';    
-    movietoplay_sign = 'Movies/1_noun_1a.mov';
-      
-Show_Blank;
-     
-%finishedSignMovie = 0;
-    
-%while not(finishedSignMovie)
-        
-        Show_Blank;
-        PlayCenterMovie(movietoplay_sign);
-        
-        Show_Blank;
-        PlaySideMovies(movietoplay_target,'','caption_left','Z');
-        %Show_Blank;
-        PlaySideMovies('',movietoplay_distractor,'caption_right','X'); 
-        %Show_Blank;
-        Text_Show('(((SOUND)))  Which one has the ...');
-        Show_Blank;
 
-     Take_Response(); 
+    expStart = GetSecs;
+       
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+        % 2 TRIALS OF NOUN TRAINING                             
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+    %%%%%%%%%%%%%%%%%%%%%%
+    %FIRST NOUN TRAINING     
+    %%%%%%%%%%%%%%%%%%%%%%
 
-%%%%%%%%%%%%%%%%%%%%%%
-%SECOND NOUN TRAINING     
-%%%%%%%%%%%%%%%%%%%%%%  
-
-%Text_Show('(((SOUND))) SECOND NOUN TRIAL SENTENCE')
-%Take_Response();  
-%     
-%     movietoplay_NAME = 'Movies/NAME.mov';
-%     movietoplay_NAME = 'Movies/NAME.mov';    
-%     movietoplay_NAME = 'Movies/NAME.mov';
+%     Text_Show('(((SOUND))) The dog has a ...')
+%     Take_Response();  
 % 
-%Show_Blank;
-%      
-%finishedSignMovie = 0;
+%     movietoplay_target = 'Movies/1_noun_1_distractor.mov';
+%     movietoplay_distractor = 'Movies/1_noun_1b.mov';    
+%     movietoplay_sign = 'Movies/1_noun_1a.mov';
+% 
+%     Show_Blank;
+% 
 %     
-%while not(finishedSignMovie)
 %         
-%Show_Blank;
+%         Show_Blank;
+%         PlayCenterMovie(movietoplay_sign);
 %         
-%PlayCenterMovie(movietoplay_NAME);
-%         
-%Show_Blank;
-%PlaySideMovies(movietoplay_NAME,'','caption_left','A');
-%Show_Blank;
-%PlaySideMovies('',movietoplay_NAME,'caption_right','B'); 
-%Show_Blank;
-%Text_Show('(((SOUND)))  Which one has the ...');
-%Show_Blank;
-%response = Take_Response();
- 
-
-%%%%%%%%%%%%%%%%%%%%%%
-%END NOUN TRAINING     
-%%%%%%%%%%%%%%%%%%%%%%  
-    
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Trial Setup
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    
-    
-Text_Show('Ready? Press space to watch the movies.');
-response = Take_Response();
+%         Show_Blank;
+%         PlaySideMovies(movietoplay_target,'','caption_left','Z');
+%         %Show_Blank;
+%         PlaySideMovies('',movietoplay_distractor,'caption_right','X'); 
+%         %Show_Blank;
+%         Text_Show('(((SOUND)))  Which one has the ...');
+%         Show_Blank;
+% 
+%         Take_Response(); 
 
 
-    %Want to finish early?
-        if response == 'q'
-      
-            Closeout_PTool();
-            psychrethrow(psychlasterror);
+    %%%%%%%%%%%%%%%%%%%%%%
+    %SECOND NOUN TRAINING     
+    %%%%%%%%%%%%%%%%%%%%%%  
 
-            return
-         
-        end                                                                                                                                                                                                                                                                                                                                                                         
+    %Text_Show('(((SOUND))) SECOND NOUN TRIAL SENTENCE')
+    %Take_Response();  
+    %     
+    %     movietoplay_NAME = 'Movies/NAME.mov';
+    %     movietoplay_NAME = 'Movies/NAME.mov';    
+    %     movietoplay_NAME = 'Movies/NAME.mov';
+    % 
+    %Show_Blank;
+    %      
+    %         
+    %PlayCenterMovie(movietoplay_NAME);
+    %         
+    %Show_Blank;
+    %PlaySideMovies(movietoplay_NAME,'','caption_left','A');
+    %Show_Blank;
+    %PlaySideMovies('',movietoplay_NAME,'caption_right','B'); 
+    %Show_Blank;
+    %Text_Show('(((SOUND)))  Which one has the ...');
+    %Show_Blank;
+    %response = Take_Response();
+
+
+    %%%%%%%%%%%%%%%%%%%%%%
+    %END NOUN TRAINING     
+    %%%%%%%%%%%%%%%%%%%%%%  
     
-    
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    % Trial Setup
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     % How many trials?
     % ntrials = length(parameters.pbiasV) 
+    ntrials = 1; %For the skeleton, play some short sample trials!
+    
+    Text_Show('Ready? Press space to watch the movies.');
+    Take_Response();
 
- ntrials = 1; %For the skeleton, play some short sample trials!
+    %Want to finish early?
+       %if response_q == 'q'
+      
+           %Closeout_PTool();
+           % psychrethrow(psychlasterror);
 
-     for i=1:ntrials    
+           %return
+         
+        %end                                                                                                                                                                                                                                                                                                                                                                         
+    
+    %finishedSignMovie = 0;
+    
+    %while not(finishedSignMovie)
+    
+
+    for i=1:ntrials    
           response = Sample_Trial(i);  
     
-          if response == 'q'                       
-             break  
+            if response == 'q'                       
+                break  
                                  
-          end
+            end
+            
           
-expEnd = GetSecs;
-totalTime = expEnd - expStart; 
+    expEnd = GetSecs;
+    totalTime = expEnd - expStart; 
 
-            %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%         
-            % Write result file  
-            %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+        %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%         
+        % Write result file  
+        %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-             WriteResultFile({parameters.subNo,...
-             i,...
-             'List',...
-             parameters.itemID(i),...
-             parameters.eventType(i),...
-             'Condition',...
-             parameters.verbName(i),...
-             parameters.ambigV(i),...
-             parameters.mbiasV(i),...
-             parameters.pbiasV(i),...
-             'mbiasAns',...
-             parameters.pbiasAns(i),...
-             'RT biastest',...
-             parameters.trainV1(i),...
-             parameters.trainV2(i),...
-             parameters.trainV3(i),...
-             parameters.mtestV(i),...
-             'mtestAns',...
-             parameters.ptestV(i),...
-             'ptestAns',...
-             'RT final test',...
-             parameters.movieLenght(i),...
-             'side',...
-             datestr(now,'dd-mmm-yyyy'),...
-             datestr(now,'HH:MM:SS.FFF'),...
-             'Response',...
-             parameters.LorR_bias(i),...
-             parameters.LorR_final(i),...
-             parameters.ambigAudioFuture(i),...
-             parameters.ambigAudioPast(i),...
-             parameters.trainAudioFuture1(i),...
-             parameters.trainAudioPast1(i),...
-             parameters.trainAudioFuture2(i),...
-             parameters.trainAudioPast2(i),...
-             parameters.trainAudioFuture3(i),...
-             parameters.trainAudioPast3(i),...
-             parameters.whichOne(i),...
-             expStart,...
-             parameters.trainingStart(i),...
-             parameters.trainingEnd(i),...
-             parameters.finalTest(i),...
-             parameters.finalEnd(i),...
-             expEnd,...
-             totalTime,...
-             parameters.biasTestAns(i)});
+         WriteResultFile({parameters.subNo,...
+         i,...
+         'List',...
+         parameters.itemID(i),...
+         parameters.eventType(i),...
+         'Condition',...
+         parameters.verbName(i),...
+         parameters.ambigV(i),...
+         parameters.mbiasV(i),...
+         parameters.pbiasV(i),...
+         'mbiasAns',...
+         parameters.pbiasAns(i),...
+         'RT biastest',...
+         parameters.trainV1(i),...
+         parameters.trainV2(i),...
+         parameters.trainV3(i),...
+         parameters.mtestV(i),...
+         'mtestAns',...
+         parameters.ptestV(i),...
+         'ptestAns',...
+         'RT final test',...
+         parameters.movieLenght(i),...
+         'side',...
+         datestr(now,'dd-mmm-yyyy'),...
+         datestr(now,'HH:MM:SS.FFF'),...
+         'Response',...
+         parameters.LorR_bias(i),...
+         parameters.LorR_final(i),...
+         parameters.ambigAudioFuture(i),...
+         parameters.ambigAudioPast(i),...
+         parameters.trainAudioFuture1(i),...
+         parameters.trainAudioPast1(i),...
+         parameters.trainAudioFuture2(i),...
+         parameters.trainAudioPast2(i),...
+         parameters.trainAudioFuture3(i),...
+         parameters.trainAudioPast3(i),...
+         parameters.whichOne(i),...
+         expStart,...
+         parameters.trainingStart(i),...
+         parameters.trainingEnd(i),...
+         parameters.finalTest(i),...
+         parameters.finalEnd(i),...
+         expEnd,...
+         totalTime,...
+         parameters.biasTestAns(i),...
+         parameters.finalTestAns(i)});
          
      end
 
@@ -420,19 +389,26 @@ totalTime = expEnd - expStart;
     %%%%%%%%%%%%%%%%%%%%%%
     
      Closeout_PTool();
- 
+     
     % Catch error: in case anything went wrong...
-catch 
+    
+%catch
     
     % Do same cleanup as at the end of a regular session...
-    Closeout_PTool();
+    %Closeout_PTool();
      
      % Output the error message that describes the error:
-    psychrethrow(psychlasterror);
+    %psychrethrow(psychlasterror);
     
     
 
-%end
+   % end
+
+catch
+    
+    Closeout_PTool();
+    
+    psychrethrow(psychlasterror);
 
 end
 
