@@ -141,18 +141,14 @@ Show_Blank;
 parameters.trainingStart(trialNo) = GetSecs;
 
 Play_Sound(soundtoplay_trainAudioFuture1, 'toBlock');
-Take_Response();
-Show_Blank;
 
 
 PlayCenterMovie(movietoplay_trainV1);
-Show_Blank;
+
 PlayCenterMovie(movietoplay_trainV1);
-Show_Blank;
+
 
 Play_Sound(soundtoplay_trainAudioPast1, 'toBlock');
-Take_Response();
-Show_Blank;
 
 
     
@@ -160,38 +156,30 @@ Show_Blank;
 % 2222222222222222222222222222222222222222222222222222222222222222222222222
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-
 Play_Sound(soundtoplay_trainAudioFuture2, 'toBlock');
-Take_Response();
-Show_Blank;
+
 
 PlayCenterMovie(movietoplay_trainV2);
 PlayCenterMovie(movietoplay_trainV2);
-Show_Blank;
+
 
 Play_Sound(soundtoplay_trainAudioPast2, 'toBlock');
-Take_Response();
-Show_Blank;
-
-
-    
+ 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % 333333333333333333333333333333333333333333333333333333333333333333333333%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 Play_Sound(soundtoplay_trainAudioFuture3, 'toBlock');
-Take_Response();
-Show_Blank;
 
 PlayCenterMovie(movietoplay_trainV3);
 PlayCenterMovie(movietoplay_trainV3);
-Show_Blank;
 
 Play_Sound(soundtoplay_trainAudioPast3, 'toBlock');
-Take_Response();
-Show_Blank;
 
 parameters.trainingEnd(trialNo) = GetSecs;
+
+Show_Blank;
+Take_Response();
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % PLAY THE TEST MOVIE
