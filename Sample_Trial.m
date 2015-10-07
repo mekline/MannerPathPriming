@@ -103,6 +103,18 @@ finishedSignMovie = 0;
     end
     
     parameters.biasTestAns(trialNo) = Take_Response();
+    Show_Blank();
+    
+    
+    %%%%
+    %Play the sign movie again
+    %%%%
+    %Show_Blank;
+    %PlayCenterMovie(movietoplay_sign);
+    
+    %And prompt and record the response!
+    Text_Show('Which one is ...');
+    response = Take_Response();
     Show_Blank;
     
  
