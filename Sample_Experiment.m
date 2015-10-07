@@ -272,22 +272,22 @@ expStart = GetSecs;
       
 Show_Blank;
      
-finishedSignMovie = 0;
+%finishedSignMovie = 0;
     
-while not(finishedSignMovie)
+%while not(finishedSignMovie)
         
         Show_Blank;
         PlayCenterMovie(movietoplay_sign);
         
         Show_Blank;
-        PlaySideMovies(movietoplay_target,'','caption_left','A');
+        PlaySideMovies(movietoplay_target,'','caption_left','Z');
         %Show_Blank;
-        PlaySideMovies('',movietoplay_distractor,'caption_right','B'); 
+        PlaySideMovies('',movietoplay_distractor,'caption_right','X'); 
         %Show_Blank;
         Text_Show('(((SOUND)))  Which one has the ...');
         Show_Blank;
 
-        response = Take_Response(); 
+     Take_Response(); 
 
 
 %%%%%%%%%%%%%%%%%%%%%%
@@ -335,13 +335,14 @@ response = Take_Response();
 
 
     %Want to finish early?
-    if response == 'q'
+        if response == 'q'
       
-        Closeout_PTool();
-        psychrethrow(psychlasterror);
+            Closeout_PTool();
+            psychrethrow(psychlasterror);
 
-        return
-    end                                                                                                                                                                                                                                                                                                                                                                         
+            return
+         
+        end                                                                                                                                                                                                                                                                                                                                                                         
     
     
     % How many trials?
@@ -421,7 +422,7 @@ totalTime = expEnd - expStart;
      Closeout_PTool();
  
     % Catch error: in case anything went wrong...
-%catch 
+catch 
     
     % Do same cleanup as at the end of a regular session...
     Closeout_PTool();
@@ -431,7 +432,7 @@ totalTime = expEnd - expStart;
     
     
 
-end
+%end
 
 end
 

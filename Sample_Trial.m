@@ -42,91 +42,70 @@ function [response] = Sample_Trial(trialNo)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    
     
-    %Start the trial!
-    
-    
     %Clear screen
     Show_Blank;
     
-    %%%%%
-    %Show start screen
-   
-    %%%%
-    %Play the sign movie, in a 'repeat' block
-    
-    finishedSignMovie = 0;
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% BIAS TEST VIDEO
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+finishedSignMovie = 0;
     
     while not(finishedSignMovie)
         
-Show_Blank;
+          Show_Blank;
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% BIAS TEST
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-Play_Sound(soundtoplay_ambigAudioFuture, 'toBlock');
+        Play_Sound(soundtoplay_ambigAudioFuture, 'toBlock');
     
-PlayCenterMovie(movietoplay_sign);
+        PlayCenterMovie(movietoplay_sign);
 
-Play_Sound(soundtoplay_ambigAudioPast, 'toBlock');
+        Play_Sound(soundtoplay_ambigAudioPast, 'toBlock');
 
         %Decide if we should we watch again?
         Text_Show('Press r to see again. If not, press space');
         response_sign = Take_Response();
         
-        if response_sign == 'r'
-            finishedSignMovie = 0;
-        else
-            finishedSignMovie = 1;
-        end
+            if response_sign == 'r'
+                finishedSignMovie = 0;
+                 else
+                finishedSignMovie = 1;
+            end
         
         Show_Blank; 
         
     end
     
-    %%%%
-    %Play the two event movies; movie always plays L then R, with movies
-    %assigned to random sides in main script.
-    %%%%
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    % BIAS TEST
+    % Play the two event movies; movie always plays L then R
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-    
-Play_Sound(soundtoplay_whichOne, 'toBlock');
-Show_Blank;
+            Play_Sound(soundtoplay_whichOne, 'toBlock');
+            Show_Blank;
      
     if parameters.LorR_bias == 0 %play Target Movie on left
 
         Show_Blank;
-        PlaySideMovies(movietoplay_target,'','caption_left','A');
+        PlaySideMovies(movietoplay_target,'','caption_left','Z');
         Show_Blank;
-        PlaySideMovies('',movietoplay_distractor,'caption_right','B');
+        PlaySideMovies('',movietoplay_distractor,'caption_right','X');
 
     else %play Distractor Movie on left
 
         Show_Blank;
-        PlaySideMovies(movietoplay_distractor,'','caption_left','A');
+        PlaySideMovies(movietoplay_distractor,'','caption_left','Z');
         Show_Blank;
-        PlaySideMovies('',movietoplay_target,'caption_right','B');
+        PlaySideMovies('',movietoplay_target,'caption_right','X');
 
     end
     
     parameters.biasTestAns(trialNo) = Take_Response();
-    
-    
-    
-    %%%%
-    %Play the sign movie again
-    %%%%
-    %Show_Blank;
-    %PlayCenterMovie(movietoplay_sign);
-    
-    %And prompt and record the response!
-    Text_Show('Which one is ...');
-    response = Take_Response();
     Show_Blank;
     
-    
-    
+ 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % 3 TRAINING VIDEOS
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -143,16 +122,11 @@ parameters.trainingStart(trialNo) = GetSecs;
 
 Play_Sound(soundtoplay_trainAudioFuture1, 'toBlock');
 
-
 PlayCenterMovie(movietoplay_trainV1);
-
 PlayCenterMovie(movietoplay_trainV1);
-
 
 Play_Sound(soundtoplay_trainAudioPast1, 'toBlock');
-
-
-    
+ 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % 2222222222222222222222222222222222222222222222222222222222222222222222222
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -204,21 +178,21 @@ Show_Blank;
      if parameters.LorR_final == 0 %play Target Movie on left
 
         Show_Blank;
-        PlaySideMovies(movietoplay_mTest,'','caption_left','A');
+        PlaySideMovies(movietoplay_mTest,'','caption_left','Z');
         Show_Blank;
-        PlaySideMovies('',movietoplay_pTest,'caption_right','B');
+        PlaySideMovies('',movietoplay_pTest,'caption_right','X');
 
     else %play Distractor Movie on left
 
         Show_Blank;
-        PlaySideMovies(movietoplay_pTest,'','caption_left','A');
+        PlaySideMovies(movietoplay_pTest,'','caption_left','X');
         Show_Blank;
-        PlaySideMovies('',movietoplay_mTest,'caption_right','B');
+        PlaySideMovies('',movietoplay_mTest,'caption_right','Z');
         Show_Blank;
 
      end
      
-     %parameters.finalTestAns(trialNo) = Take_Response();
+  parameters.finalTestAns(trialNo) = Take_Response();
   parameters.finalEnd(trialNo) = GetSecs;  
 
     
