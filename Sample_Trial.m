@@ -38,7 +38,7 @@ function [response] = Sample_Trial(trialNo)
     soundtoplay_trainAudioPast3 = strcat('Audio_stimuli_creation/Finished/', char(parameters.trainAudioPast3(trialNo)));
     soundtoplay_whichOne = strcat('Audio_stimuli_creation/Finished/', char(parameters.whichOne(trialNo)));
     soundtoplay_letsFind = strcat('Audio_stimuli_creation/Finished/aa_lets_find/', char(parameters.letsFind_Audio(trialNo)));
-    
+    soundtoplay_letsWatchMore = 'Audio_stimuli_creation/Finished/aa_motivation/letswatchmore.wav';
     
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    
@@ -124,17 +124,7 @@ function [response] = Sample_Trial(trialNo)
     Show_Blank();
     
     
-    %%%%
-    %Play the sign movie again
-    %%%%
-    %Show_Blank;
-    %PlayCenterMovie(movietoplay_sign);
-    
-    %And prompt and record the response!
-    %Text_Show('Which one is ...');
-    %response = Take_Response();
-    %Show_Blank;
-    
+
  
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % 3 TRAINING VIDEOS
@@ -143,6 +133,8 @@ function [response] = Sample_Trial(trialNo)
 Text_Show('Ready to learn some verbs? Press space.');
 Take_Response();
 Show_Blank;
+
+Play_Sound(soundtoplay_letsWatchMore, 'toBlock');
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % 111111111111111111111111111111111111111111111111111111111111111111111111
