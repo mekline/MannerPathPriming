@@ -58,7 +58,7 @@ try %everything goes inside a 'try' block, so if it crashes, it crashes
     parameters.subNo = subNo;
   
     %Read the file into matlab
-    vidNames = read_mixed_csv('Experiment_Items_10_08.csv',',')
+    vidNames = read_mixed_csv('Experiment_Items_final_withaudio.csv',',')
     
     %Routine to pick the specified signList (algebra to get us the right rows)
     start_Index = (8*condition)-6;
@@ -167,7 +167,7 @@ try %everything goes inside a 'try' block, so if it crashes, it crashes
     parameters.trainAudioFuture3 = parameters.trainAudioFuture3(myRandOrder)
     parameters.trainAudioPast3 = parameters.trainAudioPast3(myRandOrder)
     parameters.whichOne = parameters.whichOne(myRandOrder)
-    parameters.letsFind_Audio = parameters.letsFind_Audio(myRandOrder)  
+    parameters.letsFind_Audio =   
     
     %Randomize sides for target and distractor movies
     parameters.LorR_bias = randi([0 1], length(start_Index:end_Index),1) 

@@ -208,9 +208,14 @@ parameters.finalTest(trialNo) = GetSecs;
 Play_Sound(soundtoplay_letsFind, 'toBlock');
 Show_Blank;      
            
+
+
+
+
+
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     
-    if parameters.LorR_final == 0 %play Target Movie on left
+     if parameters.LorR_final == 0 %play Target Movie on left
 
         Show_Blank;
         PlaySideMovies(movietoplay_mTest,'','caption_left','Z');
@@ -225,14 +230,10 @@ Show_Blank;
         PlaySideMovies('',movietoplay_mTest,'caption_right','Z');
         Show_Blank;
 
-    end
-    
-Play_Sound(soundtoplay_whichOne, 'toBlock');
-parameters.finalTestAns(trialNo) = Take_Response();
-Show_Blank;
+     end
      
-  
-parameters.finalEnd(trialNo) = GetSecs;  
+  parameters.finalTestAns(trialNo) = Take_Response();
+  parameters.finalEnd(trialNo) = GetSecs;  
 
     
 end
