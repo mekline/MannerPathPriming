@@ -39,6 +39,11 @@ function [response] = Sample_Trial(trialNo)
     soundtoplay_whichOne = strcat('Audio_stimuli_creation/Finished/', char(parameters.whichOne(trialNo)));
     soundtoplay_letsFind = strcat('Audio_stimuli_creation/Finished/aa_lets_find/', char(parameters.letsFind_Audio(trialNo)));
     soundtoplay_letsWatchMore = 'Audio_stimuli_creation/Finished/aa_motivation/letswatchmore.wav';
+    soundtoplay_getReady = 'Audio_stimuli_creation/Finished/aa_motivation/getready.wav';
+    soundtoplay_goodJob = 'Audio_stimuli_creation/Finished/aa_motivation/goodjob.wav';
+    soundtoplay_nowLetsSee = 'Audio_stimuli_creation/Finished/aa_motivation/nowletssee.wav';
+    soundtoplay_wow = 'Audio_stimuli_creation/Finished/aa_motivation/wow.wav';
+    
     
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    
@@ -46,6 +51,8 @@ function [response] = Sample_Trial(trialNo)
     %Clear screen
     Show_Blank;
     
+    %Play_Sound(soundtoplay_getReady, 'toBlock');
+    %Show_Blank; 
     
     Text_Show('Ready? Press space to watch the movies.');
     response = Take_Response();
@@ -53,10 +60,7 @@ function [response] = Sample_Trial(trialNo)
     if response == 'q'
         return
     end
-    
-    
-    
-
+  
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % BIAS TEST VIDEO
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -123,8 +127,8 @@ function [response] = Sample_Trial(trialNo)
     parameters.biasTestAns(trialNo) = Take_Response();
     Show_Blank();
     
-    
-
+    Play_Sound(soundtoplay_goodJob, 'toBlock');
+    Show_Blank; 
  
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % 3 TRAINING VIDEOS
