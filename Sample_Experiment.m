@@ -114,6 +114,7 @@ try %everything goes inside a 'try' block, so if it crashes, it crashes
     parameters.trainAudioPast3 = vidNames(start_Index:end_Index, 47)
     parameters.whichOne = vidNames(start_Index:end_Index, 48)
     parameters.letsFind_Audio = vidNames(start_Index:end_Index, 49)
+    parameters.starimage = vidNames(start_Index:end_Index, 50)
     
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    
     % % % Now randomize everything (apply random order to all columns/objects)
@@ -168,6 +169,7 @@ try %everything goes inside a 'try' block, so if it crashes, it crashes
     parameters.trainAudioPast3 = parameters.trainAudioPast3(myRandOrder)
     parameters.whichOne = parameters.whichOne(myRandOrder)
     parameters.letsFind_Audio = parameters.letsFind_Audio(myRandOrder)  
+    %parameters.starimage = parameters.starimage(myRandOrder)  
     
     %Randomize sides for target and distractor movies
     parameters.LorR_bias = randi([0 1], length(start_Index:end_Index),1) 
@@ -227,6 +229,7 @@ try %everything goes inside a 'try' block, so if it crashes, it crashes
 
     
     Text_Show('Press spacebar to start experiment.')
+    Show_Blank();
     Take_Response();  
 
     expStart = GetSecs;
@@ -235,64 +238,91 @@ try %everything goes inside a 'try' block, so if it crashes, it crashes
         % 2 TRIALS OF NOUN TRAINING                             
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-    %%%%%%%%%%%%%%%%%%%%%%
-    %FIRST NOUN TRAINING     
-    %%%%%%%%%%%%%%%%%%%%%%
+        %%%%%%%%%%%%%%%%%%%%%%
+        %FIRST NOUN TRAINING     
+        %%%%%%%%%%%%%%%%%%%%%%
+        Play_Sound('Audio_stimuli_creation/Finished/aa_nouns/bone1.wav', 'toBlock');
+        Show_Blank;
 
-%     Text_Show('(((SOUND))) The dog has a ...')
-%     Take_Response();  
-% 
-%     movietoplay_target = 'Movies/1_noun_1_distractor.mov';
-%     movietoplay_distractor = 'Movies/1_noun_1b.mov';    
-%     movietoplay_sign = 'Movies/1_noun_1a.mov';
-% 
-%     Show_Blank;
-% 
-%     
-%         
-%         Show_Blank;
-%         PlayCenterMovie(movietoplay_sign);
-%         
-%         Show_Blank;
-%         PlaySideMovies(movietoplay_target,'','caption_left','Z');
-%         %Show_Blank;
-%         PlaySideMovies('',movietoplay_distractor,'caption_right','X'); 
-%         %Show_Blank;
-%         Text_Show('(((SOUND)))  Which one has the ...');
-%         Show_Blank;
-% 
-%         Take_Response(); 
+        movietoplay_noun_2a = 'Movies/2_noun_2a.mov';
+        movietoplay_noun_2b = 'Movies/2_noun_2b.mov';    
+        movietoplay_noun_2_distr = 'Movies/2_noun_2_distractor.mov';
+        Show_Blank;
 
+        PlayCenterMovie(movietoplay_noun_2a);
 
-    %%%%%%%%%%%%%%%%%%%%%%
-    %SECOND NOUN TRAINING     
-    %%%%%%%%%%%%%%%%%%%%%%  
+        Show_Blank;
+        PlaySideMovies(movietoplay_noun_2_distr,'','caption_left','A');
+        Show_Blank;
+        PlaySideMovies('',movietoplay_noun_2b,'caption_right','B'); 
+        Show_Blank;
 
-    %Text_Show('(((SOUND))) SECOND NOUN TRIAL SENTENCE')
-    %Take_Response();  
-    %     
-    %     movietoplay_NAME = 'Movies/NAME.mov';
-    %     movietoplay_NAME = 'Movies/NAME.mov';    
-    %     movietoplay_NAME = 'Movies/NAME.mov';
-    % 
-    %Show_Blank;
-    %      
-    %         
-    %PlayCenterMovie(movietoplay_NAME);
-    %         
-    %Show_Blank;
-    %PlaySideMovies(movietoplay_NAME,'','caption_left','A');
-    %Show_Blank;
-    %PlaySideMovies('',movietoplay_NAME,'caption_right','B'); 
-    %Show_Blank;
-    %Text_Show('(((SOUND)))  Which one has the ...');
-    %Show_Blank;
-    %response = Take_Response();
+        Play_Sound('Audio_stimuli_creation/Finished/aa_nouns/bone3.wav', 'toBlock');
+        Show_Blank;   
+        response = Take_Response();
 
+        Play_Sound('Audio_stimuli_creation/Finished/aa_motivation/goodjob.wav', 'toBlock');
+        Show_Blank; 
 
-    %%%%%%%%%%%%%%%%%%%%%%
-    %END NOUN TRAINING     
-    %%%%%%%%%%%%%%%%%%%%%%  
+        starimagenoun1 = 'stars/stars.002.jpg'
+
+        imageArray = imread(starimagenoun1);
+
+        rect = parameters.scr.rect
+
+        winPtr = parameters.scr.winPtr;
+
+        Screen('PutImage', winPtr , imageArray, rect );
+
+        Screen('flip',winPtr)
+        resp = Take_Response();
+        Show_Blank; 
+        
+        %%%%%%%%%%%%%%%%%%%%%%
+        %SECOND NOUN TRAINING     
+        %%%%%%%%%%%%%%%%%%%%%%  
+        
+        Play_Sound('Audio_stimuli_creation/Finished/aa_nouns/glorfin1.wav', 'toBlock');
+        Show_Blank;
+
+        movietoplay_target = 'Movies/1_noun_1_distractor.mov';
+        movietoplay_distractor = 'Movies/1_noun_1b.mov';    
+        movietoplay_sign = 'Movies/1_noun_1a.mov';
+
+        PlayCenterMovie(movietoplay_sign);
+        Show_Blank;
+
+        PlaySideMovies(movietoplay_target,'','caption_left','Z');
+        Show_Blank;
+        PlaySideMovies('',movietoplay_distractor,'caption_right','X'); 
+        Show_Blank;
+
+        Play_Sound('Audio_stimuli_creation/Finished/aa_nouns/glorfin3.wav', 'toBlock');
+        Show_Blank;      
+        Take_Response(); 
+
+        Play_Sound('Audio_stimuli_creation/Finished/aa_motivation/goodjob.wav', 'toBlock');
+        Show_Blank; 
+
+        starimagenoun2 = 'stars/stars.003.jpg'
+
+        imageArray = imread(starimagenoun2);
+
+        rect = parameters.scr.rect
+
+        winPtr = parameters.scr.winPtr;
+
+        Screen('PutImage', winPtr , imageArray, rect );
+
+        Screen('flip',winPtr)
+        resp = Take_Response();
+        Show_Blank;
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+    % END NOUN TRAINING                             
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    
+    
     
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     % Trial Setup
