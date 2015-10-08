@@ -43,8 +43,13 @@ function [response] = Sample_Trial(trialNo)
     soundtoplay_goodJob = 'Audio_stimuli_creation/Finished/aa_motivation/goodjob.wav';
     soundtoplay_nowLetsSee = 'Audio_stimuli_creation/Finished/aa_motivation/nowletssee.wav';
     soundtoplay_wow = 'Audio_stimuli_creation/Finished/aa_motivation/wow.wav';
+     
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% STAR IMAGES
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    
     
-    
+    starimage = strcat('stars/', char(parameters.starimage(trialNo)));
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    
     
@@ -60,6 +65,10 @@ function [response] = Sample_Trial(trialNo)
     if response == 'q'
         return
     end
+    
+    
+    
+    imshow('board.tif')
   
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % BIAS TEST VIDEO
