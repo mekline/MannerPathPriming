@@ -60,12 +60,12 @@ global parameters
     %Play_Sound(soundtoplay_getReady, 'toBlock');
     %Show_Blank; 
     
-    Text_Show('Ready? Press space to watch the movies.');
-    response = Take_Response();
-    %Want to finish early?
-    if response == 'q'
-        return
-    end 
+%     Text_Show('Ready? Press space to watch the movies.');
+%     response = Take_Response();
+%     %Want to finish early?
+%     if response == 'q'
+%         return
+%     end 
         
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -107,29 +107,21 @@ global parameters
     Play_Sound(soundtoplay_letsFind, 'toBlock');
     Show_Blank;      
            
-     
     if parameters.LorR_bias == 0 %play Target Movie on left
 
-        Show_Blank;
         PlaySideMovies(movietoplay_target,'','caption_left','Z');
-        Show_Blank;
-        PlaySideMovies('',movietoplay_distractor,'caption_right','X');
-        Show_Blank;
+        PlaySideMovies('',movietoplay_distractor,'caption_right','C');
+        
 
     else %play Distractor Movie on left
 
-        Show_Blank;
         PlaySideMovies(movietoplay_distractor,'','caption_left','Z');
-        Show_Blank;
-        PlaySideMovies('',movietoplay_target,'caption_right','X');
-        Show_Blank;
-
+        PlaySideMovies('',movietoplay_target,'caption_right','C');
+        
     end
     
     
     Play_Sound(soundtoplay_whichOne, 'toBlock');
-    Show_Blank();
-    
     
     parameters.biasTestAns(trialNo) = Take_Response();
     Show_Blank();
@@ -140,102 +132,99 @@ global parameters
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % 3 TRAINING VIDEOS
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% 
-Text_Show('Ready to learn some verbs? Press space.');
-Take_Response();
-Show_Blank;
 
-Play_Sound(soundtoplay_letsWatchMore, 'toBlock');
-% 
+    Play_Sound(soundtoplay_letsWatchMore, 'toBlock');
+    Text_Show('Ready to learn some verbs? Press space.');
+    Take_Response();
+    Show_Blank;
+
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % % 111111111111111111111111111111111111111111111111111111111111111111111111
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% 
-parameters.trainingStart(trialNo) = GetSecs;
 
-Play_Sound(soundtoplay_trainAudioFuture1, 'toBlock');
+    parameters.trainingStart(trialNo) = GetSecs;
 
-PlayCenterMovie(movietoplay_trainV1);
-PlayCenterMovie(movietoplay_trainV1);
-Show_Blank;
+    Play_Sound(soundtoplay_trainAudioFuture1, 'toBlock');
 
-Play_Sound(soundtoplay_trainAudioPast1, 'toBlock');
+    PlayCenterMovie(movietoplay_trainV1);
+    PlayCenterMovie(movietoplay_trainV1);
+    Show_Blank;
 
-WaitSecs(2.500);
+    Play_Sound(soundtoplay_trainAudioPast1, 'toBlock');
+
+    WaitSecs(1.500);
+    
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % % 2222222222222222222222222222222222222222222222222222222222222222222222222
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% 
-Play_Sound(soundtoplay_trainAudioFuture2, 'toBlock');
 
+    Play_Sound(soundtoplay_trainAudioFuture2, 'toBlock');
 
-PlayCenterMovie(movietoplay_trainV2);
-PlayCenterMovie(movietoplay_trainV2);
-Show_Blank;
+    PlayCenterMovie(movietoplay_trainV2);
+    PlayCenterMovie(movietoplay_trainV2);
+    Show_Blank;
 
-Play_Sound(soundtoplay_trainAudioPast2, 'toBlock');
+    Play_Sound(soundtoplay_trainAudioPast2, 'toBlock');
 
-WaitSecs(2.500);
+    WaitSecs(1.500);
+    
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % % 333333333333333333333333333333333333333333333333333333333333333333333333%
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% 
-Play_Sound(soundtoplay_trainAudioFuture3, 'toBlock');
 
-PlayCenterMovie(movietoplay_trainV3);
-PlayCenterMovie(movietoplay_trainV3);
-Show_Blank;
+    Play_Sound(soundtoplay_trainAudioFuture3, 'toBlock');
 
-Play_Sound(soundtoplay_trainAudioPast3, 'toBlock');
+    PlayCenterMovie(movietoplay_trainV3);
+    PlayCenterMovie(movietoplay_trainV3);
+    Show_Blank;
 
-parameters.trainingEnd(trialNo) = GetSecs;
-WaitSecs(2.500);
-Show_Blank;
+    Play_Sound(soundtoplay_trainAudioPast3, 'toBlock');
 
-% 
+    parameters.trainingEnd(trialNo) = GetSecs;
+    WaitSecs(1.500);
+    Show_Blank;
+
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % % READY FOR THE TEST?
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% 
-Text_Show('Ready for the test? Press space.');
-Take_Response();
-Show_Blank;
+
+    Text_Show('Ready for the test? Press space.');
+    Take_Response();
+    Show_Blank;
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % PLAY THE TEST MOVIE
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-parameters.finalTest(trialNo) = GetSecs;
+    parameters.finalTest(trialNo) = GetSecs;
 
-Play_Sound(soundtoplay_letsFind, 'toBlock');
-Show_Blank;      
+    Play_Sound(soundtoplay_letsFind, 'toBlock');
+    Show_Blank;      
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   
     if parameters.LorR_final == 0 %play Target Movie on left
 
-        Show_Blank;
         PlaySideMovies(movietoplay_mTest,'','caption_left','Z');
-        Show_Blank;
-        PlaySideMovies('',movietoplay_pTest,'caption_right','X');
+        PlaySideMovies('',movietoplay_pTest,'caption_right','C');
 
     else %play Distractor Movie on left
 
-        Show_Blank;
-        PlaySideMovies(movietoplay_pTest,'','caption_left','X');
-        Show_Blank;
-        PlaySideMovies('',movietoplay_mTest,'caption_right','Z');
-        Show_Blank;
-
+        PlaySideMovies(movietoplay_pTest,'','caption_left','Z');
+        PlaySideMovies('',movietoplay_mTest,'caption_right','C');
+ 
     end
     
     
     Play_Sound(soundtoplay_whichOne, 'toBlock');
     parameters.finalTestAns(trialNo) = Take_Response();
-    Show_Blank;
+
     
     
     parameters.finalEnd(trialNo) = GetSecs;
+    
+    Play_Sound('Audio_stimuli_creation/Finished/aa_motivation/goodjob.wav', 'toBlock');
+    Show_Blank; 
     
     
     imageArray = imread(char(parameters.starimage(trialNo)));

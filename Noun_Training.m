@@ -20,31 +20,32 @@ global parameters
         PlayCenterMovie(movietoplay_noun_2a);
 
         Show_Blank;
-        PlaySideMovies(movietoplay_noun_2_distr,'','caption_left','A');
+        
+        Play_Sound('Audio_stimuli_creation/Finished/aa_nouns/bone2.wav', 'toBlock');
         Show_Blank;
-        PlaySideMovies('',movietoplay_noun_2b,'caption_right','B'); 
-        Show_Blank;
-
-        Play_Sound('Audio_stimuli_creation/Finished/aa_nouns/bone3.wav', 'toBlock');
-        Show_Blank;   
-        response = Take_Response();
+        
+        PlaySideMovies(movietoplay_noun_2_distr,'','caption_left','Z');
+        PlaySideMovies('',movietoplay_noun_2b,'caption_right','C'); 
+        
+        Play_Sound('Audio_stimuli_creation/Finished/aa_nouns/bone3.wav', 'toBlock'); 
+        Take_Response();
 
         Play_Sound('Audio_stimuli_creation/Finished/aa_motivation/goodjob.wav', 'toBlock');
         Show_Blank; 
 
-%         starimagenoun1 = 'stars/stars.002.jpg'
-% 
-%         imageArray = imread(starimagenoun1);
-% 
-%         rect = parameters.scr.rect
-% 
-%         winPtr = parameters.scr.winPtr;
-% 
-%         Screen('PutImage', winPtr , imageArray, rect );
-% 
-%         Screen('flip',winPtr)
-%         resp = Take_Response();
-%         Show_Blank; 
+        starimagenoun1 = 'stars/stars.002.jpg'
+
+        imageArray = imread(starimagenoun1);
+
+        rect = parameters.scr.rect
+
+        winPtr = parameters.scr.winPtr;
+
+        Screen('PutImage', winPtr , imageArray, rect );
+
+        Screen('flip',winPtr)
+        Take_Response();
+        Show_Blank; 
         
         %%%%%%%%%%%%%%%%%%%%%%
         %SECOND NOUN TRAINING     
@@ -59,32 +60,34 @@ global parameters
 
         PlayCenterMovie(movietoplay_sign);
         Show_Blank;
+        
+          
+        Play_Sound('Audio_stimuli_creation/Finished/aa_nouns/glorfin2.wav', 'toBlock');
+        Show_Blank;
 
         PlaySideMovies(movietoplay_target,'','caption_left','Z');
-        Show_Blank;
-        PlaySideMovies('',movietoplay_distractor,'caption_right','X'); 
-        Show_Blank;
+        PlaySideMovies('',movietoplay_distractor,'caption_right','C'); 
 
-        Play_Sound('Audio_stimuli_creation/Finished/aa_nouns/glorfin3.wav', 'toBlock');
-        Show_Blank;      
+        Play_Sound('Audio_stimuli_creation/Finished/aa_nouns/glorfin3.wav', 'toBlock');     
         Take_Response(); 
 
         Play_Sound('Audio_stimuli_creation/Finished/aa_motivation/goodjob.wav', 'toBlock');
         Show_Blank; 
+       
 
-%         starimagenoun2 = 'stars/stars.003.jpg'
-% 
-%         imageArray = imread(starimagenoun2);
-% 
-%         rect = parameters.scr.rect
-% 
-%         winPtr = parameters.scr.winPtr;
-% 
-%         Screen('PutImage', winPtr , imageArray, rect );
-% 
-%         Screen('flip',winPtr)
-%         resp = Take_Response();
-%         Show_Blank;
+        starimagenoun2 = 'stars/stars.003.jpg'
+
+        imageArray = imread(starimagenoun2);
+
+        rect = parameters.scr.rect
+
+        winPtr = parameters.scr.winPtr;
+
+        Screen('PutImage', winPtr , imageArray, rect );
+
+        Screen('flip',winPtr)
+        Take_Response();
+        Show_Blank;  
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
     % END NOUN TRAINING                             

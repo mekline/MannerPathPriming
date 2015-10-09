@@ -218,7 +218,7 @@ try
     
 %     Text_Show('Press spacebar to start experiment.')
 %     Show_Blank();
-%     Take_Response();
+%     Take_Response();zz   z  
     
     expStart = GetSecs;
     
