@@ -32,19 +32,19 @@ global parameters
         Play_Sound('Audio_stimuli_creation/Finished/aa_motivation/goodjob.wav', 'toBlock');
         Show_Blank; 
 
-        starimagenoun1 = 'stars/stars.002.jpg'
-
-        imageArray = imread(starimagenoun1);
-
-        rect = parameters.scr.rect
-
-        winPtr = parameters.scr.winPtr;
-
-        Screen('PutImage', winPtr , imageArray, rect );
-
-        Screen('flip',winPtr)
-        resp = Take_Response();
-        Show_Blank; 
+%         starimagenoun1 = 'stars/stars.002.jpg'
+% 
+%         imageArray = imread(starimagenoun1);
+% 
+%         rect = parameters.scr.rect
+% 
+%         winPtr = parameters.scr.winPtr;
+% 
+%         Screen('PutImage', winPtr , imageArray, rect );
+% 
+%         Screen('flip',winPtr)
+%         resp = Take_Response();
+%         Show_Blank; 
         
         %%%%%%%%%%%%%%%%%%%%%%
         %SECOND NOUN TRAINING     
@@ -72,19 +72,19 @@ global parameters
         Play_Sound('Audio_stimuli_creation/Finished/aa_motivation/goodjob.wav', 'toBlock');
         Show_Blank; 
 
-        starimagenoun2 = 'stars/stars.003.jpg'
-
-        imageArray = imread(starimagenoun2);
-
-        rect = parameters.scr.rect
-
-        winPtr = parameters.scr.winPtr;
-
-        Screen('PutImage', winPtr , imageArray, rect );
-
-        Screen('flip',winPtr)
-        resp = Take_Response();
-        Show_Blank;
+%         starimagenoun2 = 'stars/stars.003.jpg'
+% 
+%         imageArray = imread(starimagenoun2);
+% 
+%         rect = parameters.scr.rect
+% 
+%         winPtr = parameters.scr.winPtr;
+% 
+%         Screen('PutImage', winPtr , imageArray, rect );
+% 
+%         Screen('flip',winPtr)
+%         resp = Take_Response();
+%         Show_Blank;
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
     % END NOUN TRAINING                             

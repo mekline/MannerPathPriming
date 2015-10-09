@@ -48,7 +48,7 @@ global parameters
 % STAR IMAGES
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    
     
-    starimageBiasTest = 'stars/stars.004.jpg';
+    starImageStart = 'stars/stars.001.jpg';
     starImageTrials = strcat(char(parameters.starimage(trialNo)));
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -65,8 +65,9 @@ global parameters
     %Want to finish early?
     if response == 'q'
         return
-    end
-     
+    end 
+        
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % BIAS TEST VIDEO
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -135,22 +136,7 @@ global parameters
     
     Play_Sound(soundtoplay_goodJob, 'toBlock');
     Show_Blank; 
-    
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-    
-imageArray = imread(starimageBiasTest);
-% char(parameters.starimage(trialNo))
-rect = parameters.scr.rect
 
-winPtr = parameters.scr.winPtr;
-
-Screen('PutImage', winPtr , imageArray, rect );
-
-Screen('flip',winPtr)
-resp = Take_Response();
-Show_Blank;
-    
- 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % 3 TRAINING VIDEOS
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -214,19 +200,18 @@ Show_Blank;
 Text_Show('Ready for the test? Press space.');
 Take_Response();
 Show_Blank;
-% 
-% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% % PLAY THE TEST MOVIE
-% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% 
-parameters.finalTest(trialNo) = GetSecs;
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% PLAY THE TEST MOVIE
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+parameters.finalTest(trialNo) = GetSecs;
 
 Play_Sound(soundtoplay_letsFind, 'toBlock');
 Show_Blank;      
-           
-%     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%     
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  
     if parameters.LorR_final == 0 %play Target Movie on left
 
         Show_Blank;
@@ -244,29 +229,26 @@ Show_Blank;
 
     end
     
-Play_Sound(soundtoplay_whichOne, 'toBlock');
-parameters.finalTestAns(trialNo) = Take_Response();
-Show_Blank;
-     
-  
-parameters.finalEnd(trialNo) = GetSecs;  
-
-
-imageArray = imread(char(parameters.starimage(trialNo)));
-
-rect = parameters.scr.rect
-
-winPtr = parameters.scr.winPtr;
-
-Screen('PutImage', winPtr , imageArray, rect );
-
-Screen('flip',winPtr)
-resp1 = Take_Response();
-Show_Blank;
-
-
-
-
+    
+    Play_Sound(soundtoplay_whichOne, 'toBlock');
+    parameters.finalTestAns(trialNo) = Take_Response();
+    Show_Blank;
+    
+    
+    parameters.finalEnd(trialNo) = GetSecs;
+    
+    
+    imageArray = imread(char(parameters.starimage(trialNo)));
+    
+    rect = parameters.scr.rect;
+    
+    winPtr = parameters.scr.winPtr;
+    
+    Screen('PutImage', winPtr , imageArray, rect );
+    
+    Screen('flip',winPtr)
+    resp1 = Take_Response();
+    Show_Blank;
     
 end
 

@@ -222,7 +222,22 @@ try
     
     expStart = GetSecs;
     
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
     
+    starImageStart = 'stars/stars.001.jpg';
+    imageArray = imread(starImageStart);
+    % char(parameters.starimage(trialNo))
+    rect = parameters.scr.rect
+
+    winPtr = parameters.scr.winPtr;
+
+    Screen('PutImage', winPtr , imageArray, rect );
+
+    Screen('flip',winPtr)
+    resp = Take_Response();
+    Show_Blank;
+        
+ 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     % 2 TRIALS OF NOUN TRAINING
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -255,12 +270,12 @@ try
         
         
         for i=1:ntrials
-            response = Sample_Trial(i);
+            Sample_Trial(i);
             
-            if response == 'q'
-                break
-                
-            end
+%             if response == 'q'
+%                 break
+%                 
+%             end
             
             expEnd = GetSecs;
             totalTime = expEnd - expStart;
