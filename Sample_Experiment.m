@@ -253,7 +253,7 @@ try
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     
     % How many trials?
-    % ntrials = length(parameters.pbiasV)
+    %ntrials = length(parameters.pbiasV)
     ntrials = 1; %For the skeleton, play some short sample trials!
     
     Text_Show('Ready? Press space to watch the movies.');
@@ -268,9 +268,6 @@ try
 %         return
 %         
 %     end
-    
-    finishedSignMovie = 0;
-    while not(finishedSignMovie)
         
         
         for i=1:ntrials
@@ -341,10 +338,9 @@ try
         % Cleanup & Shutdown
         %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
         
-        Closeout_PTool();
+        %Closeout_PTool();
+
         
-    end
-    
 catch
     
     Closeout_PTool();
@@ -352,5 +348,9 @@ catch
     psychrethrow(psychlasterror);
     
 end
+
+
+end
+
 
 

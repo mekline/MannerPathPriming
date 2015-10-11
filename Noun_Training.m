@@ -29,9 +29,9 @@ global parameters
         
         Play_Sound('Audio_stimuli_creation/Finished/aa_nouns/bone3.wav', 'toBlock'); 
         Take_Response();
-
-        Play_Sound('Audio_stimuli_creation/Finished/aa_motivation/goodjob.wav', 'toBlock');
-        Show_Blank; 
+        Show_Blank;
+        %Play_Sound('Audio_stimuli_creation/Finished/aa_motivation/goodjob.wav', 'toBlock');
+        %Show_Blank; 
 
         starimagenoun1 = 'stars/stars.002.jpg'
 
@@ -70,9 +70,10 @@ global parameters
 
         Play_Sound('Audio_stimuli_creation/Finished/aa_nouns/glorfin3.wav', 'toBlock');     
         Take_Response(); 
-
-        Play_Sound('Audio_stimuli_creation/Finished/aa_motivation/goodjob.wav', 'toBlock');
-        Show_Blank; 
+        Show_Blank;
+        
+        %Play_Sound('Audio_stimuli_creation/Finished/aa_motivation/goodjob.wav', 'toBlock');
+        %Show_Blank; 
        
 
         starimagenoun2 = 'stars/stars.003.jpg'

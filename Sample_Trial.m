@@ -72,10 +72,11 @@ global parameters
 % BIAS TEST VIDEO
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-    finishedSignMovie = 0;
+    %finishedSignMovie = 0;
     
-    while not(finishedSignMovie)
+   % while not(finishedSignMovie)
         
+        %trialNo
         Show_Blank;
 
         Play_Sound(soundtoplay_ambigAudioFuture, 'toBlock');
@@ -98,7 +99,7 @@ global parameters
         
         Show_Blank; 
         
-    end
+   % end
     
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     % BIAS TEST
@@ -126,8 +127,8 @@ global parameters
     parameters.biasTestAns(trialNo) = Take_Response();
     Show_Blank();
     
-    Play_Sound(soundtoplay_goodJob, 'toBlock');
-    Show_Blank; 
+    %Play_Sound(soundtoplay_goodJob, 'toBlock');
+    %Show_Blank; 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % 3 TRAINING VIDEOS
@@ -223,8 +224,8 @@ global parameters
     
     parameters.finalEnd(trialNo) = GetSecs;
     
-    Play_Sound('Audio_stimuli_creation/Finished/aa_motivation/goodjob.wav', 'toBlock');
-    Show_Blank; 
+    %Play_Sound('Audio_stimuli_creation/Finished/aa_motivation/goodjob.wav', 'toBlock');
+    %Show_Blank; 
     
     
     imageArray = imread(char(parameters.starimage(trialNo)));
