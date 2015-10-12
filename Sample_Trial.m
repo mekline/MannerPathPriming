@@ -15,14 +15,14 @@ global parameters
     movietoplay_noun2_distractor = 'Movies/2_noun_2_distractor';
 
     %Trial movies
-    movietoplay_target = strcat('Movies/', char(parameters.pbiasV(trialNo)));
-    movietoplay_distractor = strcat('Movies/', char(parameters.mbiasV(trialNo)));
-    movietoplay_sign = strcat('Movies/', char(parameters.ambigV(trialNo)));
+    movietoplay_target = strcat('Movies/', char(parameters.pBiasV(trialNo)));
+    movietoplay_distractor = strcat('Movies/', char(parameters.mBiasV(trialNo)));
+   movietoplay_sign = strcat('Movies/', char(parameters.ambigV(trialNo)));
     movietoplay_trainV1 = strcat('Movies/', char(parameters.trainV1(trialNo)));
     movietoplay_trainV2 = strcat('Movies/', char(parameters.trainV2(trialNo)));
     movietoplay_trainV3 = strcat('Movies/', char(parameters.trainV3(trialNo)));
-    movietoplay_mTest = strcat('Movies/', char(parameters.mtestV(trialNo)));
-    movietoplay_pTest = strcat('Movies/', char(parameters.ptestV(trialNo)));
+    movietoplay_mTest = strcat('Movies/', char(parameters.mTestV(trialNo)));
+    movietoplay_pTest = strcat('Movies/', char(parameters.pTestV(trialNo)));
     
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % AUDIO
@@ -36,8 +36,8 @@ global parameters
     soundtoplay_trainAudioPast2 = strcat('Audio_stimuli_creation/Finished/', char(parameters.trainAudioPast2(trialNo)));
     soundtoplay_trainAudioFuture3 = strcat('Audio_stimuli_creation/Finished/', char(parameters.trainAudioFuture3(trialNo)));
     soundtoplay_trainAudioPast3 = strcat('Audio_stimuli_creation/Finished/', char(parameters.trainAudioPast3(trialNo)));
-    soundtoplay_whichOne = strcat('Audio_stimuli_creation/Finished/', char(parameters.whichOne(trialNo)));
-    soundtoplay_letsFind = strcat('Audio_stimuli_creation/Finished/aa_lets_find/', char(parameters.letsFind_Audio(trialNo)));
+    soundtoplay_whichOne = strcat('Audio_stimuli_creation/Finished/', char(parameters.whichOneAudio(trialNo)));
+    soundtoplay_letsFind = strcat('Audio_stimuli_creation/Finished/aa_lets_find/', char(parameters.letsFindAudio(trialNo)));
     soundtoplay_letsWatchMore = 'Audio_stimuli_creation/Finished/aa_motivation/letswatchmore.wav';
     soundtoplay_getReady = 'Audio_stimuli_creation/Finished/aa_motivation/getready.wav';
     soundtoplay_goodJob = 'Audio_stimuli_creation/Finished/aa_motivation/goodjob.wav';
@@ -49,7 +49,7 @@ global parameters
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    
     
     starImageStart = 'stars/stars.001.jpg';
-    starImageTrials = strcat(char(parameters.starimage(trialNo)));
+    starImageTrials = strcat(char(parameters.starImage(trialNo)));
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    
@@ -88,14 +88,14 @@ global parameters
         Play_Sound(soundtoplay_ambigAudioPast, 'toBlock');
 
         %Decide if we should we watch again?
-        Text_Show('Press r to see again. If not, press space');
-        response_sign = Take_Response();
-        
-            if response_sign == 'r'
-                finishedSignMovie = 0;
-                 else
-                finishedSignMovie = 1;
-            end
+%         Text_Show('Press r to see again. If not, press space');
+%         response_sign = Take_Response();
+%         
+%             if response_sign == 'r'
+%                 finishedSignMovie = 0;
+%                  else
+%                 finishedSignMovie = 1;
+%             end
         
         Show_Blank; 
         
@@ -143,7 +143,7 @@ global parameters
 % % 111111111111111111111111111111111111111111111111111111111111111111111111
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-    parameters.trainingStart(trialNo) = GetSecs;
+parameters.trainStart(trialNo) = GetSecs;
 
     Play_Sound(soundtoplay_trainAudioFuture1, 'toBlock');
 
@@ -181,7 +181,8 @@ global parameters
 
     Play_Sound(soundtoplay_trainAudioPast3, 'toBlock');
 
-    parameters.trainingEnd(trialNo) = GetSecs;
+    parameters.trainEnd(trialNo) = GetSecs;
+   
     WaitSecs(1.500);
     Show_Blank;
 
@@ -197,7 +198,7 @@ global parameters
 % PLAY THE TEST MOVIE
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-    parameters.finalTest(trialNo) = GetSecs;
+    parameters.finalTestStart(trialNo) = GetSecs;
 
     Play_Sound(soundtoplay_letsFind, 'toBlock');
     Show_Blank;      
@@ -222,13 +223,13 @@ global parameters
 
     
     
-    parameters.finalEnd(trialNo) = GetSecs;
+    parameters.finalTestEnd(trialNo) = GetSecs;
     
     %Play_Sound('Audio_stimuli_creation/Finished/aa_motivation/goodjob.wav', 'toBlock');
     %Show_Blank; 
     
     
-    imageArray = imread(char(parameters.starimage(trialNo)));
+    imageArray = imread(char(parameters.starImage(trialNo)));
     
     rect = parameters.scr.rect;
     

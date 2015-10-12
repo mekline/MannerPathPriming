@@ -28,7 +28,9 @@ global parameters
         PlaySideMovies('',movietoplay_noun_2b,'caption_right','C'); 
         
         Play_Sound('Audio_stimuli_creation/Finished/aa_nouns/bone3.wav', 'toBlock'); 
-        Take_Response();
+        
+        parameters.noun1TestAns = Take_Response();
+       
         Show_Blank;
         %Play_Sound('Audio_stimuli_creation/Finished/aa_motivation/goodjob.wav', 'toBlock');
         %Show_Blank; 
@@ -68,8 +70,9 @@ global parameters
         PlaySideMovies(movietoplay_target,'','caption_left','Z');
         PlaySideMovies('',movietoplay_distractor,'caption_right','C'); 
 
-        Play_Sound('Audio_stimuli_creation/Finished/aa_nouns/glorfin3.wav', 'toBlock');     
-        Take_Response(); 
+        Play_Sound('Audio_stimuli_creation/Finished/aa_nouns/glorfin3.wav', 'toBlock');    
+        
+       parameters.noun2TestAns = Take_Response();
         Show_Blank;
         
         %Play_Sound('Audio_stimuli_creation/Finished/aa_motivation/goodjob.wav', 'toBlock');
