@@ -161,7 +161,7 @@ global parameters
 % PLAY THE TEST MOVIE
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-    parameters.finalTest(trialNo) = GetSecs;
+    parameters.finalTestStart(trialNo) = GetSecs;
 
     Play_Sound(soundtoplay_letsFind, 'toBlock');
     Show_Blank;      
@@ -184,7 +184,7 @@ global parameters
     
     parameters.finalTestAns(trialNo) = Take_Response();
  
-    parameters.finalEnd(trialNo) = GetSecs;
+    parameters.finalTestEnd(trialNo) = GetSecs;
     
     imageArray = imread(char(parameters.starImage(trialNo)));
     
