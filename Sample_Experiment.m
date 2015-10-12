@@ -18,7 +18,7 @@ addpath('HelperFunctions')
 
 global parameters
 
-parameters.datafilepointer = AssignDataFile('SampleExp',subNo);
+parameters.datafilepointer = AssignDataFile('MannerPathPriming',subNo);
 
 try
     
@@ -55,48 +55,48 @@ try
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     %     %Turn list into vectors of variables
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    parameters.Experiment = vidNames(start_Index:end_Index, 2)
-    parameters.amyFileName = vidNames(start_Index:end_Index, 3)
-    parameters.itemID = vidNames(start_Index:end_Index, 4)
-    parameters.eventType = vidNames(start_Index:end_Index, 5)
-    parameters.Condition = vidNames(start_Index:end_Index, 6)
-    parameters.Manner = vidNames(start_Index:end_Index, 7)
-    parameters.Path = vidNames(start_Index:end_Index, 8)
-    parameters.verbName = vidNames(start_Index:end_Index, 9)
-    parameters.verbMeaning = vidNames(start_Index:end_Index, 10)
-    parameters.ambigGoingTo = vidNames(start_Index:end_Index, 11)
-    parameters.ambigDidIt = vidNames(start_Index:end_Index, 12)
-    parameters.ambigV = vidNames(start_Index:end_Index, 13)
-    parameters.whichOne = vidNames(start_Index:end_Index, 14)
-    parameters.mBiasV = vidNames(start_Index:end_Index, 15)
-    parameters.mBiasAns = vidNames(start_Index:end_Index, 16)
-    parameters.pBiasV = vidNames(start_Index:end_Index, 17)
-    parameters.pBiasAns = vidNames(start_Index:end_Index, 18)
-    parameters.trainS1GoingTo = vidNames(start_Index:end_Index, 19)
-    parameters.trainS1DidIt = vidNames(start_Index:end_Index, 20)
-    parameters.trainV1 = vidNames(start_Index:end_Index, 21)
-    parameters.trainS2GoingTo = vidNames(start_Index:end_Index, 22)
-    parameters.trainS2DidIt = vidNames(start_Index:end_Index, 23)
-    parameters.trainV2 = vidNames(start_Index:end_Index, 24)
-    parameters.trainS3GoingTo = vidNames(start_Index:end_Index, 25)
-    parameters.trainS3DidIt = vidNames(start_Index:end_Index, 26)
-    parameters.trainV3 = vidNames(start_Index:end_Index, 27)
-    parameters.mTestV = vidNames(start_Index:end_Index, 28)
-    parameters.mTestAns = vidNames(start_Index:end_Index, 29)
-    parameters.pTestV = vidNames(start_Index:end_Index, 30)
-    parameters.pTestAns = vidNames(start_Index:end_Index, 31)
-    parameters.movieLenght = vidNames(start_Index:end_Index, 32)
-    parameters.ambigAudioFuture = vidNames(start_Index:end_Index, 33)
-    parameters.ambigAudioPast = vidNames(start_Index:end_Index, 34)
-    parameters.trainAudioFuture1 = vidNames(start_Index:end_Index, 35)
-    parameters.trainAudioPast1 = vidNames(start_Index:end_Index, 36)
-    parameters.trainAudioFuture2 = vidNames(start_Index:end_Index, 37)
-    parameters.trainAudioPast2 = vidNames(start_Index:end_Index, 38)
-    parameters.trainAudioFuture3 = vidNames(start_Index:end_Index, 39)
-    parameters.trainAudioPast3 = vidNames(start_Index:end_Index, 40)
-    parameters.whichOneAudio = vidNames(start_Index:end_Index, 41)
-    parameters.letsFindAudio = vidNames(start_Index:end_Index, 42)
-    parameters.starImage = vidNames(start_Index:end_Index, 43)
+    parameters.Experiment = vidNames(start_Index:end_Index, 2);
+    parameters.amyFileName = vidNames(start_Index:end_Index, 3);
+    parameters.itemID = vidNames(start_Index:end_Index, 4);
+    parameters.eventType = vidNames(start_Index:end_Index, 5);
+    parameters.Condition = vidNames(start_Index:end_Index, 6);
+    parameters.Manner = vidNames(start_Index:end_Index, 7);
+    parameters.Path = vidNames(start_Index:end_Index, 8);
+    parameters.verbName = vidNames(start_Index:end_Index, 9);
+    parameters.verbMeaning = vidNames(start_Index:end_Index, 10);
+    parameters.ambigGoingTo = vidNames(start_Index:end_Index, 11);
+    parameters.ambigDidIt = vidNames(start_Index:end_Index, 12);
+    parameters.ambigV = vidNames(start_Index:end_Index, 13);
+    parameters.whichOne = vidNames(start_Index:end_Index, 14);
+    parameters.mBiasV = vidNames(start_Index:end_Index, 15);
+    parameters.mBiasAns = vidNames(start_Index:end_Index, 16);
+    parameters.pBiasV = vidNames(start_Index:end_Index, 17);
+    parameters.pBiasAns = vidNames(start_Index:end_Index, 18);
+    parameters.trainS1GoingTo = vidNames(start_Index:end_Index, 19);
+    parameters.trainS1DidIt = vidNames(start_Index:end_Index, 20);
+    parameters.trainV1 = vidNames(start_Index:end_Index, 21);
+    parameters.trainS2GoingTo = vidNames(start_Index:end_Index, 22);
+    parameters.trainS2DidIt = vidNames(start_Index:end_Index, 23);
+    parameters.trainV2 = vidNames(start_Index:end_Index, 24);
+    parameters.trainS3GoingTo = vidNames(start_Index:end_Index, 25);
+    parameters.trainS3DidIt = vidNames(start_Index:end_Index, 26);
+    parameters.trainV3 = vidNames(start_Index:end_Index, 27);
+    parameters.mTestV = vidNames(start_Index:end_Index, 28);
+    parameters.mTestAns = vidNames(start_Index:end_Index, 29);
+    parameters.pTestV = vidNames(start_Index:end_Index, 30);
+    parameters.pTestAns = vidNames(start_Index:end_Index, 31);
+    parameters.movieLenght = vidNames(start_Index:end_Index, 32);
+    parameters.ambigAudioFuture = vidNames(start_Index:end_Index, 33);
+    parameters.ambigAudioPast = vidNames(start_Index:end_Index, 34);
+    parameters.trainAudioFuture1 = vidNames(start_Index:end_Index, 35);
+    parameters.trainAudioPast1 = vidNames(start_Index:end_Index, 36);
+    parameters.trainAudioFuture2 = vidNames(start_Index:end_Index, 37);
+    parameters.trainAudioPast2 = vidNames(start_Index:end_Index, 38);
+    parameters.trainAudioFuture3 = vidNames(start_Index:end_Index, 39);
+    parameters.trainAudioPast3 = vidNames(start_Index:end_Index, 40);
+    parameters.whichOneAudio = vidNames(start_Index:end_Index, 41);
+    parameters.letsFindAudio = vidNames(start_Index:end_Index, 42);
+    parameters.starImage = vidNames(start_Index:end_Index, 43);
     
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     % % % Now randomize everything (apply random order to all columns/objects)
@@ -198,9 +198,10 @@ try
  
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     
-%     Text_Show('Press spacebar to start experiment.')
-%     Show_Blank();
-%     Take_Response();
+    Text_Show('Press spacebar to start experiment.')
+    Take_Response();
+    Show_Blank();
+    
     
     expStart = GetSecs;
     
@@ -212,7 +213,7 @@ try
     
     starImageStart = 'stars/stars.001.jpg';
     imageArray = imread(starImageStart);
-    % char(parameters.starimage(trialNo))
+   
     rect = parameters.scr.rect
 
     winPtr = parameters.scr.winPtr;
@@ -226,45 +227,23 @@ try
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     % 2 TRIALS OF NOUN TRAINING
-    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%   
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
     
     Noun_Training
     
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     % Trial Setup
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    
-   
  
-    
-    
-    
     % How many trials?
     %ntrials = length(parameters.pbiasV)
     ntrials = 1; %For the skeleton, play some short sample trials!
     
     Text_Show('Ready? Press space to watch the movies.');
     Take_Response();
-    
-    %Want to finish early?
-%     if response == 'q'
-%         
-%         Closeout_PTool();
-%         psychrethrow(psychlasterror);
-%            
-%         return
-%         
-%     end
-        
-     
+
         for i=1:ntrials
             Sample_Trial(i);
-            
-%             if response == 'q'
-%                 break
-%                 
-%             end
             
             expEnd = GetSecs;
             totalTime = expEnd - expStart;
@@ -313,25 +292,22 @@ try
                 parameters.whichOneAudio(i),...
                 parameters.letsFindAudio(i),...
                 datestr(now,'dd-mmm-yyyy'),...
-                datestr(now,'HH:MM:SS.FFF')});
-            
+                datestr(now,'HH:MM:SS.FFF')});         
         end
         
         %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
         % Cleanup & Shutdown
         %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
         
-        Closeout_PTool();
-
+        Closeout_PTool();   
         
-catch
+catch   
     
     Closeout_PTool();
     
     psychrethrow(psychlasterror);
     
 end
-
 
 end
 

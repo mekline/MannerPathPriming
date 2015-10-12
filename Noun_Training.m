@@ -32,8 +32,6 @@ global parameters
         parameters.noun1TestAns = Take_Response();
        
         Show_Blank;
-        %Play_Sound('Audio_stimuli_creation/Finished/aa_motivation/goodjob.wav', 'toBlock');
-        %Show_Blank; 
 
         starimagenoun1 = 'stars/stars.002.jpg'
 
@@ -56,14 +54,13 @@ global parameters
         Play_Sound('Audio_stimuli_creation/Finished/aa_nouns/glorfin1.wav', 'toBlock');
         Show_Blank;
 
-        movietoplay_target = 'Movies/1_noun_1_distractor.mov';
-        movietoplay_distractor = 'Movies/1_noun_1b.mov';    
+        movietoplay_distractor = 'Movies/1_noun_1_distractor.mov';
+        movietoplay_target = 'Movies/1_noun_1b.mov';    
         movietoplay_sign = 'Movies/1_noun_1a.mov';
 
         PlayCenterMovie(movietoplay_sign);
         Show_Blank;
         
-          
         Play_Sound('Audio_stimuli_creation/Finished/aa_nouns/glorfin2.wav', 'toBlock');
         Show_Blank;
 
@@ -72,12 +69,8 @@ global parameters
 
         Play_Sound('Audio_stimuli_creation/Finished/aa_nouns/glorfin3.wav', 'toBlock');    
         
-       parameters.noun2TestAns = Take_Response();
+        parameters.noun2TestAns = Take_Response();
         Show_Blank;
-        
-        %Play_Sound('Audio_stimuli_creation/Finished/aa_motivation/goodjob.wav', 'toBlock');
-        %Show_Blank; 
-       
 
         starimagenoun2 = 'stars/stars.003.jpg'
 
