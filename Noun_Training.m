@@ -24,8 +24,8 @@ global parameters
         Play_Sound('Audio_stimuli_creation/Finished/aa_nouns/bone2.wav', 'toBlock');
         Show_Blank;
         
-        PlaySideMovies(movietoplay_noun_2_distr,'','caption_left','Z');
-        PlaySideMovies('',movietoplay_noun_2b,'caption_right','C'); 
+        PlaySideMovies(movietoplay_noun_2_distr,'','caption_left','');
+        PlaySideMovies('',movietoplay_noun_2b,'caption_right',''); 
         
         Play_Sound('Audio_stimuli_creation/Finished/aa_nouns/bone3.wav', 'toBlock'); 
         
@@ -64,8 +64,8 @@ global parameters
         Play_Sound('Audio_stimuli_creation/Finished/aa_nouns/glorfin2.wav', 'toBlock');
         Show_Blank;
 
-        PlaySideMovies(movietoplay_target,'','caption_left','Z');
-        PlaySideMovies('',movietoplay_distractor,'caption_right','C'); 
+        PlaySideMovies(movietoplay_target,'','caption_left','');
+        PlaySideMovies('',movietoplay_distractor,'caption_right',''); 
 
         Play_Sound('Audio_stimuli_creation/Finished/aa_nouns/glorfin3.wav', 'toBlock');    
         
