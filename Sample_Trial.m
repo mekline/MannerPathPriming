@@ -76,14 +76,14 @@ global parameters
            
     if parameters.LorR_bias == 0 %play Target Movie on left
 
-        PlaySideMovies(movietoplay_target,'','caption_left','Z');
-        PlaySideMovies('',movietoplay_distractor,'caption_right','C');
+        PlaySideMovies(movietoplay_target,'','caption_left','');
+        PlaySideMovies('',movietoplay_distractor,'caption_right','');
         
 
     else %play Distractor Movie on left
 
-        PlaySideMovies(movietoplay_distractor,'','caption_left','Z');
-        PlaySideMovies('',movietoplay_target,'caption_right','C');
+        PlaySideMovies(movietoplay_distractor,'','caption_left','');
+        PlaySideMovies('',movietoplay_target,'caption_right','');
         
     end
     
@@ -161,7 +161,7 @@ global parameters
 % PLAY THE TEST MOVIE
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-    parameters.finalTest(trialNo) = GetSecs;
+    parameters.finalTestStart(trialNo) = GetSecs;
 
     Play_Sound(soundtoplay_letsFind, 'toBlock');
     Show_Blank;      
@@ -170,13 +170,13 @@ global parameters
   
     if parameters.LorR_final == 0 %play Target Movie on left
 
-        PlaySideMovies(movietoplay_mTest,'','caption_left','Z');
-        PlaySideMovies('',movietoplay_pTest,'caption_right','C');
+        PlaySideMovies(movietoplay_mTest,'','caption_left','');
+        PlaySideMovies('',movietoplay_pTest,'caption_right','');
 
     else %play Distractor Movie on left
 
-        PlaySideMovies(movietoplay_pTest,'','caption_left','Z');
-        PlaySideMovies('',movietoplay_mTest,'caption_right','C');
+        PlaySideMovies(movietoplay_pTest,'','caption_left','');
+        PlaySideMovies('',movietoplay_mTest,'caption_right','');
  
     end
     
@@ -184,7 +184,7 @@ global parameters
     
     parameters.finalTestAns(trialNo) = Take_Response();
  
-    parameters.finalEnd(trialNo) = GetSecs;
+    parameters.finalTestEnd(trialNo) = GetSecs;
     
     imageArray = imread(char(parameters.starImage(trialNo)));
     

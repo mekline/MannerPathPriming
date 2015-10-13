@@ -35,12 +35,10 @@ try
     % Restrict keyboard
     KbName('UnifyKeyNames')
     parameters.space=KbName('space');
-    parameters.esc=KbName('ESCAPE');
     parameters.z_press=KbName('z');
     parameters.c_press=KbName('c');
-    parameters.q_press=KbName('q');
-    parameters.x_press=KbName('x');
-    parameters.r_press=KbName('r');
+
+    RestrictKeysForKbCheck([parameters.space parameters.z_press parameters.c_press]);
     
     % Sets specific values for this participant
     parameters.subNo = subNo;
@@ -236,8 +234,8 @@ try
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
  
     % How many trials?
-    %ntrials = length(parameters.pbiasV)
-    ntrials = 1; %For the skeleton, play some short sample trials!
+    ntrials = length(parameters.pBiasV)
+    %ntrials = 1; %For the skeleton, play some short sample trials!
     
     Text_Show('Ready? Press space to watch the movies.');
     Take_Response();
