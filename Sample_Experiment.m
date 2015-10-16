@@ -35,10 +35,11 @@ try
     % Restrict keyboard
     KbName('UnifyKeyNames')
     parameters.space=KbName('space');
+    parameters.space2=KbName('SPACE');
     parameters.z_press=KbName('z');
     parameters.c_press=KbName('c');
 
-    RestrictKeysForKbCheck([parameters.space parameters.z_press parameters.c_press]);
+    RestrictKeysForKbCheck([parameters.space parameters.z_press parameters.c_press parameters.space2]);
     
     % Sets specific values for this participant
     parameters.subNo = subNo;
