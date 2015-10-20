@@ -1,0 +1,66 @@
+Interactions/Session Instructions for MannerPath
+
+***
+*Things that should be ready before family arrives
+Consent packet
+’Slate’ with kids 1st name
+Computer has matlab open & command typed but not entered
+Chairs for you, kid, & guardian set up
+Camera is plugged in and set to capture the kid and their points!
+
+***
+*Welcome the family, consenting
+
+During consenting, walk the parent through what each piece of paper is - you should be familiar with everything on it.  Explain the difference between the two consent lines (many Harvard families are familiar with this, but good to go over.) 
+
+Talk to the kid from the beginning - these kids are old enough that they may or may not talk back, but try to get them excited about playing ‘a word game’. 
+
+***
+*Setting up in the room
+
+Show the parent where they can sit! 
+
+Get the kid settled in their chair (the righthand one). Narrate what you are doing, for both parent & kid’s benefit (‘Okay, now I’m gonna turn on the camera over here…’)
+
+Make sure the video camera is on, and show the slate to the camera. Double check it’s pointing in the right direction!
+
+***
+*Getting kid familiar with the game
+
+Before you start the script: Okay, so in my game we’re going to be watching some videos with some made-up words in them.  Like ‘zabeez’! Have you ever heard that before?  Can you say zabeez? Or what about one like moo-poe? Can you say that?
+
+Cool! So in my game, you’re gonna see some movies with new words like that. First, let’s try one to practice…
+
+(start the experiment, ‘He has a bone…’)  Before you go on to the choices: ‘Okay, so next you’re gonna see TWO CHOICES, so you have to wait and see both of them, and then you can pick which movie is the best one.  Let’s listen to what it says….’
+
+(watch the 2 vids), Okay, can you point? (If they didn’t already. If they pointed before the second video finished, remind them that they point at the end.)
+
+Awesome!  And look at that, every time you make a guess you get a star, see?  Okay, let’s do one more practice. Remember those silly words? Let’s see what we hear in this one…
+
+(‘He has a glorfin’)  ‘Okay, ready to see your choices?’  (I had one kid already who asked if glorfin meant shovel - you can say ‘hmm, let’s see…’)
+
+‘And remember, we see one on this side…and one on that side…and now you pick!)  (Through here, try not to talk over the voiceovers, but this is easy enough that the kids basically know what to do - we’re teaching the rules in this section.)
+
+Awesome, and you got another star!  Okay, you see how these next stars are bigger? Now we’re going to do some LONGER ones.  So let’s listen and see what kind of new words we hear next!
+
+***
+*During actual trials
+
+Your job is to keep the exp moving smoothly and record the kid’s points, and do your best to keep them engaged.  When the exp stops, the space bar will start the next section - make sure the kid is facing the screen before going on.  Wiggles are fine (some kids might want to stand rather than sit) but they should be paying attention/seem relatively unlikely to walk away.   
+
+Try not to talk DURING the 3 phases (Bias, Training, Test), but keep the kid engaged in between.  ‘Okay, ready for the next one?’ ‘Okay, now let’s see some more videos’ etc.  Keep these neutral - DON’T mention any of the novel words, or describe any of the objects or actions.  (E.g. ‘he’s going down the hill, yeah’, or ‘look, this time there’s a cat’ or similar)
+
+One exception: You should wait until they are ready before playing the bias/test sequences, but if they miss the final question, or hesitate to respond, you can ask the following questions, in order:
+
+‘ Which one?’ <- this is also good if they made a point while the 1st video was still playing.
+‘ Can you choose one? Which one shows Glorping?’
+‘It’s okay to guess! What do you think Glorping means? Which movie?’
+
+***
+*Other kid interaction stuff
+
+The kids may chat with you, make comments on the videos (‘Wugging means crawling!’, ‘that’s a big mountain’, ‘he got wet!’) You can sort of smile and make a neutral ‘hmm’ response, but the main thing is to seem very interested in the videos themselves - if they are looking at you, and you look at the screen, they usually go back there.  
+
+They know what keyboards are and how they work. You may need to explain that it’s just for you to press, or ask them to keep their hands in their lap, move the keyboard back, etc.  
+
+Make a big production about the stars each time.  4 year olds dig this, we’ll see what the 6 year olds think. Toward the 2nd half, you will start counting down - ‘okay, there’s three more stars to fill!’ etc.  Tailor this to the kid - ‘okay, just two more, you’re almost there’ to cheer them on, this is less needed if they are really getting into the game on their own. If they are getting tired, you can take a short ‘wiggle break’ (jump up and down, sit back down) on a star screen.
