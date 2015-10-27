@@ -88,6 +88,9 @@ global parameters
     end
     
     
+    
+    
+    
     Play_Sound(soundtoplay_whichOne, 'toBlock');
     
     parameters.biasTestAns(trialNo) = Take_Response();

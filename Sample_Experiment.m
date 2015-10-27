@@ -148,6 +148,9 @@ try
     %Randomize sides for target and distractor movies
     parameters.LorR_bias = randi([0 1], length(start_Index:end_Index),1)
     parameters.LorR_final = randi([0 1], length(start_Index:end_Index),1)
+
+
+
     
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
