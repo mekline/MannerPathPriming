@@ -93,7 +93,10 @@ global parameters
     
     Play_Sound(soundtoplay_whichOne, 'toBlock');
     
-    parameters.biasTestAns(trialNo) = Take_Response();
+%     xyz = Take_Response();
+%     xyz
+%     parameters.biasTestAns
+    parameters.biasTestAns{trialNo} = Take_Response();
     Show_Blank();
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -185,7 +188,7 @@ global parameters
     
     Play_Sound(soundtoplay_whichOne, 'toBlock');
     
-    parameters.finalTestAns(trialNo) = Take_Response();
+    parameters.finalTestAns{trialNo} = Take_Response();
  
     parameters.finalTestEnd(trialNo) = GetSecs;
     

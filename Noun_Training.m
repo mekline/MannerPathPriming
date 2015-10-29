@@ -1,4 +1,4 @@
-function [] = Noun_Training()
+function [response] = Noun_Training()
 
 global parameters
 
