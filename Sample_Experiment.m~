@@ -97,6 +97,9 @@ try
     parameters.letsFindAudio = vidNames(start_Index:end_Index, 42);
     parameters.starImage = vidNames(start_Index:end_Index, 43);
     
+    parameters.biasTestAns = {};
+    parameters.finalTestAns = {};
+    
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     % % % Now randomize everything (apply random order to all columns/objects)
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -147,13 +150,47 @@ try
     
     %Randomize sides for target and distractor movies
     parameters.LorR_bias = randi([0 1], length(start_Index:end_Index),1)
+    
+    if parameters.LorR_bias == 0
+        
+        mannerSideBias = 'L'
+        pathSideBias = 'R'
+        
+    else
+        mannerSideBias = 'R'
+        pathSideBias = 'L'
+        
+    end
+     
+    
     parameters.LorR_final = randi([0 1], length(start_Index:end_Index),1)
     
-    mannerSide(parameters.LorR_bias == 0) = 'L'
-    mannerSide(parameters.LorR_bias == 1) = 'R'
+    if parameters.LorR_final == 0
+        
+        mannerSideFinal = 'L'
+        pathSideFinal = 'R'
+        
+    else
+        mannerSideFinal = 'R'
+        pathSideFinal = 'L'
+        
+    end
     
-    pathSide(parameters.LorR_bias == 0) = 'R'
-    pathSide(parameters.LorR_bias == 1) = 'L'
+    
+    
+% 
+%     
+%     mannerSideBias(parameters.LorR_bias == 0) = 'L'
+%     mannerSideBias(parameters.LorR_bias == 1) = 'R'
+%     
+%     pathSideBias(parameters.LorR_bias == 0) = 'R'
+%     pathSideBias(parameters.LorR_bias == 1) = 'L'
+%     
+%     mannerSideFinal(parameters.LorR_final == 0) = 'L'
+%     mannerSideFinal(parameters.LorR_final == 1) = 'R'
+%     
+%     pathSideFinal(parameters.LorR_final == 0) = 'R'
+%     pathSideFinal(parameters.LorR_final == 1) = 'L'
 
     
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -242,15 +279,9 @@ try
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
  
     % How many trials?
-    %ntrials = length(parameters.pBiasV)
-    ntrials = 1; %For the skeleton, play some short sample trials!
-    
-    parameters.biasTestAns = {};
-    parameters.finalTestAns = {};
-    
-    
-
-    
+    ntrials = length(parameters.pBiasV)
+    %ntrials = 1; %For the skeleton, play some short sample trials!
+ 
     Text_Show('Ready? Press space to watch the movies.');
     Take_Response();
 
@@ -271,16 +302,16 @@ try
                 i,...
                 parameters.itemID(i),...
                 parameters.verbName(i),...
-                parameters.LorR_bias(i),...
-                parameters.LorR_bias(i),...
+                mannerSideBias(i),...
+                pathSideBias(i),...
                 parameters.biasTestAns(i),...
-                parameters.LorR_bias(i),...
-                parameters.LorR_bias(i),...
+                mannerSideFinal(i),...
+                pathSideFinal(i),...
                 parameters.finalTestAns(i),...
                 parameters.noun1TestAns,...
                 parameters.noun2TestAns,...
                 totalTime,...
-                totalTime,...
+                'xxxx',...
                 expStart,...
                 parameters.trainStart(i),...
                 parameters.trainEnd(i),...
@@ -304,14 +335,6 @@ try
                 parameters.trainAudioPast3(i),...
                 parameters.whichOneAudio(i),...
                 parameters.letsFindAudio(i)});
-            
-            
-            
-            
-
-
-
-
 
         %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
         % Cleanup & Shutdown
@@ -320,14 +343,17 @@ try
         Closeout_PTool();   
         
  
-    
-    Closeout_PTool();
-    
-    psychrethrow(psychlasterror);
+   catch  
+   
     
         end
 
-catch   
+  
+    
+     Closeout_PTool();
+    
+    psychrethrow(psychlasterror);
+    
 end
 
 

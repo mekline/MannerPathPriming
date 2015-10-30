@@ -15,9 +15,9 @@ global parameters
     movietoplay_noun2_distractor = 'Movies/2_noun_2_distractor';
 
     %Trial movies
-    movietoplay_target = strcat('Movies/', char(parameters.pBiasV(trialNo)));
-    movietoplay_distractor = strcat('Movies/', char(parameters.mBiasV(trialNo)));
-    movietoplay_sign = strcat('Movies/', char(parameters.ambigV(trialNo)));
+    movietoplay_path = strcat('Movies/', char(parameters.pBiasV(trialNo)));
+    movietoplay_manner = strcat('Movies/', char(parameters.mBiasV(trialNo)));
+    movietoplay_ambigVid = strcat('Movies/', char(parameters.ambigV(trialNo)));
     movietoplay_trainV1 = strcat('Movies/', char(parameters.trainV1(trialNo)));
     movietoplay_trainV2 = strcat('Movies/', char(parameters.trainV2(trialNo)));
     movietoplay_trainV3 = strcat('Movies/', char(parameters.trainV3(trialNo)));
@@ -59,8 +59,8 @@ global parameters
 
         Play_Sound(soundtoplay_ambigAudioFuture, 'toBlock');
     
-        PlayCenterMovie(movietoplay_sign);
-        PlayCenterMovie(movietoplay_sign);
+        PlayCenterMovie(movietoplay_ambigVid);
+        PlayCenterMovie(movietoplay_ambigVid);
         Show_Blank;
 
         Play_Sound(soundtoplay_ambigAudioPast, 'toBlock');
@@ -74,20 +74,18 @@ global parameters
     Play_Sound(soundtoplay_letsFind, 'toBlock');
     Show_Blank;      
            
-    if parameters.LorR_bias == 0 %play Target Movie on left
+    if parameters.LorR_bias == 0 %play Path Movie on left
 
-        PlaySideMovies(movietoplay_target,'','caption_left','');
-        PlaySideMovies('',movietoplay_distractor,'caption_right','');
+        PlaySideMovies(movietoplay_path,'','caption_left','');
+        PlaySideMovies('',movietoplay_manner,'caption_right','');
         
 
-    else %play Distractor Movie on left
+    else %play Manner Movie on left
 
-        PlaySideMovies(movietoplay_distractor,'','caption_left','');
-        PlaySideMovies('',movietoplay_target,'caption_right','');
+        PlaySideMovies(movietoplay_manner,'','caption_left','');
+        PlaySideMovies('',movietoplay_path,'caption_right','');
         
     end
-    
-    
     
     
     
@@ -174,17 +172,19 @@ global parameters
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   
-    if parameters.LorR_final == 0 %play Target Movie on left
-
-        PlaySideMovies(movietoplay_mTest,'','caption_left','');
-        PlaySideMovies('',movietoplay_pTest,'caption_right','');
-
-    else %play Distractor Movie on left
+    if parameters.LorR_final == 0 %play path Movie on left
 
         PlaySideMovies(movietoplay_pTest,'','caption_left','');
         PlaySideMovies('',movietoplay_mTest,'caption_right','');
+
+    else %play manner Movie on left
+
+        PlaySideMovies(movietoplay_mTest,'','caption_left','');
+        PlaySideMovies('',movietoplay_pTest,'caption_right','');
  
     end
+    
+    
     
     Play_Sound(soundtoplay_whichOne, 'toBlock');
     
