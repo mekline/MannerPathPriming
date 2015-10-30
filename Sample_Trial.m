@@ -1,4 +1,11 @@
 function [response] = Sample_Trial(trialNo)
+%Play 1 trial of the MannerPath experiment.
+%Trial structure is sort of complex; it has 3 phases:
+% Bias test - show M1P1 movie; take a forced choice response between M1P2
+% and M2P1
+% Training - Depending on the condition, show either MnP1 or M1Pn movies
+% Final test - take a forced choice response between M1P2 and M2P1 again
+% (CHECK WITH ANNELOT)
 
 global parameters
     
@@ -52,7 +59,7 @@ global parameters
     starImageTrials = strcat('stars/', char(parameters.starImage(trialNo)));
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% BIAS TEST VIDEO
+% PLAY BIAS TEST VIDEO
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
         Show_Blank;
@@ -74,26 +81,27 @@ global parameters
     Play_Sound(soundtoplay_letsFind, 'toBlock');
     Show_Blank;      
            
-    if parameters.LorR_bias == 0 %play Path Movie on left
-
-        PlaySideMovies(movietoplay_path,'','caption_left','');
-        PlaySideMovies('',movietoplay_manner,'caption_right','');
-        
-
-    else %play Manner Movie on left
-
-        PlaySideMovies(movietoplay_manner,'','caption_left','');
-        PlaySideMovies('',movietoplay_path,'caption_right','');
-        
+%     if parameters.LorR_bias == 0 %play Path Movie on left
+% 
+%         PlaySideMovies(movietoplay_path,'');
+%         PlaySideMovies('',movietoplay_manner);
+%     else %play Manner Movie on left
+%         PlaySideMovies(movietoplay_manner,'');
+%         PlaySideMovies('',movietoplay_path);       
+%     end
+      
+    %Using the human-interpretable side variables instead...
+    if parameters.mannerSideBias(trialNo) == 'L'
+        PlaySideMovies(movietoplay_manner,'');
+        PlaySideMovies('',movietoplay_path);
+    elseif parameters.mannerSideBias(trialNo) == 'R'
+        PlaySideMovies(movietoplay_path,'');
+        PlaySideMovies('',movietoplay_manner);
     end
-    
-    
-    
+        
+
+    %And take a response
     Play_Sound(soundtoplay_whichOne, 'toBlock');
-    
-%     xyz = Take_Response();
-%     xyz
-%     parameters.biasTestAns
     parameters.biasTestAns{trialNo} = Take_Response();
     Show_Blank();
 
@@ -172,36 +180,40 @@ global parameters
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   
-    if parameters.LorR_final == 0 %play path Movie on left
+%     if parameters.LorR_final == 0 %play path Movie on left
+%         PlaySideMovies(movietoplay_pTest,'');
+%         PlaySideMovies('',movietoplay_mTest);
+%     else %play manner Movie on left
+%         PlaySideMovies(movietoplay_mTest,'');
+%         PlaySideMovies('',movietoplay_pTest);
+%     end
 
-        PlaySideMovies(movietoplay_pTest,'','caption_left','');
-        PlaySideMovies('',movietoplay_mTest,'caption_right','');
-
-    else %play manner Movie on left
-
-        PlaySideMovies(movietoplay_mTest,'','caption_left','');
-        PlaySideMovies('',movietoplay_pTest,'caption_right','');
- 
+    %Using the human-interpretable side variables instead...
+    if parameters.mannerSideFinal(trialNo) == 'L'
+        PlaySideMovies(movietoplay_mTest,'');
+        PlaySideMovies('',movietoplay_pTest);
+    elseif parameters.mannerSideFinal(trialNo) == 'R'
+        PlaySideMovies(movietoplay_pTest,'');
+        PlaySideMovies('',movietoplay_mTest);
     end
-    
-    
-    
+
+     
+    %....and take a response
     Play_Sound(soundtoplay_whichOne, 'toBlock');
-    
     parameters.finalTestAns{trialNo} = Take_Response();
- 
     parameters.finalTestEnd(trialNo) = GetSecs;
     
+    
+%%%%%%%%%%%%%%%%%%%%%%
+% SHOW A NICE REWARD PICTURE
+%%%%%%%%%%%%%%%%%%%%%%
+
     imageArray = imread(char(parameters.starImage(trialNo)));
-    
     rect = parameters.scr.rect;
-    
-    winPtr = parameters.scr.winPtr;
-    
-    Screen('PutImage', winPtr , imageArray, rect );
-    
+    winPtr = parameters.scr.winPtr;   
+    Screen('PutImage', winPtr , imageArray, rect );    
     Screen('flip',winPtr)
-    resp1 = Take_Response();
+    resp1 = Take_Response(); %just moving on...
     Show_Blank;
     
 end

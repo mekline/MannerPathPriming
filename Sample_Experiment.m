@@ -7,22 +7,22 @@ function Sample_Experiment(subNo, condition)
 %
 %
 %condition, one of 6 set lists of items, specify 1-6
-% 1= MannerOfMotionCondition
+% 1= MannerOfMotionCondition (agentive manners)
 % 2= MannerOfMotionCondition_Instrumental
-% 3= PathCondition
+% 3= PathCondition (agentive manners)
 % 4= PathCondition_Instrumental
 % 5= EffectCondition
 % 6= MeansCondition
 
+%Add paths to subfolders in case matlab can't find them...
 addpath('HelperFunctions')
 
+%object that stores all exp/session values
 global parameters
 
 parameters.datafilepointer = AssignDataFile('MannerPathPriming',subNo);
 
 try
-    
-    disp('Hey!')
     
     %%%%%%%%%%%%%%%%%%%%%%
     % Parameter Setting
@@ -67,8 +67,8 @@ try
     parameters.ambigDidIt = vidNames(start_Index:end_Index, 12);
     parameters.ambigV = vidNames(start_Index:end_Index, 13);
     parameters.whichOne = vidNames(start_Index:end_Index, 14);
-    parameters.mBiasV = vidNames(start_Index:end_Index, 15);
-    parameters.mBiasAns = vidNames(start_Index:end_Index, 16);
+    parameters.mBiasV = vidNames(start_Index:end_Index, 15); 
+    parameters.mBiasAns = vidNames(start_Index:end_Index, 16); %In the adult version we did 2 y/n qs instead of forced choice
     parameters.pBiasV = vidNames(start_Index:end_Index, 17);
     parameters.pBiasAns = vidNames(start_Index:end_Index, 18);
     parameters.trainS1GoingTo = vidNames(start_Index:end_Index, 19);
@@ -81,7 +81,7 @@ try
     parameters.trainS3DidIt = vidNames(start_Index:end_Index, 26);
     parameters.trainV3 = vidNames(start_Index:end_Index, 27);
     parameters.mTestV = vidNames(start_Index:end_Index, 28);
-    parameters.mTestAns = vidNames(start_Index:end_Index, 29);
+    parameters.mTestAns = vidNames(start_Index:end_Index, 29); %Ditto
     parameters.pTestV = vidNames(start_Index:end_Index, 30);
     parameters.pTestAns = vidNames(start_Index:end_Index, 31);
     parameters.movieLenght = vidNames(start_Index:end_Index, 32);
@@ -148,24 +148,27 @@ try
     parameters.whichOneAudio = parameters.whichOneAudio(myRandOrder)
     parameters.letsFindAudio = parameters.letsFindAudio(myRandOrder)
     
+    
+    %%%%%%%%%%
+    % In addition to randomizing trial order, randomize side presentation
+    % of M and P at bias and test
+    %%%%%%%%%%
+    
     %Randomize sides for target and distractor movies
-    parameters.LorR_bias = randi([0 1], length(start_Index:end_Index),1)
+    parameters.LorR_bias = randi([0 1], length(start_Index:end_Index),1);
+    parameters.LorR_final = randi([0 1], length(start_Index:end_Index),1);
     
-    mannerSideBias(parameters.LorR_bias == 0) = 'R'
-    mannerSideBias(parameters.LorR_bias == 1) = 'L'
-
-    pathSideBias(parameters.LorR_bias == 0) = 'L'
-    pathSideBias(parameters.LorR_bias == 1) = 'R'
+    %Make a more human-readable version actually
+    parameters.mannerSideBias(parameters.LorR_bias == 0) = 'R';
+    parameters.mannerSideBias(parameters.LorR_bias == 1) = 'L';
+    parameters.pathSideBias(parameters.LorR_bias == 0) = 'L';
+    parameters.pathSideBias(parameters.LorR_bias == 1) = 'R';
+    %annelot I found it? -mk 10/30 (was .LoR_bias before)
+    parameters.mannerSideFinal(parameters.LorR_final == 0) = 'L';
+    parameters.mannerSideFinal(parameters.LorR_final == 1) = 'R';
+    parameters.pathSideFinal(parameters.LorR_final == 0) = 'R';
+    parameters.pathSideFinal(parameters.LorR_final == 1) = 'L' ;
     
-    
-    
-    parameters.LorR_final = randi([0 1], length(start_Index:end_Index),1)
-    
-    mannerSideFinal(parameters.LorR_bias == 0) = 'L'
-    mannerSideFinal(parameters.LorR_bias == 1) = 'R'
-
-    pathSideFinal(parameters.LorR_bias == 0) = 'R'
-    pathSideFinal(parameters.LorR_bias == 1) = 'L' 
     
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -213,6 +216,11 @@ try
         'letsFindAudio'});
     
     
+    %%%%%%%%%%%%%%%%%%%%%
+    % EXPERIMENT STARTS HERE
+    %%%%%%%%%%%%%%%%%%%%%
+    
+    
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     
     Text_Show('Press spacebar to start experiment.')
@@ -231,13 +239,13 @@ try
     starImageStart = 'stars/stars.001.jpg';
     imageArray = imread(starImageStart);
     
-    rect = parameters.scr.rect
-    
+    rect = parameters.scr.rect;
+   
     winPtr = parameters.scr.winPtr;
     
     Screen('PutImage', winPtr , imageArray, rect );
     
-    Screen('flip',winPtr)
+    Screen('flip',winPtr);
     Take_Response();
     Show_Blank;
     
@@ -246,14 +254,14 @@ try
     % 2 TRIALS OF NOUN TRAINING
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     
-    Noun_Training
+    Noun_Training();
     
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     % Trial Setup
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     
     % How many trials?
-    ntrials = length(parameters.pBiasV)
+    ntrials = length(parameters.pBiasV);
     %ntrials = 1; %For the skeleton, play some short sample trials!
     
     Text_Show('Ready? Press space to watch the movies.');
@@ -276,11 +284,11 @@ try
             i,...
             parameters.itemID(i),...
             parameters.verbName(i),...
-            mannerSideBias(i),...
-            pathSideBias(i),...
+            parameters.mannerSideBias(i),...
+            parameters.pathSideBias(i),...
             parameters.biasTestAns(i),...
-            mannerSideFinal(i),...
-            pathSideFinal(i),...
+            parameters.mannerSideFinal(i),...
+            parameters.pathSideFinal(i),...
             parameters.finalTestAns(i),...
             parameters.noun1TestAns,...
             parameters.noun2TestAns,...
