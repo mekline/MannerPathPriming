@@ -158,7 +158,7 @@ try
     pathSideBias(parameters.LorR_bias == 1) = 'R'
     
     
-    
+   
     parameters.LorR_final = randi([0 1], length(start_Index:end_Index),1)
     
     mannerSideFinal(parameters.LorR_bias == 0) = 'L'
