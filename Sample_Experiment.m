@@ -245,8 +245,8 @@ try
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     
     % How many trials?
-    %ntrials = length(parameters.pBiasV);
-    ntrials = 1; %For the skeleton, play some short sample trials!
+    ntrials = length(parameters.pBiasV);
+    %ntrials = 1; %For the skeleton, play some short sample trials!
     
     Text_Show('Ready? Press space to watch the movies.');
     Take_Response();
