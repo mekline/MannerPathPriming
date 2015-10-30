@@ -168,7 +168,7 @@ try
     parameters.mannerSideFinal(parameters.LorR_final == 1) = 'R';
     parameters.pathSideFinal(parameters.LorR_final == 0) = 'R';
     parameters.pathSideFinal(parameters.LorR_final == 1) = 'L' ;
-    
+
     
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
