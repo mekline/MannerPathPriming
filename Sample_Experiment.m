@@ -15,7 +15,7 @@ function Sample_Experiment(subNo, condition)
 % 6= MeansCondition
 
 %Add paths to subfolders in case matlab can't find them...
-addpath('HelperFunctions')
+addpath('HelperFunctions', 'finalMovies')
 
 %object that stores all exp/session values
 global parameters
