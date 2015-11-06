@@ -1,4 +1,4 @@
-function [response] = Noun_Training()
+function [response] = MPP_Noun_Training()
 
 global parameters
 
