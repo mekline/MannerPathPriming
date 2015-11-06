@@ -45,7 +45,10 @@ parameters.q_press=KbName('q');
 parameters.x_press=KbName('x');
 parameters.r_press=KbName('r');
 parameters.space2=KbName('SPACE');
-RestrictKeysForKbCheck([parameters.space parameters.z_press parameters.c_press parameters.space2]);
+parameters.w_press=KbName('w');
+parameters.p_press=KbName('p');
+    
+RestrictKeysForKbCheck([parameters.space parameters.z_press parameters.c_press parameters.space2 parameters.p_press parameters.w_press]);
 % Set text size
 Screen('TextSize', parameters.scr.winPtr, 14);
 
