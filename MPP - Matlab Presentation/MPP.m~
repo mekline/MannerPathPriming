@@ -1,4 +1,4 @@
-function Sample_Experiment(subNo, condition)
+function MPP(subNo, condition)
 
 %Code based on sign meaning experiment, Feb 2014
 %                         
@@ -47,7 +47,7 @@ try
     parameters.subNo = subNo;
     
     %Read the file into matlab
-    vidNames = read_mixed_csv('MPP_Experiment.csv',',')
+    vidNames = read_mixed_csv('MPP_11_06.csv',',')
     
     %Routine to pick the specified signList (algebra to get us the right rows)
     start_Index = (8*condition)-6;
@@ -248,14 +248,14 @@ try
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     
     % How many trials?
-    %ntrials = length(parameters.pBiasV);
-    ntrials = 1; %For the skeleton, play some short sample trials!
+    ntrials = length(parameters.pBiasV);
+    %ntrials = 1; %For the skeleton, play some short sample trials!
     
     Text_Show('Ready? Press space to watch the movies.');
     Take_Response();
     
     for i=1:ntrials
-        Sample_Trial(i);
+        MPP_Trial(i);
         
         expEnd = GetSecs;
         totalTime = expEnd - expStart;
