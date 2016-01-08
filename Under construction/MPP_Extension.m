@@ -1,27 +1,10 @@
 function [response] = Extension(trialNo)
 
 % Play extension part of the MannerPath experiment.
-% Trial structure: 
-% Bias test - show M1P1 ambigious video
-% Final test - take a forced choice response between M1P2 and M2P1
+% Trial structure: First 8 trails MMP, followed by 8 tests.
+% Below only test - take a forced choice response between Means and Effect
 
 global parameters
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% PLAY BIAS TEST VIDEO
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-        Show_Blank;
-
-        Play_Sound(soundtoplay_ambigAudioFuture, 'toBlock');
-    
-        PlayCenterMovie(movietoplay_ambigVid);
-        PlayCenterMovie(movietoplay_ambigVid);
-        Show_Blank;
-
-        Play_Sound(soundtoplay_ambigAudioPast, 'toBlock');
-        
-        Show_Blank; 
     
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     % BIAS TEST EXTENSION
