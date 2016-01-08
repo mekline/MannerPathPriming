@@ -14,10 +14,10 @@ global parameters
     Play_Sound(soundtoplay_letsFind, 'toBlock');
     Show_Blank;      
 
-    if parameters.mannerSideBias(trialNo) == 'L'
+    if parameters.mannerSideExt(trialNo) == 'L'
         PlaySideMovies(movietoplay_manner,'');
         PlaySideMovies('',movietoplay_path);
-    elseif parameters.mannerSideBias(trialNo) == 'R'
+    elseif parameters.mannerSideExt(trialNo) == 'R'
         PlaySideMovies(movietoplay_path,'');
         PlaySideMovies('',movietoplay_manner);
     end
@@ -25,8 +25,8 @@ global parameters
      
     %....and take a response
     Play_Sound(soundtoplay_whichOne, 'toBlock');
-    parameters.finalTestAns{trialNo} = Take_Response();
-    parameters.finalTestEnd(trialNo) = GetSecs;
+    parameters.extTestAns{trialNo} = Take_Response();
+    parameters.extTestEnd(trialNo) = GetSecs;
     Show_Blank();
     
 %%%%%%%%%%%%%%%%%%%%%%
