@@ -33,7 +33,7 @@ global parameters
 % SHOW A NICE REWARD PICTURE
 %%%%%%%%%%%%%%%%%%%%%%
 
-    imageArray = imread(char(parameters.starImage(trialNo)));
+    imageArray = imread(char(parameters.starImageExt(trialNo)));
     rect = parameters.scr.rect;
     winPtr = parameters.scr.winPtr;   
     Screen('PutImage', winPtr , imageArray, rect );    
