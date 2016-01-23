@@ -55,6 +55,7 @@ global parameters
     
     starImageStart = 'stars/longstars.001.jpeg';
     starImage = strcat('stars/', char(parameters.starImage(trialNo)));
+    greySquare = 'stars/grey.jpg'
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % PLAY BIAS TEST VIDEO
@@ -65,6 +66,14 @@ global parameters
         Play_Sound(soundtoplay_ambigAudioFuture, 'toBlock');
     
         PlayCenterMovie(movietoplay_ambigVid);
+        
+        imageArray = imread(greySquare);
+        rect =  parameters.centerbox
+        winPtr = parameters.scr.winPtr;   
+        Screen('PutImage', winPtr , imageArray, rect );    
+        Screen('flip',winPtr)
+        WaitSecs(0.500);
+        
         PlayCenterMovie(movietoplay_ambigVid);
         Show_Blank;
 
@@ -78,15 +87,6 @@ global parameters
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     Play_Sound(soundtoplay_letsFind, 'toBlock');
     Show_Blank;      
-           
-%     if parameters.LorR_bias == 0 %play Path Movie on left
-% 
-%         PlaySideMovies(movietoplay_path,'');
-%         PlaySideMovies('',movietoplay_manner);
-%     else %play Manner Movie on left
-%         PlaySideMovies(movietoplay_manner,'');
-%         PlaySideMovies('',movietoplay_path);       
-%     end
       
     %Using the human-interpretable side variables instead...
     if parameters.mannerSideBias(trialNo) == 'L'
@@ -97,7 +97,6 @@ global parameters
         PlaySideMovies('',movietoplay_manner);
     end
         
-
     %And take a response
     Play_Sound(soundtoplay_whichOne, 'toBlock');
     parameters.biasTestAns{trialNo} = Take_Response();
@@ -121,6 +120,14 @@ global parameters
     Play_Sound(soundtoplay_trainAudioFuture1, 'toBlock');
 
     PlayCenterMovie(movietoplay_trainV1);
+    
+    imageArray = imread(greySquare);
+    rect =  parameters.centerbox
+    winPtr = parameters.scr.winPtr;   
+    Screen('PutImage', winPtr , imageArray, rect );    
+    Screen('flip',winPtr)
+    WaitSecs(0.500);
+     
     PlayCenterMovie(movietoplay_trainV1);
     Show_Blank;
 
@@ -133,8 +140,16 @@ global parameters
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
     Play_Sound(soundtoplay_trainAudioFuture2, 'toBlock');
-
-    PlayCenterMovie(movietoplay_trainV2);
+    
+    PlayCenterMovie(movietoplay_trainV2)
+    
+        imageArray = imread(greySquare);
+        rect =  parameters.centerbox
+        winPtr = parameters.scr.winPtr;   
+        Screen('PutImage', winPtr , imageArray, rect );    
+        Screen('flip',winPtr)
+        WaitSecs(0.500);
+    
     PlayCenterMovie(movietoplay_trainV2);
     Show_Blank;
 
@@ -149,6 +164,14 @@ global parameters
     Play_Sound(soundtoplay_trainAudioFuture3, 'toBlock');
 
     PlayCenterMovie(movietoplay_trainV3);
+    
+        imageArray = imread(greySquare);
+        rect =  parameters.centerbox
+        winPtr = parameters.scr.winPtr;   
+        Screen('PutImage', winPtr , imageArray, rect );    
+        Screen('flip',winPtr)
+        WaitSecs(0.500);
+    
     PlayCenterMovie(movietoplay_trainV3);
     Show_Blank;
 
@@ -178,13 +201,6 @@ global parameters
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   
-%     if parameters.LorR_final == 0 %play path Movie on left
-%         PlaySideMovies(movietoplay_pTest,'');
-%         PlaySideMovies('',movietoplay_mTest);
-%     else %play manner Movie on left
-%         PlaySideMovies(movietoplay_mTest,'');
-%         PlaySideMovies('',movietoplay_pTest);
-%     end
 
     %Using the human-interpretable side variables instead...
     if parameters.mannerSideFinal(trialNo) == 'L'

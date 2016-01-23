@@ -33,7 +33,7 @@ global parameters
        
         Show_Blank;
 
-        starimagenoun1 = 'stars/stars.002.jpg'
+        starimagenoun1 = 'stars/longstars.002.jpeg'
 
         imageArray = imread(starimagenoun1);
 
@@ -72,7 +72,7 @@ global parameters
         parameters.noun2TestAns = Take_Response();
         Show_Blank;
 
-        starimagenoun2 = 'stars/stars.003.jpg'
+        starimagenoun2 = 'stars/longstars.003.jpeg'
 
         imageArray = imread(starimagenoun2);
 
