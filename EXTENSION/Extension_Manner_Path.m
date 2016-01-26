@@ -1,7 +1,10 @@
-function [response] = Extension(trialNo)
+function [response] = Extension_Manner_Path(trialNo)
 % Play 1 trial of extension MannerPath experiment.
 % Only bias test - show M1P1 movie; take a forced choice response between M1P2
 % and M2P1.
+
+%This is the extension for the Manner_Path condition (so grey square
+%during the videos).
 
 global parameters
     
@@ -18,7 +21,7 @@ global parameters
    
     %Ext stars
     extStarImage = strcat('stars/', char(parameters.extStarImage(trialNo)));
-       
+    greySquare = 'stars/grey.jpg'
     
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % PLAY BIAS TEST VIDEO
@@ -30,14 +33,12 @@ global parameters
     
         PlayCenterMovie(movietoplay_extAmbigVid);
         
-%     imageArray = imread(char(parameters.greySquare));
-%     rect =  [0 0 1 1]
-%     winPtr = parameters.scr.winPtr;   
-%     Screen('PutImage', winPtr , imageArray, rect );    
-%     Screen('flip',winPtr)
-%     resp1 = Take_Response(); %just moving on...
-%     Show_Blank;
-        
+        imageArray = imread(greySquare);
+        rect =  parameters.centerbox
+        winPtr = parameters.scr.winPtr;   
+        Screen('PutImage', winPtr , imageArray, rect );    
+        Screen('flip',winPtr)
+        WaitSecs(0.500);
           
         PlayCenterMovie(movietoplay_extAmbigVid);
         Show_Blank;
@@ -68,10 +69,7 @@ global parameters
     %And take a response
     Play_Sound(soundtoplay_extWhichOne, 'toBlock');
     
-    parameters.extFinalTestAns{trialNo} = Take_Response();
-    parameters.extFinalTestEnd(trialNo) = GetSecs;
-  
-
+    parameters.extTestAns{trialNo} = Take_Response();
 
     
 %%%%%%%%%%%%%%%%%%%%%%
