@@ -284,7 +284,7 @@ try
     % 2 TRIALS OF NOUN TRAINING
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     
-    %Noun_Training();
+    Noun_Training();
     
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     % Trial Setup
@@ -329,7 +329,7 @@ try
         % Write result file
         %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
         
-     for i=1:ntrials
+        for i=1:ntrials
             WriteResultFile({parameters.subNo,...
                 datestr(now,'dd-mmm-yyyy'),...
                 datestr(now,'HH:MM:SS.FFF'),...
@@ -385,8 +385,7 @@ try
                 parameters.mannerSideExt(i),...
                 parameters.pathSideExt(i),...
                 parameters.extStart(i),...
-                parameters.extEnd(i),...
-                });
+                parameters.extEnd(i)});
         end
       
         %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
