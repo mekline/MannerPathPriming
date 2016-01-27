@@ -230,8 +230,8 @@ global parameters
     resp1 = Take_Response(); %just moving on...
     Show_Blank;
     
-        if resp1 == 'q'
-            Closeout_PTool();
+    if resp1 == 'q'
+        Closeout_PTool();
     end
     
 end

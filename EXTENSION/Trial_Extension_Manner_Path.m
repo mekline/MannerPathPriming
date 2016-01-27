@@ -26,7 +26,8 @@ global parameters
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % PLAY BIAS TEST VIDEO
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    
+        parameters.extStart(trialNo) = GetSecs;
+
     Show_Blank;
 
         Play_Sound(soundtoplay_extAmbigAudioFuture, 'toBlock');
@@ -70,7 +71,7 @@ global parameters
     Play_Sound(soundtoplay_extWhichOne, 'toBlock');
     
     parameters.extTestAns{trialNo} = Take_Response();
-
+    parameters.extEnd(trialNo) = GetSecs;
     
 %%%%%%%%%%%%%%%%%%%%%%
 % SHOW A NICE REWARD PICTURE
@@ -87,7 +88,7 @@ global parameters
         if resp1 == 'q'
             Closeout_PTool();
     end
-    
+    extensionEnd = GetSecs;
     
 end
 

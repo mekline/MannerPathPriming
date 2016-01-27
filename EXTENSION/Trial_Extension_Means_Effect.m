@@ -27,19 +27,17 @@ global parameters
 % PLAY BIAS TEST VIDEO
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     
+parameters.extStart(trialNo) = GetSecs;
+
+
     Show_Blank;
 
         Play_Sound(soundtoplay_extAmbigAudioFuture, 'toBlock');
     
         PlayCenterMovie(movietoplay_extAmbigVid);
+       
         
-%     imageArray = imread(char(parameters.greySquare));
-%     rect =  [0 0 1 1]
-%     winPtr = parameters.scr.winPtr;   
-%     Screen('PutImage', winPtr , imageArray, rect );    
-%     Screen('flip',winPtr)
-%     resp1 = Take_Response(); %just moving on...
-%     Show_Blank;
+     
         
           
         PlayCenterMovie(movietoplay_extAmbigVid);
@@ -72,7 +70,7 @@ global parameters
     Play_Sound(soundtoplay_extWhichOne, 'toBlock');
     
     parameters.extTestAns{trialNo} = Take_Response();
-
+    parameters.extEnd(trialNo) = GetSecs;
     
 %%%%%%%%%%%%%%%%%%%%%%
 % SHOW A NICE REWARD PICTURE
@@ -86,11 +84,12 @@ global parameters
     resp1 = Take_Response(); %just moving on...
     Show_Blank;
     
-        if resp1 == 'q'
-            Closeout_PTool();
+    if resp1 == 'q'
+        Closeout_PTool();
     end
     
-    
+ 
+
 end
 
 
