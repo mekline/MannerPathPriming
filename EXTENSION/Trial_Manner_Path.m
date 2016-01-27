@@ -1,4 +1,4 @@
-function [response] = Trial(trialNo)
+function [response] = Trial_Manner_Path(trialNo)
 %Play 1 trial of the MannerPath experiment.
 %Trial structure is sort of complex; it has 3 phases:
 % Bias test - show M1P1 movie; take a forced choice response between M1P2
@@ -189,6 +189,23 @@ global parameters
     Screen('flip',winPtr)
     resp1 = Take_Response(); %just moving on...
     Show_Blank;
+    
+    
+    if resp1 == 'q'
+            Closeout_PTool();
+    end
+    
+%     if parameters.mannerSideFinal(trialNo) == 'L'
+%         
+%     elseif parameters.mannerSideFinal(trialNo) == 'R'
+%         PlaySideMovies(movietoplay_pTest,'');
+%         PlaySideMovies('',movietoplay_mTest);
+%     end
+    
+    
+    
+    
+    
     
 end
 

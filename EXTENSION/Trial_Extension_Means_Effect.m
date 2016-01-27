@@ -1,9 +1,9 @@
-function [response] = Extension_Manner_Path(trialNo)
+function [response] = Trial_Extension_Means_Effect(trialNo)
 % Play 1 trial of extension MannerPath experiment.
 % Only bias test - show M1P1 movie; take a forced choice response between M1P2
 % and M2P1.
 
-%This is the extension for the Manner_Path condition (so grey square
+%This is the extension for the Means_Effect condition (so no grey square
 %during the videos).
 
 global parameters
@@ -33,12 +33,14 @@ global parameters
     
         PlayCenterMovie(movietoplay_extAmbigVid);
         
-        imageArray = imread(greySquare);
-        rect =  parameters.centerbox
-        winPtr = parameters.scr.winPtr;   
-        Screen('PutImage', winPtr , imageArray, rect );    
-        Screen('flip',winPtr)
-        WaitSecs(0.500);
+%     imageArray = imread(char(parameters.greySquare));
+%     rect =  [0 0 1 1]
+%     winPtr = parameters.scr.winPtr;   
+%     Screen('PutImage', winPtr , imageArray, rect );    
+%     Screen('flip',winPtr)
+%     resp1 = Take_Response(); %just moving on...
+%     Show_Blank;
+        
           
         PlayCenterMovie(movietoplay_extAmbigVid);
         Show_Blank;
@@ -83,6 +85,10 @@ global parameters
     Screen('flip',winPtr)
     resp1 = Take_Response(); %just moving on...
     Show_Blank;
+    
+        if resp1 == 'q'
+            Closeout_PTool();
+    end
     
     
 end
