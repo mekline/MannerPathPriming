@@ -23,6 +23,7 @@ global parameters
 parameters.datafilepointer = AssignDataFile('MannerPathPriming',subNo);
 
 try
+
     
     %%%%%%%%%%%%%%%%%%%%%%
     % Parameter Setting
@@ -241,15 +242,15 @@ try
     % 2 TRIALS OF NOUN TRAINING
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     
-    MPP_Noun_Training();
+    %MPP_Noun_Training();
     
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     % Trial Setup
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     
     % How many trials?
-    ntrials = length(parameters.pBiasV);
-    %ntrials = 1; %For the skeleton, play some short sample trials!
+    %ntrials = length(parameters.pBiasV);
+    ntrials = 1; %For the skeleton, play some short sample trials!
     
     Text_Show('Ready? Press space to watch the movies.');
     Take_Response();
