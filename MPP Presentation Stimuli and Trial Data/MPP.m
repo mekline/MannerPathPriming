@@ -27,7 +27,7 @@ switch nargin
     case 3
         runmode = 'exp'; %It's a normal participant!
     case 2
-        runmode = 'debug';
+        runmode = 'exp';
         willextend = 'NoExtend'; 
     otherwise
         error('Not enough parameters!!');
