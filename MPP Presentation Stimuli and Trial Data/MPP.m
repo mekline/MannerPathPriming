@@ -1,4 +1,4 @@
-function MPP(subNo, condition)
+function MPP(subNo, condition, willextend, runmode)
 
 %Code based on sign meaning experiment, Feb 2014
 %                         
@@ -13,14 +13,46 @@ function MPP(subNo, condition)
 % 4= PathCondition_Instrumental
 % 5= EffectCondition
 % 6= MeansCondition
+%
+% Use mode parameter to specify we want to run a pilot version with
+% just 2 trials (of reg & extension, if it's extension, and no noun training!
 
 %Add paths to subfolders in case matlab can't find them...
 addpath('HelperFunctions', 'finalMovies', 'stars')
+
+%Set up mode
+switch nargin
+    case 4
+        %parameters set, move on
+    case 3
+        runmode = 'exp'; %It's a normal participant!
+    case 2
+        runmode = 'debug';
+        willextend = 'NoExtend'; 
+    otherwise
+        error('Not enough parameters!!');
+end
+
+
+%Did we get a condition number or a string?
+%Convert named convenience parameters to numbers!
+if ischar(condition)
+    switch condition
+        case 'Manner'
+            condition = 1;
+        case 'Path'
+            condition = 3;
+        otherwise
+            error ('You cannot use that condition here yet, use MPP_Extension_Manner_Path or _Means_Effect for now!')
+    end
+end
 
 %object that stores all exp/session values
 global parameters
 
 parameters.datafilepointer = AssignDataFile('MannerPathPriming',subNo);
+
+
 
 try
 
@@ -48,7 +80,7 @@ try
     parameters.subNo = subNo;
     
     %Read the file into matlab
-    vidNames = read_mixed_csv('MPP_11_06.csv',',')
+    vidNames = read_mixed_csv('MPP.csv',',')
     
     %Routine to pick the specified signList (algebra to get us the right rows)
     start_Index = (8*condition)-6;
@@ -95,8 +127,22 @@ try
     parameters.letsFindAudio = vidNames(start_Index:end_Index, 37);
     parameters.starImage = vidNames(start_Index:end_Index, 38);
     
+    parameters.extPathEffect = vidNames(start_Index:end_Index, 40);
+    parameters.extVerbName = vidNames(start_Index:end_Index, 41);
+    parameters.extMannerMeans = vidNames(start_Index:end_Index, 42);
+    parameters.extBiasVid = vidNames(start_Index:end_Index, 43);
+    parameters.extAmbigAudioFuture =  vidNames(start_Index:end_Index, 44);
+    parameters.extAmbigAudioPast = vidNames(start_Index:end_Index, 45);
+    parameters.extTestMannerVid = vidNames(start_Index:end_Index, 46);
+    parameters.extTestPathVid = vidNames(start_Index:end_Index, 47);
+    parameters.extLetsFind = vidNames(start_Index:end_Index, 48);
+    parameters.extWhichOne = vidNames(start_Index:end_Index, 49);
+    parameters.extStarImage = vidNames(start_Index:end_Index, 50); 
+    
     parameters.biasTestAns = {};
     parameters.finalTestAns = {};
+    
+    parameters.extTestAns = {};
     
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     % % % Now randomize everything (apply random order to all columns/objects)
@@ -222,7 +268,7 @@ try
     
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
         
-    Play_Sound('Audio_stimuli_creation/Finished/aa_motivation/getready.wav', 'toBlock');
+    Play_Sound('Audio/Finished/aa_motivation/getready.wav', 'toBlock');
     Show_Blank();
     
     starImageStart = 'stars/stars.001.jpg';
@@ -242,21 +288,39 @@ try
     % 2 TRIALS OF NOUN TRAINING
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     
-    %MPP_Noun_Training();
+    if strcmp(runmode, 'exp')
+        MPP_Noun_Training();
+    else
+        parameters.noun1TestAns = 'pilot';
+        parameters.noun2TestAns = 'pilot';
+    end
     
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    % Trial Setup
+    % N TRIALS OF WITHIN-FIELD PRIMING/VERB LEARNING
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     
     % How many trials?
-    %ntrials = length(parameters.pBiasV);
-    ntrials = 1; %For the skeleton, play some short sample trials!
+    if strcmp(runmode, 'exp')
+        ntrials = length(parameters.pBiasV);
+    else
+        ntrials = 2; %For the skeleton, play some short sample trials!
+    end
     
     Text_Show('Ready? Press space to watch the movies.');
     Take_Response();
     
+    %And actually play the trials! Data is saved on each round to allow for
+    %partial data collection
     for i=1:ntrials
-        MPP_Trial(i);
+        
+        %Trials have slightly different structure if they will be followed
+        %by extension trials (different star arrays - TOFIX this should
+        %just be parameters to one method...)
+        if strcmp(willextend, 'Extend')
+            Trial_MP_toExtend(i);
+        else
+            Trial_MP_noExtend(i);
+        end
         
         expEnd = GetSecs;
         totalTime = expEnd - expStart;

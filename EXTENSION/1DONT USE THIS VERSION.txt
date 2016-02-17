@@ -1,0 +1,3 @@
+OLD MPP SCRIPT - DON’T USE
+
+This version was used to run participants 1-68 but is superseded by the version in MPP Presentation Stimuli and Trial Data/

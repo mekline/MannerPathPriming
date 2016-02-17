@@ -14,10 +14,10 @@ global parameters
     movietoplay_extManner = strcat('Movies/', char(parameters.extTestMannerVid(trialNo)));
 
     %Ext audio
-    soundtoplay_extWhichOne = strcat('Audio_stimuli_creation/Finished/', char(parameters.extWhichOne(trialNo)));
-    soundtoplay_extLetsFind = strcat('Audio_stimuli_creation/Finished/aa_lets_find/', char(parameters.extLetsFind(trialNo)));
-    soundtoplay_extAmbigAudioPast = strcat('Audio_stimuli_creation/Finished/', char(parameters.extAmbigAudioPast(trialNo)));
-    soundtoplay_extAmbigAudioFuture = strcat('Audio_stimuli_creation/Finished/', char(parameters.extAmbigAudioFuture(trialNo)));
+    soundtoplay_extWhichOne = strcat('Audio/Finished/', char(parameters.extWhichOne(trialNo)));
+    soundtoplay_extLetsFind = strcat('Audio/Finished/aa_lets_find/', char(parameters.extLetsFind(trialNo)));
+    soundtoplay_extAmbigAudioPast = strcat('Audio/Finished/', char(parameters.extAmbigAudioPast(trialNo)));
+    soundtoplay_extAmbigAudioFuture = strcat('Audio/Finished/', char(parameters.extAmbigAudioFuture(trialNo)));
    
     %Ext stars
     extStarImage = strcat('stars/', char(parameters.extStarImage(trialNo)));

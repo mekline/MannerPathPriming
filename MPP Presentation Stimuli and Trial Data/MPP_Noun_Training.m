@@ -9,7 +9,7 @@ global parameters
         %%%%%%%%%%%%%%%%%%%%%%
         %FIRST NOUN TRAINING     
         %%%%%%%%%%%%%%%%%%%%%%
-        Play_Sound('Audio_stimuli_creation/Finished/aa_nouns/bone1.wav', 'toBlock');
+        Play_Sound('Audio/Finished/aa_nouns/bone1.wav', 'toBlock');
         Show_Blank;
 
         movietoplay_noun_2a = 'Movies/2_noun_2a.mov';
@@ -21,23 +21,23 @@ global parameters
 
         Show_Blank;
         
-        Play_Sound('Audio_stimuli_creation/Finished/aa_nouns/bone2.wav', 'toBlock');
+        Play_Sound('Audio/Finished/aa_nouns/bone2.wav', 'toBlock');
         Show_Blank;
         
         PlaySideMovies(movietoplay_noun_2_distr,'','caption_left','');
         PlaySideMovies('',movietoplay_noun_2b,'caption_right',''); 
         
-        Play_Sound('Audio_stimuli_creation/Finished/aa_nouns/bone3.wav', 'toBlock'); 
+        Play_Sound('Audio/Finished/aa_nouns/bone3.wav', 'toBlock'); 
         
         parameters.noun1TestAns = Take_Response();
        
         Show_Blank;
 
-        starimagenoun1 = 'stars/stars.002.jpg'
+        starimagenoun1 = 'stars/stars.002.jpg';
 
         imageArray = imread(starimagenoun1);
 
-        rect = parameters.scr.rect
+        rect = parameters.scr.rect;
 
         winPtr = parameters.scr.winPtr;
 
@@ -51,7 +51,7 @@ global parameters
         %SECOND NOUN TRAINING     
         %%%%%%%%%%%%%%%%%%%%%%  
         
-        Play_Sound('Audio_stimuli_creation/Finished/aa_nouns/glorfin1.wav', 'toBlock');
+        Play_Sound('Audio/Finished/aa_nouns/glorfin1.wav', 'toBlock');
         Show_Blank;
 
         movietoplay_distractor = 'Movies/1_noun_1_distractor.mov';
@@ -61,22 +61,22 @@ global parameters
         PlayCenterMovie(movietoplay_sign);
         Show_Blank;
         
-        Play_Sound('Audio_stimuli_creation/Finished/aa_nouns/glorfin2.wav', 'toBlock');
+        Play_Sound('Audio/Finished/aa_nouns/glorfin2.wav', 'toBlock');
         Show_Blank;
 
         PlaySideMovies(movietoplay_target,'','caption_left','');
         PlaySideMovies('',movietoplay_distractor,'caption_right',''); 
 
-        Play_Sound('Audio_stimuli_creation/Finished/aa_nouns/glorfin3.wav', 'toBlock');    
+        Play_Sound('Audio/Finished/aa_nouns/glorfin3.wav', 'toBlock');    
         
         parameters.noun2TestAns = Take_Response();
         Show_Blank;
 
-        starimagenoun2 = 'stars/stars.003.jpg'
+        starimagenoun2 = 'stars/stars.003.jpg';
 
         imageArray = imread(starimagenoun2);
 
-        rect = parameters.scr.rect
+        rect = parameters.scr.rect;
 
         winPtr = parameters.scr.winPtr;
 
