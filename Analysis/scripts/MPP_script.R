@@ -1,14 +1,22 @@
-#set directory
-dir = setwd("~/Documents/R_stuff/MPP")
-#name of info file
-nameMetaFile = "MannerPath_Data.csv"
+# #set directory
+# dir = setwd("~/Documents/R_stuff/MPP")
+# #name of info file
+# nameMetaFile = "MannerPath_Data.csv"
+# 
 
+#set directories; might need to change this on your comp!
+repodir = "/Users/mekline/Dropbox/_Projects/PrimingMannerPath/MannerPathPriming/"
+adir = paste(repodir, "Analysis/", sep="")
+ddir = paste(repodir, "MPP Presentation Stimuli and Trial Data/Data/" , sep="")
+
+#name of info file
+nameMetaFile = paste(repodir,"MannerPath_Data.csv",sep="")
 
 ####################################################################################
 ####################################################################################
 
 #get all .dat files in the directory
-files = list.files(dir, pattern = ".dat$")
+files = list.files(ddir, pattern = ".dat$")
 
 #create an empty error vector
 error_files = c()
@@ -20,11 +28,17 @@ counter = 1
 output = data.frame(EXPERIMENT = '', TRIAL = '',BIAS = '',TEST = '', SUBNUM = '', DAYSOLD = '', AGEYEARS = '', INCDECISION = '', stringsAsFactors=F)
 
 #load the info data file
+setwd(adir)
 meta = read.csv(nameMetaFile, sep = ",", header = T)
 
+setwd(ddir)
+
 #loop over files (participants) and the rows in the file
-for (file in files)
-{
+#MK hack - MPP_1 and MPP_2 are formatted differently, skip them for now!
+#for (file in files)
+#{
+for (i in 3:length(files))
+  file = files[i]
   #read in the file
   data = read.table(file, sep = ",", header = T)
   
