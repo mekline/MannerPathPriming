@@ -1,7 +1,11 @@
-#set directory
-dir = setwd("~/Documents/R_stuff/MPP")
+#set directories; might need to change this on your comp!
+repodir = "/Users/mekline/Dropbox/_Projects/PrimingMannerPath/MannerPathPriming/"
+adir = paste(repodir, "Analysis/", sep="")
+ddir = paste(repodir, "MPP Presentation Stimuli and Trial data/data/" , sep="")
+
 #name of info file
-nameMetaFile = "MannerPath_Data.csv"
+nameMetaFile = paste(repodir,"MannerPath_data.csv",sep="")
+
 #----------------------------------------------------------------------------------
 
 #get all .dat files in the directory
@@ -15,11 +19,21 @@ output = data.frame(EXPERIMENT = '', TRIAL = '',BIAS = '',TEST = '', SUBNUM = ''
 #load the info data file
 #meta = read.csv(nameMetaFile, sep = ",", header = T)
 #loop over files (participants) and the rows in the file
-for (file in files)
+setwd(ddir)
+for (j in 1:length(files))
 {
+  file = files[j]
+  print(file)
   #read in the file
-  data = read.table(file, sep = ",", header = T, fill = T)
-  #test if there is data in that file, else place in the error vector
+  #If instead of a table we get an error message, move on!
+  data = try(read.table(file, sep = ",", header = T, fill=T)) #Fill adds in NAs for blank cells :)
+  if (length(data) == 1) {next}
+  
+  #Hack for the consolidated data folder - if it's a non-extension session, skip it! (And drop kids who didn't complete any trials...)
+  print(dim(data))
+  if (dim(data)[2] < 50 || dim(data)[1] < 2) {next}
+  
+   #test if there is data in that file, else place in the error vector
   if (length(data[,1]) > 0)
   {
     #get info for current participant
@@ -59,12 +73,13 @@ for (file in files)
       
       if(data$SubjectNo[row] == 54) print(data)
     }
-  }
+ }
   else
   {append(error_files, file)}
 }
 
 #save data frame
-write.csv(output, file = paste("all", ".csv", sep = ""))
+setwd(adir)
+write.csv(output, file = paste("all_ext", ".csv", sep = ""))
 #show errors
 error_files

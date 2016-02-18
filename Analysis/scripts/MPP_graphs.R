@@ -1,4 +1,5 @@
 #set path
+setwd("/Users/mekline/Dropbox/_Projects/PrimingMannerPath/MannerPathPriming/Analysis/")
 data = read.csv('all.csv', sep = ",", header = T)
 
 #load libraries
@@ -12,6 +13,28 @@ data$pathTEST[data$TEST == 'PATHBIAS'] = 1
 data$pathTEST[data$TEST == 'MANNERBIAS'] = 0
 data$pathBIAS[data$BIAS == 'PATHBIAS'] = 1
 data$pathBIAS[data$BIAS == 'MANNERBIAS'] = 0
+
+#Remove NA levels (really elsewhere we should document what happened to those lines!)
+data <- data[!is.na(data$EXPERIMENT), ]
+data <- data[!is.na(data$TRIAL), ]
+
+#Debugging the binomial testing
+# for (cond in unique(data$EXPERIMENT))
+# {
+#   for (trial in unique(data$TRIAL))
+#   {
+#     n = length(data[data$EXPERIMENT == cond & data$TRIAL == trial,]$pathBIAS)
+#     x = sum(data[data$EXPERIMENT == cond & data$TRIAL == trial,]$pathBIAS, na.rm=TRUE)
+#     test = prop.test(x, n, conf.level=0.95)
+#     #plotData$intLower[plotData$cond == cond & plotData$verb == trial] = test$conf.int[1]
+#     #plotData$intUpper[plotData$cond == cond & plotData$verb == trial]  = test$conf.int[2]
+#     print('set')
+#     print(x/n)
+#     print(test$conf.int[1])
+#     print(test$conf.int[2])
+#   }
+# }
+
 
 makePlot = function(ydata, title="")
 {
@@ -28,17 +51,17 @@ makePlot = function(ydata, title="")
         test = prop.test(x, n, conf.level=0.95)
         plotData$intLower[plotData$cond == cond & plotData$verb == trial] = test$conf.int[1]
         plotData$intUpper[plotData$cond == cond & plotData$verb == trial]  = test$conf.int[2]
-      print(cond)
-      print(trial)
-      print(n)
-      print(x)
+      print(test$conf.int[1])
+      print(test$conf.int[2])
+      #print(n)
+      #print(x)
       }
     }
     
     #make a plot with ggplot
     pd <- position_dodge(0.1)
     
-    ggplot(plotData, aes(x=verb, y=pathmean, colour=cond, group=cond)) + 
+    ggplot(plotData, aes(x=verb, y=pathmean, colour=cond, group=cond, ymax = 1)) + 
       geom_errorbar(aes(ymin=intLower, ymax=intUpper), colour="black", width=.1, position=pd) +
       geom_line(position=pd) +
       ylab("Proportion of Path Responses") +

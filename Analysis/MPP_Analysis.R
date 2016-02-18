@@ -14,8 +14,6 @@ setwd(repodir)
 #name of info file
 nameMetaFile = paste(repodir,"MannerPath_Data.csv",sep="")
 
-#START HERE
-
 #get all .dat files in the directory
 files = list.files(ddir, pattern = ".dat$")
 
