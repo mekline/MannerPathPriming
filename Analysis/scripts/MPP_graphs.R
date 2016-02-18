@@ -8,8 +8,8 @@ library(ggplot2)
 rm(list=ls())
 
 #load data
-data = read.csv('all_ext.csv', sep = ",", header = T)
-doExtension = 1
+data = read.csv('all.csv', sep = ",", header = T)
+doExtension = 0
 
 #Drop participants
 data <- data[!is.na(data$INCDECISION),]
@@ -23,6 +23,7 @@ data$pathBIAS[data$BIAS == 'PATHBIAS'] = 1
 data$pathBIAS[data$BIAS == 'MANNERBIAS'] = 0
 data$pathEXT[data$EXT == 'PATHBIAS'] = 1
 data$pathEXT[data$EXT == 'MANNERBIAS'] = 0
+
 
 dim(data)
 #Remove NA levels (really elsewhere we should document what happened to those lines!)
@@ -53,8 +54,15 @@ dim(data)
 #   }
 # }
 
+#Rename conds for prettiness
+if (!doExtension) {
+  data$xEXPERIMENT[data$EXPERIMENT == 'MannerOfMotionCondition'] <- "Manner"
+  data$xEXPERIMENT[data$EXPERIMENT == 'PathCondition'] <- "Path"
+  data$EXPERIMENT <- data$xEXPERIMENT
+}
 
-makePlot = function(ydata, title="")
+
+makePlot = function(ydata, ylab, title="")
 {
     #aggregate data to get mean per trial per condition
     plotData = aggregate(x = list(pathmean = ydata), by = list( cond = data$EXPERIMENT, verb = data$TRIAL), FUN = mean)
@@ -82,21 +90,21 @@ makePlot = function(ydata, title="")
     ggplot(plotData, aes(x=verb, y=pathmean, colour=cond, group=cond, ymax = 1)) + 
       geom_errorbar(aes(ymin=intLower, ymax=intUpper), colour="black", width=.1, position=pd) +
       geom_line(position=pd) +
-      ylab("Proportion of Path Responses") +
+      ylab(ylab) +
       geom_point(position=pd, size=3) +
       coord_cartesian(ylim=c(0,1)) +
+      ggtitle(title)
       #scale_colour_manual(values = c("green","red"),
                           #name="",
                           #labels=c("Manner", "Path")) +
-    ggtitle(title)
 }
 
-makePlot(data$pathTEST, "Final Test")
-makePlot(data$pathBIAS, "Bias Test")
-makePlot(data$pathEXT, "Cross domain Bias")
+makePlot(data$pathTEST, "Proportion of Effect Responses", "Responses after training")
+makePlot(data$pathBIAS, 'Proportion of EFFECT responses', 'Bias (1st presentation) responses')
+makePlot(data$pathEXT, 'Proportion of PATH responses', 'Bias responses - new domain')
 
 #Now let's make some bar graphs too!
-makeBar = function(ydata, title="")
+makeBar = function(ydata, ylab, title="")
 {
   plotData = NULL
   #Aggregate mean/condition
@@ -117,12 +125,14 @@ makeBar = function(ydata, title="")
   ggplot(plotData, aes(x=cond, y=pathmean, fill=cond)) + 
     geom_bar(stat="identity") +
     geom_errorbar(aes(ymin=intLower, ymax=intUpper), colour="black", width=.1) +
-    coord_cartesian(ylim=c(0,1))
+    coord_cartesian(ylim=c(0,1))+
+    ylab(ylab)+
+    ggtitle(title)
 }
 
-makeBar(data$pathTEST, 'foo')
-makeBar(data$pathBIAS, 'foo')
-makeBar(data$pathEXT, 'foo')
+makeBar(data$pathTEST, 'Proportion of PATH responses', 'Responses after training')
+makeBar(data$pathBIAS, 'Proportion of PATH responses', 'Bias (1st presentation) responses')
+makeBar(data$pathEXT, 'Proportion of PATH responses', 'Bias responses - new domain')
 
 
 #Now let's do some stats!
