@@ -1,23 +1,14 @@
-# This file is going to have the full analysis pipeline for the MannerPath studies!  
-#It will pull data from the main MPP_Participants.csv and from the trial data
-#(Repo/MPP Presentation/Data) from each child.
-
-#To start, I'm bringing over the data cleaning (for E1 circa 1/20) Annelot did)
-#And also analyses conducted around 2/3 which I'll update from here
-
-#set directories; might need to change this on your comp!
-repodir = "/Users/mekline/Dropbox/_Projects/PrimingMannerPath/MannerPathPriming/"
-adir = paste(repodir, "Analysis/", sep="")
-ddir = paste(repodir, "MPP Presentation Stimuli and Trial Data/Data/" , sep="")
-setwd(repodir)
-
+#set directory
+dir = setwd("~/Documents/R_stuff/MPP")
 #name of info file
-nameMetaFile = paste(repodir,"MannerPath_Data.csv",sep="")
+nameMetaFile = "MannerPath_Data.csv"
 
-#START HERE
+
+####################################################################################
+####################################################################################
 
 #get all .dat files in the directory
-files = list.files(ddir, pattern = ".dat$")
+files = list.files(dir, pattern = ".dat$")
 
 #create an empty error vector
 error_files = c()
@@ -31,20 +22,11 @@ output = data.frame(EXPERIMENT = '', TRIAL = '',BIAS = '',TEST = '', SUBNUM = ''
 #load the info data file
 meta = read.csv(nameMetaFile, sep = ",", header = T)
 
-
 #loop over files (participants) and the rows in the file
-#Here melissa starts making some changes to read in both regular and extension data in a flexible way...
-
-#The goal: For now, just read in all lines of every data file. Assert that all have the same columns 
-#names at the start, but some may have extra columns if they have extension data. Later on we'll
-#clean up and reshape to get nicer formatted data.
-setwd(ddir)
 for (file in files)
 {
   #read in the file
   data = read.table(file, sep = ",", header = T)
-  
-  data
   
   #test if there is data in that file, else place in the error vector
   if (length(data[,1]) > 0)
@@ -68,7 +50,7 @@ for (file in files)
       if (data$pathSideTest[row] == "R" & data$kidResponseTest[row] == "c") output[counter,4] = "PATHBIAS"  
       if (data$mannerSideTest[row] == "R" & data$kidResponseTest[row] == "c") output[counter,4] = "MANNERBIAS"
       if (data$pathSideTest[row] == "L" & data$kidResponseTest[row] == "z") output[counter,4] = "PATHBIAS"
-      
+     
       #Store subject number, days old, age in years and inclusion criteria
       output[counter,5] = data$SubjectNo[row]
       output[counter,6] = info$Days.Old
@@ -82,3 +64,8 @@ for (file in files)
   {append(error_files, file)}
 }
 
+#save data frame
+write.csv(output, file = paste("all", ".csv", sep = ""))
+
+#show errors
+error_files
