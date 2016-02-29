@@ -371,7 +371,7 @@ try
     extensionStart = GetSecs;
     for i=1:ntrials      
         
-        Trial_Extension_Means_Effect(i);
+        ExtensionTrial_AE(i);
       
         WriteResultFile({parameters.subNo,...
             datestr(now,'dd-mmm-yyyy'),...

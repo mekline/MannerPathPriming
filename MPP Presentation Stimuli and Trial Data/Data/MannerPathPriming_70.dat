@@ -1,1 +1,9 @@
 SubjectNo,Date,Time,Experiment,trialNo,itemID,verbName,verbMeaning,mannerSideBias,pathSideBias,kidResponseBias,mannerSideTest,pathSideTest,kidResponseTest,noun1Test,noun2Test,xxxxxxxxx,trainingStartTime,trainingEndTime,finalTestStart,finalTestEnd,ambigVid,mBiasVid,pBiasVid,trainVid1,trainVid2,trainVid3,mTestVid,pTestVid,ambigAudioFuture,ambigAudioPast,trainAudioFuture1,trainAudioPast1,trainAudioFuture2,trainAudioPast2,trainAudioFuture3,trainAudioPast3,whichOneAudio,letsFindAudio,xxx,extAnswer,extPathEffect,extVerbName,extMannerMeans,extBiasVid,extAmbigAudioFuture,extAmbigAudioPast,extTestMannerVid,extTestPathVid,extLetsFind,extWhichOne,extStarImage,extMannerSide,extPathSide,extensionStart,extensionEnd
+70,18-Feb-2016,17:26:33.226,NA,1,9.5,gorping,cut,R,L,c,L,R,z,c,c,xxxx
+70,18-Feb-2016,17:28:29.452,NA,2,9.7,wugging,empty,L,R,z,R,L,c,c,c,xxxx
+70,18-Feb-2016,17:30:27.038,NA,3,9.4,nibbing,crush,L,R,c,R,L,z,c,c,xxxx
+70,18-Feb-2016,17:32:26.774,NA,4,9.2,gossing,rip,L,R,c,R,L,z,c,c,xxxx
+70,18-Feb-2016,17:34:20.124,NA,5,9.3,zicking,open,L,R,z,R,L,c,c,c,xxxx
+70,18-Feb-2016,17:36:18.560,NA,6,9.6,klebbing,bend,R,L,z,R,L,z,c,c,xxxx
+70,18-Feb-2016,17:38:21.763,NA,7,9.1,blicking,break,L,R,z,R,L,c,c,c,xxxx
+70,18-Feb-2016,17:40:15.630,NA,8,9.8,rolting,flatten,L,R,c,R,L,z,c,c,xxxx
