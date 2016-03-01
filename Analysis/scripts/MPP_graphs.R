@@ -8,8 +8,8 @@ library(ggplot2)
 rm(list=ls())
 
 #load data
-data = read.csv('all.csv', sep = ",", header = T)
-doExtension = 0
+data = read.csv('all_ext.csv', sep = ",", header = T)
+doExtension = 1
 
 #Drop participants
 data <- data[!is.na(data$INCDECISION),]
@@ -136,8 +136,13 @@ makeBar(data$pathEXT, 'Proportion of PATH responses', 'Bias responses - new doma
 
 
 #Now let's do some stats!
+
+
 #How many participants are in this set?
 length(unique(data$SUBNUM))
+library(lme4)
+model_eff <- NULL
+model_noeff <- NULL
 #Simplest model: Does EXPERIMENT matter?
 model_eff <- lmer(pathBIAS ~ EXPERIMENT  + (1|SUBNUM), data=data, family="binomial")
 model_noeff <- lmer(pathBIAS ~ 1  + (1|SUBNUM), data=data, family="binomial")
@@ -148,7 +153,7 @@ model_noeff <- lmer(pathEXT ~ 1  + (1|SUBNUM), data=data, family="binomial")
 anova(model_eff, model_noeff)
 
 #Do exp and trial interact? That is, is the different between exp different later in the exp? Do they diverge? Yes!
-library(lme4)
+
 model_inter <- NULL
 model_nointer <- NULL
 model_tonly <- NULL
