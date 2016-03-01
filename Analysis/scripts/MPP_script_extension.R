@@ -60,10 +60,10 @@ for (j in 1:length(files))
       if (data$pathSideTest[row] == "L" & data$kidResponseTest[row] == "z") output[counter,4] = "PATHBIAS"
      
       # transform extension
-      if (data$extMannerSide[row] == "L" & data$extAnswer[row] == "z") output[counter,9] = "MANNERBIAS"
-      if (data$extPathSide[row] == "R" & data$extAnswer[row] == "c") output[counter,9] = "PATHBIAS"  
-      if (data$extMannerSide[row] == "R" & data$extAnswer[row] == "c") output[counter,9] = "MANNERBIAS"
-      if (data$extPathSide[row] == "L" & data$extAnswer[row] == "z") output[counter,9] = "PATHBIAS"
+      if (data$extMannerSide[row] == "L" & data$extAnswer[row] == "z" & !is.na(data$extMannerSide[row])) output[counter,9] = "MANNERBIAS"
+      if (data$extPathSide[row] == "R" & data$extAnswer[row] == "c"& !is.na(data$extPathSide[row])) output[counter,9] = "PATHBIAS"  
+      if (data$extMannerSide[row] == "R" & data$extAnswer[row] == "c"& !is.na(data$extMannerSide[row])) output[counter,9] = "MANNERBIAS"
+      if (data$extPathSide[row] == "L" & data$extAnswer[row] == "z" & !is.na(data$extPathSide[row])) output[counter,9] = "PATHBIAS"
       
       
       #Store subject number, days old, age in years and inclusion criteria

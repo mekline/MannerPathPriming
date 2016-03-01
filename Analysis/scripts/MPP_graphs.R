@@ -8,8 +8,8 @@ library(ggplot2)
 rm(list=ls())
 
 #load data
-data = read.csv('all_ext.csv', sep = ",", header = T)
-doExtension = 1
+data = read.csv('all.csv', sep = ",", header = T)
+doExtension = 0
 
 #Drop participants
 data <- data[!is.na(data$INCDECISION),]
@@ -126,19 +126,29 @@ makeBar = function(ydata, ylab, title="")
     
     
   }
-  print(plotData)
   ggplot(plotData, aes(x=cond, y=pathmean, fill=cond)) + 
     geom_bar(stat="identity") +
     geom_errorbar(aes(ymin=intLower, ymax=intUpper), colour="black", width=.1) +
     coord_cartesian(ylim=c(0,1))+
     ylab(ylab)+
+    xlab('')+
+    theme(legend.position="none")+
     ggtitle(title)
 }
 
-makeBar(data$pathTEST, 'Proportion of PATH responses', 'Responses after training')
-makeBar(data$pathBIAS, 'Proportion of PATH responses', 'Bias (1st presentation) responses')
+
 if (doExtension){
-makeBar(data$pathEXT, 'Proportion of PATH responses', 'Bias responses - new domain')
+  makeBar(data$pathTEST, 'Proportion of EFFECT responses')
+  ggsave('AE_test.png', width=4, height=4)
+  makeBar(data$pathBIAS, 'Proportion of EFFECT responses')
+  ggsave('AE_bias.png', width=4, height=4)
+  makeBar(data$pathEXT, 'Proportion of PATH responses')
+  ggsave('AE_ext.png', width=4, height=4)
+} else{
+  makeBar(data$pathTEST, 'Proportion of PATH responses')
+  ggsave('MP_test.png', width=4, height=4)
+  makeBar(data$pathBIAS, 'Proportion of PATH responses')
+  ggsave('MP_bias.png', width=4, height=4)
 }
 
 
