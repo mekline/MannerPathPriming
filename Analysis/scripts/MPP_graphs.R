@@ -109,7 +109,7 @@ makePlot(data$pathEXT, 'Proportion of PATH responses', 'Bias responses - new dom
 }
 
 #Now let's make some bar graphs too!
-makeBar = function(ydata, ylab, title="")
+makeBar = function(ydata, ylab, title="", colors="Dark2")
 {
   plotData = NULL
   #Aggregate mean/condition
@@ -132,22 +132,24 @@ makeBar = function(ydata, ylab, title="")
     coord_cartesian(ylim=c(0,1))+
     ylab(ylab)+
     xlab('')+
+    theme_bw()+
     theme(legend.position="none")+
+    scale_fill_brewer(palette=colors) +
     ggtitle(title)
 }
 
 
 if (doExtension){
-  makeBar(data$pathTEST, 'Proportion of EFFECT responses')
+  makeBar(data$pathTEST, 'Proportion of EFFECT responses', colors="Greens")
   ggsave('AE_test.png', width=4, height=4)
-  makeBar(data$pathBIAS, 'Proportion of EFFECT responses')
+  makeBar(data$pathBIAS, 'Proportion of EFFECT responses', colors="Greens")
   ggsave('AE_bias.png', width=4, height=4)
-  makeBar(data$pathEXT, 'Proportion of PATH responses')
+  makeBar(data$pathEXT, 'Proportion of PATH responses', colors="Blues")
   ggsave('AE_ext.png', width=4, height=4)
 } else{
-  makeBar(data$pathTEST, 'Proportion of PATH responses')
+  makeBar(data$pathTEST, 'Proportion of PATH responses', colors="Blues")
   ggsave('MP_test.png', width=4, height=4)
-  makeBar(data$pathBIAS, 'Proportion of PATH responses')
+  makeBar(data$pathBIAS, 'Proportion of PATH responses', colors="Blues")
   ggsave('MP_bias.png', width=4, height=4)
 }
 
