@@ -21,8 +21,11 @@ data$pathTEST[data$TEST == 'PATHBIAS'] = 1
 data$pathTEST[data$TEST == 'MANNERBIAS'] = 0
 data$pathBIAS[data$BIAS == 'PATHBIAS'] = 1
 data$pathBIAS[data$BIAS == 'MANNERBIAS'] = 0
-data$pathEXT[data$EXT == 'PATHBIAS'] = 1
-data$pathEXT[data$EXT == 'MANNERBIAS'] = 0
+if (doExtension){
+  data$pathEXT[data$EXT == 'PATHBIAS'] = 1
+  data$pathEXT[data$EXT == 'MANNERBIAS'] = 0
+}
+
 
 
 dim(data)
@@ -101,7 +104,9 @@ makePlot = function(ydata, ylab, title="")
 
 makePlot(data$pathTEST, "Proportion of Effect Responses", "Responses after training")
 makePlot(data$pathBIAS, 'Proportion of EFFECT responses', 'Bias (1st presentation) responses')
+if (doExtension) {
 makePlot(data$pathEXT, 'Proportion of PATH responses', 'Bias responses - new domain')
+}
 
 #Now let's make some bar graphs too!
 makeBar = function(ydata, ylab, title="")
@@ -132,11 +137,16 @@ makeBar = function(ydata, ylab, title="")
 
 makeBar(data$pathTEST, 'Proportion of PATH responses', 'Responses after training')
 makeBar(data$pathBIAS, 'Proportion of PATH responses', 'Bias (1st presentation) responses')
+if (doExtension){
 makeBar(data$pathEXT, 'Proportion of PATH responses', 'Bias responses - new domain')
+}
 
 
 #Now let's do some stats!
 
+#REMOVE TRIAL 1 of pathBIAS - they haven't seen any training and 
+#we thus expect no differences in bias between randomly assigned conditions!
+data[data$TRIAL == 1,]$pathBIAS <- NA
 
 #How many participants are in this set?
 length(unique(data$SUBNUM))
@@ -152,8 +162,9 @@ model_eff <- lmer(pathEXT ~ EXPERIMENT  + (1|SUBNUM), data=data, family="binomia
 model_noeff <- lmer(pathEXT ~ 1  + (1|SUBNUM), data=data, family="binomial")
 anova(model_eff, model_noeff)
 
+#
 #Do exp and trial interact? That is, is the different between exp different later in the exp? Do they diverge? Yes!
-
+#
 model_inter <- NULL
 model_nointer <- NULL
 model_tonly <- NULL
