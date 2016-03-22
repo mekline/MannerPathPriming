@@ -1,9 +1,11 @@
-function [] = WriteResultFile(infoVector)
+function howmany = WriteResultFile(infoVector)
 
 %A simpler function that writes out whatever you give it, with commas
 %between!  It makes sure everything is a char before sending it along.
 
 global parameters
+
+howmany = length(infoVector);
 
 
 stringOut = '';

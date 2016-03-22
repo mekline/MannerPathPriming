@@ -8,7 +8,7 @@ global parameters
 
 try
     % Read WAV file from filesystem:
-    [y, freq, nbits] = wavread(soundclip);
+    [y, freq] = audioread(soundclip);
     wavedata = y';
     nrchannels = size(wavedata,1); % Number of rows == number of channels.
 
@@ -35,8 +35,9 @@ try
 
 
 catch
-    error('Cannot read sound file %s', soundclip);
     rethrow(psychlasterror);
+    error('Cannot read sound file %s', soundclip);
+    
 end
 
 end
