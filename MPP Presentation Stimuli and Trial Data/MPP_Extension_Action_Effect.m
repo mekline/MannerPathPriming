@@ -33,6 +33,7 @@ global parameters
 
 parameters.datafilepointer = AssignDataFile('MannerPathPriming',subNo);
 
+todebug = 1; %For testing a short version of the expeirment during dev.
 try
     
     %%%%%%%%%%%%%%%%%%%%%%
@@ -277,36 +278,43 @@ try
     expStart = GetSecs;
     
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-        
-    Play_Sound('Audio/Finished/aa_motivation/getready.wav', 'toBlock');
-    Show_Blank();
     
-    starImageStartExt = 'stars/longstars.001.jpeg';
-    imageArray = imread(starImageStartExt);
-    
-    rect = parameters.scr.rect;
-   
-    winPtr = parameters.scr.winPtr;
-    
-    Screen('PutImage', winPtr , imageArray, rect );
-    
-    Screen('flip',winPtr);
-    Take_Response();
-    Show_Blank;
+    if(not(toDebug))
+        Play_Sound('Audio/Finished/aa_motivation/getready.wav', 'toBlock');
+        Show_Blank();
+
+        starImageStartExt = 'stars/longstars.001.jpeg';
+        imageArray = imread(starImageStartExt);
+
+        rect = parameters.scr.rect;
+
+        winPtr = parameters.scr.winPtr;
+
+        Screen('PutImage', winPtr , imageArray, rect );
+
+        Screen('flip',winPtr);
+        Take_Response();
+        Show_Blank;
+    end
       
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     % 2 TRIALS OF NOUN TRAINING
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     
-    forExtension_Noun_Training();
+    if(not(toDebug)
+        forExtension_Noun_Training();
+    end
     
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     % Trial Setup
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     
     % How many trials?
-    ntrials = length(parameters.pBiasV);
-    %ntrials = 1; %For the skeleton, play some short sample trials!
+    if(todebug)
+        ntrials = 2;
+    else
+        ntrials = length(parameters.pBiasV);
+    end
     
     Text_Show('Ready? Press space to watch the movies.');
     Take_Response();

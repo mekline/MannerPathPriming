@@ -1,4 +1,4 @@
-function MPP(subNo, condition, willextend, runmode)
+function MPP(subNo, condition, extendcondition)
 
 %Code based on sign meaning experiment, Feb 2014
 %                         
@@ -6,7 +6,7 @@ function MPP(subNo, condition, willextend, runmode)
 %99 is for testing; data overwrite will not be checked.
 %
 %
-%condition, one of 6 set lists of items, specify 1-6
+%Old condition numbering for reference!
 % 1= MannerOfMotionCondition (agentive manners)
 % 2= MannerOfMotionCondition_Instrumental
 % 3= PathCondition (agentive manners)
@@ -17,42 +17,55 @@ function MPP(subNo, condition, willextend, runmode)
 % Use mode parameter to specify we want to run a pilot version with
 % just 2 trials (of reg & extension, if it's extension, and no noun training!
 
-%Add paths to subfolders in case matlab can't find them...
-addpath('HelperFunctions', 'finalMovies', 'stars')
+todebug = 1; %debuuuuug
 
-%Set up mode
-switch nargin
-    case 4
-        %parameters set, move on
-    case 3
-        runmode = 'exp'; %It's a normal participant!
-    case 2
-        runmode = 'exp';
-        willextend = 'NoExtend'; 
-    otherwise
-        error('Not enough parameters!!');
+
+assert(nargin > 1, 'Require Subno, Condition, optionally extension condition')
+if(nargin == 2)
+    extendcondition = 'NoExtend';
 end
 
 
-%Did we get a condition number or a string?
+Conditions = {'Manner', 'Path', 'Action', 'Effect'};
+knownCond = strfind(Conditions, condition);
+k = logical(sum(~cellfun(@isempty, knownCond)))
+class(k)
+assert(k, 'Use Manner Path Action or Effect for main exp')
+
+ExtConditions = {'Manner', 'Path', 'Action', 'Effect', 'NoExtend'};
+knownCond = strfind(ExtConditions, extendcondition);
+k = logical(sum(~cellfun(@isempty, knownCond)))
+class(k)
+assert(k, 'Use NoExtend Manner Path Action or Effect for the extension')
+
+
+
+
+
+%There's some math to get the right videos out of the video spreadsheet
+%(MPP_videos.csv)
 %Convert named convenience parameters to numbers!
+%Note: paths 2 and 4 are for the 'instrumental' paths that we aren't using
 if ischar(condition)
     switch condition
         case 'Manner'
-            condition = 1;
+            conditionno = 1;
         case 'Path'
-            condition = 3;
-        otherwise
-            error ('You cannot use that condition here yet, use MPP_Extension_Manner_Path or _Means_Effect for now!')
+            conditionno = 3;
+        case 'Action'
+            conditionno = 6;
+        case 'Effect'
+            conditionno = 5; %(yes #s reversed)
     end
 end
+
+%Add paths to subfolders in case matlab can't find them...
+addpath('HelperFunctions', 'finalMovies', 'stars');
 
 %object that stores all exp/session values
 global parameters
 
 parameters.datafilepointer = AssignDataFile('MannerPathPriming',subNo);
-
-
 
 try
 
@@ -72,22 +85,20 @@ try
     parameters.z_press=KbName('z');
     parameters.c_press=KbName('c');
     parameters.w_press=KbName('w');
-    parameters.p_press=KbName('p');
-    
+    parameters.p_press=KbName('p');    
     RestrictKeysForKbCheck([parameters.space parameters.z_press parameters.c_press parameters.space2 parameters.p_press parameters.w_press]);
     
-    % Sets specific values for this participant
     parameters.subNo = subNo;
     
     %Read the file into matlab
-    vidNames = read_mixed_csv('MPP.csv',',')
+    vidNames = read_mixed_csv('MPP_videos.csv',',')
     
-    %Routine to pick the specified signList (algebra to get us the right rows)
-    start_Index = (8*condition)-6;
-    end_Index = (8*condition)+1;
+    %Routine to pick the specified signList (algebra gets us the right rows)
+    start_Index = (8*conditionno)-6;
+    end_Index = (8*conditionno)+1;
     
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    %     %Turn list into vectors of variables
+    %     %Turn list into vectors of variables (this sure is messy!)
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     parameters.Experiment = vidNames(start_Index:end_Index, 2);
     parameters.amyFileName = vidNames(start_Index:end_Index, 3);
@@ -267,28 +278,30 @@ try
     expStart = GetSecs;
     
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-        
-    Play_Sound('Audio/Finished/aa_motivation/getready.wav', 'toBlock');
-    Show_Blank();
-    
-    starImageStart = 'stars/stars.001.jpg';
-    imageArray = imread(starImageStart);
-    
-    rect = parameters.scr.rect;
-   
-    winPtr = parameters.scr.winPtr;
-    
-    Screen('PutImage', winPtr , imageArray, rect );
-    
-    Screen('flip',winPtr);
-    Take_Response();
-    Show_Blank;
+       
+    if ~todebug
+        Play_Sound('Audio/Finished/aa_motivation/getready.wav', 'toBlock');
+        Show_Blank();
+
+        starImageStart = 'stars/stars.001.jpg';
+        imageArray = imread(starImageStart);
+
+        rect = parameters.scr.rect;
+
+        winPtr = parameters.scr.winPtr;
+
+        Screen('PutImage', winPtr , imageArray, rect );
+
+        Screen('flip',winPtr);
+        Take_Response();
+        Show_Blank;
+    end
       
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     % 2 TRIALS OF NOUN TRAINING
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     
-    if strcmp(runmode, 'exp')
+    if ~todebug
         MPP_Noun_Training();
     else
         parameters.noun1TestAns = 'pilot';
@@ -300,7 +313,7 @@ try
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     
     % How many trials?
-    if strcmp(runmode, 'exp')
+    if ~todebug
         ntrials = length(parameters.pBiasV);
     else
         ntrials = 2; %For the skeleton, play some short sample trials!
@@ -316,10 +329,10 @@ try
         %Trials have slightly different structure if they will be followed
         %by extension trials (different star arrays - TOFIX this should
         %just be parameters to one method...)
-        if strcmp(willextend, 'Extend')
-            Trial_MP_toExtend(i);
-        else
+        if strcmp(extendcondition, 'NoExtend')
             Trial_MP_noExtend(i);
+        else
+            Trial_MP_toExtend(i);
         end
         
         expEnd = GetSecs;
