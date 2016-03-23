@@ -68,7 +68,7 @@ global parameters
         PlayCenterMovie(movietoplay_ambigVid);
         
         imageArray = imread(greySquare);
-        rect =  parameters.centerbox
+        rect =  parameters.centerbox;
         winPtr = parameters.scr.winPtr;   
         Screen('PutImage', winPtr , imageArray, rect );    
         Screen('flip',winPtr)

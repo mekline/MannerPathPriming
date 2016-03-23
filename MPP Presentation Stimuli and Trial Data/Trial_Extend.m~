@@ -41,7 +41,7 @@ trialNo = trialNo - parameters.ntrials;
 % STAR IMAGES
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    
 
-    starImage = parameters.extStars(trialNo); 
+    starImage = parameters.extStars(trialNo); %the actual trial no, don't lose the Main star counts!!
     greySquare = 'stars/grey.jpg';
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -53,7 +53,7 @@ trialNo = trialNo - parameters.ntrials;
         Play_Sound(soundtoplay_ambigAudioFuture{1}, 'toBlock');
     
         PlayCenterMovie(movietoplay_ambigVid{1});
-        if strmatch(parameters.extcondition, {'Action', 'Effect'}) %these ones need a mask in between or they look super weird!
+        if strmatch(parameters.condition, {'Action', 'Effect'}) %these ones need a mask in between or they look super weird!
             imageArray = imread(greySquare);
             rect =  parameters.centerbox;
             winPtr = parameters.scr.winPtr;   
@@ -88,13 +88,11 @@ trialNo = trialNo - parameters.ntrials;
     Play_Sound(soundtoplay_whichOne{1}, 'toBlock');
     extItems.biasTestAns{trialNo} = Take_Response();
     Show_Blank();
-    
-    %Fill in values for the rest of this item...
-    extItems.
   
 %%%%%%%%%%%%%%%%%%%%%%
 % SHOW A NICE REWARD PICTURE
 %%%%%%%%%%%%%%%%%%%%%%
+    starImage
     imageArray=imread(char(starImage));
     rect = parameters.scr.rect;
     winPtr = parameters.scr.winPtr;   

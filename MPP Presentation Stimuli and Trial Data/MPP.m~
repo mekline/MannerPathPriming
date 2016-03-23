@@ -17,10 +17,7 @@ function MPP(subNo, condition, extendcondition)
 % Use mode parameter to specify we want to run a pilot version with
 % just 2 trials (of reg & extension, if it's extension, and no noun training!
 
-global parameters 
-
 todebug = 1; %debuuuuug
-parameters.nowrite = 1; %Avoid trying to write files during debugging, that ususally doesn't work!
 
 assert(nargin > 1, 'Require Subno, Condition, optionally extension condition')
 if(nargin == 2)
@@ -63,12 +60,13 @@ end
 %Add paths to subfolders in case matlab can't find them...
 addpath('HelperFunctions', 'finalMovies', 'stars');
 
-%parameters object stores exp session values
+%object that stores exp session values
+global parameters 
 parameters.datafilepointer = AssignDataFile('MannerPathPriming',subNo);
 parameters.condition = condition;
 parameters.extendcondition = extendcondition;
 
-global mainItems extItems %and these ones store trial values
+global mainItems extItems
 
 try
 
@@ -118,7 +116,7 @@ try
         myStars(1,:) = strcat('stars/',myStars(1,:));
         parameters.nounStars = myStars(1,1:3);
         parameters.mainStars = myStars(1,4:11);
-        parameters.extStars = myStars(1,12:19);
+        parameters.extStars = myStars(1:19);
     else
         myStars = dir('stars/stars*.jpg');
         myStars = struct2cell(myStars);

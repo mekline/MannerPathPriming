@@ -4,7 +4,9 @@ function Write_Trial_to_File(i,Items)
 
 global parameters
 
-if i==0 %Header!
+if parameters.nowrite
+    return;
+elseif i==0 %Header!
     WriteResultFile({'SubjectNo',...
         'Date',...
         'Time',...
