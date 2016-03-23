@@ -17,7 +17,7 @@ function MPP(subNo, condition, extendcondition)
 % Use mode parameter to specify we want to run a pilot version with
 % just 2 trials (of reg & extension, if it's extension, and no noun training!
 
-todebug = 0; %debuuuuug
+todebug = 1; %debuuuuug
 
 assert(nargin > 1, 'Require Subno, Condition, optionally extension condition')
 if(nargin == 2)
@@ -110,13 +110,15 @@ try
     %Add the star pictures _in order!!!_
     if toExtend
         myStars = dir('stars/longstars*.jpeg');
-        myStars = struct2cell(myStars);   
+        myStars = struct2cell(myStars);  
+        myStars(1,:) = strcat('stars/',myStars(1,:));
         parameters.nounStars = myStars(1,1:3);
         parameters.mainStars = myStars(1,4:11);
         parameters.extStars = myStars(1:19);
     else
         myStars = dir('stars/stars*.jpg');
         myStars = struct2cell(myStars);
+        myStars(1,:) = strcat('stars/',myStars(1,:));
         parameters.nounStars = myStars(1,1:3);
         parameters.mainStars = myStars(1,4:11);
     end
@@ -132,68 +134,28 @@ try
     screenside = ['LR';'LR';'LR';'LR';'RL';'RL';'RL';'RL'];
     
     screenside = screenside(randperm(8),:);
-    parameters.mainBiasManner = screenside(:,1);
-    parameters.mainBiasPath = screenside(:,2);
+    mainItems.BiasManner = screenside(:,1);
+    mainItems.BiasPath = screenside(:,2);
     
     screenside = screenside(randperm(8),:);
-    parameters.mainTestManner = screenside(:,1);
-    parameters.mainTestPath = screenside(:,2);
+    mainItems.TestManner = screenside(:,1);
+    mainItems.TestPath = screenside(:,2);
     
     if toExtend
         screenside = screenside(randperm(8),:);
-        parameters.extBiasManner = screenside(:,1);
-        parameters.extBiasPath = screenside(:,2);
+        extItems.BiasManner = screenside(:,1);
+        extItems.BiasPath = screenside(:,2);
         
         screenside = screenside(randperm(8),:);
-        parameters.extTestManner = screenside(:,1);
-        parameters.extTestPath = screenside(:,2);
+        extItems.TestManner = screenside(:,1);
+        extItems.TestPath = screenside(:,2);
     end
     
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     
     %Save a header file to the data file so it will be easier to read!
-    WriteResultFile({'SubjectNo',...
-        'Date',...
-        'Time',...
-        'Experiment',...
-        'trialNo',...
-        'itemID',...
-        'verbName',...
-        'verbMeaning',...
-        'mannerSideBias',...
-        'pathSideBias',...
-        'kidResponseBias',...
-        'mannerSideTest',...
-        'pathSideTest',...
-        'kidResponseTest',...
-        'noun1Test',...
-        'noun2Test',...
-        'totalTime',...
-        'xxxxxxxxx',...
-        'expStartTime',...
-        'trainingStartTime',...
-        'trainingEndTime',...
-        'finalTestStart',...
-        'finalTestEnd',...
-        'ambigVid',...
-        'mBiasVid',...
-        'pBiasVid',...
-        'trainVid1',...
-        'trainVid2',...
-        'trainVid3',...
-        'mTestVid',...
-        'pTestVid',...
-        'ambigAudioFuture',...
-        'ambigAudioPast',...
-        'trainAudioFuture1',...
-        'trainAudioPast1',...
-        'trainAudioFuture2',...
-        'trainAudioPast2',...
-        'trainAudioFuture3',...
-        'trainAudioPast3',...
-        'whichOneAudio',...
-        'letsFindAudio'});
+    Write_Trial_to_File(0);
     %%%%%%%%%%%%%%%%%%%%%
     % EXPERIMENT STARTS HERE
     %%%%%%%%%%%%%%%%%%%%%
@@ -212,7 +174,8 @@ try
     if ~todebug
         Play_Sound('Audio/Finished/aa_motivation/getready.wav', 'toBlock');
         Show_Blank();
-        starImageStart = parameters.nounStars(1);
+        
+        starImageStart = parameters.nounStars{1}
         
         imageArray = imread(starImageStart);
         rect = parameters.scr.rect;
@@ -251,15 +214,7 @@ try
     %And actually play the trials! Data is saved on each round to allow for
     %partial data collection
     for i=1:ntrials
-        
-        %Trials have slightly different structure if they will be followed
-        %by extension trials (different star arrays - TOFIX this should
-        %just be parameters to one method...)
-        if strcmp(extendcondition, 'NoExtend')
-            Trial_MP_noExtend(i);
-        else
-            Trial_MP_toExtend(i);
-        end
+        Trial_Main(i)
         
         expEnd = GetSecs;
         parameters.totalTime = expEnd - parameters.expStart;
@@ -268,7 +223,7 @@ try
         % Write result file
         %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
         
-        %Write_Trial_to_File(i)
+        Write_Trial_to_File(i, mainItems);
 
     end
         

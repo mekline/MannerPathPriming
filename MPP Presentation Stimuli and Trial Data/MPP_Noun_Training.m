@@ -33,7 +33,7 @@ global parameters
        
         Show_Blank;
 
-        starimagenoun1 = parameters.nounStars(2);
+        starimagenoun1 = parameters.nounStars{2};
 
         imageArray = imread(starimagenoun1);
         rect = parameters.scr.rect;
@@ -68,7 +68,7 @@ global parameters
         parameters.noun2TestAns = Take_Response();
         Show_Blank;
 
-        starimagenoun2 = parameters.nounStars(3);
+        starimagenoun2 = parameters.nounStars{3};
         imageArray = imread(starimagenoun2);
         rect = parameters.scr.rect;
         winPtr = parameters.scr.winPtr;
