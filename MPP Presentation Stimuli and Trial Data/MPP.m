@@ -209,7 +209,7 @@ try
     
     % How many trials?
     if ~todebug
-        parameters.ntrials = length(parameters.pBiasV);
+        parameters.ntrials = height(mainItems);
     else
         parameters.ntrials = 2; %For the skeleton, play some short sample trials!
     end
