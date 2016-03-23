@@ -19,8 +19,8 @@ function MPP(subNo, condition, extendcondition)
 
 global parameters 
 
-todebug = 1; %debuuuuug
-parameters.nowrite = 0; %1=Avoid trying to write files during debugging cause that ususally doesn't work!
+todebug = 0; %debuuuuug
+parameters.nowrite = 0; %1=Optionally avoid trying to write files during debugging cause that ususally doesn't work!
 
 assert(nargin > 1, 'Require Subno, Condition, optionally extension condition')
 if(nargin == 2)
