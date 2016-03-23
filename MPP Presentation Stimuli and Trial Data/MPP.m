@@ -20,7 +20,7 @@ function MPP(subNo, condition, extendcondition)
 global parameters 
 
 todebug = 1; %debuuuuug
-parameters.nowrite = 1; %Avoid trying to write files during debugging, that ususally doesn't work!
+parameters.nowrite = 0; %1=Avoid trying to write files during debugging cause that ususally doesn't work!
 
 assert(nargin > 1, 'Require Subno, Condition, optionally extension condition')
 if(nargin == 2)
@@ -99,8 +99,10 @@ try
     mainItems = vidInfo(vidInfo.List == conditionno,:);
     if toExtend %Assign the other-domain set! Since we don't do any learning, arbitrarily get Manner or Action
         if(conditionno == 1 |conditionno == 3) %Start with MannerPath, move to Action
+            parameters.extendcondition = 'Action';
             extItems = vidInfo(vidInfo.List == 6,:);
         elseif (conditionno == 5 |conditionno == 6) %Start with ActionEffect, move to Manner
+            parameters.extendcondition = 'Manner';
             extItems = vidInfo(vidInfo.List == 1,:);
         end
     end

@@ -97,89 +97,89 @@ global parameters mainItems
     mainItems.biasTestAns{trialNo} = Take_Response();
     Show_Blank();
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 3 TRAINING VIDEOS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+    Play_Sound(soundtoplay_letsWatchMore, 'toBlock');
+    Text_Show('Ready to learn some verbs? Press space.');
+    Take_Response();
+    Show_Blank;
+
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% % 3 TRAINING VIDEOS
+% % 111111111111111111111111111111111111111111111111111111111111111111111111
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% 
-%     Play_Sound(soundtoplay_letsWatchMore, 'toBlock');
-%     Text_Show('Ready to learn some verbs? Press space.');
-%     Take_Response();
-%     Show_Blank;
-% 
-% % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% % % 111111111111111111111111111111111111111111111111111111111111111111111111
-% % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% 
-%     mainItems.trainStart(trialNo) = GetSecs;
-% 
-%     Play_Sound(soundtoplay_trainAudioFuture1{1}, 'toBlock');
-% 
-%     PlayCenterMovie(movietoplay_trainV1{1}); 
-%     if strmatch(parameters.condition, {'Action', 'Effect'}) %these ones need a mask in between or they look super weird!
-%         imageArray = imread(greySquare);
-%         rect =  parameters.centerbox;
-%         winPtr = parameters.scr.winPtr;   
-%         Screen('PutImage', winPtr , imageArray, rect );    
-%         Screen('flip',winPtr)
-%         WaitSecs(0.500);
-%     end
-%     PlayCenterMovie(movietoplay_trainV1{1});
-%     Show_Blank;
-% 
-%     Play_Sound(soundtoplay_trainAudioPast1{1}, 'toBlock');
-% 
-%     WaitSecs(1.500);
-%     
-% % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% % % 2222222222222222222222222222222222222222222222222222222222222222222222222
-% % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% 
-%     Play_Sound(soundtoplay_trainAudioFuture2{1}, 'toBlock');
-%     
-%     PlayCenterMovie(movietoplay_trainV2{1});
-%     if strmatch(parameters.condition, {'Action', 'Effect'}) %these ones need a mask in between or they look super weird!
-%         imageArray = imread(greySquare);
-%         rect =  parameters.centerbox;
-%         winPtr = parameters.scr.winPtr;   
-%         Screen('PutImage', winPtr , imageArray, rect );    
-%         Screen('flip',winPtr)
-%         WaitSecs(0.500);
-%     end
-%     PlayCenterMovie(movietoplay_trainV2{1});
-%     Show_Blank;
-% 
-%     Play_Sound(soundtoplay_trainAudioPast2{1}, 'toBlock');
-% 
-%     WaitSecs(1.500);
-%     
-% % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% % % 333333333333333333333333333333333333333333333333333333333333333333333333%
-% % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% 
-%     Play_Sound(soundtoplay_trainAudioFuture3{1}, 'toBlock');
-% 
-%     PlayCenterMovie(movietoplay_trainV3{1});
-%     if strmatch(parameters.condition, {'Action', 'Effect'}) %these ones need a mask in between or they look super weird!
-%         imageArray = imread(greySquare);
-%         rect =  parameters.centerbox;
-%         winPtr = parameters.scr.winPtr;   
-%         Screen('PutImage', winPtr , imageArray, rect );    
-%         Screen('flip',winPtr)
-%         WaitSecs(0.500);
-%     end
-%     PlayCenterMovie(movietoplay_trainV3{1});
-%     Show_Blank;
-% 
-%     Play_Sound(soundtoplay_trainAudioPast3{1}, 'toBlock');
-% 
-%     mainItems.trainEnd(trialNo) = GetSecs;
-%    
-%     WaitSecs(1.500);
-%     Show_Blank;
-% 
+
+    mainItems.trainStart(trialNo) = GetSecs;
+
+    Play_Sound(soundtoplay_trainAudioFuture1{1}, 'toBlock');
+
+    PlayCenterMovie(movietoplay_trainV1{1}); 
+    if strmatch(parameters.condition, {'Action', 'Effect'}) %these ones need a mask in between or they look super weird!
+        imageArray = imread(greySquare);
+        rect =  parameters.centerbox;
+        winPtr = parameters.scr.winPtr;   
+        Screen('PutImage', winPtr , imageArray, rect );    
+        Screen('flip',winPtr)
+        WaitSecs(0.500);
+    end
+    PlayCenterMovie(movietoplay_trainV1{1});
+    Show_Blank;
+
+    Play_Sound(soundtoplay_trainAudioPast1{1}, 'toBlock');
+
+    WaitSecs(1.500);
+    
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% % READY FOR THE TEST?
+% % 2222222222222222222222222222222222222222222222222222222222222222222222222
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+    Play_Sound(soundtoplay_trainAudioFuture2{1}, 'toBlock');
+    
+    PlayCenterMovie(movietoplay_trainV2{1});
+    if strmatch(parameters.condition, {'Action', 'Effect'}) %these ones need a mask in between or they look super weird!
+        imageArray = imread(greySquare);
+        rect =  parameters.centerbox;
+        winPtr = parameters.scr.winPtr;   
+        Screen('PutImage', winPtr , imageArray, rect );    
+        Screen('flip',winPtr)
+        WaitSecs(0.500);
+    end
+    PlayCenterMovie(movietoplay_trainV2{1});
+    Show_Blank;
+
+    Play_Sound(soundtoplay_trainAudioPast2{1}, 'toBlock');
+
+    WaitSecs(1.500);
+    
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% % 333333333333333333333333333333333333333333333333333333333333333333333333%
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+    Play_Sound(soundtoplay_trainAudioFuture3{1}, 'toBlock');
+
+    PlayCenterMovie(movietoplay_trainV3{1});
+    if strmatch(parameters.condition, {'Action', 'Effect'}) %these ones need a mask in between or they look super weird!
+        imageArray = imread(greySquare);
+        rect =  parameters.centerbox;
+        winPtr = parameters.scr.winPtr;   
+        Screen('PutImage', winPtr , imageArray, rect );    
+        Screen('flip',winPtr)
+        WaitSecs(0.500);
+    end
+    PlayCenterMovie(movietoplay_trainV3{1});
+    Show_Blank;
+
+    Play_Sound(soundtoplay_trainAudioPast3{1}, 'toBlock');
+
+    mainItems.trainEnd(trialNo) = GetSecs;
+   
+    WaitSecs(1.500);
+    Show_Blank;
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% READY FOR THE TEST?
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
     Text_Show('Ready for the test? Press space.');
     Take_Response();

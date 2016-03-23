@@ -53,7 +53,7 @@ trialNo = trialNo - parameters.ntrials;
         Play_Sound(soundtoplay_ambigAudioFuture{1}, 'toBlock');
     
         PlayCenterMovie(movietoplay_ambigVid{1});
-        if strmatch(parameters.extcondition, {'Action', 'Effect'}) %these ones need a mask in between or they look super weird!
+        if strmatch(parameters.extendcondition, {'Action'}) %need a mask in between or they look super weird!
             imageArray = imread(greySquare);
             rect =  parameters.centerbox;
             winPtr = parameters.scr.winPtr;   
@@ -90,7 +90,7 @@ trialNo = trialNo - parameters.ntrials;
     Show_Blank();
     
     %Fill in values for the rest of this item...
-    extItems.
+    extItems.finalTestEnd(trialNo) = GetSecs;
   
 %%%%%%%%%%%%%%%%%%%%%%
 % SHOW A NICE REWARD PICTURE
