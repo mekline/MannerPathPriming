@@ -17,8 +17,7 @@ function MPP(subNo, condition, extendcondition)
 % Use mode parameter to specify we want to run a pilot version with
 % just 2 trials (of reg & extension, if it's extension, and no noun training!
 
-todebug = 1; %debuuuuug
-
+todebug = 0; %debuuuuug
 
 assert(nargin > 1, 'Require Subno, Condition, optionally extension condition')
 if(nargin == 2)
@@ -28,48 +27,47 @@ end
 
 Conditions = {'Manner', 'Path', 'Action', 'Effect'};
 knownCond = strfind(Conditions, condition);
-k = logical(sum(~cellfun(@isempty, knownCond)))
-class(k)
+k = logical(sum(~cellfun(@isempty, knownCond)));
 assert(k, 'Use Manner Path Action or Effect for main exp')
 
 ExtConditions = {'Motion', 'CoS', 'NoExtend'};
 knownCond = strfind(ExtConditions, extendcondition);
-k = logical(sum(~cellfun(@isempty, knownCond)))
-class(k)
+k = logical(sum(~cellfun(@isempty, knownCond)));
 assert(k, 'Use NoExtend Motion or CoS (change of state) for the extension')
 
 
 
+%Some numeric versions of condition names for indexing into tables...
 
+switch condition
+    case 'Manner'
+        conditionno = 1;
+    case 'Path'
+        conditionno = 3;
+    case 'Action'
+        conditionno = 6;
+    case 'Effect'
+        conditionno = 5; %(yes #s reversed between domains for now)
+end
 
-%There's some math to get the right videos out of the video spreadsheet
-%(MPP_videos.csv)
-%Convert named convenience parameters to numbers!
-%Note: paths 2 and 4 are for the 'instrumental' paths that we aren't using
-if ischar(condition)
-    switch condition
-        case 'Manner'
-            conditionno = 7;
-        case 'Path'
-            conditionno = 8;
-        case 'Action'
-            conditionno = 10;
-        case 'Effect'
-            conditionno = 9; %(yes #s reversed between domains)
-    end
+switch extendcondition
+    case 'NoExtend'
+        toExtend = 0;
+    otherwise
+        toExtend = 1;
 end
 
 %Add paths to subfolders in case matlab can't find them...
 addpath('HelperFunctions', 'finalMovies', 'stars');
 
-%object that stores all exp/session values
-global parameters
-
+%object that stores exp session values
+global parameters 
 parameters.datafilepointer = AssignDataFile('MannerPathPriming',subNo);
+
+global mainItems extItems
 
 try
 
-    
     %%%%%%%%%%%%%%%%%%%%%%
     % Parameter Setting
     %%%%%%%%%%%%%%%%%%%%%%
@@ -90,181 +88,112 @@ try
     
     parameters.subNo = subNo;
     
-    %Read the file into matlab
-    vidNames = read_mixed_csv('MPP_videos.csv',',')
+    %%%%%%%%%%%%%%%%%%
+    %NEW FILEREAD PROCEDURE STARTS HERE, WISH ME LUCK
     
-    %Routine to pick the specified signList (algebra gets us the right rows)
-    start_Index = (8*conditionno)-6;
-    end_Index = (8*conditionno)+1;
+    vidInfo = readtable('MPP_videos.csv');
+    mainItems = vidInfo(vidInfo.List == conditionno,:);
+    if toExtend %Assign the other-domain set! Since we don't do any learning, arbitrarily get Manner or Action
+        if(conditionno == 1 |conditionno == 3) %Start with MannerPath, move to Action
+            extItems = vidInfo(vidInfo.List == 6,:);
+        elseif (conditionno == 5 |conditionno == 6) %Start with ActionEffect, move to Manner
+            extItems = vidInfo(vidInfo.List == 1,:);
+        end
+    end
     
-    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    %     %Turn list into vectors of variables (this sure is messy!)
-    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    parameters.Experiment = vidNames(start_Index:end_Index, 2);
-    parameters.amyFileName = vidNames(start_Index:end_Index, 3);
-    parameters.itemID = vidNames(start_Index:end_Index, 4);
-    parameters.eventType = vidNames(start_Index:end_Index, 5);
-    parameters.Condition = vidNames(start_Index:end_Index, 6);
-    parameters.Manner = vidNames(start_Index:end_Index, 7);
-    parameters.Path = vidNames(start_Index:end_Index, 8);
-    parameters.verbName = vidNames(start_Index:end_Index, 9);
-    parameters.verbMeaning = vidNames(start_Index:end_Index, 10);
-    parameters.ambigGoingTo = vidNames(start_Index:end_Index, 11);
-    parameters.ambigDidIt = vidNames(start_Index:end_Index, 12);
-    parameters.ambigV = vidNames(start_Index:end_Index, 13);
-    parameters.whichOne = vidNames(start_Index:end_Index, 14);
-    parameters.mBiasV = vidNames(start_Index:end_Index, 15); 
-    parameters.pBiasV = vidNames(start_Index:end_Index, 16);
-    parameters.trainS1GoingTo = vidNames(start_Index:end_Index, 17);
-    parameters.trainS1DidIt = vidNames(start_Index:end_Index, 18);
-    parameters.trainV1 = vidNames(start_Index:end_Index, 19);
-    parameters.trainS2GoingTo = vidNames(start_Index:end_Index, 20);
-    parameters.trainS2DidIt = vidNames(start_Index:end_Index, 21);
-    parameters.trainV2 = vidNames(start_Index:end_Index, 22);
-    parameters.trainS3GoingTo = vidNames(start_Index:end_Index, 23);
-    parameters.trainS3DidIt = vidNames(start_Index:end_Index, 24);
-    parameters.trainV3 = vidNames(start_Index:end_Index, 25);
-    parameters.mTestV = vidNames(start_Index:end_Index, 26);
-    parameters.pTestV = vidNames(start_Index:end_Index, 27);
-    parameters.ambigAudioFuture = vidNames(start_Index:end_Index, 28);
-    parameters.ambigAudioPast = vidNames(start_Index:end_Index, 29);
-    parameters.trainAudioFuture1 = vidNames(start_Index:end_Index, 30);
-    parameters.trainAudioPast1 = vidNames(start_Index:end_Index, 31);
-    parameters.trainAudioFuture2 = vidNames(start_Index:end_Index, 32);
-    parameters.trainAudioPast2 = vidNames(start_Index:end_Index, 33);
-    parameters.trainAudioFuture3 = vidNames(start_Index:end_Index, 34);
-    parameters.trainAudioPast3 = vidNames(start_Index:end_Index, 35);
-    parameters.whichOneAudio = vidNames(start_Index:end_Index, 36);
-    parameters.letsFindAudio = vidNames(start_Index:end_Index, 37);
-    parameters.starImage = vidNames(start_Index:end_Index, 38);
+    %Randomize the order of the items
+    mainItems = mainItems(randperm(height(mainItems)), :);
+    if toExtend
+        extItems = extItems(randperm(height(extItems)), :);
+    end
     
-    parameters.extPathEffect = vidNames(start_Index:end_Index, 40);
-    parameters.extVerbName = vidNames(start_Index:end_Index, 41);
-    parameters.extMannerMeans = vidNames(start_Index:end_Index, 42);
-    parameters.extBiasVid = vidNames(start_Index:end_Index, 43);
-    parameters.extAmbigAudioFuture =  vidNames(start_Index:end_Index, 44);
-    parameters.extAmbigAudioPast = vidNames(start_Index:end_Index, 45);
-    parameters.extTestMannerVid = vidNames(start_Index:end_Index, 46);
-    parameters.extTestPathVid = vidNames(start_Index:end_Index, 47);
-    parameters.extLetsFind = vidNames(start_Index:end_Index, 48);
-    parameters.extWhichOne = vidNames(start_Index:end_Index, 49);
-    parameters.extStarImage = vidNames(start_Index:end_Index, 50); 
+    %Add the star pictures _in order!!!_
+    if toExtend
+        myStars = dir('stars/longstars*.jpeg');
+        myStars = struct2cell(myStars);   
+        parameters.nounStars = myStars(1,1:3);
+        parameters.mainStars = myStars(1,4:11);
+        parameters.extStars = myStars(1:19);
+    else
+        myStars = dir('stars/stars*.jpg');
+        myStars = struct2cell(myStars);
+        parameters.nounStars = myStars(1,1:3);
+        parameters.mainStars = myStars(1,4:11);
+    end
     
-    parameters.biasTestAns = {};
-    parameters.finalTestAns = {};
+    %Randomize the side presentation of the items
+    %(Counterbalancing note: left video always plays first, assignment is
+    %to play either the M or P video first.  Remember that we use
+    %manner/path as the example case, you might be showing action/effect
+    %really...
     
-    parameters.extTestAns = {};
+    %verbose code for readable output!
+   
+    screenside = ['LR';'LR';'LR';'LR';'RL';'RL';'RL';'RL'];
     
-    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    % % % Now randomize everything (apply random order to all columns/objects)
-    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    screenside = screenside(randperm(8),:);
+    parameters.mainBiasManner = screenside(:,1);
+    parameters.mainBiasPath = screenside(:,2);
     
-    myRandOrder = randperm(8)
+    screenside = screenside(randperm(8),:);
+    parameters.mainTestManner = screenside(:,1);
+    parameters.mainTestPath = screenside(:,2);
     
-    parameters.Experiment = parameters.Experiment(myRandOrder)
-    parameters.amyFileName = parameters.amyFileName(myRandOrder)
-    parameters.itemID = parameters.itemID(myRandOrder)
-    parameters.eventType = parameters.eventType(myRandOrder)
-    parameters.Condition = parameters.Condition(myRandOrder)
-    parameters.Manner = parameters.Manner(myRandOrder)
-    parameters.Path = parameters.Path(myRandOrder)
-    parameters.verbName = parameters.verbName(myRandOrder)
-    parameters.verbMeaning = parameters.verbMeaning(myRandOrder)
-    parameters.ambigGoingTo = parameters.ambigGoingTo(myRandOrder)
-    parameters.ambigDidIt = parameters.ambigDidIt(myRandOrder)
-    parameters.ambigV = parameters.ambigV(myRandOrder)
-    parameters.whichOne = parameters.whichOne(myRandOrder)
-    parameters.mBiasV = parameters.mBiasV(myRandOrder)
-    parameters.pBiasV = parameters.pBiasV(myRandOrder)
-    parameters.trainS1GoingTo = parameters.trainS1GoingTo(myRandOrder)
-    parameters.trainS1DidIt = parameters.trainS1DidIt(myRandOrder)
-    parameters.trainV1 = parameters.trainV1(myRandOrder)
-    parameters.trainS2GoingTo = parameters.trainS2GoingTo(myRandOrder)
-    parameters.trainS2DidIt = parameters.trainS2DidIt(myRandOrder)
-    parameters.trainV2 = parameters.trainV2(myRandOrder)
-    parameters.trainS3GoingTo = parameters.trainS3GoingTo(myRandOrder)
-    parameters.trainS3DidIt = parameters.trainS3DidIt(myRandOrder)
-    parameters.trainV3 = parameters.trainV3(myRandOrder)
-    parameters.mTestV = parameters.mTestV(myRandOrder)
-    parameters.pTestV = parameters.pTestV(myRandOrder)
-    parameters.ambigAudioFuture = parameters.ambigAudioFuture(myRandOrder)
-    parameters.ambigAudioPast = parameters.ambigAudioPast(myRandOrder)
-    parameters.trainAudioFuture1 = parameters.trainAudioFuture1(myRandOrder)
-    parameters.trainAudioPast1 = parameters.trainAudioPast1(myRandOrder)
-    parameters.trainAudioFuture2 = parameters.trainAudioFuture2(myRandOrder)
-    parameters.trainAudioPast2 = parameters.trainAudioPast2(myRandOrder)
-    parameters.trainAudioFuture3 = parameters.trainAudioFuture3(myRandOrder)
-    parameters.trainAudioPast3 = parameters.trainAudioPast3(myRandOrder)
-    parameters.whichOneAudio = parameters.whichOneAudio(myRandOrder)
-    parameters.letsFindAudio = parameters.letsFindAudio(myRandOrder)
-    %don't randomize the stars!
+    if toExtend
+        screenside = screenside(randperm(8),:);
+        parameters.extBiasManner = screenside(:,1);
+        parameters.extBiasPath = screenside(:,2);
+        
+        screenside = screenside(randperm(8),:);
+        parameters.extTestManner = screenside(:,1);
+        parameters.extTestPath = screenside(:,2);
+    end
     
-    %%%%%%%%%%
-    % In addition to randomizing trial order, randomize side presentation
-    % of M and P at bias and test
-    %%%%%%%%%%
-    
-    %Randomize sides for target and distractor movies
-    parameters.LorR_bias = randi([0 1], length(start_Index:end_Index),1);
-    parameters.LorR_final = randi([0 1], length(start_Index:end_Index),1);
-    
-    %Make a more human-readable version actually
-    parameters.mannerSideBias(parameters.LorR_bias == 0) = 'R';
-    parameters.mannerSideBias(parameters.LorR_bias == 1) = 'L';
-    parameters.pathSideBias(parameters.LorR_bias == 0) = 'L';
-    parameters.pathSideBias(parameters.LorR_bias == 1) = 'R';
-    %annelot I found it? -mk 10/30 (was .LoR_bias before)
-    parameters.mannerSideFinal(parameters.LorR_final == 0) = 'L';
-    parameters.mannerSideFinal(parameters.LorR_final == 1) = 'R';
-    parameters.pathSideFinal(parameters.LorR_final == 0) = 'R';
-    parameters.pathSideFinal(parameters.LorR_final == 1) = 'L' ;
-
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     
     %Save a header file to the data file so it will be easier to read!
-%     WriteResultFile({'SubjectNo',...
-%         'Date',...
-%         'Time',...
-%         'Experiment',...
-%         'trialNo',...
-%         'itemID',...
-%         'verbName',...
-%         'verbMeaning',...
-%         'mannerSideBias',...
-%         'pathSideBias',...
-%         'kidResponseBias',...
-%         'mannerSideTest',...
-%         'pathSideTest',...
-%         'kidResponseTest',...
-%         'noun1Test',...
-%         'noun2Test',...
-%         'totalTime',...
-%         'xxxxxxxxx',...
-%         'expStartTime',...
-%         'trainingStartTime',...
-%         'trainingEndTime',...
-%         'finalTestStart',...
-%         'finalTestEnd',...
-%         'ambigVid',...
-%         'mBiasVid',...
-%         'pBiasVid',...
-%         'trainVid1',...
-%         'trainVid2',...
-%         'trainVid3',...
-%         'mTestVid',...
-%         'pTestVid',...
-%         'ambigAudioFuture',...
-%         'ambigAudioPast',...
-%         'trainAudioFuture1',...
-%         'trainAudioPast1',...
-%         'trainAudioFuture2',...
-%         'trainAudioPast2',...
-%         'trainAudioFuture3',...
-%         'trainAudioPast3',...
-%         'whichOneAudio',...
-%         'letsFindAudio'});
-    
+    WriteResultFile({'SubjectNo',...
+        'Date',...
+        'Time',...
+        'Experiment',...
+        'trialNo',...
+        'itemID',...
+        'verbName',...
+        'verbMeaning',...
+        'mannerSideBias',...
+        'pathSideBias',...
+        'kidResponseBias',...
+        'mannerSideTest',...
+        'pathSideTest',...
+        'kidResponseTest',...
+        'noun1Test',...
+        'noun2Test',...
+        'totalTime',...
+        'xxxxxxxxx',...
+        'expStartTime',...
+        'trainingStartTime',...
+        'trainingEndTime',...
+        'finalTestStart',...
+        'finalTestEnd',...
+        'ambigVid',...
+        'mBiasVid',...
+        'pBiasVid',...
+        'trainVid1',...
+        'trainVid2',...
+        'trainVid3',...
+        'mTestVid',...
+        'pTestVid',...
+        'ambigAudioFuture',...
+        'ambigAudioPast',...
+        'trainAudioFuture1',...
+        'trainAudioPast1',...
+        'trainAudioFuture2',...
+        'trainAudioPast2',...
+        'trainAudioFuture3',...
+        'trainAudioPast3',...
+        'whichOneAudio',...
+        'letsFindAudio'});
     %%%%%%%%%%%%%%%%%%%%%
     % EXPERIMENT STARTS HERE
     %%%%%%%%%%%%%%%%%%%%%
@@ -278,20 +207,17 @@ try
     parameters.expStart = GetSecs;
     
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-       
+    % GET READY....
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     if ~todebug
         Play_Sound('Audio/Finished/aa_motivation/getready.wav', 'toBlock');
         Show_Blank();
-
-        starImageStart = 'stars/stars.001.jpg';
+        starImageStart = parameters.nounStars(1);
+        
         imageArray = imread(starImageStart);
-
         rect = parameters.scr.rect;
-
         winPtr = parameters.scr.winPtr;
-
         Screen('PutImage', winPtr , imageArray, rect );
-
         Screen('flip',winPtr);
         Take_Response();
         Show_Blank;
@@ -316,7 +242,7 @@ try
     if ~todebug
         ntrials = length(parameters.pBiasV);
     else
-        ntrials = 7; %For the skeleton, play some short sample trials!
+        ntrials = 2; %For the skeleton, play some short sample trials!
     end
     
     Text_Show('Ready? Press space to watch the movies.');
