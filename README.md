@@ -1,5 +1,5 @@
-# MannerPathPriming
-
-Mostly matlab scripts at the moment, and lots of stimuli. Eventually we should point people directly to the stimsets and explanations, in addition to the scripts :)
-.
-.
+# MannerPriming
+        
+Mostly m scripts at the moment, and lots of stimuli. Eventually we should point people directly to the stimsets and explanations, in addition to the scripts :)
+.       
+.goats
