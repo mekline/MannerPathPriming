@@ -1,7 +1,7 @@
 #set directories; might need to change this on your comp!
 repodir = "/Users/mekline/Dropbox/_Projects/PrimingMannerPath/MannerPathPriming/"
 adir = paste(repodir, "Analysis/", sep="")
-ddir = paste(repodir, "MPP Presentation Stimuli and Trial data/data/" , sep="")
+ddir = paste(repodir, "MPP_Stim_and_Data/data/" , sep="")
 
 #name of info file
 nameMetaFile = paste(repodir,"MannerPath_data.csv",sep="")

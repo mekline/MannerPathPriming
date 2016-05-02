@@ -1,0 +1,10 @@
+4/20/2016
+
+Experiments planned
+MannerPath (replicates Shafto, Havasi & Snedeker with new stimuli) - On pause, 32 subj)
+MannerPath-Extend
+ActionEffect-Extend (underway)
+
+Currently, MannerPath has been conducted with the planned number of participants, 32 (16 per cell). This was chosen because it was near the Experiment 3 numbers, and to see if we’d have enough power to avoid larger samples. We don’t: in the original study there was about a 35% difference between conditions on the critical bias measure; in our sample so far the percentage is 17%. 
+
+Thus, to set our n for MannerPath-Extend and ActionEffect-Extend, I will conduct A POWER ANALYSIS. 
