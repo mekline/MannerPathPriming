@@ -66,11 +66,14 @@ for (file in files) {
 
         #get info for current participant
         pData = try(participantData[participantData$Participant.. == trialData$SubjectNo[1],])
-    
+        pData$SubjectNo = pData$Participant..
         #Build out the rows for this participant
         
+        myData = left_join(trialData, pData, by="SubjectNo")
+        print(length(names(myData)))
+        
         #Add these rows to the giant data frame
-        allData <- bind_rows(pData, allData)
+        allData <- bind_rows(myData, allData)
       } else {
         isError = TRUE
       }
@@ -83,6 +86,28 @@ for (file in files) {
   }
 
 } 
+
+#It's a great big data frame! Begin by dropping columns that we don't need for analysis
+colToSave = c("SubjectNo","VerbDomain","Condition.x","trialNo","itemID",
+              "verbName","verbMeaning","mannerSideBias","pathSideBias",
+              "kidResponseBias","mannerSideTest","pathSideTest",
+              "kidResponseTest","Experiment","Verb.Condition",
+              "Video.File","Video.Release","Gender","Days.Old",
+              "Age.Years","Age.Months","Inclusion.Decision",
+              "Exclude.Reason","Experiment.Group","Has.video.release.",
+              "Condition.y","Experiment.x","Experiment.y","Condition",
+              "extAnswer","extPathEffect","extVerbName","extMannerMeans",
+              "extMannerSide","extPathSide")
+
+allData = select(allData, one_of(colToSave))
+
+#A tremendous amount of column renaming to bring everything
+#into alignment. 
+
+
+
+
+
 
 
 
