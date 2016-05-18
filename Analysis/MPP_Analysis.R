@@ -9,6 +9,9 @@
 # Just for super awesome fun times, subjects before #77 in AE-Extend have a variety of 
 # slightly different matlab outputs, and some of them only have AE data but no extension.
 # Hence data cleaning/reformatting is...a bit messy.  
+#
+# See #TODO for unfinished places
+# See line 140ish for analysis
 
 ######
 # LIBRARIES, FILES, DIRECTORIES
@@ -16,17 +19,19 @@
 
 library(dplyr)
 library(tidyr)
+library(ggplot2)
+library(lme4)
 rm(list=ls()) #Clear any lingering variables
 
 
-#Set directories; you might need to change this on your computer!
+#Set directories; might need to change this on your computer!
 repodir = "/Users/mekline/Dropbox/_Projects/PrimingMannerPath/MannerPathPriming/"
 adir = paste(repodir, "Analysis/", sep="")
 ddir = paste(repodir, "MPP_Stim_and_Data/Data/" , sep="")
 setwd(repodir)
 
 pFile = paste(repodir,"MannerPath_Data.csv",sep="") #get files ready...
-files = list.files(ddir, pattern = ".dat$") #get all .dat files in the directory
+files = list.files(ddir, pattern = ".dat$") #all .dat files in data directory
 error_files = list() #create an empty error list
 participantData = read.csv(pFile, sep = ",", header = T) #load the info data file
 
@@ -34,7 +39,8 @@ participantData = read.csv(pFile, sep = ",", header = T) #load the info data fil
 # INCLUSION INFO
 ######
 
-#PLACEHOLDER: Do inclusion/exclusion of participants here, with calculations for type
+#TODO: Do inclusion/exclusion of participants up here, with calculations for type of exclusion
+#Print nice summary of subject numbers, ages, gender splits up here
 
 ######
 # DATA CLEANING
@@ -109,7 +115,7 @@ allData1 <- allData %>% #A few participants had the extension trials coded on th
 allData2 <- allData %>%
   filter(!is.na(extAnswer)) 
 
-#this could all be a gather prob., but it aint working
+#this could all be a gather probably, but it aint working
 allDataBase <- select(allData2, -c(extAnswer, extVerbName, extMannerSide, extPathSide))
 allDataExtend <- select(allData2, -c(itemID,verbName,mannerSideBias,pathSideBias,kidResponseBias,mannerSideTest,pathSideTest,kidResponseTest))
 
@@ -134,24 +140,167 @@ allData <- select(allData1, -c(extAnswer, extVerbName, extMannerSide, extPathSid
 rm(list=setdiff(ls(), c("allData","adir","ddir","repodir")))#avoid accidentally referencing placeholder vars from above
 
 allData <- allData %>%
-  filter(Inclusion.Decision == 1) %>% #Eventually do this above and report stats!
+  filter(!is.na(Inclusion.Decision)) %>%
+  filter(Inclusion.Decision == 1) %>% #TODO: Eventually do this above and report stats!
   select(-c(Inclusion.Decision, Exclude.Reason))
 
 ######
-# LIBRARIES, FILES, DIRECTORIES
+# DATA RESHAPE FOR ANALYSIS & GRAPHS
 ######
 
+#TODO: Probably a good idea to print out a sanitized csv here for people who don't want to run the data cleaning....
+
+#TODO: Checks for effects of side bias go here
+
+allData <- allData %>% #Translate kid choice variables to objective 'choseM' for Bias (main) & Test (sanity check - did they learn the verb)
+  filter(kidResponseBias == 'z' | kidResponseBias == 'c') %>% #remove trials w/ no answer on critical Bias q
+  mutate(choseM.Bias = ifelse((mannerSideBias == "L" & kidResponseBias == "z")| 
+                                     (mannerSideBias == "R" & kidResponseBias == "c"), 1, 0)) %>% 
+  mutate(choseM.Test = ifelse((mannerSideTest == "L" & kidResponseTest == "z")| 
+                                     (mannerSideTest == "R" & kidResponseTest == "c"), 1, 0)) %>%
+  
+  mutate(expPhase = ifelse(trialNo>8,"Extension","Base")) #Mark trials 1-8 and 9-16
 
 
+######
+# GRAPHS
+######
 
-#       
-#       #transform variables into BIAS and TEST
-#       if (data$mannerSideBias[row] == "L" & data$kidResponseBias[row] == "z") output[counter,3] = "MANNERBIAS"
-#       if (data$pathSideBias[row] == "R" & data$kidResponseBias[row] == "c") output[counter,3] = "PATHBIAS"  
-#       if (data$mannerSideBias[row] == "R" & data$kidResponseBias[row] == "c") output[counter,3] = "MANNERBIAS"
-#       if (data$pathSideBias[row] == "L" & data$kidResponseBias[row] == "z") output[counter,3] = "PATHBIAS"
-#       
-#       if (data$mannerSideTest[row] == "L" & data$kidResponseTest[row] == "z") output[counter,4] = "MANNERBIAS"
-#       if (data$pathSideTest[row] == "R" & data$kidResponseTest[row] == "c") output[counter,4] = "PATHBIAS"  
-#       if (data$mannerSideTest[row] == "R" & data$kidResponseTest[row] == "c") output[counter,4] = "MANNERBIAS"
-#       if (data$pathSideTest[row] == "L" & data$kidResponseTest[row] == "z") output[counter,4] = "PATHBIAS"
+makePlot = function(ydata, ylab="proportion chosing Manner/Action", title=""){
+  
+  plotData <- aggregate(ydata$choseM.Bias, by=list(ydata$Condition,  ydata$trialNo), sum)
+  numObs <- aggregate(ydata$choseM.Bias, by=list(ydata$Condition, ydata$trialNo), length)
+  names(plotData) <- c("Condition", "trialNo", "choseManner")
+  plotData$numObs <- numObs$x
+
+  #get the binomial conf.intervals per condition per trial
+  for (cond in unique(plotData$Condition))
+  {
+    for (trial in unique(plotData[plotData$Condition == cond,]$trialNo))
+    {
+      x = plotData[plotData$Condition == cond & plotData$trialNo == trial,]$choseManner
+      n = plotData[plotData$Condition == cond & plotData$trialNo == trial,]$numObs
+      
+      test = prop.test(x, n, conf.level=0.95)
+      plotData$intLower[plotData$Condition == cond & plotData$trialNo == trial] = test$conf.int[1]
+      plotData$intUpper[plotData$Condition == cond & plotData$trialNo == trial]  = test$conf.int[2]
+      plotData$theAvg[plotData$Condition == cond & plotData$trialNo == trial] = x/n
+    }
+  }
+
+  print(plotData)
+  #make a plot with ggplot
+  pd <- position_dodge(0.1)
+  
+  ggplot(plotData, aes(x=trialNo, y=theAvg, colour=Condition, group=Condition, ymax = 1)) + 
+    geom_errorbar(aes(ymin=intLower, ymax=intUpper), colour="black", width=.1, position=pd) +
+    geom_line(position=pd) +
+    ylab(ylab) +
+    geom_point(position=pd, size=3) +
+    coord_cartesian(ylim=c(0,1)) +
+    ggtitle(title)
+  #scale_colour_manual(values = c("green","red"),
+  #name="",
+  #labels=c("Manner", "Path")) +
+}
+
+makePlot(filter(allData, Condition == "Manner" | Condition == "Path"))
+makePlot(filter(allData, Condition == "Action" | Condition == "Effect"))
+
+allData <- filter(allData, trialNo>1) #Trial #1 Bias test is pre-training!!
+
+makeBar = function(ydata, ylab="proportion chosing Manner/Action", title="") {
+  
+  plotData <- aggregate(ydata$choseM.Bias, by=list(ydata$Condition, ydata$expPhase), sum)
+  numObs <- aggregate(ydata$choseM.Bias, by=list(ydata$Condition, ydata$expPhase), length)
+  names(plotData) <- c("Condition", "Phase", "choseManner")
+  plotData$numObs <- numObs$x
+  print(plotData)
+  
+  
+  for (cond in unique(plotData$Condition)){
+    for (ph in unique(plotData$Phase)){
+      x = plotData[plotData$Condition == cond & plotData$Phase == ph,]$choseManner
+      n = plotData[plotData$Condition == cond & plotData$Phase == ph,]$numObs
+      
+      test = prop.test(x, n, conf.level=0.95)
+      plotData$intLower[plotData$Condition == cond & plotData$Phase == ph] = test$conf.int[1]
+      plotData$intUpper[plotData$Condition == cond & plotData$Phase == ph]  = test$conf.int[2]
+      plotData$theAvg[plotData$Condition == cond & plotData$Phase == ph] = x/n
+    }
+    
+  }
+  
+  print(plotData)
+  ggplot(plotData, aes(x=Phase, y=theAvg, fill=Condition)) + 
+    geom_bar(position=position_dodge(), stat="identity") +
+    geom_errorbar(aes(ymin=intLower, ymax=intUpper), colour="black", width=.1, position=position_dodge(.9)) + #Why point 9? Hell if I know!
+    coord_cartesian(ylim=c(0,1))+
+    ylab(ylab)+
+    xlab('')+
+    theme_bw()+
+    theme(legend.position="none")+
+    #scale_fill_brewer(palette=colors) +
+    ggtitle(title)
+}
+
+makeBar(filter(allData, Condition == "Manner" | Condition == "Path"))
+makeBar(filter(allData, Condition == "Action" | Condition == "Effect"))
+
+######
+# ANALYSIS
+######
+
+#Note first Bias trial was removed above; it tells us nothing, no evidence has been seen yet!
+#Some nice logistic regressions go here
+
+Exp1 <- filter(allData, Experiment == "E1 - MannerPath")
+Exp2.Base <- filter(allData, Experiment == "E2 - ActionEffect extend to MannerPath" & expPhase == "Base")
+Exp2.Extend <- filter(allData, Experiment == "E2 - ActionEffect extend to MannerPath" & expPhase == "Extension")
+
+#Test 1: Does CONDITION matter? (Random effects for verbs; Condition is between-subjects)
+
+#Exp1
+model_eff <- glmer(choseM.Bias ~ Condition  + (1|verbName), data=Exp1, family="binomial")
+model_noeff <- glmer(choseM.Bias ~ 1  + (1|verbName), data=Exp1, family="binomial")
+anova(model_eff, model_noeff)
+
+#Exp2
+model_eff2 <- glmer(choseM.Bias ~ Condition  + (1|verbName), data=Exp2.Base, family="binomial")
+model_noeff2 <- glmer(choseM.Bias ~ 1  + (1|verbName), data=Exp2.Base, family="binomial")
+anova(model_eff2, model_noeff2)
+
+#Exp2 Extension
+model_eff3 <- glmer(choseM.Bias ~ Condition  + (1|verbName), data=Exp2.Extend, family="binomial")
+model_noeff3 <- glmer(choseM.Bias ~ 1  + (1|verbName), data=Exp2.Extend, family="binomial")
+anova(model_eff3, model_noeff3)
+
+
+# Test #2
+# Do exp and trial interact? That is, is the different between exp different later in the exp? Do they diverge? 
+# 5/6/16 - Not that we can detect
+#
+
+#Exp1
+model_inter <- glmer(choseM.Bias ~ Condition*trialNo + (1|verbName), data=Exp1, family="binomial")
+model_nointer <- glmer(choseM.Bias ~ Condition+trialNo + (1|verbName), data=Exp1, family="binomial")
+model_tonly <- glmer(choseM.Bias ~ trialNo + (1|verbName), data=Exp1, family="binomial")
+
+anova(model_inter, model_nointer)
+anova(model_nointer, model_tonly)
+
+#Exp2 - Base
+model_inter2 <- glmer(choseM.Bias ~ Condition*trialNo + (1|verbName), data=Exp2.Base, family="binomial")
+model_nointer2 <- glmer(choseM.Bias ~ Condition+trialNo + (1|verbName), data=Exp2.Base, family="binomial")
+model_tonly2 <- glmer(choseM.Bias ~ trialNo + (1|verbName), data=Exp2.Base, family="binomial")
+
+anova(model_inter2, model_nointer2)
+anova(model_nointer2, model_tonly2)
+
+#Exp2 - Extension
+model_inter3 <- glmer(choseM.Bias ~ Condition*trialNo + (1|verbName), data=Exp2.Extend, family="binomial")
+model_nointer3 <- glmer(choseM.Bias ~ Condition+trialNo + (1|verbName), data=Exp2.Extend, family="binomial")
+model_tonly3 <- glmer(choseM.Bias ~ trialNo + (1|verbName), data=Exp2.Extend, family="binomial")
+
+anova(model_inter3, model_nointer3)
+anova(model_nointer3, model_tonly3)
