@@ -21,6 +21,7 @@ library(dplyr)
 library(tidyr)
 library(ggplot2)
 library(lme4)
+library(pwr)
 rm(list=ls()) #Clear any lingering variables
 
 
@@ -110,7 +111,7 @@ allData <- allData  %>%
   rename(Experiment = RealExp) %>%
   rename(Condition = Verb.Condition)
   
-allData1 <- allData %>% #A few participants had the extension trials coded on the same lines as trials 1-8
+allData1 <- allData %>% #A few participants had the extension trials coded on the same lines as trials 1-8, just have to rearrange them
   filter(is.na(extAnswer))
 allData2 <- allData %>%
   filter(!is.na(extAnswer)) 
@@ -131,8 +132,8 @@ allDataExtend$mannerSideTest = 'undefined'
 allDataExtend$pathSideTest = 'undefined'
 allDataExtend$kidResponseTest = 'undefined'
 
-allData <- select(allData1, -c(extAnswer, extVerbName, extMannerSide, extPathSide)) %>%
-  rbind(allDataBase) %>%
+allData <- select(allData1, -c(extAnswer, extVerbName, extMannerSide, extPathSide)) %>% #re-adding the normal ones
+  rbind(allDataBase) %>% #add base, then ext. trials of the weirdos
   rbind(allDataExtend) %>%
   arrange(SubjectNo) %>%
   select(Experiment,Condition,SubjectNo,trialNo,itemID,verbName, mannerSideBias:Exclude.Reason) #just reordering
@@ -143,6 +144,7 @@ allData <- allData %>%
   filter(!is.na(Inclusion.Decision)) %>%
   filter(Inclusion.Decision == 1) %>% #TODO: Eventually do this above and report stats!
   select(-c(Inclusion.Decision, Exclude.Reason))
+
 
 ######
 # DATA RESHAPE FOR ANALYSIS & GRAPHS
@@ -160,6 +162,12 @@ allData <- allData %>% #Translate kid choice variables to objective 'choseM' for
                                      (mannerSideTest == "R" & kidResponseTest == "c"), 1, 0)) %>%
   
   mutate(expPhase = ifelse(trialNo>8,"Extension","Base")) #Mark trials 1-8 and 9-16
+
+
+######
+#IMPORTANT!
+######
+allData <- filter(allData, trialNo>1) #Trial #1 Bias test is pre-training!!
 
 
 ######
@@ -207,8 +215,6 @@ makePlot = function(ydata, ylab="proportion chosing Manner/Action", title=""){
 makePlot(filter(allData, Condition == "Manner" | Condition == "Path"))
 makePlot(filter(allData, Condition == "Action" | Condition == "Effect"))
 
-allData <- filter(allData, trialNo>1) #Trial #1 Bias test is pre-training!!
-
 makeBar = function(ydata, ylab="proportion chosing Manner/Action", title="") {
   
   plotData <- aggregate(ydata$choseM.Bias, by=list(ydata$Condition, ydata$expPhase), sum)
@@ -251,9 +257,44 @@ makeBar(filter(allData, Condition == "Action" | Condition == "Effect"))
 # ANALYSIS
 ######
 
-#Note first Bias trial was removed above; it tells us nothing, no evidence has been seen yet!
-#Some nice logistic regressions go here
+# POWER CALCULATION
 
+#Let's assume gods of CLT smiled & those are normally enough distributed.  Power calculations!!!
+#(NOTE: we use a 1 sided t test for power calculations because of not being sure how to
+#correctly run power analyses for the lmms correctly. These power calculations are probably 
+#generous.)
+
+#6/2/16 Power calculation for determining sample sizes to be used in Exp2 onward
+
+Exp1 <- filter(allData, Experiment == "E1 - MannerPath")
+pwrData <- aggregate(Exp1$choseM.Bias, by=list(Exp1$Condition, Exp1$SubjectNo), sum)
+names(pwrData) <- c("Condition", "SubNo", "choseMScore")
+#Each S now has a score from 0 to 7 (= n of times chose M on bias phase of trials 2-8)
+
+mm <- filter(pwrData, Condition == "Manner")$choseMScore
+pp <- filter(pwrData, Condition == "Path")$choseMScore
+pooled_sd <- sqrt((sd(mm)^2 + sd(pp)^2)/2)
+
+d <- (mean(mm)-mean(pp))/pooled_sd
+n <-min(length(mm), length(pp)) #per cell!!
+
+#This test indicates that our power is 0.24 in Exp 1 (pilot, M/P training only). Yikes!
+pwr.t.test(d=d,n=n,sig.level=0.05, type="two.sample", alternative="greater") #We test the h that kids are more likely to make manner choices after manner training
+
+#We would like to have power = .80, but we would also like to run a # of subjects that is in our budget. How bad is pwr = 0.8?
+pwr.t.test(d=d,power = 0.8, sig.level=0.05, type="two.sample", alternative="greater") #We test the h that kids are more likely to make manner choices after manner training
+
+#99/cell is wildly outside what we can afford to test. Havasi used 32/cell: 
+pwr.t.test(d=d,n=32, sig.level=0.05, type="two.sample", alternative="greater") 
+
+#...which is still very underpowered.  We will therefore plan to run Exp 2 to 32/cell, and if 
+# that is nonsignificant, continue to 64/cell (100% increase, pwr=0.6). Whatever # is 
+#reached in this procedure will be fixed for all subsequent experiments.
+pwr.t.test(d=d,n=64, sig.level=0.05, type="two.sample", alternative="greater") 
+
+# CONFIRMATORY ANALYSES
+
+#Note first Bias trial was removed above; it tells us nothing, no evidence has been seen yet!
 Exp1 <- filter(allData, Experiment == "E1 - MannerPath")
 Exp2.Base <- filter(allData, Experiment == "E2 - ActionEffect extend to MannerPath" & expPhase == "Base")
 Exp2.Extend <- filter(allData, Experiment == "E2 - ActionEffect extend to MannerPath" & expPhase == "Extension")
@@ -304,3 +345,7 @@ model_tonly3 <- glmer(choseM.Bias ~ trialNo + (1|verbName), data=Exp2.Extend, fa
 
 anova(model_inter3, model_nointer3)
 anova(model_nointer3, model_tonly3)
+
+#EXPLORATORY ANALYSES
+
+#...tbd
