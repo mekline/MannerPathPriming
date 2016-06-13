@@ -292,7 +292,15 @@ pwr.t.test(d=d,n=32, sig.level=0.05, type="two.sample", alternative="greater")
 #reached in this procedure will be fixed for all subsequent experiments.
 pwr.t.test(d=d,n=64, sig.level=0.05, type="two.sample", alternative="greater") 
 
-# CONFIRMATORY ANALYSES
+
+# SUMMARY/DESCRIPTIVE STATISTICS
+
+#How many S's included? Collapse to 'chose manner' score rather than individual trial responses - notice for 'extend' this collapses the 2 experiment phases, DON"T use these for stats, jsut S level info :)
+scoreData <- aggregate(allData$choseM.Bias, by=list(allData$Experiment, allData$Condition, allData$SubjectNo), sum)
+names(scoreData) <- c("Experiment", "Condition", "SubNo", "choseMScore")
+table(scoreData$Experiment, scoreData$Condition)
+
+# CONFIRMATORY/PLANNED ANALYSES
 
 #Note first Bias trial was removed above; it tells us nothing, no evidence has been seen yet!
 Exp1 <- filter(allData, Experiment == "E1 - MannerPath")
@@ -345,6 +353,19 @@ model_tonly3 <- glmer(choseM.Bias ~ trialNo + (1|verbName), data=Exp2.Extend, fa
 
 anova(model_inter3, model_nointer3)
 anova(model_nointer3, model_tonly3)
+
+#ADDITIONAL PLANNED ANALYSES:
+
+#Manipulation check: Logistic models paralleling the above testing whether children answer more correctly than chance at the END of each verb-learning trial
+#That is, we'll test whether the 2 conditions are reliably different from each other on the Test trials. 
+
+
+#Because power is low and children are noisy data, we will also use this 'actually learned' measure to calculate a score for each participant. We can then
+#test the subset of children who answered > 4 out of 8 correctly on the above measures. This may provide us a biased sample of 'attentive' 4-5yos; we can 
+#see whether this subgroup performs in the expected way on the above measures. 
+
+#Age: We will enter age (days old) as an additional factor in the models above to see if we can detect any effects of age on priming/extension in these tasks. 
+# but this design is probably not going to be sensitive to detect them. 
 
 #EXPLORATORY ANALYSES
 
