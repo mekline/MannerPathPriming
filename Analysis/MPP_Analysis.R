@@ -26,7 +26,9 @@ rm(list=ls()) #Clear any lingering variables
 
 
 #Set directories; might need to change this on your computer!
-repodir = "/Users/mekline/Dropbox/_Projects/PrimingMannerPath/MannerPathPriming/"
+repodir = "C:/Users/Anna/Documents/GitHub/MannerPathPriming/"
+#repodir = "/Users/mekline/Dropbox/_Projects/PrimingMannerPath/MannerPathPriming/"
+
 adir = paste(repodir, "Analysis/", sep="")
 ddir = paste(repodir, "MPP_Stim_and_Data/Data/" , sep="")
 setwd(repodir)
@@ -168,7 +170,7 @@ allData <- allData %>% #Translate kid choice variables to objective 'choseM' for
 #IMPORTANT!
 ######
 allData <- filter(allData, trialNo>1) #Trial #1 Bias test is pre-training!!
-
+#Anna run to here
 
 ######
 # GRAPHS
