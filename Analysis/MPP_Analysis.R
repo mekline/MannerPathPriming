@@ -255,6 +255,16 @@ makeBar = function(ydata, ylab="proportion chosing Manner/Action", title="") {
 makeBar(filter(allData, Condition == "Manner" | Condition == "Path"))
 makeBar(filter(allData, Condition == "Action" | Condition == "Effect"))
 
+########
+#Anna 
+########
+
+bias <- data.frame(allData$SubjectNo,allData$choseM.Bias,allData$choseM.Test)
+
+library(plyr)
+
+bias.sums <- ddply(allData,.(SubjectNo,Condition),summarize,sum1 = sum(choseM.Bias),sum2 = sum(choseM.Test))
+
 ######
 # ANALYSIS
 ######
