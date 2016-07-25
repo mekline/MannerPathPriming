@@ -161,7 +161,7 @@ allData <- allData %>% #Translate kid choice variables to objective 'choseM' for
   mutate(choseM.Bias = ifelse((mannerSideBias == "L" & kidResponseBias == "z")| 
                                      (mannerSideBias == "R" & kidResponseBias == "c"), 1, 0)) %>% 
   mutate(choseM.Test = ifelse((mannerSideTest == "L" & kidResponseTest == "z")| 
-                                     (mannerSideTest == "R" & kidResponseTest == "c"), 1, 0)) %>%
+                                (mannerSideTest == "R" & kidResponseTest == "c"), 1, 0)) %>%
   
   mutate(expPhase = ifelse(trialNo>8,"Extension","Base")) #Mark trials 1-8 and 9-16
 
