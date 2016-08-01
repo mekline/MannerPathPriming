@@ -248,8 +248,8 @@ try
         
         Closeout_PTool();
         
-catch
-    
+
+catch 
     Closeout_PTool();
     psychrethrow(psychlasterror);
     
