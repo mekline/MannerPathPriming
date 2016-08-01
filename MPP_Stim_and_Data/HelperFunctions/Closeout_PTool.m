@@ -3,7 +3,7 @@ function [] = Closeout_PTool()
 
 global parameters
 
-WaitSecs(0.1); %so we don't crash/close right away
+pause(0.1); %so we don't crash/close right away
 
 %Exit TOBII connection cleanly
 % if(parameters.EYETRACKER)
