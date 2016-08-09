@@ -26,8 +26,8 @@ rm(list=ls()) #Clear any lingering variables
 
 
 #Set directories; might need to change this on your computer!
-repodir = "C:/Users/Anna/Documents/GitHub/MannerPathPriming/"
-#repodir = "/Users/mekline/Dropbox/_Projects/PrimingMannerPath/MannerPathPriming/"
+#repodir = "C:/Users/Anna/Documents/GitHub/MannerPathPriming/"
+repodir = "/Users/mekline/Dropbox/_Projects/PrimingMannerPath/MannerPathPriming/"
 
 adir = paste(repodir, "Analysis/", sep="")
 ddir = paste(repodir, "MPP_Stim_and_Data/Data/" , sep="")
@@ -147,6 +147,8 @@ allData <- allData %>%
   filter(Inclusion.Decision == 1) %>% #TODO: Eventually do this above and report stats!
   select(-c(Inclusion.Decision, Exclude.Reason))
 
+# Print out a nice table of kids in each condition
+table(allData)
 
 ######
 # DATA RESHAPE FOR ANALYSIS & GRAPHS
@@ -198,7 +200,7 @@ makePlot = function(ydata, ylab="proportion chosing Manner/Action", title=""){
     }
   }
 
-  print(plotData)
+  #print(plotData)
   #make a plot with ggplot
   pd <- position_dodge(0.1)
   
@@ -248,6 +250,7 @@ makeBar = function(ydata, ylab="proportion chosing Manner/Action", title="") {
     xlab('')+
     theme_bw()+
     theme(legend.position="none")+
+    scale_colour_manual(values = c("green","red") +
     #scale_fill_brewer(palette=colors) +
     ggtitle(title)
 }
