@@ -255,34 +255,6 @@ makeBar = function(ydata, ylab="proportion chosing Manner/Action", title="") {
 makeBar(filter(allData, Condition == "Manner" | Condition == "Path"))
 makeBar(filter(allData, Condition == "Action" | Condition == "Effect"))
 
-########
-#ANNA EXPLORATORY ANALYSIS
-########
-
-bias <- data.frame(allData$SubjectNo,allData$choseM.Bias,allData$choseM.Test)
-
-library(plyr)
-
-bias.sums <- ddply(allData,.(SubjectNo,Condition),summarize,sum1 = sum(choseM.Bias),sum2 = sum(choseM.Test))
-# sum1 is the sum of action choices in the bias test trials 
-# sum2 is the sum of manner choices in the last 8 manner/path test trials in the end
-
-plot(bias.sums($sum2,$condition == action),($sum1, $condition == action))
-# On the y axis, I'm trying to plot all the rows of the sum1 column where
-# condition = action. 
-# On the x axis, I'm trying to plot all the
-# rows of the sum2 column where condition = action.
-# (except for some reason it's not working because for all the action or effect 
-# conditions, choseM.test = NA)
-
-
-# and then do the opposite for the effect condition. 
-
-
-# what I actually want are three "sums": their score on training, their score on the
-# bias test trials, and their score on the manner/path test trials; each out of 8. 
-
-
 ######
 # ANALYSIS
 ######
