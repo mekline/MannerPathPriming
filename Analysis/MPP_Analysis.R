@@ -241,7 +241,7 @@ makeBar = function(ydata, ylab="proportion chosing Manner/Action", title="") {
     
   }
   
-  print(plotData)
+
   ggplot(plotData, aes(x=Phase, y=theAvg, fill=Condition)) + 
     geom_bar(position=position_dodge(), stat="identity") +
     geom_errorbar(aes(ymin=intLower, ymax=intUpper), colour="black", width=.1, position=position_dodge(.9)) + #Why point 9? Hell if I know!
@@ -249,8 +249,7 @@ makeBar = function(ydata, ylab="proportion chosing Manner/Action", title="") {
     ylab(ylab)+
     xlab('')+
     theme_bw()+
-    theme(legend.position="none")+
-    scale_colour_manual(values = c("green","red") +
+    #scale_colour_manual(values = c("green","red")) +
     #scale_fill_brewer(palette=colors) +
     ggtitle(title)
 }
@@ -347,7 +346,7 @@ model_eff <- glmer(choseM.Bias ~ Condition  + (1|verbName), data=Exp1, family="b
 model_noeff <- glmer(choseM.Bias ~ 1  + (1|verbName), data=Exp1, family="binomial")
 anova(model_eff, model_noeff)
 
-#Exp2
+#Exp2 base
 model_eff2 <- glmer(choseM.Bias ~ Condition  + (1|verbName), data=Exp2.Base, family="binomial")
 model_noeff2 <- glmer(choseM.Bias ~ 1  + (1|verbName), data=Exp2.Base, family="binomial")
 anova(model_eff2, model_noeff2)
