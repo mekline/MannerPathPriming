@@ -71,9 +71,6 @@ for (file in files) {
     cat('Caught an error during read.table.\n')
   } else { 
       pData = try(participantData[participantData$Participant.. == trialData$SubjectNo[1],]) #get info for current participant
-      cat(file)
-      cat(nrow(pData))
-      cat('//\n')
       pData$SubjectNo = pData$Participant..  
       myData = left_join(trialData, pData, by="SubjectNo") #Build rows
       allData <- bind_rows(myData, allData) #Add these rows to the giant data frame
@@ -140,10 +137,6 @@ allData <- allData %>%
   filter(Inclusion.Decision == 1) %>% #TODO: Eventually do this above and report stats!
   select(-c(Inclusion.Decision, Exclude.Reason))
 
-# Print out a nice table of kids in each condition
-PartTable <- aggregate(allData$trialNo, by = list(allData$SubjectNo, allData$Experiment), length)
-names(PartTable) <- c("SubjectNo","Experiment","nTrials")
-with(PartTable, table(Experiment))
 
 ######
 # DATA RESHAPE FOR ANALYSIS & GRAPHS
