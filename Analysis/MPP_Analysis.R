@@ -64,26 +64,23 @@ allData <- data.frame(NULL)
 
 error_files = list() #create an empty error list
 for (file in files) {
-  isError = FALSE  
-  trialData = try(read.table(file, sep = ",", header = T))  #read in the file  
-  if (is.data.frame(trialData)) { #test if there is data in that file, else place in the error vector
-      if (nrow(trialData) > 2) {
-        
-        pData = try(participantData[participantData$Participant.. == trialData$SubjectNo[1],]) #get info for current participant
-        pData$SubjectNo = pData$Participant..      
-        myData = left_join(trialData, pData, by="SubjectNo") #Build rows
-        allData <- bind_rows(myData, allData) #Add these rows to the giant data frame
-        
-      } else {
-        isError = 1
-      }
-  } else {
-    isError = 2
-  }  
-  if (isError) {
-    error_files[[length(error_files) + 1]] <- file  
-  }
+  
+  trialData <- try(read.table(file, sep = ",", header = T, fill=T))
+  if (class(trialData) == 'try-error') {
+    cat(file)
+    cat('Caught an error during read.table.\n')
+  } else { 
+      pData = try(participantData[participantData$Participant.. == trialData$SubjectNo[1],]) #get info for current participant
+      cat(file)
+      cat(nrow(pData))
+      cat('//\n')
+      pData$SubjectNo = pData$Participant..  
+      myData = left_join(trialData, pData, by="SubjectNo") #Build rows
+      allData <- bind_rows(myData, allData) #Add these rows to the giant data frame
+  } 
 } 
+length(unique(allData$SubjectNo))
+
 
 #It's a great big data frame! Begin by dropping columns that we don't need for analysis (mostly names of individual vid files)
 colToSave = c("SubjectNo","VerbDomain","trialNo","itemID",
@@ -144,8 +141,9 @@ allData <- allData %>%
   select(-c(Inclusion.Decision, Exclude.Reason))
 
 # Print out a nice table of kids in each condition
-PartTable <- aggregate(allData, by = list(allData$SubjectNo, allData$Experiment), length)
-with(PartTable, table(Experiment, Condition))
+PartTable <- aggregate(allData$trialNo, by = list(allData$SubjectNo, allData$Experiment), length)
+names(PartTable) <- c("SubjectNo","Experiment","nTrials")
+with(PartTable, table(Experiment))
 
 ######
 # DATA RESHAPE FOR ANALYSIS & GRAPHS
@@ -258,42 +256,6 @@ makeBar(filter(allData, Condition == "Action" | Condition == "Effect"))
 # ANALYSIS
 ######
 
-# POWER CALCULATION
-
-#Let's assume gods of CLT smiled & those are normally enough distributed.  Power calculations!!!
-#(NOTE: we use a 1 sided t test for power calculations because of not being sure how to
-#correctly run power analyses for the lmms correctly. These power calculations are probably 
-#generous.)
-
-#6/2/16 Power calculation for determining sample sizes to be used in Exp2 onward
-
-Exp1 <- filter(allData, Experiment == "E1 - MannerPath")
-pwrData <- aggregate(Exp1$choseM.Bias, by=list(Exp1$Condition, Exp1$SubjectNo), sum)
-names(pwrData) <- c("Condition", "SubNo", "choseMScore")
-#Each S now has a score from 0 to 7 (= n of times chose M on bias phase of trials 2-8)
-
-mm <- filter(pwrData, Condition == "Manner")$choseMScore
-pp <- filter(pwrData, Condition == "Path")$choseMScore
-pooled_sd <- sqrt((sd(mm)^2 + sd(pp)^2)/2)
-
-d <- (mean(mm)-mean(pp))/pooled_sd
-n <-min(length(mm), length(pp)) #per cell!!
-
-#This test indicates that our power is 0.24 in Exp 1 (pilot, M/P training only). Yikes!
-pwr.t.test(d=d,n=n,sig.level=0.05, type="two.sample", alternative="greater") #We test the h that kids are more likely to make manner choices after manner training
-
-#We would like to have power = .80, but we would also like to run a # of subjects that is in our budget. How bad is pwr = 0.8?
-pwr.t.test(d=d,power = 0.8, sig.level=0.05, type="two.sample", alternative="greater") #We test the h that kids are more likely to make manner choices after manner training
-
-#99/cell is wildly outside what we can afford to test. Havasi used 32/cell: 
-pwr.t.test(d=d,n=32, sig.level=0.05, type="two.sample", alternative="greater") 
-
-#...which is still very underpowered.  We will therefore plan to run Exp 2 to 32/cell, and if 
-# that is nonsignificant, continue to 64/cell (100% increase, pwr=0.6). Whatever # is 
-#reached in this procedure will be fixed for all subsequent experiments.
-pwr.t.test(d=d,n=64, sig.level=0.05, type="two.sample", alternative="greater") 
-
-
 # SUMMARY/DESCRIPTIVE STATISTICS
 
 #How many S's included? Collapse to 'chose manner' score rather than individual trial responses - notice for 'extend' this collapses the 2 experiment phases, DON"T use these for stats, jsut S level info :)
@@ -371,3 +333,47 @@ anova(model_nointer3, model_tonly3)
 #EXPLORATORY ANALYSES
 
 #...tbd
+
+
+######
+# For reference!!
+######
+
+# POWER CALCULATION
+#(this is how we set sample sizes for e2 onward)
+
+#Let's assume gods of CLT smiled & those are normally enough distributed.  Power calculations!!!
+#(NOTE: we use a 1 sided t test for power calculations because of not being sure how to
+#correctly run power analyses for the lmms correctly. These power calculations are probably 
+#generous.)
+
+#6/2/16 Power calculation for determining sample sizes to be used in Exp2 onward
+
+Exp1 <- filter(allData, Experiment == "E1 - MannerPath")
+pwrData <- aggregate(Exp1$choseM.Bias, by=list(Exp1$Condition, Exp1$SubjectNo), sum)
+names(pwrData) <- c("Condition", "SubNo", "choseMScore")
+#Each S now has a score from 0 to 7 (= n of times chose M on bias phase of trials 2-8)
+
+mm <- filter(pwrData, Condition == "Manner")$choseMScore
+pp <- filter(pwrData, Condition == "Path")$choseMScore
+pooled_sd <- sqrt((sd(mm)^2 + sd(pp)^2)/2)
+
+d <- (mean(mm)-mean(pp))/pooled_sd
+n <-min(length(mm), length(pp)) #per cell!!
+
+#This test indicates that our power is 0.24 in Exp 1 (pilot, M/P training only). Yikes!
+pwr.t.test(d=d,n=n,sig.level=0.05, type="two.sample", alternative="greater") #We test the h that kids are more likely to make manner choices after manner training
+
+#We would like to have power = .80, but we would also like to run a # of subjects that is in our budget. How bad is pwr = 0.8?
+pwr.t.test(d=d,power = 0.8, sig.level=0.05, type="two.sample", alternative="greater") #We test the h that kids are more likely to make manner choices after manner training
+
+#99/cell is wildly outside what we can afford to test. Havasi used 32/cell: 
+pwr.t.test(d=d,n=32, sig.level=0.05, type="two.sample", alternative="greater") 
+
+#...which is still very underpowered.  We will therefore plan to run Exp 2 to 32/cell, and if 
+# that is nonsignificant, continue to 64/cell (100% increase, pwr=0.6). Whatever # is 
+#reached in this procedure will be fixed for all subsequent experiments.
+pwr.t.test(d=d,n=64, sig.level=0.05, type="two.sample", alternative="greater") 
+
+
+
