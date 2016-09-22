@@ -35,7 +35,6 @@ setwd(repodir)
 
 pFile = paste(repodir,"MannerPath_Data.csv",sep="") #get files ready...
 files = list.files(ddir, pattern = ".dat$") #all .dat files in data directory
-error_files = list() #create an empty error list
 participantData = read.csv(pFile, sep = ",", header = T) #load the info data file
 
 ######
@@ -58,15 +57,12 @@ participantData = read.csv(pFile, sep = ",", header = T) #load the info data fil
 # - No .dat files for 1,2, 35, 42, 69 (1-2 pilot, 35-69 kids who consented/are on camera
 # but didn't get to the exp)
 #
-# - Lots of errors are printed anytime we hit a badly formatted .dat file:
-# as of 5/4/16 26 files do not load at the pt, because fuss-outs & exp errors sometimes
-#also broke the data file too. See MPP_data.csv for inclusion/exclusion
-# - 5/4/16: SOMETHING IS UP WITH 64-77, MAY NEED TO RECODE FROM VIDEO or figure out what's wrong with the files!
-
+# - Lots of errors are printed anytime we hit a badly formatted .dat file
 
 setwd(ddir)
 allData <- data.frame(NULL)
 
+error_files = list() #create an empty error list
 for (file in files) {
   isError = FALSE  
   trialData = try(read.table(file, sep = ",", header = T))  #read in the file  
@@ -140,7 +136,7 @@ allData <- select(allData1, -c(extAnswer, extVerbName, extMannerSide, extPathSid
   arrange(SubjectNo) %>%
   select(Experiment,Condition,SubjectNo,trialNo,itemID,verbName, mannerSideBias:Exclude.Reason) #just reordering
 
-rm(list=setdiff(ls(), c("allData","adir","ddir","repodir")))#avoid accidentally referencing placeholder vars from above
+#rm(list=setdiff(ls(), c("allData","adir","ddir","repodir")))#avoid accidentally referencing placeholder vars from above
 
 allData <- allData %>%
   filter(!is.na(Inclusion.Decision)) %>%
@@ -148,7 +144,8 @@ allData <- allData %>%
   select(-c(Inclusion.Decision, Exclude.Reason))
 
 # Print out a nice table of kids in each condition
-table(allData)
+PartTable <- aggregate(allData, by = list(allData$SubjectNo, allData$Experiment), length)
+with(PartTable, table(Experiment, Condition))
 
 ######
 # DATA RESHAPE FOR ANALYSIS & GRAPHS
