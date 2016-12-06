@@ -165,7 +165,9 @@ allData <- allData %>% #Translate kid choice variables to objective 'choseM' for
 #IMPORTANT!
 ######
 allData <- filter(allData, trialNo>1) #Trial #1 Bias test is pre-training!!
-#Anna run to here
+
+#Drop pilot study!
+allData <- filter(allData, Experiment !="E1 - MannerPath")
 
 ######
 # GRAPHS
