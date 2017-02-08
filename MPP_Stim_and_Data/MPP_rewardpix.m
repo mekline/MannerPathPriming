@@ -122,7 +122,7 @@ try
         parameters.mainStars = myStars(1,4:11);
         parameters.extStars = myStars(1,12:19);
     else
-        myStars = dir('rewardpix/stars*.jpg');
+        myStars = dir('rewardpix/longstars*.jpeg');
         myStars = struct2cell(myStars);
         myStars(1,:) = strcat('rewardpix/',myStars(1,:));
         parameters.nounStars = myStars(1,1:3);

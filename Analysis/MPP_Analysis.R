@@ -102,6 +102,7 @@ allData <- allData  %>%
   select(-c(VerbDomain, Experiment, Experiment.Group, Experiment.y, Experiment.x, Condition)) %>%
   rename(Experiment = RealExp) %>%
   rename(Condition = Verb.Condition)
+
   
 allData1 <- allData %>% #A few participants had the extension trials coded on the same lines as trials 1-8, just have to rearrange them
   filter(is.na(extAnswer))
@@ -251,6 +252,27 @@ makeBar = function(ydata, ylab="proportion chosing Manner/Action", title="") {
 
 makeBar(filter(allData, Condition == "Manner" | Condition == "Path"))
 makeBar(filter(allData, Condition == "Action" | Condition == "Effect"))
+
+##Make a version we can print out for quicky graphs elsewhere...
+plotData <- aggregate(allData$choseM.Bias, by=list(allData$Condition, allData$expPhase), sum)
+numObs <- aggregate(allData$choseM.Bias, by=list(allData$Condition, allData$expPhase), length)
+names(plotData) <- c("Condition", "Phase", "choseManner")
+plotData$numObs <- numObs$x
+
+for (cond in unique(plotData$Condition)){
+  for (ph in unique(plotData$Phase)){
+    x = plotData[plotData$Condition == cond & plotData$Phase == ph,]$choseManner
+    n = plotData[plotData$Condition == cond & plotData$Phase == ph,]$numObs
+    
+    test = prop.test(x, n, conf.level=0.95)
+    plotData$intLower[plotData$Condition == cond & plotData$Phase == ph] = test$conf.int[1]
+    plotData$intUpper[plotData$Condition == cond & plotData$Phase == ph]  = test$conf.int[2]
+    plotData$theAvg[plotData$Condition == cond & plotData$Phase == ph] = x/n
+  }
+  
+}
+
+print(plotData)
 
 ######
 # ANALYSIS
