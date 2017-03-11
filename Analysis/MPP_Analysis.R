@@ -27,7 +27,8 @@ rm(list=ls()) #Clear any lingering variables
 
 #Set directories; might need to change this on your computer!
 #repodir = "C:/Users/Anna/Documents/GitHub/MannerPathPriming/"
-repodir = "/Users/mekline/Dropbox/_Projects/PrimingMannerPath/MannerPathPriming/"
+#repodir = "/Users/mekline/Dropbox/_Projects/PrimingMannerPath/MannerPathPriming/"
+repodir = "/Users/rebeccajarvis/Documents/MannerPathPriming/"
 
 adir = paste(repodir, "Analysis/", sep="")
 ddir = paste(repodir, "MPP_Stim_and_Data/Data/" , sep="")
