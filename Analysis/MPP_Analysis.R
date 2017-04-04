@@ -27,8 +27,8 @@ rm(list=ls()) #Clear any lingering variables
 
 #Set directories; might need to change this on your computer!
 #repodir = "C:/Users/Anna/Documents/GitHub/MannerPathPriming/"
-#repodir = "/Users/mekline/Dropbox/_Projects/PrimingMannerPath/MannerPathPriming/"
-repodir = "/Users/rebeccajarvis/Documents/MannerPathPriming/"
+repodir = "/Users/mekline/Dropbox/_Projects/PrimingMannerPath/MannerPathPriming/"
+#repodir = "/Users/rebeccajarvis/Documents/MannerPathPriming/"
 
 adir = paste(repodir, "Analysis/", sep="")
 ddir = paste(repodir, "MPP_Stim_and_Data/Data/" , sep="")
@@ -139,6 +139,7 @@ allData <- allData %>%
   filter(Inclusion.Decision == 1) %>% #TODO: Eventually do this above and report stats!
   select(-c(Inclusion.Decision, Exclude.Reason))
 
+length(unique(allData$SubjectNo))
 #####
 # Eventually add 75, 76
 #####
@@ -356,6 +357,8 @@ anova(model_nointer3, model_tonly3)
 #EXPLORATORY ANALYSES
 
 #...tbd
+#(1) If we had been thinking more carefully we would have planned in the prereg. to directly compare the patterns for 
+#MP/AE to see if they differ from one another. Doing so now (4/4/2017)
 
 
 ######
