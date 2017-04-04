@@ -243,6 +243,7 @@ makeBar = function(ydata, ylab="proportion chosing Manner/Action", title="") {
   ggplot(plotData, aes(x=Phase, y=theAvg, fill=Condition)) + 
     geom_bar(position=position_dodge(), stat="identity") +
     geom_errorbar(aes(ymin=intLower, ymax=intUpper), colour="black", width=.1, position=position_dodge(.9)) + #Why point 9? Hell if I know!
+    geom_point(size = 3, alpha = 0.3, position = position_jitter(width = 0.3, height = 0.1)) +
     coord_cartesian(ylim=c(0,1))+
     ylab(ylab)+
     xlab('')+
@@ -255,7 +256,13 @@ makeBar = function(ydata, ylab="proportion chosing Manner/Action", title="") {
 makeBar(filter(allData, Condition == "Manner" | Condition == "Path"))
 makeBar(filter(allData, Condition == "Action" | Condition == "Effect"))
 
-##Make a version we can print out for quicky graphs elsewhere...
+
+# And a non bar graph, because we've barred them. https://jimgrange.wordpress.com/2016/06/15/solution-to-barbarplots-in-r/
+
+
+
+
+##Make a version of the tabular data we can print out for quicky graphs elsewhere...
 plotData <- aggregate(allData$choseM.Bias, by=list(allData$Condition, allData$expPhase), sum)
 numObs <- aggregate(allData$choseM.Bias, by=list(allData$Condition, allData$expPhase), length)
 names(plotData) <- c("Condition", "Phase", "choseManner")
