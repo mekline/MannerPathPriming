@@ -64,7 +64,7 @@ end
 addpath('HelperFunctions', 'finalMovies', 'stars');
 
 %parameters object stores exp session values
-parameters.datafilepointer = AssignDataFile('MannerPathPriming',subNo);
+parameters.datafilepointer = AssignDataFile_younger('MannerPathPriming',subNo);
 parameters.condition = condition;
 parameters.extendcondition = extendcondition;
 
