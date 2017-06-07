@@ -53,7 +53,7 @@ if gotSound
 end
 
 %Prepare & start the MOVIES
-inputs.centerMovie
+ptin
 [movie movieduration fps imgw imgh] = Screen('OpenMovie', parameters.scr.winPtr, inputs.centerMovie);
 Screen('PlayMovie', movie, 1, inputs.shouldloop, inputs.ownsound);
 

@@ -21,6 +21,7 @@ scr.white = WhiteIndex(scr.displayScreen);
 scr.gray = GrayIndex(scr.displayScreen);
 scr.bgcolor = [scr.black scr.black scr.black];
 scr.rect = Screen('Rect', scr.displayScreen);
+
 scr.res = scr.rect(3:4);
 scr.numberOfBuffers = 2; %doublebuffer
 scr.winPtr = [];       
