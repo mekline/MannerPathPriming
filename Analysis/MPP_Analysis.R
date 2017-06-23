@@ -290,9 +290,10 @@ print(plotData)
 # SUMMARY/DESCRIPTIVE STATISTICS
 
 #How many S's included? Collapse to 'chose manner' score rather than individual trial responses - notice for 'extend' this collapses the 2 experiment phases, DON"T use these for stats, jsut S level info :)
-scoreData <- aggregate(allData$choseM.Bias, by=list(allData$Experiment, allData$Condition, allData$SubjectNo), sum)
-names(scoreData) <- c("Experiment", "Condition", "SubNo", "choseMScore")
-table(scoreData$Experiment, scoreData$Condition)
+scoreData <- aggregate(allData$choseM.Bias, by=list(allData$Condition, allData$Age.Years, allData$Gender, allData$SubjectNo), sum)
+names(scoreData) <- c("Condition", "Years", "Gender", "SubNo", "choseMScore")
+table(scoreData$Years, scoreData$Gender, scoreData$Condition)
+table(scoreData$Condition)
 
 # CONFIRMATORY/PLANNED ANALYSES
 
