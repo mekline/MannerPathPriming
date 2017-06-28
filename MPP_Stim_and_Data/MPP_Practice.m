@@ -186,6 +186,182 @@ global parameters
         Take_Response();
         Show_Blank;  
 
+    %%%%%%%%%%%%%%%%%%%%%
+    %THIRD PRACTICE TRIAL
+    %%%%%%%%%%%%%%%%%%%%%
+        
+        %%%%%%%%%%%%%%%%%%%%%%%%%
+        %INITIAL AMBIGUOUS VIDEO
+        %%%%%%%%%%%%%%%%%%%%%%%%%
+        
+        Play_Sound('Audio/Finished/aa_nouns/glorfin1.wav', 'toBlock');
+        Show_Blank;
+
+        movietoplay_practice_3a = 'Movies_Practice/practice_3a.mp4';
+        movietoplay_practice_3b = 'Movies_Practice/practice_3b.mp4';
+        movietoplay_practice_3c = 'Movies_Practice/practice_3c.mp4';
+        movietoplay_practice_3d = 'Movies_Practice/practice_3d.mp4';
+        movietoplay_practice_3e = 'Movies_Practice/practice_3e.mp4';
+        movietoplay_practice_3_distr = 'Movies_Practice/practice_3_distr.mp4';
+        Show_Blank;
+
+        PlayCenterMovie(movietoplay_practice_3a);
+        Show_Blank;
+        
+        Play_Sound(soundtoplay_letsWatchMore, 'toBlock');
+        Text_Show('Ready to learn some verbs? Press space.');
+        Take_Response();
+        Show_Blank;
+        
+        %%%%%%%%%%%%%%%%%%%%%%%%%%%
+        %FIRST DISAMBIGUATING VIDEO
+        %%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+        Play_Sound('Audio/Finished/aa_nouns/glorfin1.wav', 'toBlock');
+        Show_Blank;
+        
+        PlayCenterMovie(movietoplay_practice_3b);
+        
+        Show_Blank;
+        
+        %%%%%%%%%%%%%%%%%%%%%%%%%%%
+        %SECOND DISAMBIGUATING VIDEO
+        %%%%%%%%%%%%%%%%%%%%%%%%%%%
+        
+        Play_Sound('Audio/Finished/aa_nouns/glorfin1.wav', 'toBlock');
+        Show_Blank;
+        
+        PlayCenterMovie(movietoplay_practice_3c);
+        
+        Show_Blank;
+        
+        %%%%%%%%%%%%%%%%%%%%%%%%%%%
+        %THIRD DISAMBIGUATING VIDEO
+        %%%%%%%%%%%%%%%%%%%%%%%%%%%
+        
+        Play_Sound('Audio/Finished/aa_nouns/glorfin1.wav', 'toBlock');
+        Show_Blank;
+        
+        PlayCenterMovie(movietoplay_practice_3d);
+        
+        Show_Blank;
+        
+        %%%%%%%%%%%%%%%%%%%%%%%%%%%
+        %LEARNING TEST
+        %%%%%%%%%%%%%%%%%%%%%%%%%%%
+        
+        Text_Show('Ready for the test? Press space.');
+        Take_Response();
+        Show_Blank;
+        
+        Play_Sound('Audio/Finished/aa_nouns/glorfin2.wav', 'toBlock');
+        Show_Blank;
+        
+        PlaySideMovies(movietoplay_practice_3e,'','caption_left','');
+        PlaySideMovies('',movietoplay_practice_3_distr,'caption_right',''); 
+
+        Play_Sound('Audio/Finished/aa_nouns/glorfin3.wav', 'toBlock');    
+        
+        parameters.practice3TestAns = Take_Response();
+        Show_Blank;
+
+        starimagenoun3 = parameters.practiceStars{3};
+        imageArray = imread(starimagenoun3);
+        rect = parameters.scr.rect;
+        winPtr = parameters.scr.winPtr;
+        Screen('PutImage', winPtr , imageArray, rect );
+        Screen('flip',winPtr)
+        Take_Response();
+        Show_Blank;  
+        
+    %%%%%%%%%%%%%%%%%%%%%
+    %FOURTH PRACTICE TRIAL
+    %%%%%%%%%%%%%%%%%%%%%
+        
+        %%%%%%%%%%%%%%%%%%%%%%%%%
+        %INITIAL AMBIGUOUS VIDEO
+        %%%%%%%%%%%%%%%%%%%%%%%%%
+        
+        Play_Sound('Audio/Finished/aa_nouns/glorfin1.wav', 'toBlock');
+        Show_Blank;
+
+        movietoplay_practice_4a = 'Movies_Practice/practice_4a.mp4';
+        movietoplay_practice_4b = 'Movies_Practice/practice_4b.mp4';
+        movietoplay_practice_4c = 'Movies_Practice/practice_4c.mp4';
+        movietoplay_practice_4d = 'Movies_Practice/practice_4d.mp4';
+        movietoplay_practice_4e = 'Movies_Practice/practice_4e.mp4';
+        movietoplay_practice_4_distr = 'Movies_Practice/practice_4_distr.mp4';
+        Show_Blank;
+
+        PlayCenterMovie(movietoplay_practice_4a);
+        Show_Blank;
+        
+        Play_Sound(soundtoplay_letsWatchMore, 'toBlock');
+        Text_Show('Ready to learn some verbs? Press space.');
+        Take_Response();
+        Show_Blank;
+        
+        %%%%%%%%%%%%%%%%%%%%%%%%%%%
+        %FIRST DISAMBIGUATING VIDEO
+        %%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+        Play_Sound('Audio/Finished/aa_nouns/glorfin1.wav', 'toBlock');
+        Show_Blank;
+        
+        PlayCenterMovie(movietoplay_practice_4b);
+        
+        Show_Blank;
+        
+        %%%%%%%%%%%%%%%%%%%%%%%%%%%
+        %SECOND DISAMBIGUATING VIDEO
+        %%%%%%%%%%%%%%%%%%%%%%%%%%%
+        
+        Play_Sound('Audio/Finished/aa_nouns/glorfin1.wav', 'toBlock');
+        Show_Blank;
+        
+        PlayCenterMovie(movietoplay_practice_4c);
+        
+        Show_Blank;
+        
+        %%%%%%%%%%%%%%%%%%%%%%%%%%%
+        %THIRD DISAMBIGUATING VIDEO
+        %%%%%%%%%%%%%%%%%%%%%%%%%%%
+        
+        Play_Sound('Audio/Finished/aa_nouns/glorfin1.wav', 'toBlock');
+        Show_Blank;
+        
+        PlayCenterMovie(movietoplay_practice_4d);
+        
+        Show_Blank;
+        
+        %%%%%%%%%%%%%%%%%%%%%%%%%%%
+        %LEARNING TEST
+        %%%%%%%%%%%%%%%%%%%%%%%%%%%
+        
+        Text_Show('Ready for the test? Press space.');
+        Take_Response();
+        Show_Blank;
+        
+        Play_Sound('Audio/Finished/aa_nouns/glorfin2.wav', 'toBlock');
+        Show_Blank;
+        
+        PlaySideMovies(movietoplay_practice_4e,'','caption_left','');
+        PlaySideMovies('',movietoplay_practice_4_distr,'caption_right',''); 
+
+        Play_Sound('Audio/Finished/aa_nouns/glorfin3.wav', 'toBlock');    
+        
+        parameters.practice3TestAns = Take_Response();
+        Show_Blank;
+
+        starimagenoun4 = parameters.practiceStars{4};
+        imageArray = imread(starimagenoun4);
+        rect = parameters.scr.rect;
+        winPtr = parameters.scr.winPtr;
+        Screen('PutImage', winPtr , imageArray, rect );
+        Screen('flip',winPtr)
+        Take_Response();
+        Show_Blank;  
+
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
     % END NOUN TRAINING                             
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
