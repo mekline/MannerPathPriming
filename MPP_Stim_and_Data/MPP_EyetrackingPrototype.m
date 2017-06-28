@@ -117,12 +117,13 @@ try
     
     %Add the star pictures _in order!!!_
     if toExtend
-        myStars = dir('stars/longstars*.jpeg');
+        myStars = dir('stars/longstars_Practice/longstars*.jpeg');
         myStars = struct2cell(myStars);  
-        myStars(1,:) = strcat('stars/',myStars(1,:));
+        myStars(1,:) = strcat('stars/longstars_Practice/',myStars(1,:));
         parameters.nounStars = myStars(1,1:3);
-        parameters.mainStars = myStars(1,4:11);
-        parameters.extStars = myStars(1,12:19);
+        parameters.practiceStars = myStars(1,4:7)
+        parameters.mainStars = myStars(1,8:15);
+        parameters.extStars = myStars(1,16:23);
     else
         myStars = dir('stars/stars*.jpg');
         myStars = struct2cell(myStars);
