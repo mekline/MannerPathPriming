@@ -80,11 +80,11 @@ global parameters
         
         Play_Sound('Audio/Finished/aa_nouns/bone3.wav', 'toBlock'); 
         
-        parameters.noun1TestAns = Take_Response();
+        parameters.practice1TestAns = Take_Response();
        
         Show_Blank;
 
-        starimagenoun1 = parameters.nounStars{2};
+        starimagenoun1 = parameters.practiceStars{4};
 
         imageArray = imread(starimagenoun1);
         rect = parameters.scr.rect;
@@ -163,10 +163,10 @@ global parameters
 
         Play_Sound('Audio/Finished/aa_nouns/glorfin3.wav', 'toBlock');    
         
-        parameters.noun2TestAns = Take_Response();
+        parameters.practice2TestAns = Take_Response();
         Show_Blank;
 
-        starimagenoun2 = parameters.nounStars{3};
+        starimagenoun2 = parameters.practiceStars{5};
         imageArray = imread(starimagenoun2);
         rect = parameters.scr.rect;
         winPtr = parameters.scr.winPtr;
