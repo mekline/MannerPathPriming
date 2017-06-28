@@ -73,6 +73,10 @@ global parameters
         %LEARNING TEST
         %%%%%%%%%%%%%%%%%%%%%%%%%%%
         
+        Text_Show('Ready for the test? Press space.');
+        Take_Response();
+        Show_Blank;
+        
         Play_Sound('Audio/Finished/aa_nouns/bone2.wav', 'toBlock');
         
         PlaySideMovies(movietoplay_practice_1_distr,'','caption_left','');
@@ -84,7 +88,7 @@ global parameters
        
         Show_Blank;
 
-        starimagenoun1 = parameters.practiceStars{4};
+        starimagenoun1 = parameters.practiceStars{1};
 
         imageArray = imread(starimagenoun1);
         rect = parameters.scr.rect;
@@ -158,6 +162,13 @@ global parameters
         %LEARNING TEST
         %%%%%%%%%%%%%%%%%%%%%%%%%%%
         
+        Text_Show('Ready for the test? Press space.');
+        Take_Response();
+        Show_Blank;
+        
+        Play_Sound('Audio/Finished/aa_nouns/glorfin2.wav', 'toBlock');
+        Show_Blank;
+        
         PlaySideMovies(movietoplay_practice_2e,'','caption_left','');
         PlaySideMovies('',movietoplay_practice_2_distr,'caption_right',''); 
 
@@ -166,7 +177,7 @@ global parameters
         parameters.practice2TestAns = Take_Response();
         Show_Blank;
 
-        starimagenoun2 = parameters.practiceStars{5};
+        starimagenoun2 = parameters.practiceStars{2};
         imageArray = imread(starimagenoun2);
         rect = parameters.scr.rect;
         winPtr = parameters.scr.winPtr;

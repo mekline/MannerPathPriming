@@ -121,7 +121,7 @@ try
         myStars = struct2cell(myStars);  
         myStars(1,:) = strcat('stars/longstars_Practice/',myStars(1,:));
         parameters.nounStars = myStars(1,1:3);
-        parameters.practiceStars = myStars(1,4:7)
+        parameters.practiceStars = myStars(1,4:7);
         parameters.mainStars = myStars(1,8:15);
         parameters.extStars = myStars(1,16:23);
     else
@@ -213,8 +213,8 @@ try
     if ~todebug
         MPP_Practice();
     else
-        parameters.noun1TestAns = 'pilot';
-        parameters.noun2TestAns = 'pilot';
+        parameters.practice1TestAns = 'pilot';
+        parameters.practice2TestAns = 'pilot';
     end
     
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
