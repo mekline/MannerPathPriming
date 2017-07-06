@@ -62,17 +62,18 @@ participantData = read.csv(pFile, sep = ",", header = T) #load the info data fil
 
 setwd(ddir)
 allData <- data.frame(NULL)
+trialData <- data.frame(NULL)
+pData <- data.frame(NULL)
 
 error_files = list() #create an empty error list
 for (file in files) {
-  
   trialData <- try(read.table(file, sep = ",", header = T, fill=T))
   if (class(trialData) == 'try-error') {
-    cat(file)
     cat('Caught an error during read.table.\n')
   } else { 
       pData = try(participantData[participantData$Participant.. == trialData$SubjectNo[1],]) #get info for current participant
       pData$SubjectNo = pData$Participant..  
+      pData$SubjectNo = as.numeric(pData$SubjectNo)
       myData = left_join(trialData, pData, by="SubjectNo") #Build rows
       allData <- bind_rows(myData, allData) #Add these rows to the giant data frame
   } 
@@ -104,7 +105,8 @@ allData <- allData  %>%
   rename(Experiment = RealExp) %>%
   rename(Condition = Verb.Condition)
 
-  
+length(unique(allData$SubjectNo))
+
 allData1 <- allData %>% #A few participants had the extension trials coded on the same lines as trials 1-8, just have to rearrange them
   filter(is.na(extAnswer))
 allData2 <- allData %>%
