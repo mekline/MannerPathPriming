@@ -72,6 +72,7 @@ for (file in files) {
     cat('Caught an error during read.table.\n')
   } else { 
       pData = try(participantData[participantData$Participant.. == trialData$SubjectNo[1],]) #get info for current participant
+      cat(names(pData))
       pData$SubjectNo = pData$Participant..  
       pData$SubjectNo = as.numeric(pData$SubjectNo)
       myData = left_join(trialData, pData, by="SubjectNo") #Build rows
@@ -134,6 +135,9 @@ allData <- select(allData1, -c(extAnswer, extVerbName, extMannerSide, extPathSid
   arrange(SubjectNo) %>%
   select(Experiment,Condition,SubjectNo,trialNo,itemID,verbName, mannerSideBias:Exclude.Reason) #just reordering
 
+length(unique(allData$SubjectNo))
+
+
 #rm(list=setdiff(ls(), c("allData","adir","ddir","repodir")))#avoid accidentally referencing placeholder vars from above
 
 allData <- allData %>%
@@ -142,6 +146,7 @@ allData <- allData %>%
   select(-c(Inclusion.Decision, Exclude.Reason))
 
 length(unique(allData$SubjectNo))
+
 #####
 # Eventually add 75, 76
 #####
