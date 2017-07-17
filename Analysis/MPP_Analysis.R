@@ -38,6 +38,7 @@ pFile = paste(repodir,"MannerPath_Data.csv",sep="") #get files ready...
 files = list.files(ddir, pattern = ".dat$") #all .dat files in data directory
 participantData = read.csv(pFile, sep = ",", header = T) #load the info data file
 
+
 ######
 # INCLUSION INFO
 ######
@@ -72,15 +73,16 @@ for (file in files) {
     cat('Caught an error during read.table.\n')
   } else { 
       pData = try(participantData[participantData$Participant.. == trialData$SubjectNo[1],]) #get info for current participant
-      cat(names(pData))
-      pData$SubjectNo = pData$Participant..  
-      pData$SubjectNo = as.numeric(pData$SubjectNo)
-      myData = left_join(trialData, pData, by="SubjectNo") #Build rows
-      allData <- bind_rows(myData, allData) #Add these rows to the giant data frame
+      cat(nrow(pData))
+      pData$SubjectNo = pData$Participant.. 
+      if (!is.na(pData$Age.Years)){
+        myData = left_join(trialData, pData, by="SubjectNo") #Build rows
+        allData <- bind_rows(myData, allData) #Add these rows to the giant data frame
+      }
   } 
 } 
 length(unique(allData$SubjectNo))
-
+allData$Inclusion.Decision
 
 #It's a great big data frame! Begin by dropping columns that we don't need for analysis (mostly names of individual vid files)
 colToSave = c("SubjectNo","VerbDomain","trialNo","itemID",
