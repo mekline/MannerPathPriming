@@ -71,13 +71,20 @@ for (file in files) {
   trialData <- try(read.table(file, sep = ",", header = T, fill=T))
   if (class(trialData) == 'try-error') {
     cat('Caught an error during read.table.\n')
+    cat(file)
   } else { 
       pData = try(participantData[participantData$Participant.. == trialData$SubjectNo[1],]) #get info for current participant
-      cat(nrow(pData))
       pData$SubjectNo = pData$Participant.. 
-      if (!is.na(pData$Age.Years)){
-        myData = left_join(trialData, pData, by="SubjectNo") #Build rows
-        allData <- bind_rows(myData, allData) #Add these rows to the giant data frame
+      if(length(pData$Age.Years) > 0){
+        if (!is.na(pData$Age.Years)){ #(This only happens for a NA line where a subj number was skipped)
+          myData = left_join(trialData, pData, by="SubjectNo") #Build rows
+          cat(pData$SubjectNo)
+          cat('\n')
+          myData$trainingEndTime <- as.numeric(myData$trainingEndTime)
+          myData$finalTestStart <- as.numeric(myData$finalTestStart)
+          myData$finalTestEnd <- as.numeric(myData$finalTestEnd)
+          allData <- bind_rows(myData, allData) #Add these rows to the giant data frame
+        }
       }
   } 
 } 
@@ -150,7 +157,7 @@ allData <- allData %>%
 length(unique(allData$SubjectNo))
 
 #####
-# Eventually add 75, 76
+# Eventually add 75, 76 (they had to be coded by hand and aren't in dat format yet)
 #####
 
 
@@ -311,6 +318,9 @@ Exp1 <- filter(allData, Experiment == "E1 - MannerPath")
 Exp2.Base <- filter(allData, Experiment == "E2 - ActionEffect extend to MannerPath" & expPhase == "Base")
 Exp2.Extend <- filter(allData, Experiment == "E2 - ActionEffect extend to MannerPath" & expPhase == "Extension")
 
+Exp3.Base <- filter(allData, Experiment == "E3 - MannerPath extend to ActionEffect" & expPhase == "Base")
+Exp3.Extend <- filter(allData, Experiment == "E3 - MannerPath extend to ActionEffect" & expPhase == "Extension")
+
 #Test 1: Does CONDITION matter? (Random effects for verbs; Condition is between-subjects)
 
 #Exp1
@@ -328,6 +338,15 @@ model_eff3 <- glmer(choseM.Bias ~ Condition  + (1|verbName), data=Exp2.Extend, f
 model_noeff3 <- glmer(choseM.Bias ~ 1  + (1|verbName), data=Exp2.Extend, family="binomial")
 anova(model_eff3, model_noeff3)
 
+#Exp3 base
+model_eff4 <- glmer(choseM.Bias ~ Condition  + (1|verbName), data=Exp3.Base, family="binomial")
+model_noeff4 <- glmer(choseM.Bias ~ 1  + (1|verbName), data=Exp3.Base, family="binomial")
+anova(model_eff4, model_noeff4)
+
+#Exp3 Extension
+model_eff5 <- glmer(choseM.Bias ~ Condition  + (1|verbName), data=Exp3.Extend, family="binomial")
+model_noeff5 <- glmer(choseM.Bias ~ 1  + (1|verbName), data=Exp3.Extend, family="binomial")
+anova(model_eff5, model_noeff5)
 
 # Test #2
 # Do exp and trial interact? That is, is the different between exp different later in the exp? Do they diverge? 
