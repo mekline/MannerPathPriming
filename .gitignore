@@ -10,5 +10,7 @@ MPP_Stim_and_Data/Data/MannerPathPriming_99.dat
 **/*.avi
 **/*.ogv
 **/*.webm
+**/*.swf
+**/*.ai
 
 
