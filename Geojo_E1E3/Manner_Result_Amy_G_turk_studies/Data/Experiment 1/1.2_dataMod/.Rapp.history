@@ -1,0 +1,773 @@
+b2$blockOrder = as.factor(as.character(b2$blockOrder)
+mb2b = lm(biasACC.mean.mean ~ blockOrder*trialNo, data = b2)
+summary(mb2b)
+b2[1:3, ]
+b2 = summaryBy(biasACC.mean ~ trialNo + blockOrder, Fun = c(mean), data = b2t)
+mb2b = lm(biasACC.mean.mean ~ blockOrder*trialNo, data = b2)
+summary(mb2b)
+mb2b = lm(biasACC.mean.mean ~ blockOrder*trialNo + (1|itemId), data = b2)
+mr = read.csv("~/Dropbox/1_RESEARCH/1_Experiments/3_Manner-Result_Paper3/0_Data_AMT/Paper3/BlockedAgentive/dataMod_Blocked_Agentive/3_BiasAndTestScored.csv", header = T)
+mr2 = mr[mr$eventOrder == "b1Causal_b2Motion", ]
+mrR = lmer(biasACC ~ 1 + blockOrder*trialNo)
+mrR = lmer(biasACC ~ 1 + blockOrder*trialNo, data = mr2)
+mrR = lmer(biasACC ~ blockOrder*trialNo, data = mr2)
+mrR = lm(biasACC ~ 1 + blockOrder*trialNo, data = mr2)
+summary(lm)
+summary(mrR)
+mr2 = mr[mr$eventOrder == "b1Causal_b2Motion", ]
+mr2$trialNo = as.factor(as.character(mr$trialNo))
+mrR = lm(biasACC ~ 1 + blockOrder*trialNo, data = mr2)
+mr2$trialNo = as.factor(as.character(mr2$trialNo))
+mrR = lm(biasACC ~ 1 + blockOrder*trialNo, data = mr2)
+summary(mrR)
+mrR = lm(biasACC ~ 1 + blockOrder*trialNo, data = mr2[mr2$trialNo > 8, ])
+b2t = summaryBy(biasACC ~ SubNo + trialNo + blockOrder, Fun = c(mean), data = mr2[mr2$trialNo == 9,]) #& df$trialNo > 3, ])
+mb2 = lm(biasACC.mean ~ blockOrder*trialNo, data = b2t)
+b2t$trialNo = as.factor(as.character(b2t$trialNo))
+mb2 = lm(biasACC.mean ~ blockOrder*trialNo, data = b2t)
+mb2 = lmer(biasACC.mean ~ blockOrder*trialNo, data = b2t)
+b = summaryBy(biasACC.mean ~ trialNo + blockOrder, Fun = c(mean), data = b2t)
+mb2 = lm(biasACC.mean ~ blockOrder*trialNo, data = b)
+b$trialNo = as.factor(as.character(b$trialNo))
+mb2 = lm(biasACC.mean ~ blockOrder*trialNo, data = b)
+mb2 = lm(biasACC.mean.mean ~ blockOrder*trialNo, data = b)
+b2t = summaryBy(biasACC ~ SubNo + trialNo + blockOrder, Fun = c(mean), data = mr2[mr2$trialNo == 9,]) #& df$trialNo > 3, ])
+b = summaryBy(biasACC.mean ~ trialNo + blockOrder, Fun = c(mean), data = b2t)
+b$trialNo = as.factor(as.character(b$trialNo))
+mb2 = lm(biasACC.mean.mean ~ blockOrder*trialNo, data = b)
+mr = read.csv("~/Dropbox/1_RESEARCH/1_Experiments/3_Manner-Result_Paper3/0_Data_AMT/Paper3/BlockedAgentive/dataMod_Blocked_Agentive/3_BiasAndTestScored.csv", header = T)
+mr2 = mr[mr$eventOrder == "b1Causal_b2Motion", ]
+mr2$trialNo = as.factor(as.character(mr2$trialNo))
+mrR = lm(biasACC ~ 1 + blockOrder*trialNo, data = mr2)
+summary(mrR)
+mr2 = mr[mr$eventOrder == "b1Causal_b2Motion" & trialNo == '8', ]
+mr2 = mr[mr$eventOrder == "b1Causal_b2Motion" & trialNo == 8, ]
+mr2 = mr[mr$eventOrder == "b1Causal_b2Motion" & mr$trialNo == 8, ]
+mr2$trialNo = as.factor(as.character(mr2$trialNo))
+mrR = lm(biasACC ~ 1 + blockOrder*trialNo, data = mr2)
+mr2 = mr[mr$eventOrder == "b1Causal_b2Motion" & mr$trialNo > 8, ]
+mr2$trialNo = as.factor(as.character(mr2$trialNo))
+mr2 = mr[mr$eventOrder == "b1Causal_b2Motion" & mr$trialNo > 8, ]
+mr2$trialNo = as.factor(as.character(mr2$trialNo))
+mrR = lm(biasACC ~ 1 + blockOrder*trialNo, data = mr2)
+summary(mrR)
+mr2 = mr[mr$eventOrder == "b1Causal_b2Motion" & mr$trialNo >= 8, ]#
+mr2$trialNo = as.factor(as.character(mr2$trialNo))#
+mrR = lm(biasACC ~ 1 + blockOrder*trialNo, data = mr2)#
+summary(mrR)
+mr2 = mr[mr$eventOrder == "b1Causal_b2Motion" & mr$trialNo == 8, ]
+mrR = lm(biasACC ~ 1 + blockOrder, data = mr2)
+summary(mrR)
+length(unique(mr2$SubNo))
+describe(mr2$blockOrder == "b1Means_b2Motion")
+describe(mr2$blockOrder == "b1Effect_b2Motion")
+mr2 = mr[mr$eventOrder == "b1Causal_b2Motion" & mr$trialNo == 9, ]
+mr2$trialNo = as.factor(as.character(mr2$trialNo))
+mrR = lm(biasACC ~ 1 + blockOrder, data = mr2)
+summary(mrR)
+describe(mr2$blockOrder == "b1Means_b2Motion")
+describe(mr2$blockOrder == "b1Effect_b2Motion")
+mr2 = mr[mr$eventOrder == "b1Causal_b2Motion" & mr$trialNo >= 8, ]#
+mr2$trialNo = as.factor(as.character(mr2$trialNo))#
+mrR = lm(biasACC ~ 1 + blockOrder*trialNo, data = mr2)#
+summary(mrR)
+mr2 = mr[mr$eventOrder == "b1Causal_b2Motion" & mr$trialNo >= 8, ]
+mr2$trialNo = as.factor(as.character(mr2$trialNo))
+mrR = lm(biasACC ~ 1 + blockOrder, data = mr2)
+summary(mrR)
+mrR = lmer(biasACC ~ 1 + blockOrder + (1|SubNo) + (1|trialId), data = mr2)
+mrR = lmer(biasACC ~ 1 + blockOrder + (1|SubNo) + (1|itemId), data = mr2)
+mr2 = mr[mr$eventOrder == "b1Causal_b2Motion" & mr$trialNo == 8, ]
+mr2$trialNo = as.factor(as.character(mr2$trialNo))
+mrR = lmer(biasACC ~ 1 + blockOrder + (1|SubNo) + (1|itemId), data = mr2)
+mr2 = mr[mr$eventOrder == "b1Causal_b2Motion" & mr$trialNo == 8, ]
+mrR = lmer(biasACC ~ 1 + blockOrder + (1|SubNo) + (1|itemId), data = mr2)
+mr2$trialNo = as.factor(as.character(mr2$trialNo))
+mrR = lmer(biasACC ~ 1 + blockOrder + (1|SubNo) + (1|itemId), data = mr2)
+with trial as factor#
+df = read.csv("~/Dropbox/1_RESEARCH/1_Experiments/3_Manner-Result_Paper3/0_Data_AMT/Paper3/BlockedAgentive/dataMod_Blocked_Agentive/3_BiasAndTestScored.csv", header = T)#
+#
+df2 = df[df$eventOrder == "b1Causal_b2Motion" & df$trialNo == 8, ]#
+df2$trialNo = as.factor(as.character(df2$trialNo))#
+dfR = lm(biasACC ~ 1 + blockOrder, data = df2)#
+summary(dfR)#
+#
+describe(df2$blockOrder == "b1Means_b2Motion")#
+describe(df2$blockOrder == "b1Effect_b2Motion")
+df2 = df[df$eventOrder == "b1Motion_b2Causal" & df$trialNo == 8, ]#
+df2$trialNo = as.factor(as.character(df2$trialNo))#
+dfR = lm(biasACC ~ 1 + blockOrder, data = df2)#
+summary(dfR)#
+#
+describe(df2$blockOrder == "b1Means_b2Motion")#
+describe(df2$blockOrder == "b1Effect_b2Motion")
+df = read.csv("~/Dropbox/1_RESEARCH/1_Experiments/3_Manner-Result_Paper3/0_Data_AMT/Paper3/BlockedAgentive/dataMod_Blocked_Agentive/3_BiasAndTestScored.csv", header = T)#
+#
+df2 = df[df$eventOrder == "b1Causal_b2Motion" & df$trialNo == 8, ]#
+df2$trialNo = as.factor(as.character(df2$trialNo))#
+dfR = lm(biasACC ~ 1 + blockOrder, data = df2)#
+summary(dfR)#
+#
+describe(df2$blockOrder == "b1Means_b2Motion")#
+describe(df2$blockOrder == "b1Effect_b2Motion")
+length(unique(df2$SubNo))
+df2$SubNo = as.factor(as.character(df2$SubNo))
+length(unique(df2$SubNo))
+df$highManner = ifelse(df$itemId == 2 | df$itemId == 3 | df$itemId == 4 | df$itemId == 7, 1, 0)
+df[1:3, ]
+df2 = df[df$eventOrder == "b1Causal_b2Motion" & df$trialNo > 8, ]
+dfR = lm(biasACC ~ 1 + blockOrder*highManner, data = df2)
+summary(dfR)
+dfR = lmer(biasACC ~ 1 + blockOrder*highManner + (1|SubNo), data = df2)
+summary(dfR)
+df2$trialNo = as.factor(as.character(df2$trialNo))
+dfR = lm(biasACC ~ 1 + blockOrder*highManner, data = df2)
+summary(dfR)
+dfR = lm(biasACC ~ 1 + blockOrder*itemId, data = df2)
+summary(dfR)
+with trial as factor#
+mr = read.csv("~/Dropbox/1_RESEARCH/1_Experiments/3_Manner-Result_Paper3/0_Data_AMT/Paper3/BlockedAgentive/dataMod_Blocked_Agentive/3_BiasAndTestScored.csv", header = T)#
+#
+mr2 = mr[mr$eventOrder == "b1Causal_b2Motion" & mr$trialNo >= 8, ]#
+mr2$trialNo = as.factor(as.character(mr2$trialNo))#
+mrR = lm(biasACC ~ 1 + blockOrder*trialNo, data = mr2)#
+summary(mrR)
+with trial as factor#
+df = read.csv("~/Dropbox/1_RESEARCH/1_Experiments/3_Manner-Result_Paper3/0_Data_AMT/Paper3/BlockedAgentive/dataMod_Blocked_Agentive/3_BiasAndTestScored.csv", header = T)#
+#
+df2 = df[df$eventOrder == "b1Causal_b2Motion" & df$trialNo == 8, ]#
+df2$trialNo = as.factor(as.character(df2$trialNo))#
+dfR = lm(biasACC ~ 1 + blockOrder, data = df2)#
+summary(dfR)#
+#
+describe(df2$blockOrder == "b1Means_b2Motion")#
+describe(df2$blockOrder == "b1Effect_b2Motion")
+df = read.csv("~/Dropbox/1_RESEARCH/1_Experiments/3_Manner-Result_Paper3/0_Data_AMT/Paper3/BlockedAgentive/dataMod_Blocked_Agentive/3_BiasAndTestScored.csv", header = T)
+df2 = df[df$eventOrder == "b1Causal_b2Motion" & df$trialNo == 8, ]
+plot(df2$blockOrder, biasACC)
+df2[1:3, ]
+plot(df2$blockOrder, df$biasACC)
+plot(df2$blockOrder, mean(df$biasACC)
+plot(df2$blockOrder, mean(df$biasACC))
+plot(df2$blockOrder, mean(df2$biasACC))
+plot(df2$blockOrder, df2$biasACC)
+plot(df2$blockOrder, df2$biasACC, type = 'l')
+plot(df2$blockOrder, mean(df2$biasACC))
+chisq.test(c(df2[df2$blockOrder == "b1Means_b2Motion"]$biasACC), df2$df2$blockOrder == "b1Effect_b2Motion"]$biasACC)
+chisq.test(c(df2[df2$blockOrder == "b1Means_b2Motion",]$biasACC), df2$df2$blockOrder == "b1Effect_b2Motion",]$biasACC)
+chisq.test(c(df2[df2$blockOrder == "b1Means_b2Motion",]$biasACC), df2$blockOrder == "b1Effect_b2Motion",]$biasACC)
+means = df2[df2$blockOrder == "b1Means_b2Motion",]
+effect = df2[df2$blockOrder == "b1Effect_b2Motion",]
+meansB = means$biasACC
+effectB = effect$biasACC
+chisq.test(c(meansB, effectB))
+meansB[1:4]
+.5 %in% meansB
+.5 %in% EffectB
+.5 %in% effectB
+meansB
+effectB
+mean(meansB)
+m = means(meansB)
+m = mean(meansB)
+e = mean(effectB)
+chisq.test(c(m, e))
+df2 = df[df$eventOrder == "b1Causal_b2Motion" & df$trialNo == 9, ]
+dfR = lm(biasACC ~ 1 + blockOrder, data = df2)
+summary(dfR)
+chisq.test(df2$biasACC, df2$blockOrder)
+df2 = df[df$eventOrder == "b1Causal_b2Motion" & df$trialNo == 9, ]
+plot(df2$blockOrder, df2$biasACC)
+dfR = lm(biasACC ~ 1 + blockOrder, data = df2)
+summary(dfR)
+describe(df2$blockOrder == "b1Means_b2Motion")
+describe(df2$blockOrder == "b1Effect_b2Motion")
+length(unique(df2$SubNo))
+chisq.test(df2$biasACC, df2$blockOrder)
+df2 = df[df$eventOrder == "b1Causal_b2Motion" & df$trialNo == 10, ]
+plot(df2$blockOrder, df2$biasACC)
+dfR = lm(biasACC ~ 1 + blockOrder, data = df2)
+summary(dfR)
+describe(df2$blockOrder == "b1Means_b2Motion")
+describe(df2$blockOrder == "b1Effect_b2Motion")
+df2[1:3, ]
+dfR = lm(biasACC ~ 1 + blockOrder, data = df2)
+summary(dfR)
+chisq.test(df2$biasACC, df2$blockOrder)
+df2 = df[df$eventOrder == "b1Causal_b2Motion" & df$trialNo == 10, ]
+chisq.test(df2$biasACC, df2$blockOrder)
+df2 = df[df$eventOrder == "b1Causal_b2Motion" & df$trialNo == 9, ]
+chisq.test(df2$biasACC, df2$blockOrder)
+df2 = df[df$eventOrder == "b1Causal_b2Motion" & df$trialNo == 8, ]
+chisq.test(df2$biasACC, df2$blockOrder)
+df2 = df[df$eventOrder == "b1Causal_b2Motion" & df$trialNo == 11, ]
+chisq.test(df2$biasACC, df2$blockOrder)
+df2 = df[df$eventOrder == "b1Causal_b2Motion" & df$trialNo >8, ]
+dfR = lm(biasACC ~ 1 + blockOrder, data = df2)
+summary(dfR)
+describe(df2$blockOrder == "b1Means_b2Motion")
+describe(df2$blockOrder == "b1Effect_b2Motion")
+df2 = df[df$eventOrder == "b1Causal_b2Motion" & df$trialNo >8, ]
+df2$trialNo = as.factor(as.character(df2$trialNo))
+dfR = lm(biasACC ~ 1 + blockOrder, data = df2)
+summary(dfR)
+describe(df2$blockOrder == "b1Means_b2Motion")
+describe(df2$blockOrder == "b1Effect_b2Motion")
+df = read.csv("~/Dropbox/1_RESEARCH/1_Experiments/3_Manner-Result_Paper3/0_Data_AMT/Paper3/BlockedAgentive/dataMod_Blocked_Agentive/3_BiasAndTestScored.csv", header = T)
+df2 = df[df$eventOrder == "b1Causal_b2Motion" & df$trialNo >8, ]
+dfR = lm(biasACC ~ 1 + blockOrder, data = df2)
+summary(dfR)
+df2 = summaryBy(biasACC ~ SubNo + trialNo, FUN = c(mean), data = df2)
+df2 = summaryBy(biasACC.mean ~ SubNo, FUN = c(mean), data = df2)
+dfR = lm(biasACC ~ 1 + blockOrder, data = df2)
+dfR = lm(biasACC.mean.mean ~ 1 + blockOrder, data = df2)
+dfR = lm(biasACC.mean.mean ~ blockOrder, data = df2)
+df2[1:3, ]
+cont = matrix(c(-1, 0, -1,#
+				   0, 1, 1, #
+				   1, 0, 1, #
+				   0, -1, -1), #
+				   ncol=3, #
+				   byrow = T, #
+				   dimnames = list(levels(df$blockOrder), c("B2_Motion", "B2_Causal", "C")))
+df = read.csv("~/Dropbox/1_RESEARCH/1_Experiments/3_Manner-Result_Paper3/0_Data_AMT/Paper3/BlockedAgentive/dataMod_Blocked_Agentive/3_BiasAndTestScored.csv", header = T)
+df2 = df[df$eventOrder == "b1Causal_b2Motion" & df$trialNo >8, ]
+df2 = summaryBy(biasACC ~ SubNo + trialNo, FUN = c(mean), data = df2)
+df2 = summaryBy(biasACC.mean ~ SubNo + blockOrder, FUN = c(mean), data = df2)
+dfR = lm(biasACC ~ 1 + blockOrder, data = df2)
+dfR = lm(biasACC.mean.mean ~ 1 + blockOrder, data = df2)
+df = read.csv("~/Dropbox/1_RESEARCH/1_Experiments/3_Manner-Result_Paper3/0_Data_AMT/Paper3/BlockedAgentive/dataMod_Blocked_Agentive/3_BiasAndTestScored.csv", header = T)
+b2t = summaryBy(biasACC ~ SubNo + trialNo + blockOrder, Fun = c(mean), data = df[df$trialNo > 8 & df$eventOrder == "b1Causal_b2Motion",]) #& df$trialNo > 3, ])
+b2 = summaryBy(biasACC.mean ~ SubNo + blockOrder, Fun = c(mean), data = b2t)
+mb2 = lm(biasACC.mean.mean ~ blockOrder, data = b2)
+summary(mb2)
+describe(b2$biasACC.mean[b2$blockOrder == "b1MannerOfMotion_b2Causal"])
+describe(b2$biasACC.mean[b2$blockOrder == "b1Means_b2Motion"])
+describe(b2$biasACC.mean[b2$blockOrder == "b1Effect_b2Motion"])
+describe(df2$blockOrder == "b1Means_b2Motion")
+b2t = summaryBy(biasACC ~ SubNo + trialNo + blockOrder, Fun = c(mean), data = df[df$trialNo > 8 & df$eventOrder == "b1Motion_b2Causal",]) #& df$trialNo > 3, ])
+b2 = summaryBy(biasACC.mean ~ SubNo + blockOrder, Fun = c(mean), data = b2t)
+mb2 = lm(biasACC.mean.mean ~ blockOrder, data = b2)
+summary(mb2)
+describe(b2$biasACC.mean[b2$blockOrder == "b1MannerOfMotion_b2Causal"])
+describe(b2$biasACC.mean[b2$blockOrder == "b1Path_b2Causal"])
+df = read.csv("~/Dropbox/1_RESEARCH/1_Experiments/3_Manner-Result_Paper3/0_Data_AMT/Paper3/BlockedAgentive/dataMod_Blocked_Agentive/3_BiasAndTestScored.csv", header = T)
+b2t = summaryBy(biasACC ~ SubNo + trialNo + blockOrder, Fun = c(mean), data = df[df$trialNo > 8,]) #& df$trialNo > 3, ])
+b2 = summaryBy(biasACC.mean ~ SubNo + blockOrder, Fun = c(mean), data = b2t)
+cont = matrix(c(-1, 0, -1,#
+				   0, 1, 1, #
+				   1, 0, 1, #
+				   0, -1, -1), #
+				   ncol=3, #
+				   byrow = T, #
+				   dimnames = list(levels(df$blockOrder), c("B2_Motion", "B2_Causal", "C")))
+contrasts(b2$blockOrder) <- cont
+mb2 = lm(biasACC.mean.mean ~ blockOrder, data = b2)
+summary(mb2)
+b2[1:3, ]
+length(unique(b2$SubNo))
+names(df)
+df2 = df[df$eventOrder == "b1Causal_b2Motion" & df$trialNo == 9, ]
+df2$trialNo = as.factor(as.character(df2$trialNo))
+plot(df2$blockOrder, df2$biasACC)
+dfR = lm(biasACC ~ 1 + blockOrder, data = df2)
+summary(dfR)
+describe(df2$blockOrder == "b1Means_b2Motion")
+describe(df2$blockOrder == "b1Effect_b2Motion")
+chisq.test(df2$biasACC, df2$blockOrder)
+agentive #
+directory = "~/Dropbox/1_RESEARCH/1_Experiments/1_Thesis_Research/3_Paper3_Manner-Result/Paper3_AMT_Data/1_BlockedAgentive_PPmotion_DOcausal/dataMod_Blocked_Agentive"#
+#
+inputCSV = "~/Dropbox/1_RESEARCH/1_Experiments/1_Thesis_Research/3_Paper3_Manner-Result/Paper3_AMT_Data/1_BlockedAgentive_PPmotion_DOcausal/dataMod_Blocked_Agentive/0_mannerResult_AllSub.csv"#
+#
+outputCSV = "1_mannerResult_Blocked_Agentive_AllSub_CritApplied2_10.2.13.csv"
+library(ggplot2)#
+library(lme4)#
+library(MCMCglmm)#
+library(plyr)#
+library(reshape2)#
+## Data sets and functions with "Analyzing Linguistic Data: A practical intro to stats (Baayen)"#
+library(languageR)#
+#
+## For Markov-Chain Monte Carlo estimation; need for library(R)#
+#library(coda)#
+#
+## #Groupwise computations of summary statistics, general linear contrasts etc#
+library(doBy)#
+#
+## #Linear and Nonlinear Mixed Effects Models#
+library(nlme)#
+#
+## #Procedures for Psychological, Psychometric, and Personality#
+# use describe(pmdata) --> amazing!#
+library(psych)#
+#
+require(stats)
+mannerResult = read.csv(inputCSV, header = T)#
+setwd(directory)
+mannerResult[1:3, ]
+setwd("~/Dropbox/1_RESEARCH/1_Experiments/1_Thesis_Research/3_Paper3_Manner-Result/Paper3_AMT_Data/1_BlockedAgentive_PPmotion_DOcausal/dataMod_Blocked_Agentive")
+list.files()
+mannerResult$DemographicsCrit = ifelse(mannerResult$Answer.English == "yes", 1, 0)#
+#
+mannerResult$subExcl_NotUSA_notEngl = length(unique(mannerResult$SubNo[mannerResult$DemographicsCrit == 0]))  #
+#
+mannerResult[1:3,]        #3 excluded (38 post merge w amt; 35 post demoCrit subjects)#
+length(unique(mannerResult$SubNo))#
+unique(mannerResult$trialNo)#
+#
+mannerResult$block1 = 0#
+mannerResult$block1[mannerResult$trialNo %in% c(1, 2, 3, 4, 5, 6, 7, 8)] = 1#
+# mannerResult[1:2, ]#
+#
+mannerResult$block2 = 0#
+mannerResult$block2[mannerResult$trialNo %in% c(9, 10, 11, 12, 13, 14, 15, 16)] = 1#
+#### note only ambig and bias sections apply for T9-16 --> so diff exclusionary crit for trials:#
+### ***exclude subjects that didn't see enough videos c trials as well as trials for subjects that only failed to see videos on less than 2 trials#
+mannerResult$seeAmbig = ifelse(mannerResult$seeAmbigV1 == 0 & mannerResult$seeAmbigV2 == 0, 0, 1)#
+#
+mannerResult$seeBias1 = ifelse(mannerResult$seeBiasV1 == 0 & mannerResult$bias1RESP == -1, 0, 1)#
+mannerResult$seeBias2 = ifelse(mannerResult$seeBiasV2 == 0 & mannerResult$bias2RESP == -1, 0, 1)#
+# mannerResult$seeBias = ifelse(mannerResult$seeBiasV1 == 0 & mannerResult$seeBiasV2 == 0, 0, 1)#
+#
+mannerResult$seeTrain1 = ifelse(mannerResult$seeTrain1a == 0 & mannerResult$seeTrain1b == 0, 0, 1)#
+mannerResult$seeTrain2 = ifelse(mannerResult$seeTrain2a == 0 & mannerResult$seeTrain2b == 0, 0, 1)#
+mannerResult$seeTrain3 = ifelse(mannerResult$seeTrain3a == 0 & mannerResult$seeTrain3b == 0, 0, 1)#
+#
+mannerResult$seeTest1 = ifelse(mannerResult$seeTestV1 == 0 & mannerResult$test1RESP == -1, 0, 1)#
+mannerResult$seeTest2 = ifelse(mannerResult$seeTestV2 == 0 & mannerResult$test2RESP == -1, 0, 1)#
+mr1 = mannerResult[mannerResult$block1 == 1, ]#
+mr2 = mannerResult[mannerResult$block2 == 1, ]#
+#
+mr1$seeVidCheck = ifelse(mr1$seeAmbig == 0 | mr1$seeBias1 == 0 | mr1$seeBias2 == 0| mr1$seeTrain1 == 0 | mr1$seeTrain2 == 0 | mr1$seeTrain3 == 0 | mr1$seeTest1 == 0 | mr1$seeTest2 == 0, 0, 1)#
+#
+mr1$totalVideoLostTrials = round(sum(mr1$seeVidCheck == 0)/length(mr1$seeVidCheck), 2)#
+#0.07#
+mr2$seeVidCheck = ifelse(mr2$seeAmbig == 0 | mr2$seeBias1 == 0 | mr2$seeBias2 == 0, 0, 1)#
+mr2$totalVideoLostTrials = round(sum(mr2$seeVidCheck == 0)/length(mr2$seeVidCheck), 2)#
+#0.08#
+#
+mannerResult = rbind(mr1, mr2)
+mannerResult included subjects -- pass demographics crit, trial # crit & seeVid Crit#
+# also exclude trials where seeVidCrit is not met#
+0 %in% mannerResult$DemographicsCrit#
+0 %in% mannerResult$seeVidCheck#
+#
+# mannerResultIncl = mannerResult[mannerResult$bias1RESP != -1 & mannerResult$bias2RESP != -1 & mannerResult$test1RESP != -1 & mannerResult$test2RESP != -1, ]#
+#
+unique(mannerResult$block2)#
+#
+#mannerResultIncl[1:3, ]#
+mannerResult2 = mannerResult[mannerResult$DemographicsCrit == 1 & mannerResult$seeVidCheck == 1,]#
+#mannerResult2$SubNo = as.factor(as.character(mannerResult2$SubNo))#
+# length(unique(mannerResult2$SubNo))     #35 after democrit and seevidcheck#
+0 %in% mannerResult2$DemographicsCrit#
+0 %in% mannerResult2$seeVidCheck#
+library(plyr)#
+mr1 = mannerResult2[mannerResult2$block1 == 1, ]   #trials 1-8#
+mr2 = mannerResult2[mannerResult2$block2 == 1, ]	#trials 9-16; mr2 has NAs for test1RESP and test2RESP-no VLtest#
+#
+mr1 = mr1[mr1$bias1RESP != -1 & mr1$bias2RESP != -1, ]#
+mr1 = mr1[mr1$test1RESP != -1 & mr1$test2RESP != -1, ]#
+mr2 = mr2[mr2$bias1RESP != -1 & mr2$bias2RESP != -1, ]#
+#
+mr1$trialNo = as.factor(as.character(mr1$trialNo))#
+mr2$trialNo = as.factor(as.character(mr2$trialNo))#
+#
+mr1.agg = aggregate(as.integer(mr1$trialNo), list(mr1$SubNo), length)#
+colnames(mr1.agg) = c("SubNo", "trialCountBlock")#
+mr1.agg$meetMinTrialCrit = ifelse(mr1.agg$trialCountBlock >= 6, 1, 0)#
+mr1.agg2 = mr1.agg[mr1.agg$meetMinTrialCrit == 1, ]#
+#
+m1 = join(mr1, mr1.agg2, by = "SubNo", type = "inner")#
+## same for T9-16 (bias only trials - verb extension)#
+mr2.agg = aggregate(as.integer(mr2$trialNo), list(mr2$SubNo), length)#
+colnames(mr2.agg) = c("SubNo", "trialCountBlock")#
+mr2.agg$meetMinTrialCrit = ifelse(mr2.agg$trialCountBlock >= 6, 1, 0)#
+#
+mr2.agg2 = mr2.agg[mr2.agg$meetMinTrialCrit == 1,]#
+m2 = join(mr2, mr2.agg2, by = "SubNo", type = "inner")#
+#
+#paired subset of data of mr2 that inludes only the rows with values of the ids found in mr1$SubNo#
+selectedSubjects1 = as.character(m2$SubNo) %in% as.character(m1$SubNo)#
+m2 = m2[selectedSubjects1, ]#
+#
+selectedSubjects2 = as.character(m1$SubNo) %in% as.character(m2$SubNo)#
+m1 = m1[selectedSubjects2, ]#
+#
+length(unique(m1$SubNo)) == length(unique(m2$SubNo))
+mannerResultFinal = rbind(m1, m2)#
+#
+0 %in% mannerResultFinal$meetMinTrialCount#
+#
+-1 %in% mannerResultFinal$bias1RESP#
+-1 %in% mannerResultFinal$bias2RESP#
+-1 %in% mannerResultFinal$test1RESP#
+-1 %in% mannerResultFinal$test2RESP#
+write.csv(mannerResultFinal, outputCSV)
+df <- mannerResultFinal
+df$bias1ACC = ifelse(df$bias1RESP == df$biasV1Ans, 1, 0)#
+df$bias2ACC = ifelse(df$bias2RESP == df$biasV2Ans, 1, 0)#
+df$biasACC = (df$bias1ACC + df$bias2ACC)/2#
+#
+df$test1ACC = ifelse(df$test1RESP == df$testV1Ans, 1, 0)#
+df$test2ACC = ifelse(df$test2RESP == df$testV2Ans, 1, 0)#
+df$testACC = (df$test1ACC + df$test2ACC)/2#
+#
+# df$highManner = ifelse(df$itemId == 2 | df$itemId == 3 | df$itemId == 4 | df$itemId == 7, 1, 0)#
+#
+#######################################################################################################
+#
+write.csv(df, "2_BiasAndTestScored.csv")
+directory = "~/Dropbox/1_RESEARCH/1_Experiments/1_Thesis_Research/3_Paper3_Manner-Result/Paper3_AMT_Data/1_BlockedAgentive_PPmotion_DOcausal/dataMod_Blocked_Agentive"#
+#
+inputCSV = "~/Dropbox/1_RESEARCH/1_Experiments/1_Thesis_Research/3_Paper3_Manner-Result/Paper3_AMT_Data/1_BlockedAgentive_PPmotion_DOcausal/dataMod_Blocked_Agentive/0_mannerResult_AllSub.csv"#
+#
+outputCSV = "1_mannerResult_Blocked_Agentive_AllSub_CritApplied.csv"
+mannerResult = read.csv(inputCSV, header = T)#
+setwd(directory)#
+#
+mannerResult$DemographicsCrit = ifelse(mannerResult$Answer.English == "yes", 1, 0)#
+#
+mannerResult$subExcl_NotUSA_notEngl = length(unique(mannerResult$SubNo[mannerResult$DemographicsCrit == 0]))  #
+#
+mannerResult[1:3,]        #3 excluded (38 post merge w amt; 35 post demoCrit subjects)#
+length(unique(mannerResult$SubNo))#
+unique(mannerResult$trialNo)#
+#
+mannerResult$block1 = 0#
+mannerResult$block1[mannerResult$trialNo %in% c(1, 2, 3, 4, 5, 6, 7, 8)] = 1#
+# mannerResult[1:2, ]#
+#
+mannerResult$block2 = 0#
+mannerResult$block2[mannerResult$trialNo %in% c(9, 10, 11, 12, 13, 14, 15, 16)] = 1#
+#### note only ambig and bias sections apply for T9-16 --> so diff exclusionary crit for trials:#
+### ***exclude subjects that didn't see enough videos c trials as well as trials for subjects that only failed to see videos on less than 2 trials#
+mannerResult$seeAmbig = ifelse(mannerResult$seeAmbigV1 == 0 & mannerResult$seeAmbigV2 == 0, 0, 1)#
+#
+mannerResult$seeBias1 = ifelse(mannerResult$seeBiasV1 == 0 & mannerResult$bias1RESP == -1, 0, 1)#
+mannerResult$seeBias2 = ifelse(mannerResult$seeBiasV2 == 0 & mannerResult$bias2RESP == -1, 0, 1)#
+# mannerResult$seeBias = ifelse(mannerResult$seeBiasV1 == 0 & mannerResult$seeBiasV2 == 0, 0, 1)#
+#
+mannerResult$seeTrain1 = ifelse(mannerResult$seeTrain1a == 0 & mannerResult$seeTrain1b == 0, 0, 1)#
+mannerResult$seeTrain2 = ifelse(mannerResult$seeTrain2a == 0 & mannerResult$seeTrain2b == 0, 0, 1)#
+mannerResult$seeTrain3 = ifelse(mannerResult$seeTrain3a == 0 & mannerResult$seeTrain3b == 0, 0, 1)#
+#
+mannerResult$seeTest1 = ifelse(mannerResult$seeTestV1 == 0 & mannerResult$test1RESP == -1, 0, 1)#
+mannerResult$seeTest2 = ifelse(mannerResult$seeTestV2 == 0 & mannerResult$test2RESP == -1, 0, 1)#
+mr1 = mannerResult[mannerResult$block1 == 1, ]#
+mr2 = mannerResult[mannerResult$block2 == 1, ]#
+#
+mr1$seeVidCheck = ifelse(mr1$seeAmbig == 0 | mr1$seeBias1 == 0 | mr1$seeBias2 == 0| mr1$seeTrain1 == 0 | mr1$seeTrain2 == 0 | mr1$seeTrain3 == 0 | mr1$seeTest1 == 0 | mr1$seeTest2 == 0, 0, 1)#
+#
+mr1$totalVideoLostTrials = round(sum(mr1$seeVidCheck == 0)/length(mr1$seeVidCheck), 2)#
+#0.07#
+mr2$seeVidCheck = ifelse(mr2$seeAmbig == 0 | mr2$seeBias1 == 0 | mr2$seeBias2 == 0, 0, 1)#
+mr2$totalVideoLostTrials = round(sum(mr2$seeVidCheck == 0)/length(mr2$seeVidCheck), 2)#
+#0.08#
+#
+mannerResult = rbind(mr1, mr2)#
+# mannerResult included subjects -- pass demographics crit, trial # crit & seeVid Crit#
+# also exclude trials where seeVidCrit is not met#
+0 %in% mannerResult$DemographicsCrit#
+0 %in% mannerResult$seeVidCheck#
+#
+# mannerResultIncl = mannerResult[mannerResult$bias1RESP != -1 & mannerResult$bias2RESP != -1 & mannerResult$test1RESP != -1 & mannerResult$test2RESP != -1, ]#
+#
+unique(mannerResult$block2)#
+#
+#mannerResultIncl[1:3, ]#
+mannerResult2 = mannerResult[mannerResult$DemographicsCrit == 1 & mannerResult$seeVidCheck == 1,]#
+#mannerResult2$SubNo = as.factor(as.character(mannerResult2$SubNo))#
+# length(unique(mannerResult2$SubNo))     #35 after democrit and seevidcheck#
+0 %in% mannerResult2$DemographicsCrit#
+0 %in% mannerResult2$seeVidCheck#
+library(plyr)#
+mr1 = mannerResult2[mannerResult2$block1 == 1, ]   #trials 1-8#
+mr2 = mannerResult2[mannerResult2$block2 == 1, ]	#trials 9-16; mr2 has NAs for test1RESP and test2RESP-no VLtest#
+#
+mr1 = mr1[mr1$bias1RESP != -1 & mr1$bias2RESP != -1, ]#
+mr1 = mr1[mr1$test1RESP != -1 & mr1$test2RESP != -1, ]#
+mr2 = mr2[mr2$bias1RESP != -1 & mr2$bias2RESP != -1, ]#
+#
+mr1$trialNo = as.factor(as.character(mr1$trialNo))#
+mr2$trialNo = as.factor(as.character(mr2$trialNo))#
+#
+mr1.agg = aggregate(as.integer(mr1$trialNo), list(mr1$SubNo), length)#
+colnames(mr1.agg) = c("SubNo", "trialCountBlock")#
+mr1.agg$meetMinTrialCrit = ifelse(mr1.agg$trialCountBlock >= 6, 1, 0)#
+mr1.agg2 = mr1.agg[mr1.agg$meetMinTrialCrit == 1, ]#
+#
+m1 = join(mr1, mr1.agg2, by = "SubNo", type = "inner")#
+## same for T9-16 (bias only trials - verb extension)#
+mr2.agg = aggregate(as.integer(mr2$trialNo), list(mr2$SubNo), length)#
+colnames(mr2.agg) = c("SubNo", "trialCountBlock")#
+mr2.agg$meetMinTrialCrit = ifelse(mr2.agg$trialCountBlock >= 6, 1, 0)#
+#
+mr2.agg2 = mr2.agg[mr2.agg$meetMinTrialCrit == 1,]#
+m2 = join(mr2, mr2.agg2, by = "SubNo", type = "inner")#
+#
+#paired subset of data of mr2 that inludes only the rows with values of the ids found in mr1$SubNo#
+selectedSubjects1 = as.character(m2$SubNo) %in% as.character(m1$SubNo)#
+m2 = m2[selectedSubjects1, ]#
+#
+selectedSubjects2 = as.character(m1$SubNo) %in% as.character(m2$SubNo)#
+m1 = m1[selectedSubjects2, ]#
+#
+length(unique(m1$SubNo)) == length(unique(m2$SubNo))#
+mannerResultFinal = rbind(m1, m2)#
+#
+0 %in% mannerResultFinal$meetMinTrialCount#
+#
+-1 %in% mannerResultFinal$bias1RESP#
+-1 %in% mannerResultFinal$bias2RESP#
+-1 %in% mannerResultFinal$test1RESP#
+-1 %in% mannerResultFinal$test2RESP#
+write.csv(mannerResultFinal, outputCSV)#
+# write.csv(mannerResultFinal, "1_mannerResult_Blocked_Agentive_AllSub_CritApplied2.csv")#
+#
+# # Inclusionary Criteria:#
+#
+# mannerResult$DemographicsCrit == 1#
+# # 4 subjects lost #
+#
+# mannerResult$meetMinTrialCrit == 1#
+# # 0 subjects lost#
+#
+# mannerResult$seeVidCheck == 1#
+########################
+#
+#inputFile for 3.1 (agentive MM, motion in PP frames)#
+#
+#inputFile for 3.2 (INST MM, motion in PP frames)#
+#
+#inputFile for 3.3 (agentive MM, motion in DO frames)#
+#inputFile = "~/Dropbox/1_RESEARCH/1_Experiments/1_Thesis_Research/3_Paper3_Manner-Result/Paper3_AMT_Data/BlockedAgentive/dataMod_Blocked_Agentive_DOsentences/2_mannerResult_Blocked_Agentive_DOsentences_AllSub_CritApplied.csv"#
+#df = read.csv(inputFile, header = T)#
+#
+#df = read.csv("~/Dropbox/1_RESEARCH/1_Experiments/1_Thesis_Research/3_Paper3_Manner-Result/Paper3_AMT_Data/1_BlockedAgentive_PPmotion_DOcausal/dataMod_Blocked_Agentive/1_mannerResult_Blocked_Agentive_AllSub_CritApplied", header = T)#
+#
+df <- mannerResultFinal#
+#
+#########################################################################################################
+#
+#compute bias and test Accuracy#
+df$bias1ACC = ifelse(df$bias1RESP == df$biasV1Ans, 1, 0)#
+df$bias2ACC = ifelse(df$bias2RESP == df$biasV2Ans, 1, 0)#
+df$biasACC = (df$bias1ACC + df$bias2ACC)/2#
+#
+df$test1ACC = ifelse(df$test1RESP == df$testV1Ans, 1, 0)#
+df$test2ACC = ifelse(df$test2RESP == df$testV2Ans, 1, 0)#
+df$testACC = (df$test1ACC + df$test2ACC)/2#
+#
+# df$highManner = ifelse(df$itemId == 2 | df$itemId == 3 | df$itemId == 4 | df$itemId == 7, 1, 0)#
+#
+#######################################################################################################
+#
+write.csv(df, "2_BiasAndTestScored.csv")
+df[1:3, ]
+foo = read.csv("~/Dropbox/1_RESEARCH/1_Experiments/1_Thesis_Research/3_Paper3_Manner-Result/Paper3_AMT_Data/2_BlockedINST/dataMod_Blocked_INST/1_mannerResult_Blocked_INST_AllSub_CritApplied_3runs.csv", header = T)
+mannerResult = foo
+mannerResult$DemographicsCrit = ifelse(mannerResult$Answer.English == "yes", 1, 0)#
+#
+mannerResult$subExcl_NotUSA_notEngl = length(unique(mannerResult$SubNo[mannerResult$DemographicsCrit == 0]))  #
+#
+mannerResult[1:3,]        #3 excluded (38 post merge w amt; 35 post demoCrit subjects)#
+length(unique(mannerResult$SubNo))#
+unique(mannerResult$trialNo)#
+#
+mannerResult$block1 = 0#
+mannerResult$block1[mannerResult$trialNo %in% c(1, 2, 3, 4, 5, 6, 7, 8)] = 1#
+# mannerResult[1:2, ]#
+#
+mannerResult$block2 = 0#
+mannerResult$block2[mannerResult$trialNo %in% c(9, 10, 11, 12, 13, 14, 15, 16)] = 1#
+#### note only ambig and bias sections apply for T9-16 --> so diff exclusionary crit for trials:#
+### ***exclude subjects that didn't see enough videos c trials as well as trials for subjects that only failed to see videos on less than 2 trials#
+mannerResult$seeAmbig = ifelse(mannerResult$seeAmbigV1 == 0 & mannerResult$seeAmbigV2 == 0, 0, 1)#
+#
+mannerResult$seeBias1 = ifelse(mannerResult$seeBiasV1 == 0 & mannerResult$bias1RESP == -1, 0, 1)#
+mannerResult$seeBias2 = ifelse(mannerResult$seeBiasV2 == 0 & mannerResult$bias2RESP == -1, 0, 1)#
+# mannerResult$seeBias = ifelse(mannerResult$seeBiasV1 == 0 & mannerResult$seeBiasV2 == 0, 0, 1)#
+#
+mannerResult$seeTrain1 = ifelse(mannerResult$seeTrain1a == 0 & mannerResult$seeTrain1b == 0, 0, 1)#
+mannerResult$seeTrain2 = ifelse(mannerResult$seeTrain2a == 0 & mannerResult$seeTrain2b == 0, 0, 1)#
+mannerResult$seeTrain3 = ifelse(mannerResult$seeTrain3a == 0 & mannerResult$seeTrain3b == 0, 0, 1)#
+#
+mannerResult$seeTest1 = ifelse(mannerResult$seeTestV1 == 0 & mannerResult$test1RESP == -1, 0, 1)#
+mannerResult$seeTest2 = ifelse(mannerResult$seeTestV2 == 0 & mannerResult$test2RESP == -1, 0, 1)#
+mr1 = mannerResult[mannerResult$block1 == 1, ]#
+mr2 = mannerResult[mannerResult$block2 == 1, ]#
+#
+mr1$seeVidCheck = ifelse(mr1$seeAmbig == 0 | mr1$seeBias1 == 0 | mr1$seeBias2 == 0| mr1$seeTrain1 == 0 | mr1$seeTrain2 == 0 | mr1$seeTrain3 == 0 | mr1$seeTest1 == 0 | mr1$seeTest2 == 0, 0, 1)#
+#
+mr1$totalVideoLostTrials = round(sum(mr1$seeVidCheck == 0)/length(mr1$seeVidCheck), 2)#
+#0.07#
+mr2$seeVidCheck = ifelse(mr2$seeAmbig == 0 | mr2$seeBias1 == 0 | mr2$seeBias2 == 0, 0, 1)#
+mr2$totalVideoLostTrials = round(sum(mr2$seeVidCheck == 0)/length(mr2$seeVidCheck), 2)#
+#0.08#
+#
+mannerResult = rbind(mr1, mr2)#
+# mannerResult included subjects -- pass demographics crit, trial # crit & seeVid Crit#
+# also exclude trials where seeVidCrit is not met#
+0 %in% mannerResult$DemographicsCrit#
+0 %in% mannerResult$seeVidCheck#
+#
+# mannerResultIncl = mannerResult[mannerResult$bias1RESP != -1 & mannerResult$bias2RESP != -1 & mannerResult$test1RESP != -1 & mannerResult$test2RESP != -1, ]#
+#
+unique(mannerResult$block2)#
+#
+#mannerResultIncl[1:3, ]#
+mannerResult2 = mannerResult[mannerResult$DemographicsCrit == 1 & mannerResult$seeVidCheck == 1,]#
+#mannerResult2$SubNo = as.factor(as.character(mannerResult2$SubNo))#
+# length(unique(mannerResult2$SubNo))     #35 after democrit and seevidcheck#
+0 %in% mannerResult2$DemographicsCrit#
+0 %in% mannerResult2$seeVidCheck#
+library(plyr)#
+mr1 = mannerResult2[mannerResult2$block1 == 1, ]   #trials 1-8#
+mr2 = mannerResult2[mannerResult2$block2 == 1, ]	#trials 9-16; mr2 has NAs for test1RESP and test2RESP-no VLtest#
+#
+mr1 = mr1[mr1$bias1RESP != -1 & mr1$bias2RESP != -1, ]#
+mr1 = mr1[mr1$test1RESP != -1 & mr1$test2RESP != -1, ]#
+mr2 = mr2[mr2$bias1RESP != -1 & mr2$bias2RESP != -1, ]#
+#
+mr1$trialNo = as.factor(as.character(mr1$trialNo))#
+mr2$trialNo = as.factor(as.character(mr2$trialNo))#
+#
+mr1.agg = aggregate(as.integer(mr1$trialNo), list(mr1$SubNo), length)#
+colnames(mr1.agg) = c("SubNo", "trialCountBlock")#
+mr1.agg$meetMinTrialCrit = ifelse(mr1.agg$trialCountBlock >= 6, 1, 0)#
+mr1.agg2 = mr1.agg[mr1.agg$meetMinTrialCrit == 1, ]#
+#
+m1 = join(mr1, mr1.agg2, by = "SubNo", type = "inner")#
+## same for T9-16 (bias only trials - verb extension)#
+mr2.agg = aggregate(as.integer(mr2$trialNo), list(mr2$SubNo), length)#
+colnames(mr2.agg) = c("SubNo", "trialCountBlock")#
+mr2.agg$meetMinTrialCrit = ifelse(mr2.agg$trialCountBlock >= 6, 1, 0)#
+#
+mr2.agg2 = mr2.agg[mr2.agg$meetMinTrialCrit == 1,]#
+m2 = join(mr2, mr2.agg2, by = "SubNo", type = "inner")#
+#
+#paired subset of data of mr2 that inludes only the rows with values of the ids found in mr1$SubNo#
+selectedSubjects1 = as.character(m2$SubNo) %in% as.character(m1$SubNo)#
+m2 = m2[selectedSubjects1, ]#
+#
+selectedSubjects2 = as.character(m1$SubNo) %in% as.character(m2$SubNo)#
+m1 = m1[selectedSubjects2, ]#
+#
+length(unique(m1$SubNo)) == length(unique(m2$SubNo))#
+mannerResultFinal = rbind(m1, m2)#
+#
+0 %in% mannerResultFinal$meetMinTrialCount#
+#
+-1 %in% mannerResultFinal$bias1RESP#
+-1 %in% mannerResultFinal$bias2RESP#
+-1 %in% mannerResultFinal$test1RESP#
+-1 %in% mannerResultFinal$test2RESP
+length(unique(m1$SubNo)
+)
+length(unique(m2$SubNo))
+27+12+31+23
+length(unique(m2$SubNo[m2$blockOrder == "b1Path_b2Causal"]))
+foo2 = read.csv("~/Dropbox/1_RESEARCH/1_Experiments/1_Thesis_Research/3_Paper3_Manner-Result/Paper3_AMT_Data/2_BlockedINST/dataMod_Blocked_INST/1_mannerResult_Blocked_INST_AllSub_CritApplied.csv", header = T)
+mannerResult = foo2
+mannerResult$DemographicsCrit = ifelse(mannerResult$Answer.English == "yes", 1, 0)#
+#
+mannerResult$subExcl_NotUSA_notEngl = length(unique(mannerResult$SubNo[mannerResult$DemographicsCrit == 0]))  #
+#
+mannerResult[1:3,]        #3 excluded (38 post merge w amt; 35 post demoCrit subjects)#
+length(unique(mannerResult$SubNo))#
+unique(mannerResult$trialNo)#
+#
+mannerResult$block1 = 0#
+mannerResult$block1[mannerResult$trialNo %in% c(1, 2, 3, 4, 5, 6, 7, 8)] = 1#
+# mannerResult[1:2, ]#
+#
+mannerResult$block2 = 0#
+mannerResult$block2[mannerResult$trialNo %in% c(9, 10, 11, 12, 13, 14, 15, 16)] = 1#
+#### note only ambig and bias sections apply for T9-16 --> so diff exclusionary crit for trials:#
+### ***exclude subjects that didn't see enough videos c trials as well as trials for subjects that only failed to see videos on less than 2 trials#
+mannerResult$seeAmbig = ifelse(mannerResult$seeAmbigV1 == 0 & mannerResult$seeAmbigV2 == 0, 0, 1)#
+#
+mannerResult$seeBias1 = ifelse(mannerResult$seeBiasV1 == 0 & mannerResult$bias1RESP == -1, 0, 1)#
+mannerResult$seeBias2 = ifelse(mannerResult$seeBiasV2 == 0 & mannerResult$bias2RESP == -1, 0, 1)#
+# mannerResult$seeBias = ifelse(mannerResult$seeBiasV1 == 0 & mannerResult$seeBiasV2 == 0, 0, 1)#
+#
+mannerResult$seeTrain1 = ifelse(mannerResult$seeTrain1a == 0 & mannerResult$seeTrain1b == 0, 0, 1)#
+mannerResult$seeTrain2 = ifelse(mannerResult$seeTrain2a == 0 & mannerResult$seeTrain2b == 0, 0, 1)#
+mannerResult$seeTrain3 = ifelse(mannerResult$seeTrain3a == 0 & mannerResult$seeTrain3b == 0, 0, 1)#
+#
+mannerResult$seeTest1 = ifelse(mannerResult$seeTestV1 == 0 & mannerResult$test1RESP == -1, 0, 1)#
+mannerResult$seeTest2 = ifelse(mannerResult$seeTestV2 == 0 & mannerResult$test2RESP == -1, 0, 1)#
+mr1 = mannerResult[mannerResult$block1 == 1, ]#
+mr2 = mannerResult[mannerResult$block2 == 1, ]#
+#
+mr1$seeVidCheck = ifelse(mr1$seeAmbig == 0 | mr1$seeBias1 == 0 | mr1$seeBias2 == 0| mr1$seeTrain1 == 0 | mr1$seeTrain2 == 0 | mr1$seeTrain3 == 0 | mr1$seeTest1 == 0 | mr1$seeTest2 == 0, 0, 1)#
+#
+mr1$totalVideoLostTrials = round(sum(mr1$seeVidCheck == 0)/length(mr1$seeVidCheck), 2)#
+#0.07#
+mr2$seeVidCheck = ifelse(mr2$seeAmbig == 0 | mr2$seeBias1 == 0 | mr2$seeBias2 == 0, 0, 1)#
+mr2$totalVideoLostTrials = round(sum(mr2$seeVidCheck == 0)/length(mr2$seeVidCheck), 2)#
+#0.08#
+#
+mannerResult = rbind(mr1, mr2)#
+# mannerResult included subjects -- pass demographics crit, trial # crit & seeVid Crit#
+# also exclude trials where seeVidCrit is not met#
+0 %in% mannerResult$DemographicsCrit#
+0 %in% mannerResult$seeVidCheck#
+#
+# mannerResultIncl = mannerResult[mannerResult$bias1RESP != -1 & mannerResult$bias2RESP != -1 & mannerResult$test1RESP != -1 & mannerResult$test2RESP != -1, ]#
+#
+unique(mannerResult$block2)#
+#
+#mannerResultIncl[1:3, ]#
+mannerResult2 = mannerResult[mannerResult$DemographicsCrit == 1 & mannerResult$seeVidCheck == 1,]#
+#mannerResult2$SubNo = as.factor(as.character(mannerResult2$SubNo))#
+# length(unique(mannerResult2$SubNo))     #35 after democrit and seevidcheck#
+0 %in% mannerResult2$DemographicsCrit#
+0 %in% mannerResult2$seeVidCheck#
+library(plyr)#
+mr1 = mannerResult2[mannerResult2$block1 == 1, ]   #trials 1-8#
+mr2 = mannerResult2[mannerResult2$block2 == 1, ]	#trials 9-16; mr2 has NAs for test1RESP and test2RESP-no VLtest#
+#
+mr1 = mr1[mr1$bias1RESP != -1 & mr1$bias2RESP != -1, ]#
+mr1 = mr1[mr1$test1RESP != -1 & mr1$test2RESP != -1, ]#
+mr2 = mr2[mr2$bias1RESP != -1 & mr2$bias2RESP != -1, ]#
+#
+mr1$trialNo = as.factor(as.character(mr1$trialNo))#
+mr2$trialNo = as.factor(as.character(mr2$trialNo))#
+#
+mr1.agg = aggregate(as.integer(mr1$trialNo), list(mr1$SubNo), length)#
+colnames(mr1.agg) = c("SubNo", "trialCountBlock")#
+mr1.agg$meetMinTrialCrit = ifelse(mr1.agg$trialCountBlock >= 6, 1, 0)#
+mr1.agg2 = mr1.agg[mr1.agg$meetMinTrialCrit == 1, ]#
+#
+m1 = join(mr1, mr1.agg2, by = "SubNo", type = "inner")#
+## same for T9-16 (bias only trials - verb extension)#
+mr2.agg = aggregate(as.integer(mr2$trialNo), list(mr2$SubNo), length)#
+colnames(mr2.agg) = c("SubNo", "trialCountBlock")#
+mr2.agg$meetMinTrialCrit = ifelse(mr2.agg$trialCountBlock >= 6, 1, 0)#
+#
+mr2.agg2 = mr2.agg[mr2.agg$meetMinTrialCrit == 1,]#
+m2 = join(mr2, mr2.agg2, by = "SubNo", type = "inner")#
+#
+#paired subset of data of mr2 that inludes only the rows with values of the ids found in mr1$SubNo#
+selectedSubjects1 = as.character(m2$SubNo) %in% as.character(m1$SubNo)#
+m2 = m2[selectedSubjects1, ]#
+#
+selectedSubjects2 = as.character(m1$SubNo) %in% as.character(m2$SubNo)#
+m1 = m1[selectedSubjects2, ]#
+#
+length(unique(m1$SubNo)) == length(unique(m2$SubNo))#
+mannerResultFinal = rbind(m1, m2)#
+#
+0 %in% mannerResultFinal$meetMinTrialCount#
+#
+-1 %in% mannerResultFinal$bias1RESP#
+-1 %in% mannerResultFinal$bias2RESP#
+-1 %in% mannerResultFinal$test1RESP#
+-1 %in% mannerResultFinal$test2RESP
+length(unique(m2$SubNo[m2$blockOrder == "b1Path_b2Causal"]))
+length(unique(m2$SubNo[m2$blockOrder == "b1Manner_b2Causal"]))
+length(unique(m2$SubNo[m2$blockOrder == "b1Means_b2Motion"]))
+length(unique(m2$SubNo[m2$blockOrder == "b1Effect_b2Motion"]))

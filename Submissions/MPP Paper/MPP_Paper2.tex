@@ -1,0 +1,408 @@
+\documentclass[english,man]{apa6}
+
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\usepackage{fixltx2e} % provides \textsubscript
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+\else % if luatex or xelatex
+  \ifxetex
+    \usepackage{mathspec}
+    \usepackage{xltxtra,xunicode}
+  \else
+    \usepackage{fontspec}
+  \fi
+  \defaultfontfeatures{Mapping=tex-text,Scale=MatchLowercase}
+  \newcommand{\euro}{€}
+\fi
+% use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+% use microtype if available
+\IfFileExists{microtype.sty}{\usepackage{microtype}}{}
+
+% Table formatting
+\usepackage{longtable, booktabs}
+\usepackage{lscape}
+% \usepackage[counterclockwise]{rotating}   % Landscape page setup for large tables
+\usepackage{multirow}		% Table styling
+\usepackage{tabularx}		% Control Column width
+\usepackage[flushleft]{threeparttable}	% Allows for three part tables with a specified notes section
+\usepackage{threeparttablex}            % Lets threeparttable work with longtable
+
+% Create new environments so endfloat can handle them
+% \newenvironment{ltable}
+%   {\begin{landscape}\begin{center}\begin{threeparttable}}
+%   {\end{threeparttable}\end{center}\end{landscape}}
+
+\newenvironment{lltable}
+  {\begin{landscape}\begin{center}\begin{ThreePartTable}}
+  {\end{ThreePartTable}\end{center}\end{landscape}}
+
+  \usepackage{ifthen} % Only add declarations when endfloat package is loaded
+  \ifthenelse{\equal{\string man}{\string man}}{%
+   \DeclareDelayedFloatFlavor{ThreePartTable}{table} % Make endfloat play with longtable
+   % \DeclareDelayedFloatFlavor{ltable}{table} % Make endfloat play with lscape
+   \DeclareDelayedFloatFlavor{lltable}{table} % Make endfloat play with lscape & longtable
+  }{}%
+
+
+
+% The following enables adjusting longtable caption width to table width
+% Solution found at http://golatex.de/longtable-mit-caption-so-breit-wie-die-tabelle-t15767.html
+\makeatletter
+\newcommand\LastLTentrywidth{1em}
+\newlength\longtablewidth
+\setlength{\longtablewidth}{1in}
+\newcommand\getlongtablewidth{%
+ \begingroup
+  \ifcsname LT@\roman{LT@tables}\endcsname
+  \global\longtablewidth=0pt
+  \renewcommand\LT@entry[2]{\global\advance\longtablewidth by ##2\relax\gdef\LastLTentrywidth{##2}}%
+  \@nameuse{LT@\roman{LT@tables}}%
+  \fi
+\endgroup}
+
+
+\ifxetex
+  \usepackage[setpagesize=false, % page size defined by xetex
+              unicode=false, % unicode breaks when used with xetex
+              xetex]{hyperref}
+\else
+  \usepackage[unicode=true]{hyperref}
+\fi
+\hypersetup{breaklinks=true,
+            pdfauthor={},
+            pdftitle={The generalization of abstract verb meaning: Adults and 4-5 year old children show plasticity in verb biases that extend across semantic fields},
+            colorlinks=true,
+            citecolor=blue,
+            urlcolor=blue,
+            linkcolor=black,
+            pdfborder={0 0 0}}
+\urlstyle{same}  % don't use monospace font for urls
+
+\setlength{\parindent}{0pt}
+%\setlength{\parskip}{0pt plus 0pt minus 0pt}
+
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
+
+\ifxetex
+  \usepackage{polyglossia}
+  \setmainlanguage{}
+\else
+  \usepackage[english]{babel}
+\fi
+
+% Manuscript styling
+\captionsetup{font=singlespacing,justification=justified}
+\usepackage{csquotes}
+\usepackage{upgreek}
+
+ % Line numbering
+  \usepackage{lineno}
+  \linenumbers
+
+
+\usepackage{tikz} % Variable definition to generate author note
+
+% fix for \tightlist problem in pandoc 1.14
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+
+% Essential manuscript parts
+  \title{The generalization of abstract verb meaning: Adults and 4-5 year old
+children show plasticity in verb biases that extend across semantic
+fields}
+
+  \shorttitle{Generalization of verb meaning}
+
+
+  \author{Melissa Kline\textsuperscript{1,2}, Amy Geojo, Annelot de Rechteren van Hemert, \& Jesse Snedeker\textsuperscript{1,2}}
+
+  \def\affdep{{"", "", "", ""}}%
+  \def\affcity{{"", "", "", ""}}%
+
+  \affiliation{
+    \vspace{0.5cm}
+          \textsuperscript{1} Massachusetts Institute of Technology\\
+          \textsuperscript{2} Harvard University\\
+          \textsuperscript{3} TODO: Annelot's current institution  }
+
+  \authornote{
+    \newcounter{author}
+    These would be my acknowledgements when the paper was finished.
+
+                      Correspondence concerning this article should be addressed to Melissa Kline, 3037D 77 Massachusetts Ave., Cambridge, MA, 02139. E-mail: \href{mailto:mekline@mit.edu}{\nolinkurl{mekline@mit.edu}}
+                                              }
+
+
+  \abstract{Enter abstract here. Each new line herein must be indented, like this
+line.
+
+How do we break down representations of events to encode them in
+language? Across languages, most verbs encode either Ends (e.g.~what
+happens, crossing the floor) or Means (e.g.~how it happens, by dancing)
+of an event, but not both (cf.~Talmy, 1985). Havasi et al. (2014) showed
+these biases are not fixed but malleable -- when adults and 4-6yos learn
+several verbs in a row with path meanings (rise, cross), they begin to
+guess subsequent novel verbs will refer to path as well. For adults,
+these biases are very abstract: after adults learned a path bias for
+motion events, they preferred Ends verbs for change-of-state scenes as
+well (Geojo 2015). Accomplishing this requires some kind of very general
+representation of events that can account for hitting (manner-of-action)
+being more like running (manner-of-motion) than like entering (path).
+
+Pre-linguistic infants are sensitive to a non-linguistic means/ends
+distinction (Phillips \& Wellman, 2005; Woodward, 1998, Gergely et al.
+2002), but we do not know whether this early conceptual framework
+provides a foundation for learning verb semantics. Are parallels between
+means/end structure across domains a late-learned cognitive skill, or do
+they emerge early in development? 4-6-yo children (N=58) were presented
+with a repeating learning sequence (Figure 1):
+
+Bias/new verb test: A word/event pairing is presented (e.g.~comb-rip,
+gorping); children choose whether gorping means an event maintaining
+either action (comb-flatten) or effect (hammer-rip).
+
+Training: 3 additional events provide evidence for one interpretation
+(e.g.~effect, rip)
+
+Same-verb Test: 2 new events matching either action (comb-open) or
+effect (plier-rip)
+
+Children saw 8 trials in the same domain (change-of-state) and then 8 in
+a new domain, directed motion. Our key interest is \textbf{\emph{not in
+the learning of individual verbs}} (measured at 3), but in the biases
+that children develop between verbs (measured at step 1 of each
+subsequent trial). We ask (a) if children's verb biases update with
+evidence within the change-of-state domain and (b) whether these biases
+extend between domains, relying on an abstract means/end distinction.
+
+We are just beginning to understand how the cognitive abilities children
+show in the first year of life help to organize language learning, and
+in particular how children conceptualize and break down their
+representations of events into verb and sentence meaning. These results
+suggest that children's verb meanings draw on very abstract lexical
+semantics from childhood, and that these have parallel structure -- and
+may be related to -- the fundamental cognitive representations available
+to infants.}
+  \keywords{keywords \\
+
+    \indent Word count: X
+  }
+
+
+
+
+
+\usepackage{amsthm}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}
+\newtheorem{corollary}{Corollary}
+\newtheorem{proposition}{Proposition}
+\theoremstyle{definition}
+\newtheorem{example}{Example}
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+\begin{document}
+
+\maketitle
+
+\setcounter{secnumdepth}{0}
+
+
+
+This is the introduction to the paper.
+
+\section{Experiment 1: Adults}\label{experiment-1-adults}
+
+--\textgreater{}For this experiment, I'm allowed to grab text from Amy's
+paper! yeyyyyy.
+
+\subsubsection{Robust and reliable
+practices}\label{robust-and-reliable-practices}
+
+Nope!
+
+We report how we determined our sample size, all data exclusions (if
+any), all manipulations, and all measures in the study. This data was
+previously reported as part of the second author's dissertation.
+
+\begin{itemize}
+\tightlist
+\item
+  Data is available at TOADD (Need to strip MTurk IDs and birthdays if
+  present)
+\item
+  Analysis pipeline from processing, post exclusions (based on record)
+\end{itemize}
+
+\subsection{Methods}\label{methods}
+
+\subsubsection{Data Cleaning (to be suppressed in
+submission)}\label{data-cleaning-to-be-suppressed-in-submission}
+
+Data is loaded from cleaned scripts, post exclusion of subjects. Thus,
+we'll need to get the info on data exclusion from the text of Amy's
+dissertation
+
+\subsubsection{Participants}\label{participants}
+
+\subsubsection{Material}\label{material}
+
+\subsubsection{Procedure}\label{procedure}
+
+\subsubsection{Data analysis}\label{data-analysis}
+
+We used R (3.4.1, R Core Team, 2017) for all our analyses. \#\# Results
+\#\# Experiment 1 - Discussion
+
+\section{Experiment 2: 4-5 year olds}\label{experiment-2-4-5-year-olds}
+
+Now we do it with kids!
+
+\subsubsection{Robust and reliable
+practices}\label{robust-and-reliable-practices-1}
+
+Way better! We report how we determined our sample size, all data
+exclusions (if any), all manipulations, and all measures in the study.
+
+\subsection{Methods}\label{methods-1}
+
+\subsubsection{Data Cleaning (to be suppressed in
+submission)}\label{data-cleaning-to-be-suppressed-in-submission-1}
+
+Note that I need to account for the inclusion of Ss 75 and 76 (BOTH of
+whom's data has to be manually entered - 1.3.17 note need to code
+\emph{from video})
+
+\begin{verbatim}
+## Caught an error during read.table.
+## MannerPathPriming_10.datCaught an error during read.table.
+## MannerPathPriming_75.datCaught an error during read.table.
+## MannerPathPriming_76.datCaught an error during read.table.
+## MannerPathPriming_77.dat
+\end{verbatim}
+
+\begin{verbatim}
+## [1] 182
+\end{verbatim}
+
+\begin{verbatim}
+## [1] 2493
+\end{verbatim}
+
+\begin{verbatim}
+## [1] 182
+\end{verbatim}
+
+\begin{verbatim}
+## [1] 2493
+\end{verbatim}
+
+\begin{verbatim}
+## [1] 182
+\end{verbatim}
+
+\begin{verbatim}
+## [1] 2779
+\end{verbatim}
+
+\begin{verbatim}
+## [1] 125
+\end{verbatim}
+
+\subsubsection{Participants}\label{participants-1}
+
+All told, the following number of participants included in each cell of
+the experiment(s) are:
+
+\begin{verbatim}
+## , ,  = Action
+## 
+##    
+##         F  M
+##   3  0  1  0
+##   4  0  7  6
+##   5  0  6 10
+##   6  0  0  1
+## 
+## , ,  = Effect
+## 
+##    
+##         F  M
+##   3  0  0  0
+##   4  0  6  9
+##   5  0  7  8
+##   6  0  1  0
+## 
+## , ,  = Manner
+## 
+##    
+##         F  M
+##   3  0  0  0
+##   4  0  7  9
+##   5  0  7  7
+##   6  0  1  0
+## 
+## , ,  = Path
+## 
+##    
+##         F  M
+##   3  0  0  0
+##   4  0  6 12
+##   5  0 12  2
+##   6  0  0  0
+## 
+## , ,  = Unk
+## 
+##    
+##         F  M
+##   3  0  0  0
+##   4  0  0  0
+##   5  0  0  0
+##   6  0  0  0
+\end{verbatim}
+
+\begin{verbatim}
+## 
+## Action Effect Manner   Path    Unk 
+##     31     31     31     32      0
+\end{verbatim}
+
+included in the study.
+
+\subsubsection{Materials}\label{materials}
+
+\subsubsection{Procedure}\label{procedure-1}
+
+\subsubsection{Data analysis}\label{data-analysis-1}
+
+We used R (3.4.1, R Core Team, 2017) for all our analyses.
+
+\subsection{Results}\label{results}
+
+\subsection{Experiment 2 - Discussion}\label{experiment-2---discussion}
+
+\section{General Discussion}\label{general-discussion}
+
+\newpage
+
+\section{References}\label{references}
+
+\setlength{\parindent}{-0.5in} \setlength{\leftskip}{0.5in}
+
+\hypertarget{refs}{}
+\hypertarget{ref-R-base}{}
+R Core Team. (2017). \emph{R: A language and environment for statistical
+computing}. Vienna, Austria: R Foundation for Statistical Computing.
+Retrieved from \url{https://www.R-project.org/}
+
+
+
+
+
+
+\end{document}
