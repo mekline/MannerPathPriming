@@ -1,0 +1,75 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="exp.css" />
+</head>
+<body>
+
+
+</br>
+
+<div>
+<video id="TheMovie" width="640" height="480" preload='auto' autoplay>
+  
+  <source id="src_mpg" src="XXX.mp4"  type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'>
+  <source id="src_webm" src="XXX.webmsd.webm" type='video/webm; codecs="vp8, vorbis"'>
+  <source id="src_ogv" src="XXX.ogv"  type='video/ogg; codecs="theora, vorbis"'>
+  
+	<object
+	classid="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B"
+	codebase="http://www.apple.com/qtactivex/qtplugin.cab"
+	height="480"
+	width="640" >
+	<param id="src_obj" name="src" value="XXX.mp4"/>
+	<param name="scale" value="aspect" />
+	<param name="controller" value="false" />
+	<param name="autoplay" value="true" />
+	<embed
+	id="src_embed"
+	type="video/quicktime"
+	pluginspage="http://www.apple.com/quicktime/download/"
+	height="480"
+	width="640"
+	src="XXX.mp4"
+	scale="aspect"
+	controller="false"
+	autoplay="true" />
+	</object>
+</video>
+</div>
+
+</br>
+<font size = "5"</font><b> "ZZZ" </b>
+<font size = "3" </font><p class = "blocktext"> <input type = "radio" name="Test" value="1" id = "yes" class = "clickable"> Yes </p>
+<font size = "3" </font><p class = "blocktext"> <input type = "radio"
+name="Test" value="0" id = "no" class = "clickable"> No </p>
+<font size = "3" </font><p class = "blocktext"> <input type = "radio" name="Test"
+value="-1" id = "error" class = "clickable"> Did <i>not</i> see video.</p>
+
+<p class="blocktext">
+<input type="submit" value="Continue" id="TestButton"/ >
+</p>
+
+
+<!--
+
+<p class="blocktext">
+<input type="submit" value="Continue" id="TestButton"/ >
+</p>
+
+<p class="blocktext">
+<input type='submit' value='Done' id='TrialButton' >
+</p>
+
+<font size = "3" </font><p class = "blocktext"> <input type = "radio" name="Test"
+value="-1" id = "error" class = "clickable"> Did not see the <i>&#43;</i> sign &#63; </p>
+
+
+
+<p class="blocktext">
+<input type = "submit" value = "Continue" id="VideoButton" />
+</p>
+-->
+
+
+</body>
+</html>

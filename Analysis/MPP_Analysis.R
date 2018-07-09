@@ -13,6 +13,12 @@
 # See #TODO for unfinished places
 # See line 140ish for analysis
 
+#
+#
+# NOTE 8/7/17: Continuing analyses now in the MPP_Paper.Rmd in repo/Submissions. 
+# They've been copied over there with just some reorganization to fit paper structure
+# further (1) debugging on the plot code and (2) exploratory analyses are over there. 
+
 ######
 # LIBRARIES, FILES, DIRECTORIES
 ######
@@ -154,6 +160,9 @@ allData <- allData %>%
   filter(Inclusion.Decision == 1) %>% #TODO: Eventually do this above and report stats!
   select(-c(Inclusion.Decision, Exclude.Reason))
 
+#Drop pilot study!
+allData <- filter(allData, Experiment !="E1 - MannerPath")
+
 length(unique(allData$SubjectNo))
 
 #####
@@ -185,8 +194,6 @@ allData <- allData %>% #Translate kid choice variables to objective 'choseM' for
 ######
 allData <- filter(allData, trialNo>1) #Trial #1 Bias test is pre-training!!
 
-#Drop pilot study!
-allData <- filter(allData, Experiment !="E1 - MannerPath")
 
 ######
 # GRAPHS

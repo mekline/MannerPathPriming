@@ -1,0 +1,14 @@
+body{ background-color: gray;} 
+p { text-align: center }
+h2 { text-align: center }
+h3 { text-align: center }
+
+p.blocktext {
+    margin-left: auto;
+    margin-right: auto;
+    width: 800
+}
+
+div{
+	text-align: center
+}

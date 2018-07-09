@@ -1,0 +1,330 @@
+---
+title             : "The generalization of abstract verb meaning: Adults and 4-5 year old children show plasticity in verb biases that extend across semantic fields"
+shorttitle        : "Generalization of verb meaning"
+
+author: 
+  - name          : "Melissa Kline"
+    affiliation   : "1,2"
+    corresponding : yes    # Define only one corresponding author
+    address       : "3037D 77 Massachusetts Ave., Cambridge, MA, 02139"
+    email         : "mekline@mit.edu"
+  - name          : "Amy Geojo"
+  - name          : "Annelot de Rechteren van Hemert"
+  - name          : "Jesse Snedeker"
+    affiliation   : "1,2"
+
+affiliation:
+  - id            : "1"
+    institution   : "Massachusetts Institute of Technology"
+  - id            : "2"
+    institution   : "Harvard University"
+  - id            : "3"
+    institution   : "TODO: Annelot's current institution"
+
+author_note: |
+  These would be my acknowledgements when the paper was finished. 
+
+abstract: |
+  Enter abstract here. Each new line herein must be indented, like this line.
+  
+  How do we break down representations of events to encode them in language? Across languages, most verbs encode either Ends (e.g. what happens, crossing the floor) or Means (e.g. how it happens, by dancing) of an event, but not both (cf. Talmy, 1985). Havasi et al. (2014) showed these biases are not fixed but malleable – when adults and 4-6yos learn several verbs in a row with path meanings (rise, cross), they begin to guess subsequent novel verbs will refer to path as well. For adults, these biases are very abstract: after adults learned a path bias for motion events, they preferred Ends verbs for change-of-state scenes as well (Geojo 2015). Accomplishing this requires some kind of very general representation of events that can account for hitting (manner-of-action) being more like running (manner-of-motion) than like entering (path).
+  
+  Pre-linguistic infants are sensitive to a non-linguistic means/ends distinction (Phillips & Wellman, 2005; Woodward, 1998, Gergely et al. 2002), but we do not know whether this early conceptual framework provides a foundation for learning verb semantics. Are parallels between means/end structure across domains a late-learned cognitive skill, or do they emerge early in development? 4-6-yo children (N=58) were presented with a repeating learning sequence (Figure 1):
+  
+  Bias/new verb test: A word/event pairing is presented (e.g. comb-rip, gorping); children choose whether gorping means an event maintaining either action (comb-flatten) or effect (hammer-rip).
+  
+  Training: 3 additional events provide evidence for one interpretation (e.g. effect, rip)
+  
+  Same-verb Test: 2 new events matching either action (comb-open) or effect (plier-rip)
+  
+  Children saw 8 trials in the same domain (change-of-state) and then 8 in a new domain, directed motion. Our key interest is ***not in the learning of individual verbs*** (measured at 3), but in the biases that children develop between verbs (measured at step 1 of each subsequent trial). We ask (a) if children’s verb biases update with evidence within the change-of-state domain and (b) whether these biases extend between domains, relying on an abstract means/end distinction.
+  
+  We are just beginning to understand how the cognitive abilities children show in the first year of life help to organize language learning, and in particular how children conceptualize and break down their representations of events into verb and sentence meaning. These results suggest that children’s verb meanings draw on very abstract lexical semantics from childhood, and that these have parallel structure – and may be related to – the fundamental cognitive representations available to infants. 
+
+keywords          : "keywords"
+wordcount         : "X"
+
+bibliography      : ["r-references.bib"]
+
+figsintext        : no
+figurelist        : no
+tablelist         : no
+footnotelist      : no
+lineno            : yes
+
+lang              : "english"
+class             : "man"
+output            : papaja::apa6_pdf
+---
+
+```{r load_packages, include = FALSE, warning=FALSE}
+library(papaja)
+library(dplyr)
+library(tidyr)
+library(ggplot2)
+library(lme4)
+library(pwr)
+library(bootstrap)
+```
+
+```{r setup, include = FALSE, warning=FALSE}
+# Seed for random number generation
+set.seed(42)
+
+## Set your directory to the root of the MPP repository on your local machine!!
+require("knitr")
+opts_knit$set(root.dir = "/Users/mekline/Dropbox/_Projects/PrimingMannerPath/MannerPathPriming/")
+repodir = "/Users/mekline/Dropbox/_Projects/PrimingMannerPath/MannerPathPriming/"
+adir = paste(repodir, "Analysis/", sep="")
+ddir = paste(repodir, "MPP_Stim_and_Data/Data/" , sep="")
+adult_ddir = paste(repodir, "Geojo_E1E3/" , sep="")
+sdir = paste(repodir, "Submissions/MPP Paper/" , sep="")
+```
+
+This is the introduction to the paper.  
+
+# Experiment 1: Adults
+
+
+-->For this experiment, I'm allowed to grab text from Amy's paper! yeyyyyy.
+
+### Robust and reliable practices
+
+Nope!
+
+We report how we determined our sample size, all data exclusions (if any), all manipulations, and all measures in the study. <!-- 21-word solution (Simmons, Nelson & Simonsohn, 2012; retrieved from http://ssrn.com/abstract=2160588) -->
+This data was previously reported as part of the second author's dissertation.
+
+- Data is available at TOADD (Need to strip MTurk IDs and birthdays if present)
+- Analysis pipeline from processing, post exclusions (based on record)
+
+## Methods
+
+### Data Cleaning (to be suppressed in submission)
+
+Data is loaded from cleaned scripts, post exclusion of subjects. Thus, we'll need to get the info on data exclusion from the text of Amy's dissertation
+```{r load-and-clean-adult-data, warning=FALSE, error=FALSE, echo=FALSE}
+
+setwd(adult_ddir)
+intrans_data <- read.csv("E1_BiasAndTestScored.csv") %>%
+    mutate(SentenceCondition = "IntransitivePP")
+trans_data <- read.csv("E3_BiasAndTestScored.csv") %>%
+  select(-c("ProportionInvalidTrialsIncludedSubjectsOnly", 
+            "SubjectNumberAfterPayCodeMergesAMTandWillowData")) %>%
+  mutate(SentenceCondition = "Transitive")
+
+adult_data <- rbind(intrans_data, trans_data) %>% #Drop MTurk admin trials
+  select(c("WillowSubNo", "trialNo","itemId","eventOrder","blockOrder","eventType", "condition","manner","result","verbName","verbMeaning","ambigS","ambigV","bias1","bias2", "biasV1Ans","bias1RESP","biasV2Ans","bias2RESP","test1","test2","testV1Ans", "test1RESP","testV2Ans", "test2RESP","catchTrialNum", "catchOrderedNum","catchTrialRESP", "trialCount","SubNo", "DemographicsCrit","subExcl_NotUSA_notEngl","block1", "block2","ProportionOfVideoLostTrials", "NumberOfVideoLostTrials","trialCountBlock", "meetMinTrialCrit","SubExcl_FailMinTrialCrit" ,"bias1ACC","bias2ACC", "biasACC","test1ACC", "test2ACC","testACC", "SentenceCondition"))
+
+#TODO NEXT
+#Fix up column names
+#
+```
+
+### Participants
+### Material
+### Procedure
+### Data analysis
+We used `r cite_r("r-references.bib")` for all our analyses.
+## Results
+## Experiment 1 - Discussion
+
+# Experiment 2: 4-5 year olds
+
+
+Now we do it with kids!
+
+### Robust and reliable practices
+Way better!
+We report how we determined our sample size, all data exclusions (if any), all manipulations, and all measures in the study. <!-- 21-word solution (Simmons, Nelson & Simonsohn, 2012; retrieved from http://ssrn.com/abstract=2160588) -->
+
+
+## Methods
+
+### Data Cleaning (to be suppressed in submission)
+
+
+Note that I need to account for the inclusion of Ss 75 and 76 (BOTH of whom's data has to be manually entered - 1.3.17 note need to code *from video*)
+
+```{r load-and-clean-kid-data, warning=FALSE, error=FALSE, echo=FALSE}
+
+pFile = paste(repodir,"MannerPath_Data.csv",sep="") #get files ready...
+files = list.files(ddir, pattern = ".dat$") #all .dat files in data directory
+participantData = read.csv(pFile, sep = ",", header = T) #load the info data file
+
+######
+# DATA CLEANING
+######
+
+#loop over files (participants) and the rows in the file
+#For now, just read in all lines of every data file. Assert that all have the same columns 
+#names at the start, but some may have extra columns if they have extension data. Later on we'll
+#clean up and reshape to get nicer formatted data.
+
+#Notes: 
+# - No .dat files for 1,2, 35, 42, 69 (1-2 pilot, 35-69 kids who consented/are on camera
+# but didn't get to the exp)
+#
+# - Errors on files 10, 75, 76, 77.  10 is a kid who .... ###TO ADD XXXX
+
+setwd(ddir)
+allData <- data.frame(NULL)
+trialData <- data.frame(NULL)
+pData <- data.frame(NULL)
+
+error_files = list() #create an empty error list
+for (file in files) {
+  trialData <- try(read.table(file, sep = ",", header = T, fill=T))
+  if (class(trialData) == 'try-error') {
+    cat('Caught an error during read.table.\n')
+    cat(file)
+  } else { 
+      pData = try(participantData[participantData$Participant.. == trialData$SubjectNo[1],]) #get info for current participant
+      pData$SubjectNo = pData$Participant.. 
+      if(length(pData$Age.Years) > 0){
+        if (!is.na(pData$Age.Years)){ #(This only happens for a NA line where a subj number was skipped)
+          myData = left_join(trialData, pData, by="SubjectNo") #Build rows
+          myData$trainingEndTime <- as.numeric(myData$trainingEndTime)
+          myData$finalTestStart <- as.numeric(myData$finalTestStart)
+          myData$finalTestEnd <- as.numeric(myData$finalTestEnd)
+          allData <- bind_rows(myData, allData) #Add these rows to the giant data frame
+        }
+      }
+  } 
+} 
+
+
+length(unique(allData$SubjectNo)) #Print this here to make sure we don't lose any data during reorganization below
+length(allData$SubjectNo)
+
+
+#It's a great big data frame! Begin by dropping columns that we don't need for analysis (mostly names of individual vid files)
+colToSave = c("SubjectNo","VerbDomain","trialNo","itemID",
+              "verbName","mannerSideBias","pathSideBias",
+              "kidResponseBias","mannerSideTest","pathSideTest",
+              "kidResponseTest","Experiment","Verb.Condition",
+              "Gender","Days.Old",
+              "Age.Years","Age.Months","Inclusion.Decision",
+              "Exclude.Reason","Experiment.Group",
+              "Experiment.x","Experiment.y","Condition",
+              "extAnswer","extVerbName",
+              "extMannerSide","extPathSide")
+
+
+#Recode variable names
+allData$RealExp <- ''
+allData$Experiment <- as.character(allData$Experiment)
+allData$Experiment.y <- as.character(allData$Experiment.y)
+allData <- allData  %>%
+  select(one_of(colToSave)) %>%
+  mutate(RealExp = ifelse(is.na(Experiment),Experiment.y,Experiment)) %>% #'Experiment' and 'Condition' were used inconsistently early on but can be derived from levels used
+  select(-c(VerbDomain, Experiment, Experiment.Group, Experiment.y, Experiment.x, Condition)) %>%
+  rename(Experiment = RealExp) %>%
+  rename(Condition = Verb.Condition)
+
+
+#Here ensure we didn't lose any rows during the cleaning process (should match above)
+
+length(unique(allData$SubjectNo)) 
+length(allData$SubjectNo)
+
+allData1 <- allData %>% #A few participants had the extension trials coded on the same lines as trials 1-8, just have to rearrange them
+  filter(is.na(extAnswer))
+allData2 <- allData %>%
+  filter(!is.na(extAnswer)) 
+
+#this could all be a gather probably, but it aint working
+allDataBase <- select(allData2, -c(extAnswer, extVerbName, extMannerSide, extPathSide))
+allDataExtend <- select(allData2, -c(itemID,verbName,mannerSideBias,pathSideBias,kidResponseBias,mannerSideTest,pathSideTest,kidResponseTest))
+
+allDataExtend <- allDataExtend %>%
+  mutate(trialNo = trialNo + 8) %>%
+  rename(verbName = extVerbName)  %>%
+  rename(mannerSideBias = extMannerSide) %>%
+  rename(pathSideBias = extPathSide) %>%
+  rename(kidResponseBias = extAnswer)
+
+allDataExtend$itemID = 'get it from verbname'
+allDataExtend$mannerSideTest = 'undefined'
+allDataExtend$pathSideTest = 'undefined'
+allDataExtend$kidResponseTest = 'undefined'
+
+allData <- select(allData1, -c(extAnswer, extVerbName, extMannerSide, extPathSide)) %>% #re-adding the normal ones
+  rbind(allDataBase) %>% #add base, then ext. trials of the weirdos
+  rbind(allDataExtend) %>%
+  arrange(SubjectNo) %>%
+  select(Experiment,Condition,SubjectNo,trialNo,itemID,verbName, mannerSideBias:Exclude.Reason) #just reordering
+
+
+#And one final check for not losing data - here, the number of ROWS increases because some participants' data was recorded in wide form, converted here to long. 
+
+length(unique(allData$SubjectNo))
+length(allData$SubjectNo)
+
+
+#In the following section, we account for all participants who are excluded from the study, and (EVENTUALLY) print a table showing the reason for each. 
+
+
+allData <- allData %>%
+  filter(!is.na(Inclusion.Decision)) %>%
+  filter(Experiment !="E1 - MannerPath") %>%
+  filter(Inclusion.Decision == 1) %>% #TODO: Eventually do this above and report stats!
+  select(-c(Inclusion.Decision, Exclude.Reason))
+
+length(unique(allData$SubjectNo))
+
+#Reshaping for analysis and graphs
+
+allData <- allData %>% #Translate kid choice variables to objective 'choseM' for Bias (main) & Test (sanity check - did they learn the verb)
+  filter(kidResponseBias == 'z' | kidResponseBias == 'c') %>% #remove trials w/ no answer on critical Bias q
+  mutate(choseM.Bias = ifelse((mannerSideBias == "L" & kidResponseBias == "z")| 
+                                     (mannerSideBias == "R" & kidResponseBias == "c"), 1, 0)) %>% 
+  mutate(choseM.Test = ifelse((mannerSideTest == "L" & kidResponseTest == "z")| 
+                                (mannerSideTest == "R" & kidResponseTest == "c"), 1, 0)) %>%
+  
+  mutate(expPhase = ifelse(trialNo>8,"Extension","Base")) #Mark trials 1-8 and 9-16
+
+
+#How many S's included? Collapse to 'chose manner' score rather than individual trial responses - notice for 'extend' this collapses the 2 experiment phases, DON"T use these for stats, jsut S level info :)
+scoreData <- aggregate(allData$choseM.Bias, by=list(allData$Condition, allData$Age.Years, allData$Gender, allData$SubjectNo), sum)
+names(scoreData) <- c("Condition", "Years", "Gender", "SubNo", "choseMScore")
+```
+
+
+
+### Participants
+
+All told, the following number of participants included in each cell of the experiment(s) are: 
+
+```{r report-n, warning=FALSE, error=FALSE, echo=FALSE, results=TRUE}
+table(scoreData$Years, scoreData$Gender, scoreData$Condition)
+table(scoreData$Condition)
+```
+
+included in the study. 
+
+### Materials
+
+### Procedure
+
+### Data analysis
+We used `r cite_r("r-references.bib")` for all our analyses.
+
+
+## Results
+
+## Experiment 2 - Discussion
+
+# General Discussion
+
+
+\newpage
+
+# References
+```{r create_r-references}
+setwd(sdir)
+r_refs(file = "r-references.bib")
+```
+
+\setlength{\parindent}{-0.5in}
+\setlength{\leftskip}{0.5in}
