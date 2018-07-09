@@ -1,5 +1,3 @@
-
-
 function MPP(subNo, condition, extendcondition)
 
 %Code based on sign meaning experiment, Feb 2014
