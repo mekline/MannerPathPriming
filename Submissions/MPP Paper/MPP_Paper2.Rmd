@@ -10,8 +10,9 @@ author:
     email         : "mekline@mit.edu"
   - name          : "Amy Geojo"
   - name          : "Annelot de Rechteren van Hemert"
+    affiliation   : "3"
   - name          : "Jesse Snedeker"
-    affiliation   : "1,2"
+    affiliation   : "2"
 
 affiliation:
   - id            : "1"
@@ -65,23 +66,80 @@ library(ggplot2)
 library(lme4)
 library(pwr)
 library(bootstrap)
+library(testthat)
 ```
 
 ```{r setup, include = FALSE, warning=FALSE}
-# Seed for random number generation
+# Seed for random number generation to reproduce any exact values
 set.seed(42)
 
 ## Set your directory to the root of the MPP repository on your local machine!!
 require("knitr")
-opts_knit$set(root.dir = "/Users/mekline/Dropbox/_Projects/PrimingMannerPath/MannerPathPriming/")
-repodir = "/Users/mekline/Dropbox/_Projects/PrimingMannerPath/MannerPathPriming/"
+opts_knit$set(root.dir = "/Users/mekline/Dropbox/_DB_Projects/PrimingMannerPath/MannerPathPriming/")
+repodir = "/Users/mekline/Dropbox/_DB_Projects/PrimingMannerPath/MannerPathPriming/"
 adir = paste(repodir, "Analysis/", sep="")
 ddir = paste(repodir, "MPP_Stim_and_Data/Data/" , sep="")
 adult_ddir = paste(repodir, "Geojo_E1E3/" , sep="")
 sdir = paste(repodir, "Submissions/MPP Paper/" , sep="")
 ```
 
-This is the introduction to the paper.  
+Introduction outline
+
+I. Motivate the big question/effects
+
+Why do we have the type of linguistic system we have? Beyond question of nature/nurture or particular syntactic theories, it's clear that langauges make distinctions between e.g. actions and objects. Fundamental, built in. Why? Because they matter for cmmunication, either how we talk about or what we want to talk about.  Meets our needs. 
+
+It MATTERS which representaitonal basis we have. Effects are everywhere. We make predictions about word meaning (Adult novel verb and 'human simulation' stuff), subtly- or not so subtly - update meaning of words based on sentence structure ('Crash' effects and Wolf), find verbs natural or unnatural in sentences (some rating studies?), struggle or dont' struggle to access a word in a particular frame (Priming). Psycholinguistic theories assume that these effects are all driven by some shared underlying cognitive representations. Linguistic theories provide concrete proposals for the nature of these representations (they won't all agree that we're doing this.) 
+
+Empirical evidence for these is good for both psycholiinguistcs, linguistics, and rest of cognition, which often struggles to describe events and missing distinctions we believe to be important. IT PUTS A CONSTRAINT. WE REALLY WANT EMPIRICAL SUPPORT FOR REPRESENTATIONAL FORM. NOAH's CRYSTALLOGRAPHY METAPHOR. 
+
+
+Define resarch qurtion - usually talk about verb classes ('cummunication') but the proposal that they're broader and have general principles and cross cutting, we explore that. 
+
+II. Word meaning and conceptual structure. 
+
+
+A. What is the content of mental representaitons of verbs? WELL Nouns. They work like this. Conceptual components/dimensions - Take people on the Dedre Gentner ride. 
+
+Returning to nouns, mass/count distinction implies  totally independent evidence for Spelke Objets by age 1 - they might have them much earlier, but to the extent they really have adultlike mass count (debatable), they have the principle. 
+
+B. How are verbs different? WELL for one thing baseball example. 
+
+
+Is it everything goes as far as perpsectives? Seems like NO.    Use give/receive. 
+Or Use dimensions? CONTRAST nouns: they refer to knids, traits tend to cluster (mutually predictive borders and hang together).  Check the cogsci version of Havasi paper 2013.  Vber stend to spread, picka  dimension of carem like cause or contact. 
+
+“mental representation of events” is a bit too broad for us; as with other cass the quyestion of whether noun representaiotn = object representaiton is HUGE, and we leave it aside. BUT, we see evidence for SOME kinds fo perspective taking, across langauges and theories
+
+
+C. TWO PRINCIPLE OF LING THEORY TYPES vis a vis generalities.  NEEDS TO STAY SHORT!
+
+D. WHEN GENERAL, Proposals tend to return to some common themes (cause, agency) etc.; it's nota  new idea that thesea re connected to early cognition. WHO CARES Which is true? WELL, Theories of early cognition also turn on questions of whether access to such representations. It could be independent, or not, BUT THEY MUST MAP TO EACH OTHER. Thus the linguistic achievements (if we're right about their representational forms) of young children are a key insignt to their conceptual structure, and the acquisition of these strucutres puts constraints on learning. 
+
+III. SPECIFIC REPRESENTATION TO TARGT: MANNER/RESULT
+
+So, how we proceed? Now for the first time in the paper talk about Manner/Result. ANd which is it! Talmy goes here; talk about interest in xlinguistics BUT we move on. Say explicitly that readers (lang acq) with this background will get confused. That literature is important but not what we're talking about. 
+
+Jesse's first paper establishes it's coherent, AND that it's learnable. Nice, suggests we're talking about reasonable familira kinds of concepts not some weird langauage thing.  But what is the SCOPE? Put a diagram here, probably. Why think limited? SYNTAX. NOT OBVIOUS TO LANGUAGE USER! Why think broad? TWO INDEPENDENT STORIES, echoing the nouns again. IF WE CAN SHOW which it is, and developmental course, can understand basis for THIS representation, and also geenral way to understand event representation.   Cite that Brent paper that annyos me. 
+
+IV. THIS STUDIES
+
+We'll do 2 things.  Establsih evidence for reality (replicated Havasi), show adult. Make predictions about kids afterwards (defer to then), but then look at developmental course. This is the roadmap.
+
+
+
+
+SEPARATE FOR DISCUSION:
+See Behrend Farer Tomaello Gentner for this stuff, especially on wheter we like manner or result more, which learning ios thjere./ "Behrend wrote a second paper".  Timeline is about 1977-185, then it goes away. 
+
+# Experiment 0 Experimental Design
+
+It's difficult! You need to understand it one time! In the epxeriments, we'll describe deviations. 
+
+TELL PEOPLE WHAT THEY ARE CONFUSED ABOUT AND HOW NOT TO BE. 
+
+GENERAL NOTE: In analyses, make sure that item effects don't treat an item in Causal and an item in MOtion as equivalent - there's no pairing!!
+
 
 # Experiment 1: Adults
 
@@ -90,9 +148,6 @@ This is the introduction to the paper.
 
 ### Robust and reliable practices
 
-Nope!
-
-We report how we determined our sample size, all data exclusions (if any), all manipulations, and all measures in the study. <!-- 21-word solution (Simmons, Nelson & Simonsohn, 2012; retrieved from http://ssrn.com/abstract=2160588) -->
 This data was previously reported as part of the second author's dissertation.
 
 - Data is available at TOADD (Need to strip MTurk IDs and birthdays if present)
@@ -102,24 +157,95 @@ This data was previously reported as part of the second author's dissertation.
 
 ### Data Cleaning (to be suppressed in submission)
 
-Data is loaded from cleaned scripts, post exclusion of subjects. Thus, we'll need to get the info on data exclusion from the text of Amy's dissertation
+Data is loaded from cleaned scripts, post exclusion of subjects (??). Thus, we'll need to get the info on data exclusion from the text of Amy's dissertation...
+
 ```{r load-and-clean-adult-data, warning=FALSE, error=FALSE, echo=FALSE}
 
 setwd(adult_ddir)
-intrans_data <- read.csv("E1_BiasAndTestScored.csv") %>%
-    mutate(SentenceCondition = "IntransitivePP")
-trans_data <- read.csv("E3_BiasAndTestScored.csv") %>%
+intrans_data <- read.csv("E1_BiasAndTestScored.csv", stringsAsFactors = FALSE) %>%
+    mutate(Experiment = "Adult E1 - IntransitivePP")
+trans_data <- read.csv("E3_BiasAndTestScored.csv", stringsAsFactors = FALSE) %>%
   select(-c("ProportionInvalidTrialsIncludedSubjectsOnly", 
             "SubjectNumberAfterPayCodeMergesAMTandWillowData")) %>%
-  mutate(SentenceCondition = "Transitive")
+  mutate(Experiment = "Adult E3 - Transitive Frame")
 
 adult_data <- rbind(intrans_data, trans_data) %>% #Drop MTurk admin trials
-  select(c("WillowSubNo", "trialNo","itemId","eventOrder","blockOrder","eventType", "condition","manner","result","verbName","verbMeaning","ambigS","ambigV","bias1","bias2", "biasV1Ans","bias1RESP","biasV2Ans","bias2RESP","test1","test2","testV1Ans", "test1RESP","testV2Ans", "test2RESP","catchTrialNum", "catchOrderedNum","catchTrialRESP", "trialCount","SubNo", "DemographicsCrit","subExcl_NotUSA_notEngl","block1", "block2","ProportionOfVideoLostTrials", "NumberOfVideoLostTrials","trialCountBlock", "meetMinTrialCrit","SubExcl_FailMinTrialCrit" ,"bias1ACC","bias2ACC", "biasACC","test1ACC", "test2ACC","testACC", "SentenceCondition"))
+  select(c("WillowSubNo", "trialNo","itemId","eventOrder","blockOrder","eventType", "condition","manner","result","verbName","verbMeaning","ambigS","ambigV","bias1","bias2", "biasV1Ans","bias1RESP","biasV2Ans","bias2RESP","test1","test2","testV1Ans", "test1RESP","testV2Ans", "test2RESP","catchTrialNum", "catchOrderedNum","catchTrialRESP", "trialCount","SubNo", "DemographicsCrit","subExcl_NotUSA_notEngl","block1", "block2","ProportionOfVideoLostTrials", "NumberOfVideoLostTrials","trialCountBlock", "meetMinTrialCrit","SubExcl_FailMinTrialCrit" ,"bias1ACC","bias2ACC", "biasACC","test1ACC", "test2ACC","testACC", "Experiment"))
 
-#TODO NEXT
-#Fix up column names
-#
+#Add columns that match kid data names! 
+adult_data <- adult_data %>%
+  mutate(SubjectNo = paste(WillowSubNo, SubNo, sep = '_')) %>%
+  select(-c(WillowSubNo, SubNo)) %>%
+  mutate(Condition = ifelse(condition == 'Means', 'Action', condition)) %>%
+  select(-c(condition))
+
+#Discovery - adult data condition changes domain at trial 9; it should be consistent within subjects! Grab
+#correct conditions and merge back!
+adult_conds <- adult_data %>%
+  group_by(SubjectNo)%>%
+  summarize(Condition = first(Condition))
+
+adult_data <- adult_data %>%
+  select(-c(Condition))%>%
+  merge(adult_conds, by='SubjectNo') %>%
+  mutate(fullItemId = paste(verbName, Condition, sep = '_')) %>%
+  select(-c(itemId)) %>%
+  mutate(expPhase = ifelse(block1 == '1', "Base", "Extension")) %>%
+  select(-c(block1, block2)) %>%
+  mutate(Inclusion.Decision = "To Add Later") %>%
+  mutate(Exclude.Reason = "To Add Later") %>%
+  select(-c(eventOrder, blockOrder, eventType, verbMeaning, ambigS, manner, result)) #Other ways of marking condition that are now redundant!
+
+#Now reformat responses to 'empirical' choices: Note there are 4, not 2 responses, since adults give 2 answers at each point! Rather than correct/incorrect we want whether manner/path is endorsed at each point. 
+#Columns currently just label whether answer is to first or second question (with identity labeled in the video name column), but we don't care about order! Actual conditions can be inferred from condition + correctness (!!!!!!).  Below, a 
+#convoluted reformat happens. 
+
+adult_data <- adult_data %>%
+  mutate(endorseM.Bias = 'todetermine') %>% #Using 'endorse' rather than 'chose' since adults do Y/N to each video
+  mutate(endorseP.Bias = 'todetermine') %>%
+  mutate(endorseM.Test = 'todetermine') %>%
+  mutate(endorseP.Test = 'todetermine') %>%
+  mutate(endorseM.Bias = ifelse((Condition == "Manner" & biasV1Ans == '1'| #These are columns of 'intended' answers, so no worries about missing data on these columns
+                                 Condition == "Action" & biasV1Ans == '1'|
+                                 Condition == "Path" & biasV1Ans == '0'|
+                                 Condition == "Effect" & biasV1Ans == '0'), 
+                                bias1RESP, bias2RESP)) %>%
+  mutate(endorseP.Bias = ifelse((Condition == "Path" & biasV1Ans == '1'| 
+                                 Condition == "Effect" & biasV1Ans == '1'|
+                                 Condition == "Manner" & biasV1Ans == '0'|
+                                 Condition == "Action" & biasV1Ans == '0'), 
+                                bias1RESP, bias2RESP)) %>%
+  mutate(endorseM.Test = ifelse((Condition == "Manner" & testV1Ans == '1'| 
+                                 Condition == "Action" & testV1Ans == '1'|
+                                 Condition == "Path" & testV1Ans == '0'|
+                                 Condition == "Effect" & testV1Ans == '0'), 
+                                test1RESP, test2RESP)) %>%
+  mutate(endorseP.Test = ifelse((Condition == "Path" & testV1Ans == '1'| 
+                                 Condition == "Effect" & testV1Ans == '1'|
+                                 Condition == "Manner" & testV1Ans == '0'|
+                                 Condition == "Action" & testV1Ans == '0'), 
+                                test1RESP, test2RESP))
+  
+  
+#Check that worked: IFF you got a 0.5 on 'accuracy', you should have endorsed either both or neither Manner and Path
+checker <- adult_data %>%
+  mutate(matchboth = endorseM.Bias == endorseP.Bias) %>%
+  mutate(biasACC = as.factor(biasACC)) %>%
+  group_by(matchboth, biasACC)%>%
+  summarize(counts = n())
+
+test_that('there should be counts *only* in the 3 legal cases',{
+  expect_equal(nrow(checker), 3)
+})
+
+#And now remove the old derivative columns to avoid confusion!
+adult_data <- adult_data %>%
+  select(-c(biasV1Ans, biasV2Ans, testV1Ans, testV2Ans, bias1ACC, bias2ACC, test1ACC, test2ACC, biasACC, testACC)) #Remove the old derived columns to reduce confusion!!!
+  
+
+
 ```
+
 
 ### Participants
 ### Material
@@ -167,6 +293,8 @@ participantData = read.csv(pFile, sep = ",", header = T) #load the info data fil
 #
 # - Errors on files 10, 75, 76, 77.  10 is a kid who .... ###TO ADD XXXX
 
+#TO ADD: Manual removal of subject 199 because this subject produces a double data file and I can't tell why!!
+
 setwd(ddir)
 allData <- data.frame(NULL)
 trialData <- data.frame(NULL)
@@ -194,8 +322,8 @@ for (file in files) {
 } 
 
 
-length(unique(allData$SubjectNo)) #Print this here to make sure we don't lose any data during reorganization below
-length(allData$SubjectNo)
+originalNSubj <- length(unique(allData$SubjectNo)) #Print this here to make sure we don't lose any data during reorganization below
+originalNRows <- length(allData$SubjectNo)
 
 
 #It's a great big data frame! Begin by dropping columns that we don't need for analysis (mostly names of individual vid files)
@@ -223,45 +351,89 @@ allData <- allData  %>%
   rename(Condition = Verb.Condition)
 
 
-#Here ensure we didn't lose any rows during the cleaning process (should match above)
+#Here ensure we didn't lose any rows during the cleaning process (should values from above)
+test_that("all subjects and rows retained in column renaming" , {
+expect_equal(originalNSubj, length(unique(allData$SubjectNo))) 
+expect_equal(originalNRows, length(allData$SubjectNo))
+})
 
-length(unique(allData$SubjectNo)) 
-length(allData$SubjectNo)
-
-allData1 <- allData %>% #A few participants had the extension trials coded on the same lines as trials 1-8, just have to rearrange them
+  
+#A few participants had the extension trials coded on the same lines as trials 1-8 (wide form), 
+#AND also have odd duplicated data; just have to rearrange these!
+Data_long  <- allData %>% 
   filter(is.na(extAnswer))
-allData2 <- allData %>%
+Data_wide <- allData %>%
   filter(!is.na(extAnswer)) 
 
-#this could all be a gather probably, but it aint working
-allDataBase <- select(allData2, -c(extAnswer, extVerbName, extMannerSide, extPathSide))
-allDataExtend <- select(allData2, -c(itemID,verbName,mannerSideBias,pathSideBias,kidResponseBias,mannerSideTest,pathSideTest,kidResponseTest))
+#...Remove those duplicate lines right now
+#The intended group we want is 'the latest instance of each trial, for each participant', that's actually
+#not too bad to implement!
+Data_wide <- Data_wide %>%
+  group_by(SubjectNo, trialNo)%>%
+  top_n(-1, row_number())%>%
+  ungroup()
 
-allDataExtend <- allDataExtend %>%
+#Remove columns to do with the other experiment phase!
+Data_long <- select(Data_long, -c(extAnswer, extVerbName, extMannerSide, extPathSide))
+Data_wide_Base <- select(Data_wide, -c(extAnswer, extVerbName, extMannerSide, extPathSide))
+
+#Remove columns we're about to rename, to make sure (un-applicable) data isn't maintained
+Data_wide_Extend <- select(Data_wide, -c(itemID,verbName,mannerSideBias,pathSideBias,kidResponseBias,mannerSideTest,pathSideTest,kidResponseTest))
+
+#...and rename them
+Data_wide_Extend <- Data_wide_Extend %>%
   mutate(trialNo = trialNo + 8) %>%
   rename(verbName = extVerbName)  %>%
   rename(mannerSideBias = extMannerSide) %>%
   rename(pathSideBias = extPathSide) %>%
-  rename(kidResponseBias = extAnswer)
+  rename(kidResponseBias = extAnswer) %>%
+  mutate(itemID = NA)%>%
+  mutate(mannerSideTest = 'undefined')%>%
+  mutate(pathSideTest = 'undefined')%>%
+  mutate(kidResponseTest = 'undefined')
 
-allDataExtend$itemID = 'get it from verbname'
-allDataExtend$mannerSideTest = 'undefined'
-allDataExtend$pathSideTest = 'undefined'
-allDataExtend$kidResponseTest = 'undefined'
-
-allData <- select(allData1, -c(extAnswer, extVerbName, extMannerSide, extPathSide)) %>% #re-adding the normal ones
-  rbind(allDataBase) %>% #add base, then ext. trials of the weirdos
-  rbind(allDataExtend) %>%
-  arrange(SubjectNo) %>%
+#Finally, bind it all back together
+allData <- bind_rows(Data_wide_Base, Data_wide_Extend, Data_long) %>%
+  arrange(SubjectNo)%>%
   select(Experiment,Condition,SubjectNo,trialNo,itemID,verbName, mannerSideBias:Exclude.Reason) #just reordering
 
+#Translate kid choice variables to objective 'choseM' for Bias & Test 
+allData <- allData %>%
+  mutate(choseM.Bias = ifelse((mannerSideBias == "L" & kidResponseBias == "z")| 
+                                     (mannerSideBias == "R" & kidResponseBias == "c"), 1, 0)) %>% 
+  mutate(choseM.Test = ifelse((mannerSideTest == "L" & kidResponseTest == "z")| 
+                                (mannerSideTest == "R" & kidResponseTest == "c"), 1, 0)) %>%
+  #BUT if the answer given was not a 'z' or 'c', we have no legal response, mark as such!!
+  mutate(choseM.Bias = ifelse((kidResponseBias !="z" & kidResponseBias != "c"),
+                              NA, choseM.Bias))%>%
+  mutate(choseM.Test = ifelse((kidResponseBias !="z" & kidResponseBias != "c"),
+                              NA, choseM.Test))
+  
 
-#And one final check for not losing data - here, the number of ROWS increases because some participants' data was recorded in wide form, converted here to long. 
 
-length(unique(allData$SubjectNo))
-length(allData$SubjectNo)
+## And do some column name changing to match adult data!
+allData <- allData %>%
+  mutate(expPhase = ifelse(trialNo>8,"Extension","Base"))%>% #Mark trials 1-8 and 9-16 more clearly
+  mutate(fullItemId = paste(verbName, Condition, sep = '_')) %>%
+  select(-c(itemID))
+  
+
+#Check this to make sure trial-duplication issue doesn't creep back in!
+resp <- allData %>%
+  group_by(SubjectNo, trialNo) %>%
+  count() %>%
+  filter(n > 1)
+
+#test_that("no more than one instance of a trial per participant",{
+#  expect_equal(max(resp$n), 1)
+#})
+#NOTE: Subject 199 fails this test
+
+```
 
 
+Exclusions
+```{r}
 #In the following section, we account for all participants who are excluded from the study, and (EVENTUALLY) print a table showing the reason for each. 
 
 
@@ -273,23 +445,11 @@ allData <- allData %>%
 
 length(unique(allData$SubjectNo))
 
-#Reshaping for analysis and graphs
-
-allData <- allData %>% #Translate kid choice variables to objective 'choseM' for Bias (main) & Test (sanity check - did they learn the verb)
-  filter(kidResponseBias == 'z' | kidResponseBias == 'c') %>% #remove trials w/ no answer on critical Bias q
-  mutate(choseM.Bias = ifelse((mannerSideBias == "L" & kidResponseBias == "z")| 
-                                     (mannerSideBias == "R" & kidResponseBias == "c"), 1, 0)) %>% 
-  mutate(choseM.Test = ifelse((mannerSideTest == "L" & kidResponseTest == "z")| 
-                                (mannerSideTest == "R" & kidResponseTest == "c"), 1, 0)) %>%
-  
-  mutate(expPhase = ifelse(trialNo>8,"Extension","Base")) #Mark trials 1-8 and 9-16
-
 
 #How many S's included? Collapse to 'chose manner' score rather than individual trial responses - notice for 'extend' this collapses the 2 experiment phases, DON"T use these for stats, jsut S level info :)
 scoreData <- aggregate(allData$choseM.Bias, by=list(allData$Condition, allData$Age.Years, allData$Gender, allData$SubjectNo), sum)
 names(scoreData) <- c("Condition", "Years", "Gender", "SubNo", "choseMScore")
 ```
-
 
 
 ### Participants
